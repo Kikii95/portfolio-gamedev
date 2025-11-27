@@ -14,7 +14,7 @@ export function Footer() {
   return (
     <footer className="border-t border-border/40 bg-background/95">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
           {/* Brand */}
           <div className="space-y-4 text-center sm:text-left">
             <h3 className="text-lg font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
@@ -23,42 +23,6 @@ export function Footer() {
             <p className="text-sm text-muted-foreground whitespace-pre-line">
               {t('tagline')}
             </p>
-          </div>
-
-          {/* Navigation */}
-          <div className="space-y-4 text-center sm:text-left">
-            <h4 className="text-sm font-semibold">{t('navigation')}</h4>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>
-                <Link href={`/${locale}`} className="hover:text-primary transition-colors">
-                  {tNav('home')}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={`/${locale}/projects`}
-                  className="hover:text-primary transition-colors"
-                >
-                  {tNav('projects')}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={`/${locale}/about`}
-                  className="hover:text-primary transition-colors"
-                >
-                  {tNav('about')}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={`/${locale}/contact`}
-                  className="hover:text-primary transition-colors"
-                >
-                  {tNav('contact')}
-                </Link>
-              </li>
-            </ul>
           </div>
 
           {/* Technologies */}
