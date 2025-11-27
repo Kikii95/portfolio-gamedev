@@ -22,6 +22,12 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
     'terminé': t('status.terminé')
   };
 
+  const categoryLabels = {
+    'école': t('category.école'),
+    'perso': t('category.perso'),
+    'travail': t('category.travail')
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -29,12 +35,12 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
       transition={{ delay: index * 0.1, duration: 0.4 }}
       whileHover={{ y: -8, transition: { duration: 0.2 } }}
     >
-      <Link href={`/projects/${project.slug}`}>
+      <Link href={`/${locale}/projects/${project.slug}`}>
         <Card className="h-full transition-all duration-300 hover:shadow-[0_0_30px_rgba(232,69,69,0.3)] hover:border-primary/50 cursor-pointer group">
           <CardHeader>
             <div className="flex gap-2 mb-2 flex-wrap">
               <Badge variant="outline" className="group-hover:border-primary group-hover:text-primary transition-colors">
-                {project.category}
+                {categoryLabels[project.category]}
               </Badge>
               {project.featured && (
                 <Badge className="bg-gradient-to-r from-primary to-accent">
@@ -71,7 +77,7 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
             </div>
           </CardContent>
           <CardFooter className="text-sm text-muted-foreground">
-            {new Date(project.date).toLocaleDateString('fr-FR', {
+            {new Date(project.date).toLocaleDateString(locale === 'fr' ? 'fr-FR' : 'en-US', {
               year: 'numeric',
               month: 'long',
             })}
