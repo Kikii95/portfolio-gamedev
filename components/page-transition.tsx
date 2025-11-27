@@ -9,16 +9,29 @@ interface PageTransitionProps {
 
 export function PageTransition({ children }: PageTransitionProps) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
-      transition={{
-        duration: 0.4,
-        ease: "easeInOut",
-      }}
-    >
-      {children}
-    </motion.div>
+    <>
+      {/* Transition Overlay */}
+      <motion.div
+        initial={{ scaleX: 1 }}
+        animate={{ scaleX: 0 }}
+        exit={{ scaleX: 0 }}
+        transition={{ duration: 0.6, ease: "circOut" }}
+        style={{ originX: 0 }}
+        className="fixed inset-0 z-50 bg-gradient-to-r from-primary to-accent pointer-events-none"
+      />
+
+      {/* Page Content */}
+      <motion.div
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: -20 }}
+        transition={{
+          duration: 0.6,
+          ease: "easeInOut",
+        }}
+      >
+        {children}
+      </motion.div>
+    </>
   );
 }
