@@ -16,14 +16,17 @@ interface ProjectsPageClientProps {
 type CategoryFilter = "all" | "école" | "perso" | "travail";
 
 export function ProjectsPageClient({ projects }: ProjectsPageClientProps) {
+  // Get current year as default
+  const currentYear = new Date().getFullYear().toString();
+
+  const [selectedYear, setSelectedYear] = useState<string>(currentYear);
   const [selectedCategory, setSelectedCategory] = useState<CategoryFilter>("all");
-  const [selectedYear, setSelectedYear] = useState<string>("all");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
-  // Extract unique years from projects
+  // Extract unique years from projects (no "all" option)
   const years = useMemo(() => {
     const projectYears = projects.map((p) => new Date(p.date).getFullYear());
-    return ["all", ...Array.from(new Set(projectYears)).sort((a, b) => b - a)];
+    return Array.from(new Set(projectYears)).sort((a, b) => b - a);
   }, [projects]);
 
   // Extract all unique tags
@@ -33,16 +36,22 @@ export function ProjectsPageClient({ projects }: ProjectsPageClientProps) {
     return Array.from(tags).sort();
   }, [projects]);
 
-  // Filter projects
-  const filteredProjects = useMemo(() => {
+  // First filter by year (primary filter)
+  const projectsInYear = useMemo(() => {
     return projects.filter((project) => {
+      return new Date(project.date).getFullYear().toString() === selectedYear;
+    });
+  }, [projects, selectedYear]);
+
+  // Then apply secondary filters (category + tags) on year-filtered projects
+  const filteredProjects = useMemo(() => {
+    return projectsInYear.filter((project) => {
       const categoryMatch = selectedCategory === "all" || project.category === selectedCategory;
-      const yearMatch = selectedYear === "all" || new Date(project.date).getFullYear().toString() === selectedYear;
       const tagMatch = selectedTags.length === 0 || selectedTags.some((tag) => project.tags.includes(tag));
 
-      return categoryMatch && yearMatch && tagMatch;
+      return categoryMatch && tagMatch;
     });
-  }, [projects, selectedCategory, selectedYear, selectedTags]);
+  }, [projectsInYear, selectedCategory, selectedTags]);
 
   const toggleTag = (tag: string) => {
     setSelectedTags((prev) =>
@@ -52,11 +61,10 @@ export function ProjectsPageClient({ projects }: ProjectsPageClientProps) {
 
   const clearFilters = () => {
     setSelectedCategory("all");
-    setSelectedYear("all");
     setSelectedTags([]);
   };
 
-  const hasActiveFilters = selectedCategory !== "all" || selectedYear !== "all" || selectedTags.length > 0;
+  const hasActiveFilters = selectedCategory !== "all" || selectedTags.length > 0;
 
   return (
     <div className="min-h-screen bg-background py-20">
@@ -66,29 +74,51 @@ export function ProjectsPageClient({ projects }: ProjectsPageClientProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="mb-12"
+          className="mb-8"
         >
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-4 bg-gradient-to-r from-foreground via-primary to-accent bg-clip-text text-transparent">
             Mes Projets
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl">
+          <p className="text-xl text-muted-foreground max-w-2xl mb-8">
             Une sélection de mes projets en développement de jeux vidéo,
-            outils et applications web. {filteredProjects.length} / {projects.length} projets.
+            outils et applications web.
           </p>
+
+          {/* Year Tabs */}
+          <div className="flex gap-3 mb-2">
+            {years.map((year) => (
+              <motion.button
+                key={year}
+                onClick={() => setSelectedYear(year.toString())}
+                className={`px-6 py-3 text-lg font-semibold rounded-lg transition-all ${
+                  selectedYear === year.toString()
+                    ? "bg-primary text-primary-foreground shadow-lg shadow-primary/30"
+                    : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                }`}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {year}
+              </motion.button>
+            ))}
+          </div>
+          <Separator className="mb-8" />
         </motion.div>
 
-        {/* Filters Section */}
+        {/* Secondary Filters */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1, duration: 0.5 }}
-          className="mb-8 space-y-6"
+          className="mb-8 space-y-4"
         >
           {/* Filter Header */}
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Filter className="h-5 w-5 text-primary" />
-              <h3 className="text-lg font-semibold">Filtres</h3>
+              <h3 className="text-base font-semibold">
+                Filtres ({filteredProjects.length} / {projectsInYear.length} projets en {selectedYear})
+              </h3>
             </div>
             {hasActiveFilters && (
               <Button
@@ -105,7 +135,7 @@ export function ProjectsPageClient({ projects }: ProjectsPageClientProps) {
 
           {/* Category Filters */}
           <div className="space-y-2">
-            <p className="text-sm font-medium text-muted-foreground">Catégorie</p>
+            <p className="text-sm font-medium text-muted-foreground">Catégories</p>
             <div className="flex gap-2 flex-wrap">
               {(["all", "école", "perso", "travail"] as const).map((cat) => (
                 <Badge
@@ -114,37 +144,17 @@ export function ProjectsPageClient({ projects }: ProjectsPageClientProps) {
                   className="cursor-pointer hover:scale-110 transition-transform"
                   onClick={() => setSelectedCategory(cat)}
                 >
-                  {cat === "all" ? "Tous" : cat}
+                  {cat === "all" ? "Toutes" : cat}
                 </Badge>
               ))}
             </div>
           </div>
-
-          <Separator />
-
-          {/* Year Filters */}
-          <div className="space-y-2">
-            <p className="text-sm font-medium text-muted-foreground">Année</p>
-            <div className="flex gap-2 flex-wrap">
-              {years.map((year) => (
-                <Badge
-                  key={year}
-                  variant={selectedYear === year.toString() ? "default" : "outline"}
-                  className="cursor-pointer hover:scale-110 transition-transform"
-                  onClick={() => setSelectedYear(year.toString())}
-                >
-                  {year === "all" ? "Toutes" : year}
-                </Badge>
-              ))}
-            </div>
-          </div>
-
-          <Separator />
 
           {/* Tag Filters */}
           <div className="space-y-2">
             <p className="text-sm font-medium text-muted-foreground">
-              Technologies ({selectedTags.length > 0 && `${selectedTags.length} sélectionnées`})
+              Technologies
+              {selectedTags.length > 0 && ` (${selectedTags.length} sélectionnées)`}
             </p>
             <div className="flex gap-2 flex-wrap">
               {allTags.map((tag) => (
