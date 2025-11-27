@@ -58,32 +58,34 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
     >
       <Link href={`/${locale}/projects/${project.slug}`}>
         <Card className="h-full transition-all duration-300 hover:shadow-[0_0_30px_rgba(232,69,69,0.3)] hover:border-primary/50 cursor-pointer group overflow-hidden">
-          {/* Image/Video Section */}
+          {/* Image/Video Section with padding frame */}
           {project.thumbnail && (
-            <div className="relative w-full aspect-video bg-muted overflow-hidden">
-              {/* Image - Always visible */}
-              <Image
-                src={project.thumbnail}
-                alt={project.title}
-                fill
-                className={`object-cover transition-opacity duration-300 ${
-                  isHovered && project.video ? 'opacity-0' : 'opacity-100'
-                }`}
-              />
-
-              {/* Video - Only visible on hover if exists */}
-              {project.video && (
-                <video
-                  ref={videoRef}
-                  src={project.video}
-                  loop
-                  muted
-                  playsInline
-                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${
-                    isHovered ? 'opacity-100' : 'opacity-0'
+            <div className="p-4">
+              <div className="relative w-full aspect-video bg-muted overflow-hidden rounded-lg border border-border/50">
+                {/* Image - Always visible */}
+                <Image
+                  src={project.thumbnail}
+                  alt={project.title}
+                  fill
+                  className={`object-cover transition-opacity duration-300 ${
+                    isHovered && project.video ? 'opacity-0' : 'opacity-100'
                   }`}
                 />
-              )}
+
+                {/* Video - Only visible on hover if exists */}
+                {project.video && (
+                  <video
+                    ref={videoRef}
+                    src={project.video}
+                    loop
+                    muted
+                    playsInline
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${
+                      isHovered ? 'opacity-100' : 'opacity-0'
+                    }`}
+                  />
+                )}
+              </div>
             </div>
           )}
 
