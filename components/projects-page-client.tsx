@@ -132,7 +132,7 @@ export function ProjectsPageClient({ projects }: ProjectsPageClientProps) {
             <div className="flex items-center gap-2">
               <Filter className="h-5 w-5 text-primary" />
               <h3 className="text-base font-semibold">
-                {t('filters')} ({t('projectsCount', { filtered: filteredProjects.length, total: projectsInYear.length, year: selectedYear })})
+                {t('filters')} ({t('projectsCount', { count: filteredProjects.length, year: selectedYear })})
               </h3>
             </div>
             {hasActiveFilters && (

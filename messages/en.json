@@ -21,7 +21,7 @@
     "title": "My Projects",
     "description": "A selection of my projects in game development, tools and web applications.",
     "filters": "Filters",
-    "projectsCount": "{filtered} / {total} projects in {year}",
+    "projectsCount": "{count, plural, =0 {No projects} one {# project} other {# projects}} in {year}",
     "categories": "Categories",
     "technologies": "Technologies",
     "technologiesSelected": "Technologies ({count} selected)",
