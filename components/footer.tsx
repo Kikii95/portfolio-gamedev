@@ -14,19 +14,70 @@ export function Footer() {
   return (
     <footer className="border-t border-border/40 bg-background/95">
       <div className="container mx-auto px-4 py-12">
-        {/* Brand - Full Width */}
-        <div className="text-center space-y-4 mb-12">
-          <h3 className="text-lg font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-            {t('brand')}
-          </h3>
-          <p className="text-sm text-muted-foreground whitespace-pre-line max-w-md mx-auto">
-            {t('tagline')}
-          </p>
+        {/* Single Row Layout: Technologies (Left) | Brand (Center) | Social (Right) */}
+        <div className="hidden md:grid md:grid-cols-3 gap-8 items-start mb-8">
+          {/* Technologies - Left */}
+          <div className="space-y-4 text-left">
+            <h4 className="text-sm font-semibold">{t('technologies')}</h4>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li>C++ / C#</li>
+              <li>Unity / Unreal</li>
+              <li>TypeScript / React</li>
+              <li>Python / Tools</li>
+            </ul>
+          </div>
+
+          {/* Brand - Center */}
+          <div className="text-center space-y-4">
+            <h3 className="text-lg font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              {t('brand')}
+            </h3>
+            <p className="text-sm text-muted-foreground whitespace-pre-line">
+              {t('tagline')}
+            </p>
+          </div>
+
+          {/* Social - Right */}
+          <div className="space-y-4 text-right">
+            <h4 className="text-sm font-semibold">{t('social')}</h4>
+            <div className="flex gap-4 justify-end">
+              <a
+                href="https://github.com/Kikii95"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                <Github className="h-5 w-5" />
+              </a>
+              <a
+                href="https://linkedin.com/in/votre-profil"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                <Linkedin className="h-5 w-5" />
+              </a>
+              <a
+                href="mailto:votre@email.com"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                <Mail className="h-5 w-5" />
+              </a>
+            </div>
+          </div>
         </div>
 
-        {/* Technologies & Social - Side by Side */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto mb-8">
-          {/* Technologies */}
+        {/* Mobile Layout - Stacked */}
+        <div className="md:hidden space-y-8 mb-8">
+          <div className="text-center space-y-4">
+            <h3 className="text-lg font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              {t('brand')}
+            </h3>
+            <p className="text-sm text-muted-foreground whitespace-pre-line">
+              {t('tagline')}
+            </p>
+          </div>
+
           <div className="space-y-4 text-center">
             <h4 className="text-sm font-semibold">{t('technologies')}</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
@@ -37,7 +88,6 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Social */}
           <div className="space-y-4 text-center">
             <h4 className="text-sm font-semibold">{t('social')}</h4>
             <div className="flex gap-4 justify-center">
