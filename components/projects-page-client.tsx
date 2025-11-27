@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Filter, X } from "lucide-react";
 import { useTranslations } from "next-intl";
 
@@ -32,19 +32,40 @@ export function ProjectsPageClient({ projects }: ProjectsPageClientProps) {
     return Array.from(new Set(projectYears)).sort((a, b) => b - a);
   }, [projects]);
 
-  // Extract all unique tags
-  const allTags = useMemo(() => {
-    const tags = new Set<string>();
-    projects.forEach((p) => p.tags.forEach((tag) => tags.add(tag)));
-    return Array.from(tags).sort();
-  }, [projects]);
-
   // First filter by year (primary filter)
   const projectsInYear = useMemo(() => {
     return projects.filter((project) => {
       return new Date(project.date).getFullYear().toString() === selectedYear;
     });
   }, [projects, selectedYear]);
+
+  // Extract available categories from projects in selected year
+  const availableCategories = useMemo(() => {
+    const categories = new Set<CategoryFilter>();
+    categories.add("all"); // Always include "all"
+    projectsInYear.forEach((p) => categories.add(p.category as CategoryFilter));
+    return Array.from(categories);
+  }, [projectsInYear]);
+
+  // Extract available tags from projects in selected year
+  const availableTags = useMemo(() => {
+    const tags = new Set<string>();
+    projectsInYear.forEach((p) => p.tags.forEach((tag) => tags.add(tag)));
+    return Array.from(tags).sort();
+  }, [projectsInYear]);
+
+  // Reset filters if selected category/tags are not available in current year
+  useEffect(() => {
+    if (selectedCategory !== "all" && !availableCategories.includes(selectedCategory)) {
+      setSelectedCategory("all");
+    }
+    if (selectedTags.length > 0) {
+      const validTags = selectedTags.filter((tag) => availableTags.includes(tag));
+      if (validTags.length !== selectedTags.length) {
+        setSelectedTags(validTags);
+      }
+    }
+  }, [selectedYear, availableCategories, availableTags, selectedCategory, selectedTags]);
 
   // Then apply secondary filters (category + tags) on year-filtered projects
   const filteredProjects = useMemo(() => {
@@ -139,7 +160,7 @@ export function ProjectsPageClient({ projects }: ProjectsPageClientProps) {
           <div className="space-y-2">
             <p className="text-sm font-medium text-muted-foreground">{t('categories')}</p>
             <div className="flex gap-2 flex-wrap">
-              {(["all", "école", "perso", "travail"] as const).map((cat) => (
+              {availableCategories.map((cat) => (
                 <Badge
                   key={cat}
                   variant={selectedCategory === cat ? "default" : "outline"}
@@ -158,7 +179,7 @@ export function ProjectsPageClient({ projects }: ProjectsPageClientProps) {
               {selectedTags.length > 0 ? t('technologiesSelected', { count: selectedTags.length }) : t('technologies')}
             </p>
             <div className="flex gap-2 flex-wrap">
-              {allTags.map((tag) => (
+              {availableTags.map((tag) => (
                 <Badge
                   key={tag}
                   variant={selectedTags.includes(tag) ? "default" : "secondary"}
