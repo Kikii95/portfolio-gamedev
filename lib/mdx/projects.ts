@@ -14,6 +14,7 @@ export interface ProjectMetadata {
   status?: 'en-cours' | 'stand-by' | 'terminé';
   github?: string;
   thumbnail?: string;
+  video?: string;
   slug: string;
 }
 
