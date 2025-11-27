@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio GameDev
 
-## Getting Started
+Portfolio moderne pour développeur de jeux vidéo, construit avec Next.js 14 et Shadcn/UI.
 
-First, run the development server:
+## 🎯 Stack Technique
+
+- **Framework** : Next.js 14 (App Router)
+- **Langage** : TypeScript
+- **Styling** : TailwindCSS + Shadcn/UI
+- **Contenu** : MDX (Markdown + JSX)
+- **Déploiement** : Vercel
+
+## 🚀 Démarrage Rapide
 
 ```bash
+# Installation
+npm install
+
+# Développement
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Build production
+npm run build
+
+# Démarrage production
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ouvrir [http://localhost:3000](http://localhost:3000) dans le navigateur.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📁 Structure Projet
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+portfolio-gamedev/
+├── app/                    # Pages Next.js (App Router)
+├── components/             # Composants React réutilisables
+│   ├── ui/                 # Composants Shadcn/UI
+│   └── project-card.tsx    # Card projet personnalisée
+├── content/                # Contenu MDX
+│   └── projects/           # Projets (1 fichier .mdx = 1 projet)
+├── lib/                    # Utilitaires
+│   └── mdx/                # Helpers MDX
+└── public/                 # Assets statiques
+```
 
-## Learn More
+## ✨ Ajouter un Projet
 
-To learn more about Next.js, take a look at the following resources:
+Créer un fichier `.mdx` dans `content/projects/` :
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```mdx
+---
+title: "Nom du Projet"
+description: "Description courte"
+date: "2025-11-27"
+category: "école"
+tags: ["C++", "Unity"]
+featured: true
+github: "https://github.com/user/repo"
+thumbnail: "/images/projects/thumb.jpg"
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Contenu du projet
 
-## Deploy on Vercel
+Markdown + composants React ici...
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Le projet apparaîtra automatiquement sur la page d'accueil.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🎨 Design System
+
+Utilise Shadcn/UI pour les composants :
+- Dark mode par défaut
+- Accessible (WCAG AA)
+- Composants copiés dans le code → 100% customisables
+
+## 📝 Commandes Utiles
+
+```bash
+# Ajouter un composant Shadcn/UI
+npx shadcn@latest add [component-name]
+
+# Linter
+npm run lint
+
+# Typecheck
+npx tsc --noEmit
+```
+
+## 🔗 Liens
+
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Shadcn/UI Components](https://ui.shadcn.com)
+- [TailwindCSS](https://tailwindcss.com)
+
+## 📄 Licence
+
+Privé - Tous droits réservés
