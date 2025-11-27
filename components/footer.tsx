@@ -14,9 +14,9 @@ export function Footer() {
   return (
     <footer className="border-t border-border/40 bg-background/95">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand */}
-          <div className="space-y-4">
+          <div className="space-y-4 text-center sm:text-left">
             <h3 className="text-lg font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
               {t('brand')}
             </h3>
@@ -26,7 +26,7 @@ export function Footer() {
           </div>
 
           {/* Navigation */}
-          <div className="space-y-4">
+          <div className="space-y-4 text-center sm:text-left">
             <h4 className="text-sm font-semibold">{t('navigation')}</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
@@ -62,7 +62,7 @@ export function Footer() {
           </div>
 
           {/* Technologies */}
-          <div className="space-y-4">
+          <div className="space-y-4 text-center sm:text-left">
             <h4 className="text-sm font-semibold">{t('technologies')}</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>C++ / C#</li>
@@ -73,9 +73,9 @@ export function Footer() {
           </div>
 
           {/* Social */}
-          <div className="space-y-4">
+          <div className="space-y-4 text-center sm:text-left">
             <h4 className="text-sm font-semibold">{t('social')}</h4>
-            <div className="flex gap-4">
+            <div className="flex gap-4 justify-center sm:justify-start">
               <a
                 href="https://github.com/Kikii95"
                 target="_blank"
