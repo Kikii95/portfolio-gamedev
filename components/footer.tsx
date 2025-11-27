@@ -14,19 +14,20 @@ export function Footer() {
   return (
     <footer className="border-t border-border/40 bg-background/95">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
-          {/* Brand */}
-          <div className="space-y-4 text-center sm:text-left">
-            <h3 className="text-lg font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              {t('brand')}
-            </h3>
-            <p className="text-sm text-muted-foreground whitespace-pre-line">
-              {t('tagline')}
-            </p>
-          </div>
+        {/* Brand - Full Width */}
+        <div className="text-center space-y-4 mb-12">
+          <h3 className="text-lg font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            {t('brand')}
+          </h3>
+          <p className="text-sm text-muted-foreground whitespace-pre-line max-w-md mx-auto">
+            {t('tagline')}
+          </p>
+        </div>
 
+        {/* Technologies & Social - Side by Side */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto mb-8">
           {/* Technologies */}
-          <div className="space-y-4 text-center sm:text-left">
+          <div className="space-y-4 text-center">
             <h4 className="text-sm font-semibold">{t('technologies')}</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>C++ / C#</li>
@@ -37,9 +38,9 @@ export function Footer() {
           </div>
 
           {/* Social */}
-          <div className="space-y-4 text-center sm:text-left">
+          <div className="space-y-4 text-center">
             <h4 className="text-sm font-semibold">{t('social')}</h4>
-            <div className="flex gap-4 justify-center sm:justify-start">
+            <div className="flex gap-4 justify-center">
               <a
                 href="https://github.com/Kikii95"
                 target="_blank"
