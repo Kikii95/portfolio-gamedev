@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const navigation = [
   { name: "Accueil", href: "/" },
@@ -64,32 +65,58 @@ export function Header() {
         </button>
       </nav>
 
-      {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <div className="md:hidden border-t border-border/40 bg-background/95 backdrop-blur">
-          <div className="container mx-auto px-4 py-4 space-y-3">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className={`block py-2 text-base font-medium transition-colors hover:text-primary ${
-                  pathname === item.href
-                    ? "text-primary"
-                    : "text-muted-foreground"
-                }`}
-                onClick={() => setMobileMenuOpen(false)}
+      {/* Mobile Menu with Animation */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="md:hidden border-t border-border/40 bg-background/95 backdrop-blur overflow-hidden"
+          >
+            <motion.div
+              initial={{ y: -20 }}
+              animate={{ y: 0 }}
+              exit={{ y: -20 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="container mx-auto px-4 py-4 space-y-3"
+            >
+              {navigation.map((item, index) => (
+                <motion.div
+                  key={item.name}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.1, duration: 0.3 }}
+                >
+                  <Link
+                    href={item.href}
+                    className={`block py-2 text-base font-medium transition-colors hover:text-primary ${
+                      pathname === item.href
+                        ? "text-primary"
+                        : "text-muted-foreground"
+                    }`}
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                </motion.div>
+              ))}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: navigation.length * 0.1, duration: 0.3 }}
               >
-                {item.name}
-              </Link>
-            ))}
-            <Button asChild className="w-full">
-              <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
-                Me Contacter
-              </Link>
-            </Button>
-          </div>
-        </div>
-      )}
+                <Button asChild className="w-full">
+                  <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
+                    Me Contacter
+                  </Link>
+                </Button>
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
