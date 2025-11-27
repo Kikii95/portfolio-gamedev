@@ -39,13 +39,8 @@ export function ProjectsPageClient({ projects }: ProjectsPageClientProps) {
     });
   }, [projects, selectedYear]);
 
-  // Extract available categories from projects in selected year
-  const availableCategories = useMemo(() => {
-    const categories = new Set<CategoryFilter>();
-    categories.add("all"); // Always include "all"
-    projectsInYear.forEach((p) => categories.add(p.category as CategoryFilter));
-    return Array.from(categories);
-  }, [projectsInYear]);
+  // Always show all categories (not dynamic)
+  const availableCategories: CategoryFilter[] = ["all", "école", "perso", "travail"];
 
   // Extract available tags from projects in selected year
   const availableTags = useMemo(() => {
@@ -54,18 +49,15 @@ export function ProjectsPageClient({ projects }: ProjectsPageClientProps) {
     return Array.from(tags).sort();
   }, [projectsInYear]);
 
-  // Reset filters if selected category/tags are not available in current year
+  // Reset tags if not available in current year (categories are always available)
   useEffect(() => {
-    if (selectedCategory !== "all" && !availableCategories.includes(selectedCategory)) {
-      setSelectedCategory("all");
-    }
     if (selectedTags.length > 0) {
       const validTags = selectedTags.filter((tag) => availableTags.includes(tag));
       if (validTags.length !== selectedTags.length) {
         setSelectedTags(validTags);
       }
     }
-  }, [selectedYear, availableCategories, availableTags, selectedCategory, selectedTags]);
+  }, [selectedYear, availableTags, selectedTags]);
 
   // Then apply secondary filters (category + tags) on year-filtered projects
   const filteredProjects = useMemo(() => {
@@ -140,7 +132,7 @@ export function ProjectsPageClient({ projects }: ProjectsPageClientProps) {
             <div className="flex items-center gap-2">
               <Filter className="h-5 w-5 text-primary" />
               <h3 className="text-base font-semibold">
-                {t('filters')} ({filteredProjects.length} / {projectsInYear.length} {t('projectsCount', { filtered: filteredProjects.length, total: projectsInYear.length, year: selectedYear })})
+                {t('filters')} ({t('projectsCount', { filtered: filteredProjects.length, total: projectsInYear.length, year: selectedYear })})
               </h3>
             </div>
             {hasActiveFilters && (
