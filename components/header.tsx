@@ -2,21 +2,25 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useTranslations, useLocale } from "next-intl";
 import { Button } from "@/components/ui/button";
+import { LanguageSwitcher } from "@/components/language-switcher";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const navigation = [
-  { name: "Accueil", href: "/" },
-  { name: "Projets", href: "/projects" },
-  { name: "À Propos", href: "/about" },
-  { name: "Contact", href: "/contact" },
-];
-
 export function Header() {
+  const t = useTranslations('nav');
+  const locale = useLocale();
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const navigation = [
+    { name: t('home'), href: `/${locale}` },
+    { name: t('projects'), href: `/${locale}/projects` },
+    { name: t('about'), href: `/${locale}/about` },
+    { name: t('contact'), href: `/${locale}/contact` },
+  ];
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -45,24 +49,24 @@ export function Header() {
           ))}
         </div>
 
-        {/* CTA Button Desktop */}
-        <div className="hidden md:block">
-          <Button asChild>
-            <Link href="/contact">Me Contacter</Link>
+        {/* Right Side: Language Switcher + CTA */}
+        <div className="flex gap-2 items-center">
+          <LanguageSwitcher />
+          <Button asChild className="hidden md:flex">
+            <Link href={`/${locale}/contact`}>{t('contactMe')}</Link>
           </Button>
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <Menu className="h-6 w-6" />
+            )}
+          </button>
         </div>
-
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        >
-          {mobileMenuOpen ? (
-            <X className="h-6 w-6" />
-          ) : (
-            <Menu className="h-6 w-6" />
-          )}
-        </button>
       </nav>
 
       {/* Mobile Menu with Animation */}
@@ -106,10 +110,11 @@ export function Header() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: navigation.length * 0.1, duration: 0.3 }}
+                className="pt-2"
               >
                 <Button asChild className="w-full">
-                  <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
-                    Me Contacter
+                  <Link href={`/${locale}/contact`} onClick={() => setMobileMenuOpen(false)}>
+                    {t('contactMe')}
                   </Link>
                 </Button>
               </motion.div>

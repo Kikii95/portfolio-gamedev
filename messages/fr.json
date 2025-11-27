@@ -1,0 +1,82 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "projects": "Projets",
+    "about": "À Propos",
+    "contact": "Contact",
+    "contactMe": "Me Contacter"
+  },
+  "home": {
+    "hero": {
+      "greeting": "Salut, je suis",
+      "name": "Killian",
+      "title": "Développeur Jeux Vidéo",
+      "description": "Passionné par la création d'expériences interactives immersives. Spécialisé en C++, Unity, et développement web. Actuellement en 3ème année à GTech Gaming Campus.",
+      "viewProjects": "Voir mes projets",
+      "downloadCV": "Télécharger CV"
+    },
+    "featuredProjects": "Projets en vedette"
+  },
+  "projects": {
+    "title": "Mes Projets",
+    "description": "Une sélection de mes projets en développement de jeux vidéo, outils et applications web.",
+    "filters": "Filtres",
+    "projectsCount": "{filtered} / {total} projets en {year}",
+    "categories": "Catégories",
+    "technologies": "Technologies",
+    "technologiesSelected": "Technologies ({count} sélectionnées)",
+    "resetFilters": "Réinitialiser",
+    "noProjects": "Aucun projet ne correspond aux filtres sélectionnés.",
+    "category": {
+      "all": "Toutes",
+      "école": "École",
+      "perso": "Perso",
+      "travail": "Travail"
+    },
+    "status": {
+      "en-cours": "En cours",
+      "stand-by": "Stand-By",
+      "terminé": "Terminé"
+    },
+    "featured": "Featured"
+  },
+  "about": {
+    "title": "À Propos de Moi",
+    "description": "Développeur passionné par la création d'expériences de jeu innovantes.",
+    "skills": "Compétences",
+    "education": "Formation",
+    "experience": "Expérience"
+  },
+  "contact": {
+    "title": "Contactez-moi",
+    "description": "Vous avez un projet en tête ? N'hésitez pas à me contacter !",
+    "availability": "Disponibilité",
+    "availableForWork": "Disponible pour des opportunités"
+  },
+  "footer": {
+    "brand": "Portfolio GameDev",
+    "tagline": "Développeur de jeux vidéo passionné.\n3ème année GTech Gaming Campus.",
+    "navigation": "Navigation",
+    "technologies": "Technologies",
+    "social": "Réseaux",
+    "copyright": "Portfolio GameDev. Tous droits réservés.",
+    "madeWith": "Fait avec",
+    "in": "en Next.js 14"
+  },
+  "date": {
+    "months": {
+      "january": "janvier",
+      "february": "février",
+      "march": "mars",
+      "april": "avril",
+      "may": "mai",
+      "june": "juin",
+      "july": "juillet",
+      "august": "août",
+      "september": "septembre",
+      "october": "octobre",
+      "november": "novembre",
+      "december": "décembre"
+    }
+  }
+}

@@ -1,8 +1,14 @@
+"use client";
+
 import Link from "next/link";
+import { useTranslations, useLocale } from "next-intl";
 import { Github, Linkedin, Mail } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 
 export function Footer() {
+  const t = useTranslations('footer');
+  const tNav = useTranslations('nav');
+  const locale = useLocale();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -12,54 +18,52 @@ export function Footer() {
           {/* Brand */}
           <div className="space-y-4">
             <h3 className="text-lg font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              Portfolio GameDev
+              {t('brand')}
             </h3>
-            <p className="text-sm text-muted-foreground">
-              Développeur de jeux vidéo passionné.
-              <br />
-              3ème année GTech Gaming Campus.
+            <p className="text-sm text-muted-foreground whitespace-pre-line">
+              {t('tagline')}
             </p>
           </div>
 
           {/* Navigation */}
           <div className="space-y-4">
-            <h4 className="text-sm font-semibold">Navigation</h4>
+            <h4 className="text-sm font-semibold">{t('navigation')}</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
-                <Link href="/" className="hover:text-primary transition-colors">
-                  Accueil
+                <Link href={`/${locale}`} className="hover:text-primary transition-colors">
+                  {tNav('home')}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/projects"
+                  href={`/${locale}/projects`}
                   className="hover:text-primary transition-colors"
                 >
-                  Projets
+                  {tNav('projects')}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/about"
+                  href={`/${locale}/about`}
                   className="hover:text-primary transition-colors"
                 >
-                  À Propos
+                  {tNav('about')}
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/contact"
+                  href={`/${locale}/contact`}
                   className="hover:text-primary transition-colors"
                 >
-                  Contact
+                  {tNav('contact')}
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Projets */}
+          {/* Technologies */}
           <div className="space-y-4">
-            <h4 className="text-sm font-semibold">Technologies</h4>
+            <h4 className="text-sm font-semibold">{t('technologies')}</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>C++ / C#</li>
               <li>Unity / Unreal</li>
@@ -70,7 +74,7 @@ export function Footer() {
 
           {/* Social */}
           <div className="space-y-4">
-            <h4 className="text-sm font-semibold">Réseaux</h4>
+            <h4 className="text-sm font-semibold">{t('social')}</h4>
             <div className="flex gap-4">
               <a
                 href="https://github.com/Kikii95"
@@ -101,9 +105,9 @@ export function Footer() {
         <Separator className="my-8" />
 
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
-          <p>&copy; {currentYear} Portfolio GameDev. Tous droits réservés.</p>
+          <p>&copy; {currentYear} {t('copyright')}</p>
           <p className="text-xs">
-            Fait avec <span className="text-primary">♥</span> en Next.js 14
+            {t('madeWith')} <span className="text-primary">♥</span> {t('in')}
           </p>
         </div>
       </div>

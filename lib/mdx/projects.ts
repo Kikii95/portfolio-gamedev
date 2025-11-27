@@ -11,6 +11,7 @@ export interface ProjectMetadata {
   category: 'école' | 'perso' | 'travail';
   tags: string[];
   featured?: boolean;
+  status?: 'en-cours' | 'stand-by' | 'terminé';
   github?: string;
   thumbnail?: string;
   slug: string;

@@ -8,6 +8,7 @@ import { Separator } from "@/components/ui/separator";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useMemo } from "react";
 import { Filter, X } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface ProjectsPageClientProps {
   projects: ProjectMetadata[];
@@ -16,6 +17,8 @@ interface ProjectsPageClientProps {
 type CategoryFilter = "all" | "école" | "perso" | "travail";
 
 export function ProjectsPageClient({ projects }: ProjectsPageClientProps) {
+  const t = useTranslations('projects');
+
   // Get current year as default
   const currentYear = new Date().getFullYear().toString();
 
@@ -77,11 +80,10 @@ export function ProjectsPageClient({ projects }: ProjectsPageClientProps) {
           className="mb-8"
         >
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-4 bg-gradient-to-r from-foreground via-primary to-accent bg-clip-text text-transparent">
-            Mes Projets
+            {t('title')}
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mb-8">
-            Une sélection de mes projets en développement de jeux vidéo,
-            outils et applications web.
+            {t('description')}
           </p>
 
           {/* Year Tabs */}
@@ -117,7 +119,7 @@ export function ProjectsPageClient({ projects }: ProjectsPageClientProps) {
             <div className="flex items-center gap-2">
               <Filter className="h-5 w-5 text-primary" />
               <h3 className="text-base font-semibold">
-                Filtres ({filteredProjects.length} / {projectsInYear.length} projets en {selectedYear})
+                {t('filters')} ({filteredProjects.length} / {projectsInYear.length} {t('projectsCount', { filtered: filteredProjects.length, total: projectsInYear.length, year: selectedYear })})
               </h3>
             </div>
             {hasActiveFilters && (
@@ -128,14 +130,14 @@ export function ProjectsPageClient({ projects }: ProjectsPageClientProps) {
                 className="text-muted-foreground hover:text-primary"
               >
                 <X className="h-4 w-4 mr-2" />
-                Réinitialiser
+                {t('resetFilters')}
               </Button>
             )}
           </div>
 
           {/* Category Filters */}
           <div className="space-y-2">
-            <p className="text-sm font-medium text-muted-foreground">Catégories</p>
+            <p className="text-sm font-medium text-muted-foreground">{t('categories')}</p>
             <div className="flex gap-2 flex-wrap">
               {(["all", "école", "perso", "travail"] as const).map((cat) => (
                 <Badge
@@ -144,7 +146,7 @@ export function ProjectsPageClient({ projects }: ProjectsPageClientProps) {
                   className="cursor-pointer hover:scale-110 transition-transform"
                   onClick={() => setSelectedCategory(cat)}
                 >
-                  {cat === "all" ? "Toutes" : cat}
+                  {t(`category.${cat}`)}
                 </Badge>
               ))}
             </div>
@@ -153,8 +155,7 @@ export function ProjectsPageClient({ projects }: ProjectsPageClientProps) {
           {/* Tag Filters */}
           <div className="space-y-2">
             <p className="text-sm font-medium text-muted-foreground">
-              Technologies
-              {selectedTags.length > 0 && ` (${selectedTags.length} sélectionnées)`}
+              {selectedTags.length > 0 ? t('technologiesSelected', { count: selectedTags.length }) : t('technologies')}
             </p>
             <div className="flex gap-2 flex-wrap">
               {allTags.map((tag) => (
@@ -199,10 +200,10 @@ export function ProjectsPageClient({ projects }: ProjectsPageClientProps) {
             className="text-center py-20"
           >
             <p className="text-muted-foreground text-lg mb-4">
-              Aucun projet ne correspond aux filtres sélectionnés.
+              {t('noProjects')}
             </p>
             <Button onClick={clearFilters} variant="outline">
-              Réinitialiser les filtres
+              {t('resetFilters')}
             </Button>
           </motion.div>
         )}

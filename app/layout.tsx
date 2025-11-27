@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio GameDev | Développeur Jeux Vidéo",
-  description: "Portfolio de développeur de jeux vidéo. Spécialisé en C++, Unity, et développement web. 3ème année GTech Gaming Campus.",
+  title: "Portfolio GameDev | Game Developer",
+  description: "Game developer portfolio. Specialized in C++, Unity, and web development. 3rd year at GTech Gaming Campus.",
 };
 
 export default function RootLayout({
@@ -28,10 +26,9 @@ export default function RootLayout({
     <html lang="fr" className="dark" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex min-h-screen flex-col`}
+        suppressHydrationWarning
       >
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        {children}
       </body>
     </html>
   );

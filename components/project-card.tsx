@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from "@/components/ui/badge";
 import { ProjectMetadata } from "@/lib/mdx/projects";
 import { motion } from "framer-motion";
+import { useTranslations, useLocale } from "next-intl";
 
 interface ProjectCardProps {
   project: ProjectMetadata;
@@ -12,6 +13,15 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
+  const t = useTranslations('projects');
+  const locale = useLocale();
+
+  const statusLabels = {
+    'en-cours': t('status.en-cours'),
+    'stand-by': t('status.stand-by'),
+    'terminé': t('status.terminé')
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -28,7 +38,21 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
               </Badge>
               {project.featured && (
                 <Badge className="bg-gradient-to-r from-primary to-accent">
-                  Featured
+                  {t('featured')}
+                </Badge>
+              )}
+              {project.status && (
+                <Badge
+                  className={
+                    project.status === 'en-cours'
+                      ? "bg-blue-500/20 text-blue-400 border-blue-500/50"
+                      : project.status === 'stand-by'
+                      ? "bg-orange-500/20 text-orange-400 border-orange-500/50"
+                      : "bg-green-500/20 text-green-400 border-green-500/50"
+                  }
+                  variant="outline"
+                >
+                  {project.status === 'en-cours' ? '🔄' : project.status === 'stand-by' ? '⏸️' : '✅'} {statusLabels[project.status]}
                 </Badge>
               )}
             </div>

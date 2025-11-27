@@ -1,0 +1,82 @@
+{
+  "nav": {
+    "home": "Home",
+    "projects": "Projects",
+    "about": "About",
+    "contact": "Contact",
+    "contactMe": "Contact Me"
+  },
+  "home": {
+    "hero": {
+      "greeting": "Hi, I'm",
+      "name": "Killian",
+      "title": "Game Developer",
+      "description": "Passionate about creating immersive interactive experiences. Specialized in C++, Unity, and web development. Currently in 3rd year at GTech Gaming Campus.",
+      "viewProjects": "View My Projects",
+      "downloadCV": "Download CV"
+    },
+    "featuredProjects": "Featured Projects"
+  },
+  "projects": {
+    "title": "My Projects",
+    "description": "A selection of my projects in game development, tools and web applications.",
+    "filters": "Filters",
+    "projectsCount": "{filtered} / {total} projects in {year}",
+    "categories": "Categories",
+    "technologies": "Technologies",
+    "technologiesSelected": "Technologies ({count} selected)",
+    "resetFilters": "Reset",
+    "noProjects": "No projects match the selected filters.",
+    "category": {
+      "all": "All",
+      "école": "School",
+      "perso": "Personal",
+      "travail": "Work"
+    },
+    "status": {
+      "en-cours": "In Progress",
+      "stand-by": "On Hold",
+      "terminé": "Completed"
+    },
+    "featured": "Featured"
+  },
+  "about": {
+    "title": "About Me",
+    "description": "Developer passionate about creating innovative gaming experiences.",
+    "skills": "Skills",
+    "education": "Education",
+    "experience": "Experience"
+  },
+  "contact": {
+    "title": "Contact Me",
+    "description": "Have a project in mind? Feel free to reach out!",
+    "availability": "Availability",
+    "availableForWork": "Available for opportunities"
+  },
+  "footer": {
+    "brand": "Portfolio GameDev",
+    "tagline": "Passionate game developer.\n3rd year at GTech Gaming Campus.",
+    "navigation": "Navigation",
+    "technologies": "Technologies",
+    "social": "Social",
+    "copyright": "Portfolio GameDev. All rights reserved.",
+    "madeWith": "Made with",
+    "in": "in Next.js 14"
+  },
+  "date": {
+    "months": {
+      "january": "January",
+      "february": "February",
+      "march": "March",
+      "april": "April",
+      "may": "May",
+      "june": "June",
+      "july": "July",
+      "august": "August",
+      "september": "September",
+      "october": "October",
+      "november": "November",
+      "december": "December"
+    }
+  }
+}

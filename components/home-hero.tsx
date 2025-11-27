@@ -3,8 +3,12 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useTranslations, useLocale } from "next-intl";
 
 export function HomeHero() {
+  const t = useTranslations('home.hero');
+  const locale = useLocale();
+
   return (
     <section className="container mx-auto px-4 py-20 md:py-32">
       <div className="max-w-3xl">
@@ -14,7 +18,7 @@ export function HomeHero() {
           transition={{ delay: 0.1, duration: 0.5 }}
           className="text-4xl md:text-6xl font-bold tracking-tight mb-6 bg-gradient-to-r from-foreground via-primary to-accent bg-clip-text text-transparent"
         >
-          Portfolio GameDev
+          {t('greeting')} {t('name')} - {t('title')}
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -22,8 +26,7 @@ export function HomeHero() {
           transition={{ delay: 0.2, duration: 0.5 }}
           className="text-xl text-muted-foreground mb-8"
         >
-          Développeur de jeux vidéo passionné. 3ème année GTech Gaming Campus.
-          Spécialisé en C++, Unity, et développement web.
+          {t('description')}
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -34,14 +37,14 @@ export function HomeHero() {
           <Button asChild size="lg" className="group">
             <Link href="#projects">
               <span className="group-hover:scale-110 transition-transform inline-block">
-                Voir mes projets
+                {t('viewProjects')}
               </span>
             </Link>
           </Button>
           <Button asChild variant="outline" size="lg" className="group">
-            <Link href="/about">
+            <Link href={`/${locale}/about`}>
               <span className="group-hover:scale-110 transition-transform inline-block">
-                À propos
+                {t('about', { default: 'À propos' })}
               </span>
             </Link>
           </Button>
