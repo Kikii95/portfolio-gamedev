@@ -7,6 +7,7 @@ import { useTranslations, useLocale } from "next-intl";
 
 export function HomeHero() {
   const t = useTranslations('home.hero');
+  const tNav = useTranslations('nav');
   const locale = useLocale();
 
   return (
@@ -44,7 +45,7 @@ export function HomeHero() {
           <Button asChild variant="outline" size="lg" className="group">
             <Link href={`/${locale}/about`}>
               <span className="group-hover:scale-110 transition-transform inline-block">
-                {t('about', { default: 'À propos' })}
+                {tNav('about')}
               </span>
             </Link>
           </Button>
