@@ -1,32 +1,19 @@
+"use client";
+
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import { useTranslations } from "next-intl";
 
 export default function AboutPage() {
+  const t = useTranslations('about');
+
   const skills = {
-    "Game Engines": ["Unity", "Unreal Engine", "Godot", "Custom Engines"],
-    "Languages": ["C++", "C#", "TypeScript", "Python", "GLSL"],
-    "Tools": ["Git", "CMake", "Visual Studio", "VS Code", "Blender"],
-    "Web": ["Next.js", "React", "Node.js", "PostgreSQL", "TailwindCSS"],
+    gameEngines: ["Unity", "Unreal Engine", "Godot", "Custom Engines"],
+    languages: ["C++", "C#", "TypeScript", "Python", "GLSL"],
+    tools: ["Git", "CMake", "Visual Studio", "VS Code", "Blender"],
+    web: ["Next.js", "React", "Node.js", "PostgreSQL", "TailwindCSS"],
   };
-
-  const education = [
-    {
-      period: "2023 - 2026",
-      title: "Bachelor Développeur de Jeux Vidéo",
-      school: "GTech Gaming Campus",
-      description: "3ème année - Spécialisation Programmation Gameplay & Moteurs",
-    },
-  ];
-
-  const experience = [
-    {
-      period: "2024",
-      title: "Projet Template ECS",
-      type: "École",
-      description: "Développement d'un moteur Entity Component System en C++20 avec architecture modulaire professionnelle.",
-    },
-  ];
 
   return (
     <div className="min-h-screen bg-background py-20">
@@ -34,28 +21,21 @@ export default function AboutPage() {
         {/* Header */}
         <div className="mb-12">
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-4">
-            À Propos
+            {t('title')}
           </h1>
           <p className="text-xl text-muted-foreground">
-            Développeur de jeux vidéo passionné par la création d'expériences interactives.
+            {t('subtitle')}
           </p>
         </div>
 
         {/* Bio */}
         <Card className="mb-8">
           <CardHeader>
-            <CardTitle>Qui suis-je ?</CardTitle>
+            <CardTitle>{t('whoAmI')}</CardTitle>
           </CardHeader>
           <CardContent className="prose prose-lg dark:prose-invert max-w-none">
-            <p>
-              Je suis un développeur de jeux vidéo en 3ème année à GTech Gaming Campus,
-              passionné par la programmation gameplay, le développement de moteurs de jeu
-              et l'architecture logicielle.
-            </p>
-            <p>
-              Mon objectif est de créer des expériences de jeu innovantes et techniques,
-              en combinant compétences en C++, Unity, et développement web moderne.
-            </p>
+            <p>{t('bio1')}</p>
+            <p>{t('bio2')}</p>
           </CardContent>
         </Card>
 
@@ -63,12 +43,12 @@ export default function AboutPage() {
 
         {/* Skills */}
         <div className="mb-12">
-          <h2 className="text-3xl font-bold mb-6">Compétences Techniques</h2>
+          <h2 className="text-3xl font-bold mb-6">{t('skillsTitle')}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {Object.entries(skills).map(([category, items]) => (
               <Card key={category}>
                 <CardHeader>
-                  <CardTitle className="text-lg">{category}</CardTitle>
+                  <CardTitle className="text-lg">{t(`skillsCategories.${category}`)}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="flex flex-wrap gap-2">
@@ -88,22 +68,20 @@ export default function AboutPage() {
 
         {/* Education */}
         <div className="mb-12">
-          <h2 className="text-3xl font-bold mb-6">Formation</h2>
+          <h2 className="text-3xl font-bold mb-6">{t('educationTitle')}</h2>
           <div className="space-y-6">
-            {education.map((item, index) => (
-              <Card key={index}>
-                <CardContent className="pt-6">
-                  <div className="flex flex-col md:flex-row md:items-start gap-4">
-                    <Badge className="w-fit">{item.period}</Badge>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-semibold mb-1">{item.title}</h3>
-                      <p className="text-muted-foreground mb-2">{item.school}</p>
-                      <p className="text-sm">{item.description}</p>
-                    </div>
+            <Card>
+              <CardContent className="pt-6">
+                <div className="flex flex-col md:flex-row md:items-start gap-4">
+                  <Badge className="w-fit">{t('educationItems.gtech.period')}</Badge>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-semibold mb-1">{t('educationItems.gtech.title')}</h3>
+                    <p className="text-muted-foreground mb-2">{t('educationItems.gtech.school')}</p>
+                    <p className="text-sm">{t('educationItems.gtech.description')}</p>
                   </div>
-                </CardContent>
-              </Card>
-            ))}
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
 
@@ -111,24 +89,22 @@ export default function AboutPage() {
 
         {/* Experience */}
         <div className="mb-12">
-          <h2 className="text-3xl font-bold mb-6">Expérience</h2>
+          <h2 className="text-3xl font-bold mb-6">{t('experienceTitle')}</h2>
           <div className="space-y-6">
-            {experience.map((item, index) => (
-              <Card key={index}>
-                <CardContent className="pt-6">
-                  <div className="flex flex-col md:flex-row md:items-start gap-4">
-                    <Badge className="w-fit">{item.period}</Badge>
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <h3 className="text-xl font-semibold">{item.title}</h3>
-                        <Badge variant="outline">{item.type}</Badge>
-                      </div>
-                      <p className="text-sm">{item.description}</p>
+            <Card>
+              <CardContent className="pt-6">
+                <div className="flex flex-col md:flex-row md:items-start gap-4">
+                  <Badge className="w-fit">{t('experienceItems.ecs.period')}</Badge>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2 mb-1">
+                      <h3 className="text-xl font-semibold">{t('experienceItems.ecs.title')}</h3>
+                      <Badge variant="outline">{t('experienceItems.ecs.type')}</Badge>
                     </div>
+                    <p className="text-sm">{t('experienceItems.ecs.description')}</p>
                   </div>
-                </CardContent>
-              </Card>
-            ))}
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </div>

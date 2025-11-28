@@ -1,19 +1,23 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Github, Linkedin, Mail } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export default function ContactPage() {
+  const t = useTranslations('contact');
+
   return (
     <div className="min-h-screen bg-background py-20">
       <div className="container mx-auto px-4 max-w-4xl">
         {/* Header */}
         <div className="mb-12 text-center">
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-4">
-            Me Contacter
+            {t('title')}
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Intéressé par une collaboration, un stage ou simplement discuter de jeux vidéo ?
-            N'hésitez pas à me contacter !
+            {t('subtitle')}
           </p>
         </div>
 
@@ -24,8 +28,8 @@ export default function ContactPage() {
               <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
                 <Mail className="h-6 w-6 text-primary" />
               </div>
-              <CardTitle>Email</CardTitle>
-              <CardDescription>Envoyez-moi un email</CardDescription>
+              <CardTitle>{t('email.title')}</CardTitle>
+              <CardDescription>{t('email.description')}</CardDescription>
             </CardHeader>
             <CardContent>
               <a
@@ -42,8 +46,8 @@ export default function ContactPage() {
               <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
                 <Github className="h-6 w-6 text-primary" />
               </div>
-              <CardTitle>GitHub</CardTitle>
-              <CardDescription>Consultez mon code</CardDescription>
+              <CardTitle>{t('github.title')}</CardTitle>
+              <CardDescription>{t('github.description')}</CardDescription>
             </CardHeader>
             <CardContent>
               <a
@@ -62,8 +66,8 @@ export default function ContactPage() {
               <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
                 <Linkedin className="h-6 w-6 text-primary" />
               </div>
-              <CardTitle>LinkedIn</CardTitle>
-              <CardDescription>Connectons-nous</CardDescription>
+              <CardTitle>{t('linkedin.title')}</CardTitle>
+              <CardDescription>{t('linkedin.description')}</CardDescription>
             </CardHeader>
             <CardContent>
               <a
@@ -72,7 +76,7 @@ export default function ContactPage() {
                 rel="noopener noreferrer"
                 className="text-primary hover:underline font-medium"
               >
-                Mon Profil
+                {t('linkedin.profile')}
               </a>
             </CardContent>
           </Card>
@@ -86,13 +90,15 @@ export default function ContactPage() {
                 <span className="text-2xl">💼</span>
               </div>
               <div>
-                <h3 className="text-lg font-semibold mb-2">Disponibilité</h3>
+                <h3 className="text-lg font-semibold mb-2">{t('availability.title')}</h3>
                 <p className="text-muted-foreground mb-4">
-                  Actuellement en recherche de <strong className="text-foreground">stage</strong> ou <strong className="text-foreground">alternance</strong>
-                  {" "}en développement de jeux vidéo pour 2025.
+                  {t.rich('availability.description', {
+                    stage: () => <strong className="text-foreground">{t('availability.stage')}</strong>,
+                    alternance: () => <strong className="text-foreground">{t('availability.alternance')}</strong>,
+                  })}
                 </p>
                 <Button asChild>
-                  <a href="mailto:votre@email.com">Discutons de votre projet</a>
+                  <a href="mailto:votre@email.com">{t('availability.cta')}</a>
                 </Button>
               </div>
             </div>

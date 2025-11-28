@@ -27,6 +27,7 @@
     "technologiesSelected": "Technologies ({count} sélectionnées)",
     "resetFilters": "Réinitialiser",
     "noProjects": "Aucun projet ne correspond aux filtres sélectionnés.",
+    "backToProjects": "Retour aux projets",
     "category": {
       "all": "Toutes",
       "école": "École",
@@ -41,17 +42,60 @@
     "featured": "Featured"
   },
   "about": {
-    "title": "À Propos de Moi",
-    "description": "Développeur passionné par la création d'expériences de jeu innovantes.",
-    "skills": "Compétences",
-    "education": "Formation",
-    "experience": "Expérience"
+    "title": "À Propos",
+    "subtitle": "Développeur de jeux vidéo passionné par la création d'expériences interactives.",
+    "whoAmI": "Qui suis-je ?",
+    "bio1": "Je suis un développeur de jeux vidéo en 3ème année à GTech Gaming Campus, passionné par la programmation gameplay, le développement de moteurs de jeu et l'architecture logicielle.",
+    "bio2": "Mon objectif est de créer des expériences de jeu innovantes et techniques, en combinant compétences en C++, Unity, et développement web moderne.",
+    "skillsTitle": "Compétences Techniques",
+    "skillsCategories": {
+      "gameEngines": "Moteurs de Jeu",
+      "languages": "Langages",
+      "tools": "Outils",
+      "web": "Web"
+    },
+    "educationTitle": "Formation",
+    "experienceTitle": "Expérience",
+    "educationItems": {
+      "gtech": {
+        "period": "2023 - 2026",
+        "title": "Bachelor Développeur de Jeux Vidéo",
+        "school": "GTech Gaming Campus",
+        "description": "3ème année - Spécialisation Programmation Gameplay & Moteurs"
+      }
+    },
+    "experienceItems": {
+      "ecs": {
+        "period": "2024",
+        "title": "Projet Template ECS",
+        "type": "École",
+        "description": "Développement d'un moteur Entity Component System en C++20 avec architecture modulaire professionnelle."
+      }
+    }
   },
   "contact": {
-    "title": "Contactez-moi",
-    "description": "Vous avez un projet en tête ? N'hésitez pas à me contacter !",
-    "availability": "Disponibilité",
-    "availableForWork": "Disponible pour des opportunités"
+    "title": "Me Contacter",
+    "subtitle": "Intéressé par une collaboration, un stage ou simplement discuter de jeux vidéo ? N'hésitez pas à me contacter !",
+    "email": {
+      "title": "Email",
+      "description": "Envoyez-moi un email"
+    },
+    "github": {
+      "title": "GitHub",
+      "description": "Consultez mon code"
+    },
+    "linkedin": {
+      "title": "LinkedIn",
+      "description": "Connectons-nous",
+      "profile": "Mon Profil"
+    },
+    "availability": {
+      "title": "Disponibilité",
+      "description": "Actuellement en recherche de {stage} ou {alternance} en développement de jeux vidéo pour 2025.",
+      "stage": "stage",
+      "alternance": "alternance",
+      "cta": "Discutons de votre projet"
+    }
   },
   "footer": {
     "brand": "Portfolio GameDev",

@@ -27,6 +27,7 @@
     "technologiesSelected": "Technologies ({count} selected)",
     "resetFilters": "Reset",
     "noProjects": "No projects match the selected filters.",
+    "backToProjects": "Back to Projects",
     "category": {
       "all": "All",
       "école": "School",
@@ -41,17 +42,60 @@
     "featured": "Featured"
   },
   "about": {
-    "title": "About Me",
-    "description": "Developer passionate about creating innovative gaming experiences.",
-    "skills": "Skills",
-    "education": "Education",
-    "experience": "Experience"
+    "title": "About",
+    "subtitle": "Game developer passionate about creating interactive experiences.",
+    "whoAmI": "Who am I?",
+    "bio1": "I'm a game developer in 3rd year at GTech Gaming Campus, passionate about gameplay programming, game engine development and software architecture.",
+    "bio2": "My goal is to create innovative and technical game experiences, combining C++, Unity, and modern web development skills.",
+    "skillsTitle": "Technical Skills",
+    "skillsCategories": {
+      "gameEngines": "Game Engines",
+      "languages": "Languages",
+      "tools": "Tools",
+      "web": "Web"
+    },
+    "educationTitle": "Education",
+    "experienceTitle": "Experience",
+    "educationItems": {
+      "gtech": {
+        "period": "2023 - 2026",
+        "title": "Bachelor Game Developer",
+        "school": "GTech Gaming Campus",
+        "description": "3rd year - Gameplay Programming & Engines Specialization"
+      }
+    },
+    "experienceItems": {
+      "ecs": {
+        "period": "2024",
+        "title": "ECS Template Project",
+        "type": "School",
+        "description": "Development of an Entity Component System engine in C++20 with professional modular architecture."
+      }
+    }
   },
   "contact": {
     "title": "Contact Me",
-    "description": "Have a project in mind? Feel free to reach out!",
-    "availability": "Availability",
-    "availableForWork": "Available for opportunities"
+    "subtitle": "Interested in collaboration, internship or just discussing video games? Feel free to reach out!",
+    "email": {
+      "title": "Email",
+      "description": "Send me an email"
+    },
+    "github": {
+      "title": "GitHub",
+      "description": "Check out my code"
+    },
+    "linkedin": {
+      "title": "LinkedIn",
+      "description": "Let's connect",
+      "profile": "My Profile"
+    },
+    "availability": {
+      "title": "Availability",
+      "description": "Currently looking for {internship} or {apprenticeship} in game development for 2025.",
+      "stage": "internship",
+      "alternance": "apprenticeship",
+      "cta": "Let's discuss your project"
+    }
   },
   "footer": {
     "brand": "Portfolio GameDev",

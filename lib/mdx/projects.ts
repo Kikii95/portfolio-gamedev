@@ -13,8 +13,10 @@ export interface ProjectMetadata {
   featured?: boolean;
   status?: 'en-cours' | 'stand-by' | 'terminé';
   github?: string;
+  buildUrl?: string; // Download link for playable builds (itch.io, GitHub Releases, etc.)
   thumbnail?: string;
   video?: string;
+  gallery?: string[]; // Array of image/video URLs for carousel
   slug: string;
 }
 
