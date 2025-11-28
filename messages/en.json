@@ -107,7 +107,7 @@
     },
     "availability": {
       "title": "Availability",
-      "description": "Currently looking for {internship} or {apprenticeship} in game development for 2025.",
+      "description": "Currently looking for {stage} or {alternance} in game development for 2025.",
       "stage": "internship",
       "alternance": "apprenticeship",
       "cta": "Let's discuss your project"
