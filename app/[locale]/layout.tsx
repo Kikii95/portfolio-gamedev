@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import { locales } from '@/i18n';
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
-import { BackgroundParticles } from "@/components/background-particles";
+import { BackgroundGodMode } from "@/components/background-godmode";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -27,7 +27,7 @@ export default async function LocaleLayout({
 
   return (
     <NextIntlClientProvider messages={messages}>
-      <BackgroundParticles />
+      <BackgroundGodMode />
       <Header />
       <main className="flex-1">{children}</main>
       <Footer />

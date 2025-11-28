@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
-import { Hero3DCube } from "@/components/hero-3d-cube";
+import { Hero3DGodMode } from "@/components/hero-3d-godmode";
 
 export function HomeHero() {
   const t = useTranslations('home.hero');
@@ -55,14 +55,14 @@ export function HomeHero() {
           </motion.div>
         </div>
 
-        {/* Right: 3D Cube */}
+        {/* Right: 3D GOD MODE */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.4, duration: 0.8 }}
-          className="hidden lg:block h-[400px] w-full"
+          className="hidden lg:block h-[600px] w-full"
         >
-          <Hero3DCube />
+          <Hero3DGodMode />
         </motion.div>
       </div>
     </section>
