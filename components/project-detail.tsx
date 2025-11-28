@@ -181,14 +181,14 @@ export function ProjectDetail({ metadata, content }: ProjectDetailProps) {
             {/* Project Info Card */}
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg">Informations</CardTitle>
+                <CardTitle className="text-lg">{t('detail.information')}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 {/* Date */}
                 <div className="flex items-start gap-3">
                   <Calendar className="h-5 w-5 text-muted-foreground mt-0.5" />
                   <div>
-                    <p className="text-sm font-medium">Date</p>
+                    <p className="text-sm font-medium">{t('detail.date')}</p>
                     <p className="text-sm text-muted-foreground">
                       {new Date(metadata.date).toLocaleDateString(locale === 'fr' ? 'fr-FR' : 'en-US', {
                         year: 'numeric',
@@ -202,7 +202,7 @@ export function ProjectDetail({ metadata, content }: ProjectDetailProps) {
                 <div className="flex items-start gap-3">
                   <Tag className="h-5 w-5 text-muted-foreground mt-0.5" />
                   <div>
-                    <p className="text-sm font-medium">Catégorie</p>
+                    <p className="text-sm font-medium">{t('detail.category')}</p>
                     <p className="text-sm text-muted-foreground">
                       {categoryLabels[metadata.category]}
                     </p>
@@ -216,7 +216,7 @@ export function ProjectDetail({ metadata, content }: ProjectDetailProps) {
                       {metadata.status === 'en-cours' ? '🔄' : metadata.status === 'stand-by' ? '⏸️' : '✅'}
                     </div>
                     <div>
-                      <p className="text-sm font-medium">Statut</p>
+                      <p className="text-sm font-medium">{t('detail.status')}</p>
                       <p className="text-sm text-muted-foreground">
                         {statusLabels[metadata.status]}
                       </p>
@@ -229,7 +229,7 @@ export function ProjectDetail({ metadata, content }: ProjectDetailProps) {
             {/* Links Card */}
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg">Liens</CardTitle>
+                <CardTitle className="text-lg">{t('detail.links')}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-2">
                 {/* GitHub Link */}
@@ -237,7 +237,7 @@ export function ProjectDetail({ metadata, content }: ProjectDetailProps) {
                   <Button asChild variant="outline" className="w-full justify-start">
                     <a href={metadata.github} target="_blank" rel="noopener noreferrer">
                       <Github className="mr-2 h-4 w-4" />
-                      GitHub Repository
+                      {t('detail.githubRepo')}
                       <ExternalLink className="ml-auto h-3 w-3" />
                     </a>
                   </Button>
@@ -248,7 +248,7 @@ export function ProjectDetail({ metadata, content }: ProjectDetailProps) {
                   <Button asChild variant="outline" className="w-full justify-start">
                     <a href={metadata.buildUrl} target="_blank" rel="noopener noreferrer">
                       <Download className="mr-2 h-4 w-4" />
-                      Download Build
+                      {t('detail.downloadBuild')}
                       <ExternalLink className="ml-auto h-3 w-3" />
                     </a>
                   </Button>
@@ -259,16 +259,16 @@ export function ProjectDetail({ metadata, content }: ProjectDetailProps) {
                   <DialogTrigger asChild>
                     <Button variant="outline" className="w-full justify-start">
                       <FileText className="mr-2 h-4 w-4" />
-                      Documentation Technique
+                      {t('detail.technicalDoc')}
                     </Button>
                   </DialogTrigger>
                   <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
                     <DialogHeader>
                       <DialogTitle className="text-2xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                        Documentation Technique
+                        {t('detail.technicalDoc')}
                       </DialogTitle>
                       <DialogDescription>
-                        Détails techniques et architecture du projet
+                        {t('detail.technicalDocSubtitle')}
                       </DialogDescription>
                     </DialogHeader>
 
@@ -276,17 +276,17 @@ export function ProjectDetail({ metadata, content }: ProjectDetailProps) {
                       {/* Architecture */}
                       <div>
                         <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-                          <span className="text-primary">⚙️</span> Architecture
+                          <span className="text-primary">⚙️</span> {t('detail.architecture')}
                         </h3>
                         <Card className="bg-muted/50">
                           <CardContent className="pt-4 space-y-2">
                             <div className="grid grid-cols-2 gap-2 text-sm">
                               <div>
-                                <span className="font-medium text-muted-foreground">Catégorie:</span>
+                                <span className="font-medium text-muted-foreground">{t('detail.categoryLabel')}</span>
                                 <p className="text-foreground">{categoryLabels[metadata.category]}</p>
                               </div>
                               <div>
-                                <span className="font-medium text-muted-foreground">Date:</span>
+                                <span className="font-medium text-muted-foreground">{t('detail.dateLabel')}</span>
                                 <p className="text-foreground">
                                   {new Date(metadata.date).toLocaleDateString(locale === 'fr' ? 'fr-FR' : 'en-US', {
                                     year: 'numeric',
@@ -296,7 +296,7 @@ export function ProjectDetail({ metadata, content }: ProjectDetailProps) {
                               </div>
                               {metadata.status && (
                                 <div>
-                                  <span className="font-medium text-muted-foreground">Statut:</span>
+                                  <span className="font-medium text-muted-foreground">{t('detail.statusLabel')}</span>
                                   <p className="text-foreground">{statusLabels[metadata.status]}</p>
                                 </div>
                               )}
@@ -308,7 +308,7 @@ export function ProjectDetail({ metadata, content }: ProjectDetailProps) {
                       {/* Technologies Stack */}
                       <div>
                         <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-                          <span className="text-primary">🛠️</span> Stack Technique
+                          <span className="text-primary">🛠️</span> {t('detail.techStack')}
                         </h3>
                         <div className="flex flex-wrap gap-2">
                           {metadata.tags.map((tag) => (
@@ -322,7 +322,7 @@ export function ProjectDetail({ metadata, content }: ProjectDetailProps) {
                       {/* Features & Details */}
                       <div>
                         <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-                          <span className="text-primary">✨</span> Caractéristiques Principales
+                          <span className="text-primary">✨</span> {t('detail.mainFeatures')}
                         </h3>
                         <Card className="bg-muted/50">
                           <CardContent className="pt-4">
@@ -345,7 +345,7 @@ export function ProjectDetail({ metadata, content }: ProjectDetailProps) {
                           <Button asChild className="w-full" size="lg">
                             <a href={metadata.github} target="_blank" rel="noopener noreferrer">
                               <Github className="mr-2 h-5 w-5" />
-                              Voir le Repository GitHub
+                              {t('detail.viewGithub')}
                               <ExternalLink className="ml-2 h-4 w-4" />
                             </a>
                           </Button>
@@ -360,7 +360,7 @@ export function ProjectDetail({ metadata, content }: ProjectDetailProps) {
             {/* Technologies Card */}
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg">Technologies</CardTitle>
+                <CardTitle className="text-lg">{t('detail.technologiesTitle')}</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2">

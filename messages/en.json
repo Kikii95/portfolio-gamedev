@@ -39,7 +39,26 @@
       "stand-by": "On Hold",
       "terminé": "Completed"
     },
-    "featured": "Featured"
+    "featured": "Featured",
+    "detail": {
+      "information": "Information",
+      "date": "Date",
+      "category": "Category",
+      "status": "Status",
+      "links": "Links",
+      "githubRepo": "GitHub Repository",
+      "downloadBuild": "Download Build",
+      "technicalDoc": "Technical Documentation",
+      "technicalDocSubtitle": "Technical details and project architecture",
+      "architecture": "Architecture",
+      "categoryLabel": "Category:",
+      "dateLabel": "Date:",
+      "statusLabel": "Status:",
+      "techStack": "Tech Stack",
+      "mainFeatures": "Main Features",
+      "viewGithub": "View GitHub Repository",
+      "technologiesTitle": "Technologies"
+    }
   },
   "about": {
     "title": "About",
@@ -71,6 +90,12 @@
         "type": "School",
         "description": "Development of an Entity Component System engine in C++20 with professional modular architecture."
       }
+    },
+    "cv": {
+      "viewButton": "View my CV",
+      "dialogTitle": "Curriculum Vitae",
+      "dialogDescription": "My background, skills and experience in game development",
+      "downloadButton": "Download CV"
     }
   },
   "contact": {

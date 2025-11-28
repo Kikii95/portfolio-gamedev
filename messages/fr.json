@@ -39,7 +39,26 @@
       "stand-by": "Stand-By",
       "terminé": "Terminé"
     },
-    "featured": "Featured"
+    "featured": "Featured",
+    "detail": {
+      "information": "Informations",
+      "date": "Date",
+      "category": "Catégorie",
+      "status": "Statut",
+      "links": "Liens",
+      "githubRepo": "GitHub Repository",
+      "downloadBuild": "Télécharger Build",
+      "technicalDoc": "Documentation Technique",
+      "technicalDocSubtitle": "Détails techniques et architecture du projet",
+      "architecture": "Architecture",
+      "categoryLabel": "Catégorie:",
+      "dateLabel": "Date:",
+      "statusLabel": "Statut:",
+      "techStack": "Stack Technique",
+      "mainFeatures": "Caractéristiques Principales",
+      "viewGithub": "Voir le Repository GitHub",
+      "technologiesTitle": "Technologies"
+    }
   },
   "about": {
     "title": "À Propos",
@@ -71,6 +90,12 @@
         "type": "École",
         "description": "Développement d'un moteur Entity Component System en C++20 avec architecture modulaire professionnelle."
       }
+    },
+    "cv": {
+      "viewButton": "Consulter mon CV",
+      "dialogTitle": "Curriculum Vitae",
+      "dialogDescription": "Mon parcours, compétences et expériences en développement de jeux vidéo",
+      "downloadButton": "Télécharger le CV"
     }
   },
   "contact": {

@@ -1,12 +1,21 @@
 "use client";
 
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { useTranslations } from "next-intl";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { FileText, Download } from "lucide-react";
+import { useTranslations, useLocale } from "next-intl";
+import { useState } from "react";
 
 export default function AboutPage() {
   const t = useTranslations('about');
+  const locale = useLocale();
+  const [cvDialogOpen, setCvDialogOpen] = useState(false);
+
+  // CV URL based on locale
+  const cvUrl = locale === 'fr' ? '/cv/CV_FR.pdf' : '/cv/CV_EN.pdf';
 
   const skills = {
     gameEngines: ["Unity", "Unreal Engine", "Godot", "Custom Engines"],
@@ -38,6 +47,47 @@ export default function AboutPage() {
             <p>{t('bio2')}</p>
           </CardContent>
         </Card>
+
+        {/* CV Viewer Button */}
+        <div className="mb-8 flex justify-center">
+          <Dialog open={cvDialogOpen} onOpenChange={setCvDialogOpen}>
+            <DialogTrigger asChild>
+              <Button size="lg" className="group">
+                <FileText className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+                {t('cv.viewButton')}
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="max-w-5xl max-h-[90vh] overflow-hidden flex flex-col">
+              <DialogHeader>
+                <DialogTitle className="text-2xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                  {t('cv.dialogTitle')}
+                </DialogTitle>
+                <DialogDescription>
+                  {t('cv.dialogDescription')}
+                </DialogDescription>
+              </DialogHeader>
+
+              {/* PDF Viewer */}
+              <div className="flex-1 min-h-0 relative rounded-lg overflow-hidden border border-border bg-muted">
+                <iframe
+                  src={cvUrl}
+                  className="w-full h-full min-h-[600px]"
+                  title="CV PDF Viewer"
+                />
+              </div>
+
+              {/* Download Button */}
+              <div className="flex justify-center pt-4">
+                <Button asChild size="lg" className="group">
+                  <a href={cvUrl} download>
+                    <Download className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+                    {t('cv.downloadButton')}
+                  </a>
+                </Button>
+              </div>
+            </DialogContent>
+          </Dialog>
+        </div>
 
         <Separator className="my-12" />
 
