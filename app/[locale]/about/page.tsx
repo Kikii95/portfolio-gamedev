@@ -135,28 +135,6 @@ export default function AboutPage() {
           </div>
         </div>
 
-        <Separator className="my-12" />
-
-        {/* Experience */}
-        <div className="mb-12">
-          <h2 className="text-3xl font-bold mb-6">{t('experienceTitle')}</h2>
-          <div className="space-y-6">
-            <Card>
-              <CardContent className="pt-6">
-                <div className="flex flex-col md:flex-row md:items-start gap-4">
-                  <Badge className="w-fit">{t('experienceItems.ecs.period')}</Badge>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-1">
-                      <h3 className="text-xl font-semibold">{t('experienceItems.ecs.title')}</h3>
-                      <Badge variant="outline">{t('experienceItems.ecs.type')}</Badge>
-                    </div>
-                    <p className="text-sm">{t('experienceItems.ecs.description')}</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
       </div>
     </div>
   );

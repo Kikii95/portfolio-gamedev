@@ -33,10 +33,10 @@ export default function ContactPage() {
             </CardHeader>
             <CardContent>
               <a
-                href="mailto:votre@email.com"
+                href="mailto:killian.abboud@gmail.com"
                 className="text-primary hover:underline font-medium"
               >
-                votre@email.com
+                killian.abboud@gmail.com
               </a>
             </CardContent>
           </Card>
@@ -71,7 +71,7 @@ export default function ContactPage() {
             </CardHeader>
             <CardContent>
               <a
-                href="https://linkedin.com/in/votre-profil"
+                href="https://www.linkedin.com/in/killian-abboud-a799962a0/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-primary hover:underline font-medium"
@@ -98,7 +98,7 @@ export default function ContactPage() {
                   })}
                 </p>
                 <Button asChild>
-                  <a href="mailto:votre@email.com">{t('availability.cta')}</a>
+                  <a href="mailto:killian.abboud@gmail.com">{t('availability.cta')}</a>
                 </Button>
               </div>
             </div>

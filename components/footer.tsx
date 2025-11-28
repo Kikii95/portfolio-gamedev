@@ -50,7 +50,7 @@ export function Footer() {
                 <Github className="h-5 w-5" />
               </a>
               <a
-                href="https://linkedin.com/in/votre-profil"
+                href="https://www.linkedin.com/in/killian-abboud-a799962a0/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors"
@@ -58,7 +58,7 @@ export function Footer() {
                 <Linkedin className="h-5 w-5" />
               </a>
               <a
-                href="mailto:votre@email.com"
+                href="mailto:killian.abboud@gmail.com"
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
                 <Mail className="h-5 w-5" />
@@ -100,7 +100,7 @@ export function Footer() {
                 <Github className="h-5 w-5" />
               </a>
               <a
-                href="https://linkedin.com/in/votre-profil"
+                href="https://www.linkedin.com/in/killian-abboud-a799962a0/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors"
@@ -108,7 +108,7 @@ export function Footer() {
                 <Linkedin className="h-5 w-5" />
               </a>
               <a
-                href="mailto:votre@email.com"
+                href="mailto:killian.abboud@gmail.com"
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
                 <Mail className="h-5 w-5" />

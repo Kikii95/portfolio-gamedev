@@ -74,21 +74,12 @@
       "web": "Web"
     },
     "educationTitle": "Education",
-    "experienceTitle": "Experience",
     "educationItems": {
       "gtech": {
         "period": "2023 - 2026",
         "title": "Bachelor Game Developer",
         "school": "GTech Gaming Campus",
         "description": "3rd year - Gameplay Programming & Engines Specialization"
-      }
-    },
-    "experienceItems": {
-      "ecs": {
-        "period": "2024",
-        "title": "ECS Template Project",
-        "type": "School",
-        "description": "Development of an Entity Component System engine in C++20 with professional modular architecture."
       }
     },
     "cv": {

@@ -74,21 +74,12 @@
       "web": "Web"
     },
     "educationTitle": "Formation",
-    "experienceTitle": "Expérience",
     "educationItems": {
       "gtech": {
         "period": "2023 - 2026",
         "title": "Bachelor Développeur de Jeux Vidéo",
         "school": "GTech Gaming Campus",
         "description": "3ème année - Spécialisation Programmation Gameplay & Moteurs"
-      }
-    },
-    "experienceItems": {
-      "ecs": {
-        "period": "2024",
-        "title": "Projet Template ECS",
-        "type": "École",
-        "description": "Développement d'un moteur Entity Component System en C++20 avec architecture modulaire professionnelle."
       }
     },
     "cv": {
