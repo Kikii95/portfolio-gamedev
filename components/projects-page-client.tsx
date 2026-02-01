@@ -19,18 +19,18 @@ type CategoryFilter = "all" | "école" | "perso" | "travail";
 export function ProjectsPageClient({ projects }: ProjectsPageClientProps) {
   const t = useTranslations('projects');
 
-  // Get current year as default
-  const currentYear = new Date().getFullYear().toString();
-
-  const [selectedYear, setSelectedYear] = useState<string>(currentYear);
-  const [selectedCategory, setSelectedCategory] = useState<CategoryFilter>("all");
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
-
-  // Extract unique years from projects (no "all" option)
+  // Extract unique years from projects (sorted descending - most recent first)
   const years = useMemo(() => {
     const projectYears = projects.map((p) => new Date(p.date).getFullYear());
     return Array.from(new Set(projectYears)).sort((a, b) => b - a);
   }, [projects]);
+
+  // Default to most recent year with projects
+  const defaultYear = years.length > 0 ? years[0].toString() : new Date().getFullYear().toString();
+
+  const [selectedYear, setSelectedYear] = useState<string>(defaultYear);
+  const [selectedCategory, setSelectedCategory] = useState<CategoryFilter>("all");
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   // First filter by year (primary filter)
   const projectsInYear = useMemo(() => {
