@@ -241,7 +241,7 @@ export function ProjectDetail({ metadata, content }: ProjectDetailProps) {
                       {t('detail.technicalDoc')}
                     </Button>
                   </DialogTrigger>
-                  <DialogContent className="max-w-[800px] w-[calc(100%-2rem)] mx-4 max-h-[85vh] overflow-y-auto">
+                  <DialogContent className="max-w-[min(800px,calc(100vw-2rem))] max-h-[85vh] overflow-y-auto">
                     <DialogHeader>
                       <DialogTitle className="text-2xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                         {t('detail.technicalDoc')}
