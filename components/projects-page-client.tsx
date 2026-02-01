@@ -7,9 +7,10 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useMemo, useEffect } from "react";
-import { Filter, X } from "lucide-react";
+import { Filter, X, ChevronDown } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { StatusLegend } from "./status-legend";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 
 interface ProjectsPageClientProps {
   projects: ProjectMetadata[];
@@ -32,6 +33,7 @@ export function ProjectsPageClient({ projects }: ProjectsPageClientProps) {
   const [selectedYear, setSelectedYear] = useState<string>(defaultYear);
   const [selectedCategory, setSelectedCategory] = useState<CategoryFilter>("all");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [techsOpen, setTechsOpen] = useState(false);
 
   // First filter by year (primary filter)
   const projectsInYear = useMemo(() => {
@@ -166,24 +168,33 @@ export function ProjectsPageClient({ projects }: ProjectsPageClientProps) {
             </div>
           </div>
 
-          {/* Tag Filters */}
-          <div className="space-y-2">
-            <p className="text-sm font-medium text-muted-foreground">
-              {selectedTags.length > 0 ? t('technologiesSelected', { count: selectedTags.length }) : t('technologies')}
-            </p>
-            <div className="flex gap-2 flex-wrap">
-              {availableTags.map((tag) => (
-                <Badge
-                  key={tag}
-                  variant={selectedTags.includes(tag) ? "default" : "secondary"}
-                  className="cursor-pointer hover:scale-110 transition-all"
-                  onClick={() => toggleTag(tag)}
-                >
-                  {tag}
-                </Badge>
-              ))}
-            </div>
-          </div>
+          {/* Tag Filters - Collapsible */}
+          <Collapsible open={techsOpen} onOpenChange={setTechsOpen}>
+            <CollapsibleTrigger asChild>
+              <Button variant="ghost" size="sm" className="gap-2 p-0 h-auto text-muted-foreground hover:text-foreground">
+                <span className="text-sm font-medium">
+                  {selectedTags.length > 0 ? t('technologiesSelected', { count: selectedTags.length }) : t('technologies')}
+                </span>
+                <motion.div animate={{ rotate: techsOpen ? 180 : 0 }} transition={{ duration: 0.2 }}>
+                  <ChevronDown className="h-4 w-4" />
+                </motion.div>
+              </Button>
+            </CollapsibleTrigger>
+            <CollapsibleContent>
+              <div className="flex gap-2 flex-wrap mt-2">
+                {availableTags.map((tag) => (
+                  <Badge
+                    key={tag}
+                    variant={selectedTags.includes(tag) ? "default" : "secondary"}
+                    className="cursor-pointer hover:scale-110 transition-all"
+                    onClick={() => toggleTag(tag)}
+                  >
+                    {tag}
+                  </Badge>
+                ))}
+              </div>
+            </CollapsibleContent>
+          </Collapsible>
         </motion.div>
 
         {/* Status Legend */}
