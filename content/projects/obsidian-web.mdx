@@ -1,0 +1,80 @@
+---
+title: "Obsidian Web"
+description: "PWA to access your Obsidian vault from any device using GitHub as backend storage"
+date: "2025-11-29"
+category: "perso"
+tags: ["TypeScript", "React", "PWA", "Vercel", "GitHub API"]
+featured: true
+status: "terminé"
+github: "https://github.com/Kikii95/obsidian-web"
+buildUrl: "https://obsidian-web.vercel.app"
+thumbnail: "/images/projects/obsidian-web-thumb.jpg"
+gallery: []
+---
+
+# Obsidian Web
+
+A modern web-based viewer and editor for Obsidian vaults, powered by GitHub as the backend storage. Access your notes from any device with a web browser.
+
+## 🎯 Context
+
+| | |
+|---|---|
+| **Duration** | 2 weeks |
+| **Team** | Solo |
+| **Status** | 🟢 Live |
+
+I needed a way to access my Obsidian vault on my phone without paying for Obsidian Sync. By using GitHub as the sync layer, I get free, reliable synchronization between all my devices.
+
+## 💻 Tech Stack
+
+| Category | Technologies |
+|----------|--------------|
+| Frontend | React, TypeScript |
+| Styling | TailwindCSS |
+| Backend | GitHub API (no server) |
+| Hosting | Vercel |
+| Features | PWA, OAuth |
+
+## 🚀 Key Features
+
+- **Mobile Access**: Full Obsidian-like experience on any device
+- **GitHub Sync**: Your vault stays on GitHub — no proprietary sync
+- **PWA Support**: Works offline, installable as app
+- **Graph View**: Visual note connections
+- **Backlinks**: See what links to each note
+- **Daily Notes**: Quick access to daily journal
+- **Tags**: Full tag support with filtering
+
+## 🔧 Technical Highlights
+
+### Serverless Architecture
+
+The entire app runs client-side with no backend server. Authentication uses GitHub OAuth, and all data operations go directly through the GitHub API. Your token is stored in an encrypted JWT cookie.
+
+### Security Model
+
+| Aspect | Implementation |
+|--------|----------------|
+| Auth | GitHub OAuth |
+| Storage | JWT cookie (no server database) |
+| Access | Only configured repos |
+| Data | Never stored on our servers |
+
+## 🎮 Demo
+
+**Live**: [obsidian-web.vercel.app](https://obsidian-web.vercel.app)
+
+Login with your GitHub account, configure your vault repository, and start browsing your notes from any device.
+
+## 🎓 Learning Outcomes
+
+- PWA development and service workers
+- GitHub OAuth flow implementation
+- Serverless architecture design
+- Markdown rendering and parsing
+
+## 🔗 Links
+
+- [Live Demo](https://obsidian-web.vercel.app)
+- [GitHub Repository](https://github.com/Kikii95/obsidian-web)

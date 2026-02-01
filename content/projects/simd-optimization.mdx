@@ -1,0 +1,79 @@
+---
+title: "SIMD Math Optimization"
+description: "High-performance math library using SIMD intrinsics (SSE/AVX) for game engine vector and matrix operations"
+date: "2025-10-15"
+category: "école"
+tags: ["C++", "SIMD", "SSE", "AVX", "Performance", "Math"]
+featured: false
+status: "terminé"
+thumbnail: "/images/projects/simd-thumb.jpg"
+gallery: []
+---
+
+# SIMD Math Optimization
+
+A high-performance math library leveraging SIMD instructions for vectorized operations commonly used in game engines.
+
+## 🎯 Context
+
+| | |
+|---|---|
+| **Duration** | 4 weeks |
+| **Team** | Individual competition |
+| **Role** | Solo developer |
+| **Status** | 🟢 Completed |
+
+This project was part of a performance optimization challenge, implementing math operations using SIMD intrinsics to achieve maximum throughput.
+
+## 💻 Tech Stack
+
+| Category | Technologies |
+|----------|--------------|
+| Language | C++ |
+| Intrinsics | SSE4.2, AVX, AVX2 |
+| Benchmarking | Custom profiler |
+| Build | CMake |
+
+## 🚀 Key Features
+
+- **Vector Math**: Vec2, Vec3, Vec4 with SIMD backing
+- **Matrix Operations**: 4x4 matrices with vectorized multiply
+- **Quaternions**: SIMD-optimized rotations
+- **Batch Processing**: Transform arrays of vectors
+- **Fallback Path**: Scalar implementations for compatibility
+
+## 🔧 Technical Highlights
+
+### SIMD Architecture
+
+Leveraged x86 SIMD extensions:
+- **SSE**: 128-bit registers, 4x float parallel
+- **AVX**: 256-bit registers, 8x float parallel
+- Memory alignment for optimal load/store
+
+### Optimizations
+
+Techniques employed:
+- Data layout optimization (SoA vs AoS)
+- Cache-friendly access patterns
+- Instruction-level parallelism
+- Branch elimination
+
+## 📊 Performance Results
+
+| Operation | Scalar | SIMD | Speedup |
+|-----------|--------|------|---------|
+| Vec4 dot | 4 ops | 1 op | ~4x |
+| Mat4 mul | 64 ops | 16 ops | ~4x |
+| Batch transform | N ops | N/4 ops | ~4x |
+
+## 🎓 Learning Outcomes
+
+- CPU architecture and SIMD units
+- Intrinsics programming
+- Performance profiling and optimization
+- Memory access patterns
+
+## 📚 Academic Project
+
+Developed during GTech3 SIMD Contest. Code available upon request.

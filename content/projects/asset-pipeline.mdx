@@ -1,0 +1,72 @@
+---
+title: "Asset Pipeline Engine"
+description: "Game engine asset management system with hot-reloading, compression, and dependency tracking"
+date: "2025-09-01"
+category: "école"
+tags: ["C++", "CMake", "Asset Management", "Game Engine"]
+featured: false
+status: "terminé"
+thumbnail: "/images/projects/asset-pipeline-thumb.jpg"
+gallery: []
+---
+
+# Asset Pipeline Engine
+
+A robust asset management system for game engines, handling loading, caching, hot-reloading, and dependency resolution.
+
+## 🎯 Context
+
+| | |
+|---|---|
+| **Duration** | 5 weeks |
+| **Team** | Group project (3 people) |
+| **Role** | Core pipeline architect |
+| **Status** | 🟢 Completed |
+
+Modern games require sophisticated asset management. This project implements a production-ready pipeline for handling game resources.
+
+## 💻 Tech Stack
+
+| Category | Technologies |
+|----------|--------------|
+| Language | C++ |
+| Build | CMake |
+| Serialization | Custom binary format |
+| File Watching | Platform-specific APIs |
+
+## 🚀 Key Features
+
+- **Async Loading**: Background asset loading with callbacks
+- **Reference Counting**: Automatic resource lifetime management
+- **Hot Reloading**: Live asset updates during development
+- **Dependency Graph**: Automatic reload of dependent assets
+- **Compression**: LZ4 compression for packed assets
+
+## 🔧 Technical Highlights
+
+### Resource Manager
+
+Centralized system handling:
+- Asset registration and lookup
+- Memory budgeting
+- Load prioritization
+- Garbage collection
+
+### Build Pipeline
+
+Offline processing for:
+- Texture compression (BCn formats)
+- Mesh optimization
+- Shader compilation
+- Asset bundling
+
+## 🎓 Learning Outcomes
+
+- Resource management patterns
+- Asynchronous programming
+- File system abstractions
+- Memory management strategies
+
+## 📚 Academic Project
+
+Developed during GTech3 Engine Architecture course. Code available upon request.

@@ -1,0 +1,72 @@
+---
+title: "Process Tracker"
+description: "Desktop application to manage local development services with health checks and dependency management"
+date: "2025-12-17"
+category: "perso"
+tags: ["Tauri", "Rust", "React", "DevTools", "Cross-platform"]
+featured: false
+status: "terminé"
+github: "https://github.com/Kikii95/process-tracker"
+thumbnail: "/images/projects/process-tracker-thumb.jpg"
+gallery: []
+---
+
+# Process Tracker
+
+Desktop application to manage local development services. No more duplicate processes, port conflicts, or guessing what's running.
+
+## 🎯 Context
+
+| | |
+|---|---|
+| **Duration** | 1 week |
+| **Team** | Solo |
+| **Status** | 🟢 Complete |
+
+When developing with multiple services (backend, frontend, database), you often face duplicate processes, port conflicts, and no visibility into what's running. This tool solves all of that.
+
+## 💻 Tech Stack
+
+| Category | Technologies |
+|----------|--------------|
+| Framework | Tauri 2.0 |
+| Backend | Rust |
+| Frontend | React, TypeScript |
+| Platform | Windows, Linux |
+
+## 🚀 Key Features
+
+- **Start/Stop/Restart**: Manage services with one click
+- **Status Dashboard**: See all services at a glance
+- **Health Checks**: HTTP endpoint monitoring
+- **Dependencies**: Start services in the correct order
+- **History Tracking**: See what ran and when
+- **WSL Support**: Manage WSL projects from Windows
+
+## 🔧 Technical Highlights
+
+### Service Management
+
+Services are defined in a simple YAML config. The tracker monitors process state, handles graceful shutdown, and can restart crashed services automatically.
+
+### WSL Integration
+
+The tracker can execute commands in WSL distributions, allowing you to manage Linux-based development services from a Windows GUI.
+
+## 📥 Installation
+
+Download from [Releases](https://github.com/Kikii95/process-tracker/releases):
+- Windows: `.exe` installer
+- Linux: `.AppImage` or `.deb` package
+
+## 🎓 Learning Outcomes
+
+- Tauri 2.0 development
+- Process management in Rust
+- Cross-platform desktop app distribution
+- WSL interop from native Windows apps
+
+## 🔗 Links
+
+- [GitHub Repository](https://github.com/Kikii95/process-tracker)
+- Pre-built installers in Releases

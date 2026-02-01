@@ -1,0 +1,72 @@
+---
+title: "FBX Parser"
+description: "Binary FBX file parser for importing 3D models, animations, and scene data into game engines"
+date: "2025-10-01"
+category: "école"
+tags: ["C++", "CMake", "3D", "Binary Parsing", "FBX"]
+featured: false
+status: "terminé"
+thumbnail: "/images/projects/fbx-parser-thumb.jpg"
+gallery: []
+---
+
+# FBX Parser — 3D File Format
+
+A custom parser for the FBX binary format, enabling import of 3D models, skeletal animations, and scene hierarchies.
+
+## 🎯 Context
+
+| | |
+|---|---|
+| **Duration** | 5 weeks |
+| **Team** | Group project (3 people) |
+| **Role** | Binary parser implementation |
+| **Status** | 🟢 Completed |
+
+Understanding 3D file formats is essential for game development. This project dives deep into the FBX binary specification.
+
+## 💻 Tech Stack
+
+| Category | Technologies |
+|----------|--------------|
+| Language | C++ |
+| Build | CMake |
+| Format | FBX Binary (7.x) |
+| Compression | zlib for FBX compression |
+
+## 🚀 Key Features
+
+- **Binary Format Parsing**: Low-level FBX node traversal
+- **Mesh Extraction**: Vertices, normals, UVs, indices
+- **Material Support**: Basic material properties
+- **Scene Hierarchy**: Transform parent-child relationships
+- **Animation Data**: Keyframe extraction
+
+## 🔧 Technical Highlights
+
+### FBX Binary Structure
+
+The FBX binary format uses:
+- Node-based tree structure
+- Property arrays with various data types
+- Optional zlib compression
+- Custom encoding for strings and arrays
+
+### Data Extraction
+
+Implemented extraction of:
+- Geometry (vertices, polygons, normals)
+- UV mappings (multiple channels)
+- Bone weights for skinning
+- Animation curves
+
+## 🎓 Learning Outcomes
+
+- Binary file format reverse engineering
+- 3D data structures and transformations
+- Memory-efficient parsing strategies
+- Integration with rendering systems
+
+## 📚 Academic Project
+
+Developed during GTech3 Tools Programming course. Code available upon request.
