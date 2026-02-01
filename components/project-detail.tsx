@@ -253,7 +253,8 @@ export function ProjectDetail({ metadata, content }: ProjectDetailProps) {
 
                     <div className="mt-4">
                       {/* Technical Details Content - Direct Prose Rendering */}
-                      <div className="overflow-x-auto">
+                      {/* Zoom out on small screens to avoid horizontal scroll */}
+                      <div className="origin-top-left [zoom:0.8] sm:[zoom:0.9] md:[zoom:1]">
                         <article className="prose prose-invert max-w-none
                           prose-headings:font-bold
                           prose-h2:text-xl prose-h2:text-primary prose-h2:mt-6 prose-h2:mb-3 prose-h2:border-b prose-h2:border-border/50 prose-h2:pb-2
