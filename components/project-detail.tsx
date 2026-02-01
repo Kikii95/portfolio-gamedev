@@ -241,8 +241,8 @@ export function ProjectDetail({ metadata, content }: ProjectDetailProps) {
                       {t('detail.technicalDoc')}
                     </Button>
                   </DialogTrigger>
-                  <DialogContent className="max-w-[min(800px,calc(100vw-2rem))] max-h-[85vh] overflow-y-auto">
-                    <DialogHeader>
+                  <DialogContent className="max-w-[min(800px,calc(100vw-2rem))] max-h-[85vh] flex flex-col">
+                    <DialogHeader className="flex-shrink-0">
                       <DialogTitle className="text-2xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                         {t('detail.technicalDoc')}
                       </DialogTitle>
@@ -251,7 +251,7 @@ export function ProjectDetail({ metadata, content }: ProjectDetailProps) {
                       </DialogDescription>
                     </DialogHeader>
 
-                    <div className="mt-4">
+                    <div className="mt-4 overflow-y-auto flex-1 -mr-6 pr-6">
                       {/* Technical Details Content - Direct Prose Rendering */}
                       {/* Zoom out on small screens to avoid horizontal scroll */}
                       <div className="origin-top-left [zoom:0.8] sm:[zoom:0.9] md:[zoom:1]">
