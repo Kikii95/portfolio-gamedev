@@ -1,0 +1,48 @@
+---
+title: "Process Tracker"
+description: "Desktop app to manage local development services"
+date: "2025-12-17"
+category: "perso"
+tags: ["Tauri", "Rust", "React", "DevTools", "Cross-platform"]
+featured: false
+status: "pause"
+github: "https://github.com/Kikii95/process-tracker"
+gallery: []
+---
+
+# Process Tracker
+
+Desktop app to manage local development services. No more duplicate processes, port conflicts and uncertainty about what's running.
+
+## Context
+
+Personal project started in December 2025. Solo development over one week.
+
+Problem solved: when developing with multiple services (backend, frontend, database), you often end up with duplicate processes, port conflicts, and no visibility on what's running.
+
+## Stack
+
+- Tauri 2.0
+- Rust (backend)
+- React, TypeScript (frontend)
+- Cross-platform: Windows, Linux
+
+## Features
+
+- Start/Stop/Restart services in one click
+- Global status dashboard
+- HTTP health checks
+- Service dependency management
+- Execution history
+- WSL support from Windows
+
+## Technical Details
+
+Services are defined in a simple YAML file. The tracker monitors process state, handles graceful shutdown and can auto-restart crashed services.
+
+WSL integration: can execute commands in WSL distributions, allowing Linux service management from a Windows GUI.
+
+## Links
+
+- [GitHub](https://github.com/Kikii95/process-tracker)
+- Installers in Releases (.exe, .AppImage, .deb)

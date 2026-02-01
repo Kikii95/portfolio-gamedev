@@ -1,0 +1,60 @@
+---
+title: "SIMD Math Optimization"
+description: "High-performance math library using SIMD intrinsics (SSE/AVX) for game engines"
+date: "2025-10-15"
+category: "école"
+tags: ["C++", "SIMD", "SSE", "AVX", "Performance", "Math"]
+featured: false
+status: "archive"
+gallery: []
+---
+
+# SIMD Math Optimization
+
+High-performance math library using SIMD instructions for vector and matrix operations in game engines.
+
+## Context
+
+School project GTech3, optimization competition, 4 weeks. Individual project.
+
+Implementing math operations with SIMD intrinsics to achieve maximum throughput.
+
+## Stack
+
+- C++
+- SSE4.2, AVX, AVX2 (intrinsics)
+- Custom profiler
+- CMake
+
+## Features
+
+- Vector math: Vec2, Vec3, Vec4 with SIMD backing
+- Matrix operations: 4x4 matrices with vectorized multiplication
+- Quaternions: SIMD-optimized rotations
+- Batch processing: vector array transformation
+- Scalar fallback for compatibility
+
+## Technical Details
+
+x86 SIMD extensions used:
+- SSE: 128-bit registers, 4 floats in parallel
+- AVX: 256-bit registers, 8 floats in parallel
+- Memory alignment for optimal load/store
+
+Optimization techniques:
+- Data layout (SoA vs AoS)
+- Cache-friendly access patterns
+- Instruction-level parallelism
+- Branch elimination
+
+## Results
+
+| Operation | Scalar | SIMD | Speedup |
+|-----------|--------|------|---------|
+| Vec4 dot | 4 ops | 1 op | ~4x |
+| Mat4 mul | 64 ops | 16 ops | ~4x |
+| Batch transform | N ops | N/4 ops | ~4x |
+
+## Links
+
+Code available on request.

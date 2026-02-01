@@ -1,0 +1,52 @@
+---
+title: "Audio Editor"
+description: "WAV audio editor with DSP effects, visualization and real-time processing via XAudio2"
+date: "2025-11-01"
+category: "école"
+tags: ["C++", "XAudio2", "DSP", "Audio", "WAV"]
+featured: false
+status: "archive"
+gallery: []
+---
+
+# Audio Editor
+
+Desktop audio editor for WAV files with DSP effects, waveform visualization and real-time processing.
+
+## Context
+
+School project GTech3, 6 weeks. Team of 3, role: DSP and audio engine developer.
+
+Exploring digital signal processing fundamentals through a practical audio editing application.
+
+## Stack
+
+- C++
+- XAudio2 (audio API)
+- Custom WAV parser
+- Win32 / ImGui (UI)
+
+## Features
+
+- WAV import/export (full PCM)
+- Real-time waveform display
+- DSP effects: EQ, compression, reverb, delay
+- Non-destructive editing with effect chain preview
+- Selection tools: cut, copy, paste audio regions
+
+## Technical Details
+
+Custom WAV parser handling:
+- RIFF header parsing
+- Multiple formats (8/16/24-bit, mono/stereo)
+- Chunk navigation and metadata
+
+Audio effects implemented from scratch:
+- Biquad filters for EQ bands
+- RMS compressor
+- Delay line with feedback
+- Convolution reverb basics
+
+## Links
+
+Code available on request.

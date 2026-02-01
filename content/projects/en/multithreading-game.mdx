@@ -1,0 +1,48 @@
+---
+title: "Multithreaded Game"
+description: "Game optimized with C++ multithreading for smooth gameplay and parallel processing"
+date: "2025-09-15"
+category: "école"
+tags: ["C++", "Threading", "CMake", "SFML", "Performance"]
+featured: false
+status: "archive"
+gallery: []
+---
+
+# Multithreaded Game
+
+Game demonstrating advanced C++ multithreading techniques for smooth gameplay.
+
+## Context
+
+School project GTech3, 2 months. Team of 4, role: core systems developer.
+
+Focus on parallel processing and thread synchronization for real-time game systems.
+
+## Stack
+
+- C++17/20
+- CMake
+- SFML (graphics)
+- std::thread, mutex, condition variables
+
+## Features
+
+- Parallelized game systems (render, physics, logic on separate threads)
+- Thread-safe resource management (lock-free structures when possible)
+- Performance optimization for consistent frame times
+- Job system for scalable parallelism
+
+## Technical Details
+
+Multi-threaded architecture with dedicated threads:
+- Main: game loop coordination + input
+- Render: graphics submission
+- Physics: collision and simulation
+- Audio: sound processing
+
+Synchronization via mutex locks, atomic operations and condition variables to avoid race conditions while maintaining performance.
+
+## Links
+
+Code available on request.

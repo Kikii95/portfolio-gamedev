@@ -1,0 +1,51 @@
+---
+title: "Obsidian Web"
+description: "PWA to access an Obsidian vault from any device via GitHub"
+date: "2026-02-01"
+category: "perso"
+tags: ["TypeScript", "React", "PWA", "Vercel", "GitHub API"]
+featured: true
+status: "maintenance"
+github: "https://github.com/Kikii95/obsidian-web"
+buildUrl: "https://obsidian-web.vercel.app"
+gallery: []
+---
+
+# Obsidian Web
+
+Web app to view and edit an Obsidian vault from any device. GitHub serves as the sync backend.
+
+## Context
+
+Personal project started in November 2025. Solo development over 2 weeks.
+
+Initial need: access my Obsidian notes on mobile without paying for Obsidian Sync. Solution: use GitHub as a free and reliable sync layer.
+
+## Stack
+
+- React, TypeScript
+- TailwindCSS
+- GitHub API (serverless, no backend)
+- Vercel
+- PWA with service worker
+
+## Features
+
+- Full mobile vault access
+- GitHub sync, no proprietary server
+- Installable PWA, works offline
+- Graph view of note connections
+- Automatic backlinks
+- Daily notes
+- Full tag support
+
+## Technical Details
+
+100% client-side architecture. No backend, all operations go directly through the GitHub API.
+
+Auth via GitHub OAuth. Token stored in an encrypted JWT cookie. Data never passes through a third-party server.
+
+## Links
+
+- [Live Demo](https://obsidian-web.vercel.app)
+- [GitHub](https://github.com/Kikii95/obsidian-web)

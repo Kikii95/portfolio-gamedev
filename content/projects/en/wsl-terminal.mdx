@@ -1,0 +1,62 @@
+---
+title: "WSL Terminal"
+description: "Modern terminal emulator for WSL2 with multi-tabs and developer tools"
+date: "2025-12-10"
+category: "perso"
+tags: ["Tauri", "Rust", "React", "Terminal", "WSL"]
+featured: false
+status: "pause"
+github: "https://github.com/Kikii95/wsl-terminal"
+gallery: []
+---
+
+# WSL Terminal
+
+Modern terminal emulator for WSL2. All features of a pro terminal, optimized for WSL development.
+
+## Context
+
+Personal project started in December 2025. Solo development over 2 weeks.
+
+Windows Terminal is fine, but I wanted something with better developer integration: Git panels, Docker management, project navigation, customizable UI — without Electron's overhead.
+
+## Stack
+
+- Tauri 2.0
+- Rust 1.77+ (backend)
+- React 19, TypeScript 5, TailwindCSS 4 (frontend)
+- xterm.js 5 with addons
+- Zustand (state management)
+
+## Features
+
+Terminal:
+- Multi-tabs with drag-and-drop
+- Resizable horizontal/vertical split panes
+- Multi-window (detach tabs)
+- Automatic session restore
+- Ctrl+F search
+
+Dev tools:
+- Git panel: branches, staging, commits, push/pull
+- Docker panel: containers and images
+- SSH manager: save and quick connect
+- Project switcher by category
+- Saved quick commands
+
+UI:
+- 6 themes (Catppuccin, Dracula, Nord, One Dark, Gruvbox, Tokyo Night)
+- Command palette Ctrl+Shift+P
+- Quake mode (dropdown terminal)
+- Long command completion notifications
+
+## Technical Details
+
+Lightweight compared to Electron alternatives: ~15MB installer, 80-120MB RAM. Tauri backend handles shell spawning and IPC, React handles the UI.
+
+Supports all installed WSL distributions (auto-detection), PowerShell and CMD. Project switcher integrates with my `~/projects/` structure.
+
+## Links
+
+- [GitHub](https://github.com/Kikii95/wsl-terminal)
+- Installers in Releases

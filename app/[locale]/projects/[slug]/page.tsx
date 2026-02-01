@@ -11,8 +11,8 @@ interface ProjectPageProps {
 }
 
 export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
-  const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const { slug, locale } = await params;
+  const project = getProjectBySlug(slug, locale);
 
   if (!project) {
     return {
@@ -27,8 +27,8 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
 }
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
-  const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const { slug, locale } = await params;
+  const project = getProjectBySlug(slug, locale);
 
   if (!project) {
     notFound();

@@ -1,0 +1,53 @@
+---
+title: "FBX Parser"
+description: "Binary FBX file parser for 3D model import, animations and scene data"
+date: "2025-10-01"
+category: "école"
+tags: ["C++", "CMake", "3D", "Binary Parsing", "FBX"]
+featured: false
+status: "archive"
+gallery: []
+---
+
+# FBX Parser
+
+Custom parser for the FBX binary format, enabling import of 3D models, skeletal animations and scene hierarchies.
+
+## Context
+
+School project GTech3, 5 weeks. Team of 3, role: binary parser implementation.
+
+Understanding 3D file formats is essential in game dev. This project dives into the FBX binary specification.
+
+## Stack
+
+- C++
+- CMake
+- FBX Binary (7.x)
+- zlib (FBX compression)
+
+## Features
+
+- Binary format parsing: low-level FBX node traversal
+- Mesh extraction: vertices, normals, UVs, indices
+- Material support: basic properties
+- Scene hierarchy: parent-child transform relationships
+- Animation data: keyframe extraction
+
+## Technical Details
+
+FBX binary structure:
+- Node tree
+- Property arrays with varied types
+- Optional zlib compression
+- Custom encoding for strings and arrays
+
+Data extraction:
+- Geometry (vertices, polygons, normals)
+- UV mappings (multiple channels)
+- Bone weights for skinning
+- Animation curves
+
+## Links
+
+Code available on request.
