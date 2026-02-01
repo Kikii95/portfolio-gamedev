@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { ArrowLeft, Github, Calendar, Tag, FileText, ExternalLink, Download } from "lucide-react";
+import { ArrowLeft, Github, Calendar, Tag, FileText, ExternalLink, Download, Cog, Wrench, Sparkles } from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
 import { ProjectMetadata } from "@/lib/mdx/projects";
@@ -255,7 +255,7 @@ export function ProjectDetail({ metadata, content }: ProjectDetailProps) {
                       {/* Architecture */}
                       <div>
                         <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-                          <span className="text-primary">⚙️</span> {t('detail.architecture')}
+                          <Cog className="h-5 w-5 text-primary" /> {t('detail.architecture')}
                         </h3>
                         <Card className="bg-muted/50">
                           <CardContent className="pt-4 space-y-2">
@@ -289,7 +289,7 @@ export function ProjectDetail({ metadata, content }: ProjectDetailProps) {
                       {/* Technologies Stack */}
                       <div>
                         <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-                          <span className="text-primary">🛠️</span> {t('detail.techStack')}
+                          <Wrench className="h-5 w-5 text-primary" /> {t('detail.techStack')}
                         </h3>
                         <div className="flex flex-wrap gap-2">
                           {metadata.tags.map((tag) => (
@@ -303,7 +303,7 @@ export function ProjectDetail({ metadata, content }: ProjectDetailProps) {
                       {/* Features & Details */}
                       <div>
                         <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-                          <span className="text-primary">✨</span> {t('detail.mainFeatures')}
+                          <Sparkles className="h-5 w-5 text-primary" /> {t('detail.mainFeatures')}
                         </h3>
                         <Card className="bg-muted/50">
                           <CardContent className="pt-4">

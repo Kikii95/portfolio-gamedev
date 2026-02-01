@@ -3,40 +3,53 @@
 import { ReactNode } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { Components } from "react-markdown";
+import {
+  ClipboardList,
+  Wrench,
+  Sparkles,
+  Cog,
+  Link2,
+  Gamepad2,
+  Target,
+  Lightbulb,
+  BookOpen,
+  Pin,
+  LucideIcon,
+} from "lucide-react";
 
-const SECTION_ICONS: Record<string, string> = {
-  contexte: "📋",
-  context: "📋",
-  stack: "🛠️",
-  "stack technique": "🛠️",
-  "tech stack": "🛠️",
-  fonctionnalités: "✨",
-  features: "✨",
-  "points techniques": "⚙️",
-  "technical points": "⚙️",
-  architecture: "⚙️",
-  liens: "🔗",
-  links: "🔗",
-  demo: "🎮",
-  démo: "🎮",
-  gameplay: "🎮",
-  objectifs: "🎯",
-  objectives: "🎯",
-  goals: "🎯",
-  défis: "💡",
-  challenges: "💡",
-  apprentissages: "📚",
-  learnings: "📚",
+const SECTION_ICONS: Record<string, LucideIcon> = {
+  contexte: ClipboardList,
+  context: ClipboardList,
+  stack: Wrench,
+  "stack technique": Wrench,
+  "tech stack": Wrench,
+  fonctionnalités: Sparkles,
+  features: Sparkles,
+  "points techniques": Cog,
+  "technical points": Cog,
+  architecture: Cog,
+  liens: Link2,
+  links: Link2,
+  demo: Gamepad2,
+  démo: Gamepad2,
+  gameplay: Gamepad2,
+  objectifs: Target,
+  objectives: Target,
+  goals: Target,
+  défis: Lightbulb,
+  challenges: Lightbulb,
+  apprentissages: BookOpen,
+  learnings: BookOpen,
 };
 
-function getSectionIcon(title: string): string {
+function getSectionIcon(title: string): LucideIcon {
   const normalized = title.toLowerCase().trim();
-  for (const [key, icon] of Object.entries(SECTION_ICONS)) {
+  for (const [key, Icon] of Object.entries(SECTION_ICONS)) {
     if (normalized.includes(key)) {
-      return icon;
+      return Icon;
     }
   }
-  return "📌";
+  return Pin;
 }
 
 interface SectionCardProps {
@@ -45,13 +58,13 @@ interface SectionCardProps {
 }
 
 function SectionCard({ title, children }: SectionCardProps) {
-  const icon = getSectionIcon(title);
+  const Icon = getSectionIcon(title);
 
   return (
     <Card className="my-6 bg-muted/30 border-border/50">
       <CardHeader className="pb-3">
         <CardTitle className="flex items-center gap-2 text-xl text-primary">
-          <span>{icon}</span>
+          <Icon className="h-5 w-5" />
           <span>{title}</span>
         </CardTitle>
       </CardHeader>
@@ -65,9 +78,10 @@ let currentSection: { title: string; content: ReactNode[] } | null = null;
 export const markdownComponents: Components = {
   h2: ({ children }) => {
     const title = String(children);
+    const Icon = getSectionIcon(title);
     return (
       <h2 className="text-2xl font-bold text-primary mt-8 mb-4 flex items-center gap-2" id={title.toLowerCase().replace(/\s+/g, "-")}>
-        <span>{getSectionIcon(title)}</span>
+        <Icon className="h-6 w-6" />
         <span>{title}</span>
       </h2>
     );

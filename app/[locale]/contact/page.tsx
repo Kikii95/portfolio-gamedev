@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Github, Linkedin, Mail, Briefcase } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 export default function ContactPage() {
@@ -87,7 +87,7 @@ export default function ContactPage() {
           <CardContent className="pt-6">
             <div className="flex items-start gap-4">
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 flex-shrink-0">
-                <span className="text-2xl">💼</span>
+                <Briefcase className="h-5 w-5 text-primary" />
               </div>
               <div>
                 <h3 className="text-lg font-semibold mb-2">{t('availability.title')}</h3>
