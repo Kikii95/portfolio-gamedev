@@ -1,43 +1,53 @@
 ---
-title: "Template ECS - Moteur de Jeu Universel"
-description: "Moteur Entity Component System en C++20 avec architecture modulaire professionnelle"
+title: "Template ECS"
+description: "Moteur Entity Component System en C++20 avec architecture modulaire"
 date: "2025-11-15"
-category: "école"
+category: "perso"
 tags: ["C++", "ECS", "Game Engine", "SFML", "Architecture"]
 featured: true
-status: "terminé"
+status: "stable"
 github: "https://github.com/Kikii95/template-ECS"
 buildUrl: "https://github.com/Kikii95/template-ECS/releases/latest"
 thumbnail: "/images/projects/ecs-thumbnail.jpg"
-gallery: ["/images/projects/ecs-thumbnail.jpg", "/images/projects/ecs-thumbnail.jpg", "/images/projects/ecs-thumbnail.jpg"]
+gallery: []
 ---
 
-# Template ECS - Moteur de Jeu Universel
+# Template ECS
 
-Moteur Entity Component System universel développé en C++20 avec architecture modulaire professionnelle.
+Moteur Entity Component System universel en C++20. Architecture modulaire, réutilisable pour tous types de jeux 2D.
 
-## 🎯 Contexte
+## Contexte
 
-Projet école développé pour le cours de Jeu Libre. Objectif : créer un moteur réutilisable pour tous types de jeux 2D.
+Projet école GTech3 démarré en novembre 2025, développé en solo pour le cours de Jeu Libre.
 
-## 💻 Stack Technique
+Objectif : créer un moteur réutilisable comme base pour d'autres projets, avec une architecture propre et extensible.
 
-- **Langage** : C++20
-- **Bibliothèques** : SFML, CMake
-- **Patterns** : ECS, Factory, Observer
-- **Optimisations** : Spatial hashing, Memory pooling
+## Stack
 
-## 🚀 Caractéristiques
+- C++20
+- SFML (rendu)
+- CMake
+- Patterns : ECS, Factory, Observer
+
+## Fonctionnalités
 
 - 36 Components modulaires
 - 35 Systems découplés
 - Architecture extensible
-- Performance optimisée
+- Optimisations : spatial hashing, memory pooling
 - Documentation complète
 
-## 🎮 Démo Incluse
+## Points Techniques
 
-**Pirate Space Explorer** : Jeu de démonstration complet utilisant le moteur.
+Architecture ECS pure : entités comme IDs, components comme données, systems pour le comportement. Découplage total entre logique et données.
 
-- [GitHub Repository](https://github.com/Kikii95/template-ECS)
-- [Documentation Technique](https://github.com/Kikii95/template-ECS/blob/main/ANALYSE-RAPPORT.md)
+Performance : spatial hashing pour les collisions, memory pooling pour les allocations fréquentes.
+
+## Demo
+
+Pirate Space Explorer : jeu de démonstration complet utilisant le moteur.
+
+## Liens
+
+- [GitHub](https://github.com/Kikii95/template-ECS)
+- [Documentation](https://github.com/Kikii95/template-ECS/blob/main/ANALYSE-RAPPORT.md)

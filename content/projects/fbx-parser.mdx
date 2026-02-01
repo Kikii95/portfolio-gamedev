@@ -1,6 +1,6 @@
 ---
 title: "FBX Parser"
-description: "Binary FBX file parser for importing 3D models, animations, and scene data into game engines"
+description: "Parser de fichiers FBX binaires pour import de modèles 3D, animations et données de scène"
 date: "2025-10-01"
 category: "école"
 tags: ["C++", "CMake", "3D", "Binary Parsing", "FBX"]
@@ -10,63 +10,45 @@ thumbnail: "/images/projects/fbx-parser-thumb.jpg"
 gallery: []
 ---
 
-# FBX Parser — 3D File Format
+# FBX Parser
 
-A custom parser for the FBX binary format, enabling import of 3D models, skeletal animations, and scene hierarchies.
+Parser custom pour le format binaire FBX, permettant l'import de modèles 3D, animations squelettiques et hiérarchies de scène.
 
-## 🎯 Context
+## Contexte
 
-| | |
-|---|---|
-| **Duration** | 5 weeks |
-| **Team** | Group project (3 people) |
-| **Role** | Binary parser implementation |
-| **Status** | 🟢 Completed |
+Projet école GTech3, 5 semaines. Équipe de 3, rôle : implémentation du parser binaire.
 
-Understanding 3D file formats is essential for game development. This project dives deep into the FBX binary specification.
+Comprendre les formats de fichiers 3D est essentiel en dev jeux. Ce projet plonge dans la spécification binaire FBX.
 
-## 💻 Tech Stack
+## Stack
 
-| Category | Technologies |
-|----------|--------------|
-| Language | C++ |
-| Build | CMake |
-| Format | FBX Binary (7.x) |
-| Compression | zlib for FBX compression |
+- C++
+- CMake
+- FBX Binary (7.x)
+- zlib (compression FBX)
 
-## 🚀 Key Features
+## Fonctionnalités
 
-- **Binary Format Parsing**: Low-level FBX node traversal
-- **Mesh Extraction**: Vertices, normals, UVs, indices
-- **Material Support**: Basic material properties
-- **Scene Hierarchy**: Transform parent-child relationships
-- **Animation Data**: Keyframe extraction
+- Parsing format binaire : traversée des nœuds FBX bas niveau
+- Extraction mesh : vertices, normales, UVs, indices
+- Support matériaux : propriétés basiques
+- Hiérarchie de scène : relations parent-enfant des transforms
+- Données animation : extraction keyframes
 
-## 🔧 Technical Highlights
+## Points Techniques
 
-### FBX Binary Structure
+Structure binaire FBX :
+- Arbre de nœuds
+- Tableaux de propriétés avec types variés
+- Compression zlib optionnelle
+- Encodage custom pour strings et arrays
 
-The FBX binary format uses:
-- Node-based tree structure
-- Property arrays with various data types
-- Optional zlib compression
-- Custom encoding for strings and arrays
+Extraction de données :
+- Géométrie (vertices, polygones, normales)
+- Mappings UV (canaux multiples)
+- Poids de bones pour le skinning
+- Courbes d'animation
 
-### Data Extraction
+## Liens
 
-Implemented extraction of:
-- Geometry (vertices, polygons, normals)
-- UV mappings (multiple channels)
-- Bone weights for skinning
-- Animation curves
-
-## 🎓 Learning Outcomes
-
-- Binary file format reverse engineering
-- 3D data structures and transformations
-- Memory-efficient parsing strategies
-- Integration with rendering systems
-
-## 📚 Academic Project
-
-Developed during GTech3 Tools Programming course. Code available upon request.
+Code disponible sur demande.

@@ -23,6 +23,7 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
   const statusLabels = {
     'en-cours': t('status.en-cours'),
     'stand-by': t('status.stand-by'),
+    'stable': t('status.stable'),
     'terminé': t('status.terminé')
   };
 
@@ -106,11 +107,13 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
                       ? "bg-blue-500/20 text-blue-400 border-blue-500/50"
                       : project.status === 'stand-by'
                       ? "bg-orange-500/20 text-orange-400 border-orange-500/50"
+                      : project.status === 'stable'
+                      ? "bg-cyan-500/20 text-cyan-400 border-cyan-500/50"
                       : "bg-green-500/20 text-green-400 border-green-500/50"
                   }
                   variant="outline"
                 >
-                  {project.status === 'en-cours' ? '🔄' : project.status === 'stand-by' ? '⏸️' : '✅'} {statusLabels[project.status]}
+                  {project.status === 'en-cours' ? '🔄' : project.status === 'stand-by' ? '⏸️' : project.status === 'stable' ? '📦' : '✅'} {statusLabels[project.status]}
                 </Badge>
               )}
             </div>

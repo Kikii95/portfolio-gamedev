@@ -37,6 +37,7 @@
     "status": {
       "en-cours": "In Progress",
       "stand-by": "On Hold",
+      "stable": "Stable",
       "terminé": "Completed"
     },
     "featured": "Featured",

@@ -1,6 +1,6 @@
 ---
 title: "Physics Engine"
-description: "Real-time physics simulation with rigid body dynamics, collision detection, and constraint solving"
+description: "Moteur physique temps réel avec dynamique rigid body et détection de collisions"
 date: "2025-12-01"
 category: "école"
 tags: ["C++", "Raylib", "Physics", "Simulation", "Math"]
@@ -10,61 +10,43 @@ thumbnail: "/images/projects/physics-engine-thumb.jpg"
 gallery: []
 ---
 
-# Physics Engine — Game Simulation
+# Physics Engine
 
-A real-time physics engine implementing rigid body dynamics, collision detection, and constraint solving for game applications.
+Moteur physique temps réel implémentant dynamique rigid body, détection de collisions et résolution par contraintes.
 
-## 🎯 Context
+## Contexte
 
-| | |
-|---|---|
-| **Duration** | Ongoing |
-| **Team** | Group project (3 people) |
-| **Role** | Physics systems developer |
-| **Status** | 🟡 In Progress |
+Projet école GTech3, en cours. Équipe de 3, rôle : développeur systèmes physiques.
 
-Physics simulation is fundamental to modern games. This project implements core physics concepts from scratch.
+La simulation physique est fondamentale dans les jeux modernes. Ce projet implémente les concepts core from scratch.
 
-## 💻 Tech Stack
+## Stack
 
-| Category | Technologies |
-|----------|--------------|
-| Language | C++ |
-| Visualization | Raylib |
-| Math | Custom linear algebra |
-| Build | CMake |
+- C++
+- Raylib (visualisation)
+- Algèbre linéaire custom
+- CMake
 
-## 🚀 Key Features
+## Fonctionnalités
 
-- **Rigid Body Dynamics**: Mass, velocity, forces, torque
-- **Collision Detection**: Broad phase (spatial hashing) + narrow phase (GJK/EPA)
-- **Collision Response**: Impulse-based resolution
-- **Constraints**: Distance, hinge, and slider joints
-- **Debug Visualization**: Real-time physics state display
+- Dynamique rigid body : masse, vélocité, forces, torque
+- Détection collisions : broad phase (spatial hashing) + narrow phase (GJK/EPA)
+- Réponse collisions : résolution par impulsion
+- Contraintes : joints distance, charnière, slider
+- Visualisation debug : affichage état physique temps réel
 
-## 🔧 Technical Highlights
+## Points Techniques
 
-### Integration
+Intégration physique :
+- Euler semi-implicite pour la stabilité
+- Velocity Verlet pour la précision
+- Timestep fixe avec interpolation
 
-Implemented physics integration:
-- Semi-implicit Euler for stability
-- Velocity Verlet for accuracy
-- Fixed timestep with interpolation
+Pipeline de collisions multi-phase :
+- Partitionnement spatial pour broad phase
+- Separating Axis Theorem pour formes convexes
+- Génération et cache de points de contact
 
-### Collision System
+## Liens
 
-Multi-phase collision pipeline:
-- Spatial partitioning for broad phase
-- Separating axis theorem for convex shapes
-- Contact point generation and caching
-
-## 🎓 Learning Outcomes
-
-- Classical mechanics and dynamics
-- Numerical integration methods
-- Collision detection algorithms
-- Constraint-based physics
-
-## 📚 Academic Project
-
-Currently in development during GTech3 Physics course. Code available upon request.
+Code disponible sur demande.

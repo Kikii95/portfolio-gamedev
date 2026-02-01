@@ -1,6 +1,6 @@
 ---
 title: "Audio Editor"
-description: "WAV audio editor with DSP effects, waveform visualization, and real-time processing using XAudio2"
+description: "Éditeur audio WAV avec effets DSP, visualisation et traitement temps réel via XAudio2"
 date: "2025-11-01"
 category: "école"
 tags: ["C++", "XAudio2", "DSP", "Audio", "WAV"]
@@ -10,62 +10,44 @@ thumbnail: "/images/projects/audio-editor-thumb.jpg"
 gallery: []
 ---
 
-# Audio Editor — WAV Processing
+# Audio Editor
 
-A desktop audio editor for WAV files featuring DSP effects, waveform visualization, and real-time audio processing.
+Éditeur audio desktop pour fichiers WAV avec effets DSP, visualisation waveform et traitement temps réel.
 
-## 🎯 Context
+## Contexte
 
-| | |
-|---|---|
-| **Duration** | 6 weeks |
-| **Team** | Group project (3 people) |
-| **Role** | DSP and audio engine developer |
-| **Status** | 🟢 Completed |
+Projet école GTech3, 6 semaines. Équipe de 3, rôle : développeur DSP et moteur audio.
 
-This project explores digital signal processing fundamentals through building a practical audio editing application.
+Exploration des fondamentaux du traitement de signal numérique via une application d'édition audio pratique.
 
-## 💻 Tech Stack
+## Stack
 
-| Category | Technologies |
-|----------|--------------|
-| Language | C++ |
-| Audio API | XAudio2 |
-| File Format | WAV Parser (custom) |
-| UI | Win32 / ImGui |
+- C++
+- XAudio2 (API audio)
+- Parser WAV custom
+- Win32 / ImGui (UI)
 
-## 🚀 Key Features
+## Fonctionnalités
 
-- **WAV Import/Export**: Full support for PCM WAV files
-- **Waveform Display**: Real-time audio visualization
-- **DSP Effects**: EQ, compression, reverb, delay
-- **Non-destructive Editing**: Effect chain with preview
-- **Selection Tools**: Cut, copy, paste audio regions
+- Import/export WAV (PCM complet)
+- Affichage waveform temps réel
+- Effets DSP : EQ, compression, reverb, delay
+- Édition non-destructive avec preview de la chaîne d'effets
+- Outils de sélection : cut, copy, paste de régions audio
 
-## 🔧 Technical Highlights
+## Points Techniques
 
-### Custom WAV Parser
+Parser WAV custom gérant :
+- Parsing header RIFF
+- Formats multiples (8/16/24-bit, mono/stereo)
+- Navigation chunks et métadonnées
 
-Built a complete WAV file parser handling:
-- RIFF header parsing
-- Multiple audio formats (8/16/24-bit, mono/stereo)
-- Chunk navigation and metadata
+Effets audio implémentés from scratch :
+- Biquad filters pour bandes EQ
+- Compresseur RMS
+- Delay line avec feedback
+- Bases de reverb à convolution
 
-### DSP Implementation
+## Liens
 
-Implemented audio effects from scratch:
-- Biquad filters for EQ bands
-- RMS-based compressor
-- Delay line with feedback
-- Convolution reverb basics
-
-## 🎓 Learning Outcomes
-
-- Digital signal processing fundamentals
-- Audio file format specifications
-- Real-time audio constraints
-- Windows audio APIs
-
-## 📚 Academic Project
-
-Developed during GTech3 Audio Programming course. Code available upon request.
+Code disponible sur demande.

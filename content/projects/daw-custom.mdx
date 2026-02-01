@@ -1,11 +1,11 @@
 ---
 title: "DAW Custom"
-description: "Personal Digital Audio Workstation for mashups and sound design, built with C++ and JUCE Framework"
-date: "2026-01-28"
+description: "Station de travail audio personnelle pour mashups et sound design en C++ avec JUCE"
+date: "2025-11-20"
 category: "perso"
 tags: ["C++", "JUCE", "Audio", "DSP", "CMake"]
 featured: true
-status: "en-cours"
+status: "stable"
 github: "https://github.com/Kikii95/daw-custom"
 thumbnail: "/images/projects/daw-custom-thumb.jpg"
 gallery: []
@@ -13,54 +13,36 @@ gallery: []
 
 # DAW Custom
 
-A personal Digital Audio Workstation built from scratch for creating mashups and designing custom sounds like kicks and synthesizers.
+Station de travail audio personnelle pour créer des mashups et designer des sons (kicks, synthés).
 
-## 🎯 Context
+## Contexte
 
-| | |
-|---|---|
-| **Duration** | Ongoing (started Jan 2026) |
-| **Team** | Solo |
-| **Status** | 🟡 Active Development |
+Projet perso démarré en novembre 2025. Développé en solo.
 
-I wanted a DAW tailored specifically for mashup creation and sound design — without the bloat of commercial DAWs. Building it myself also gave me deep knowledge of audio programming and DSP fundamentals.
+Objectif : un DAW taillé pour la création de mashups et le sound design, sans le bloat des DAW commerciaux. Construire moi-même pour comprendre le traitement audio en profondeur.
 
-## 💻 Tech Stack
+## Stack
 
-| Category | Technologies |
-|----------|--------------|
-| Language | C++20 |
-| Framework | JUCE 7 (GPL) |
-| Build | CMake 3.22+ |
-| Audio | Real-time audio processing, ASIO |
+- C++20
+- JUCE 7 (GPL)
+- CMake 3.22+
+- ASIO pour le temps réel
 
-## 🚀 Key Features
+## Fonctionnalités
 
-- **Multi-track Mixer**: Timeline-based editing with per-track volume and pan controls
-- **Audio Import/Export**: Support for WAV, MP3, and FLAC formats
-- **Built-in Effects**: EQ, Compressor, Reverb, and Delay processors
-- **Kick Designer**: Custom kick drum synthesizer for electronic music
-- **Basic Synthesizer**: Oscillator-based synth with filter and envelope
-- **VST3 Hosting**: Load and use third-party VST3 plugins
+- Mixer multi-pistes avec timeline
+- Import/export WAV, MP3, FLAC
+- Effets intégrés : EQ, Compressor, Reverb, Delay
+- Kick Designer pour musique électronique
+- Synthétiseur basique (oscillateurs, filtre, enveloppe)
+- Hosting VST3
 
-## 🔧 Technical Highlights
+## Points Techniques
 
-### Real-time Audio Processing
+Moteur audio temps réel à 44.1/48kHz avec latence minimale. Chaque effet est un processeur audio modulaire chaînable.
 
-The audio engine processes samples in real-time at 44.1kHz/48kHz sample rates with low latency. Each effect is implemented as a modular audio processor that can be chained together.
+DSP implémenté from scratch : biquad filters pour l'EQ, compression RMS, reverb Schroeder, delay lines avec feedback.
 
-### DSP Implementation
+## Liens
 
-All effects are implemented from scratch using standard DSP algorithms — biquad filters for EQ, RMS-based compression, Schroeder reverb, and delay lines with feedback.
-
-## 🎓 Learning Outcomes
-
-- Deep understanding of real-time audio constraints
-- DSP algorithm implementation (filters, effects)
-- JUCE framework architecture
-- Plugin hosting and VST3 integration
-
-## 🔗 Links
-
-- [GitHub Repository](https://github.com/Kikii95/daw-custom)
-- Documentation: In-progress
+- [GitHub](https://github.com/Kikii95/daw-custom)

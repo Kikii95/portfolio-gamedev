@@ -29,6 +29,7 @@ export function ProjectDetail({ metadata, content }: ProjectDetailProps) {
   const statusLabels = {
     'en-cours': t('status.en-cours'),
     'stand-by': t('status.stand-by'),
+    'stable': t('status.stable'),
     'terminé': t('status.terminé')
   };
 
@@ -86,11 +87,13 @@ export function ProjectDetail({ metadata, content }: ProjectDetailProps) {
                         ? "bg-blue-500/30 text-blue-300 border-blue-400/50"
                         : metadata.status === 'stand-by'
                         ? "bg-orange-500/30 text-orange-300 border-orange-400/50"
+                        : metadata.status === 'stable'
+                        ? "bg-cyan-500/30 text-cyan-300 border-cyan-400/50"
                         : "bg-green-500/30 text-green-300 border-green-400/50"
                     }`}
                     variant="outline"
                   >
-                    {metadata.status === 'en-cours' ? '🔄' : metadata.status === 'stand-by' ? '⏸️' : '✅'}{' '}
+                    {metadata.status === 'en-cours' ? '🔄' : metadata.status === 'stand-by' ? '⏸️' : metadata.status === 'stable' ? '📦' : '✅'}{' '}
                     {statusLabels[metadata.status]}
                   </Badge>
                 )}
@@ -213,7 +216,7 @@ export function ProjectDetail({ metadata, content }: ProjectDetailProps) {
                 {metadata.status && (
                   <div className="flex items-start gap-3">
                     <div className="mt-1">
-                      {metadata.status === 'en-cours' ? '🔄' : metadata.status === 'stand-by' ? '⏸️' : '✅'}
+                      {metadata.status === 'en-cours' ? '🔄' : metadata.status === 'stand-by' ? '⏸️' : metadata.status === 'stable' ? '📦' : '✅'}
                     </div>
                     <div>
                       <p className="text-sm font-medium">{t('detail.status')}</p>

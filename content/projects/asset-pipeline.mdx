@@ -1,6 +1,6 @@
 ---
 title: "Asset Pipeline Engine"
-description: "Game engine asset management system with hot-reloading, compression, and dependency tracking"
+description: "Système de gestion d'assets pour moteur de jeu avec hot-reload et tracking de dépendances"
 date: "2025-09-01"
 category: "école"
 tags: ["C++", "CMake", "Asset Management", "Game Engine"]
@@ -12,61 +12,43 @@ gallery: []
 
 # Asset Pipeline Engine
 
-A robust asset management system for game engines, handling loading, caching, hot-reloading, and dependency resolution.
+Système de gestion d'assets robuste pour moteurs de jeu : chargement, cache, hot-reload et résolution de dépendances.
 
-## 🎯 Context
+## Contexte
 
-| | |
-|---|---|
-| **Duration** | 5 weeks |
-| **Team** | Group project (3 people) |
-| **Role** | Core pipeline architect |
-| **Status** | 🟢 Completed |
+Projet école GTech3, 5 semaines. Équipe de 3, rôle : architecte du pipeline core.
 
-Modern games require sophisticated asset management. This project implements a production-ready pipeline for handling game resources.
+Les jeux modernes nécessitent une gestion d'assets sophistiquée. Ce projet implémente un pipeline production-ready pour les ressources de jeu.
 
-## 💻 Tech Stack
+## Stack
 
-| Category | Technologies |
-|----------|--------------|
-| Language | C++ |
-| Build | CMake |
-| Serialization | Custom binary format |
-| File Watching | Platform-specific APIs |
+- C++
+- CMake
+- Sérialisation binaire custom
+- APIs système (file watching)
 
-## 🚀 Key Features
+## Fonctionnalités
 
-- **Async Loading**: Background asset loading with callbacks
-- **Reference Counting**: Automatic resource lifetime management
-- **Hot Reloading**: Live asset updates during development
-- **Dependency Graph**: Automatic reload of dependent assets
-- **Compression**: LZ4 compression for packed assets
+- Chargement async avec callbacks
+- Reference counting : gestion automatique du cycle de vie des ressources
+- Hot reload : mise à jour live des assets en développement
+- Graphe de dépendances : rechargement automatique des assets dépendants
+- Compression LZ4 pour les assets packés
 
-## 🔧 Technical Highlights
+## Points Techniques
 
-### Resource Manager
-
-Centralized system handling:
-- Asset registration and lookup
-- Memory budgeting
-- Load prioritization
+Resource Manager centralisé gérant :
+- Enregistrement et lookup d'assets
+- Budget mémoire
+- Prioritisation du chargement
 - Garbage collection
 
-### Build Pipeline
+Pipeline de build offline pour :
+- Compression textures (formats BCn)
+- Optimisation mesh
+- Compilation shaders
+- Bundling d'assets
 
-Offline processing for:
-- Texture compression (BCn formats)
-- Mesh optimization
-- Shader compilation
-- Asset bundling
+## Liens
 
-## 🎓 Learning Outcomes
-
-- Resource management patterns
-- Asynchronous programming
-- File system abstractions
-- Memory management strategies
-
-## 📚 Academic Project
-
-Developed during GTech3 Engine Architecture course. Code available upon request.
+Code disponible sur demande.

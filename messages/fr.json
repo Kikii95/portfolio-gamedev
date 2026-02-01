@@ -37,6 +37,7 @@
     "status": {
       "en-cours": "En cours",
       "stand-by": "Stand-By",
+      "stable": "Stable",
       "terminé": "Terminé"
     },
     "featured": "Featured",

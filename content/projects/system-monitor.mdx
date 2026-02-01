@@ -1,11 +1,11 @@
 ---
 title: "System Monitor"
-description: "Ultra-lightweight TUI system performance monitor written in Rust with beautiful themes and GPU support"
-date: "2025-11-29"
+description: "Moniteur système TUI ultra-léger en Rust avec thèmes et support GPU"
+date: "2026-01-15"
 category: "perso"
 tags: ["Rust", "TUI", "CLI", "Performance", "Cross-platform"]
 featured: true
-status: "terminé"
+status: "stable"
 github: "https://github.com/Kikii95/system-monitor"
 thumbnail: "/images/projects/system-monitor-thumb.jpg"
 gallery: []
@@ -13,68 +13,37 @@ gallery: []
 
 # System Monitor
 
-A blazingly fast, ultra-lightweight system performance monitor for your terminal. Inspired by htop, btop, and nvtop — but leaner and Rust-powered.
+Moniteur de performances système en terminal. Inspiré de htop/btop/nvtop mais plus léger, écrit en Rust.
 
-## 🎯 Context
+## Contexte
 
-| | |
-|---|---|
-| **Duration** | 1 week |
-| **Team** | Solo |
-| **Status** | 🟢 Complete (v1.2.1) |
+Projet perso démarré en novembre 2025. Développé en solo sur une semaine.
 
-I wanted a dead-simple, keyboard-driven system monitor that uses almost zero resources while looking good in any terminal.
+Objectif : un moniteur système minimaliste, pilotable au clavier, qui consomme presque rien tout en étant visuellement agréable.
 
-## 💻 Tech Stack
+## Stack
 
-| Category | Technologies |
-|----------|--------------|
-| Language | Rust 1.75+ |
-| Framework | Ratatui (TUI) |
-| Platform | Linux, Windows, macOS, WSL2 |
-| Size | 1.7MB single binary |
+- Rust 1.75+
+- Ratatui (TUI framework)
+- NVML (GPU NVIDIA)
+- Cross-platform : Linux, Windows, macOS, WSL2
 
-## 🚀 Key Features
+## Fonctionnalités
 
-- **Ultra-lightweight**: 0.0% CPU usage, ~4MB RAM
-- **9 Beautiful Themes**: From Matrix green to Tokyo Night purple
-- **NVIDIA GPU Monitoring**: Usage, VRAM, temperature, power draw
-- **60-second Sparklines**: Visual history for all metrics
-- **Persistent Config**: Save preferences with a single keypress
-- **Cross-platform**: Native binaries for Linux and Windows
+- Consommation quasi-nulle : 0.0% CPU, ~4MB RAM
+- 9 thèmes visuels (Matrix, Tokyo Night, etc.)
+- Monitoring GPU NVIDIA : usage, VRAM, température, consommation
+- Sparklines 60 secondes pour toutes les métriques
+- Config persistante sauvegardée en un keypress
+- Binaire unique de 1.7MB
 
-## 🔧 Technical Highlights
+## Points Techniques
 
-### Zero-overhead Design
+Design zero-overhead : les métriques sont collectées via les APIs système natives. Le TUI ne redessine que quand les données changent.
 
-The monitor is designed to have minimal impact on the system it's monitoring. Metrics are collected efficiently using system APIs, and the TUI renders only when data changes.
+Intégration GPU via la bibliothèque NVML de NVIDIA, accès temps réel à l'utilisation, mémoire, température et consommation.
 
-### GPU Integration
+## Liens
 
-NVIDIA GPU monitoring is implemented via the NVML library, providing real-time access to GPU utilization, memory, temperature, and power consumption.
-
-## 📊 Performance
-
-```
-╔══════════════════════════════════════════════════════════════════╗
-║  SYSTEM MONITOR                                     v1.2.1       ║
-╠══════════════════════════════════════════════════════════════════╣
-║  CPU [████████████░░░░░░░░] 58.3%    MEM [██████░░░░░░░░░░] 38.2% ║
-║  ▁▂▃▅▆▇█▇▆▅▄▃▂▁▂▃▄▅▆▇█▇▆▅▄▃▂▁     ▁▁▂▂▃▃▄▄▅▅▆▆▇▇████▇▇▆▆▅▅▄▄▃▃▂▂ ║
-╠══════════════════════════════════════════════════════════════════╣
-║  GPU: NVIDIA GeForce RTX 4070 Ti     51°C    8W/285W    0%       ║
-║  NET: ↓ 1.2 MB/s  ↑ 256 KB/s         DISK: R 45 MB/s  W 12 MB/s  ║
-╚══════════════════════════════════════════════════════════════════╝
-```
-
-## 🎓 Learning Outcomes
-
-- Rust async programming and system APIs
-- TUI development with Ratatui
-- Cross-platform system information gathering
-- NVIDIA NVML integration
-
-## 🔗 Links
-
-- [GitHub Repository](https://github.com/Kikii95/system-monitor)
-- Pre-built binaries available in Releases
+- [GitHub](https://github.com/Kikii95/system-monitor)
+- Binaires pré-compilés dans les Releases

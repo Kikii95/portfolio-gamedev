@@ -1,11 +1,11 @@
 ---
 title: "Obsidian Web"
-description: "PWA to access your Obsidian vault from any device using GitHub as backend storage"
-date: "2025-11-29"
+description: "PWA pour accéder à un vault Obsidian depuis n'importe quel appareil via GitHub"
+date: "2026-02-01"
 category: "perso"
 tags: ["TypeScript", "React", "PWA", "Vercel", "GitHub API"]
 featured: true
-status: "terminé"
+status: "stable"
 github: "https://github.com/Kikii95/obsidian-web"
 buildUrl: "https://obsidian-web.vercel.app"
 thumbnail: "/images/projects/obsidian-web-thumb.jpg"
@@ -14,67 +14,39 @@ gallery: []
 
 # Obsidian Web
 
-A modern web-based viewer and editor for Obsidian vaults, powered by GitHub as the backend storage. Access your notes from any device with a web browser.
+Application web pour consulter et éditer un vault Obsidian depuis n'importe quel appareil. GitHub sert de backend de synchronisation.
 
-## 🎯 Context
+## Contexte
 
-| | |
-|---|---|
-| **Duration** | 2 weeks |
-| **Team** | Solo |
-| **Status** | 🟢 Live |
+Projet perso démarré en novembre 2025. Développé en solo sur 2 semaines.
 
-I needed a way to access my Obsidian vault on my phone without paying for Obsidian Sync. By using GitHub as the sync layer, I get free, reliable synchronization between all my devices.
+Besoin initial : accéder à mes notes Obsidian sur mobile sans payer Obsidian Sync. Solution : utiliser GitHub comme couche de sync gratuite et fiable.
 
-## 💻 Tech Stack
+## Stack
 
-| Category | Technologies |
-|----------|--------------|
-| Frontend | React, TypeScript |
-| Styling | TailwindCSS |
-| Backend | GitHub API (no server) |
-| Hosting | Vercel |
-| Features | PWA, OAuth |
+- React, TypeScript
+- TailwindCSS
+- GitHub API (serverless, pas de backend)
+- Vercel
+- PWA avec service worker
 
-## 🚀 Key Features
+## Fonctionnalités
 
-- **Mobile Access**: Full Obsidian-like experience on any device
-- **GitHub Sync**: Your vault stays on GitHub — no proprietary sync
-- **PWA Support**: Works offline, installable as app
-- **Graph View**: Visual note connections
-- **Backlinks**: See what links to each note
-- **Daily Notes**: Quick access to daily journal
-- **Tags**: Full tag support with filtering
+- Accès mobile complet au vault
+- Sync via GitHub, pas de serveur propriétaire
+- PWA installable, fonctionne offline
+- Vue graphe des connexions entre notes
+- Backlinks automatiques
+- Daily notes
+- Support complet des tags
 
-## 🔧 Technical Highlights
+## Points Techniques
 
-### Serverless Architecture
+Architecture 100% client-side. Aucun backend, toutes les opérations passent directement par l'API GitHub.
 
-The entire app runs client-side with no backend server. Authentication uses GitHub OAuth, and all data operations go directly through the GitHub API. Your token is stored in an encrypted JWT cookie.
+Auth via GitHub OAuth. Token stocké dans un JWT cookie chiffré. Les données ne transitent jamais par un serveur tiers.
 
-### Security Model
+## Liens
 
-| Aspect | Implementation |
-|--------|----------------|
-| Auth | GitHub OAuth |
-| Storage | JWT cookie (no server database) |
-| Access | Only configured repos |
-| Data | Never stored on our servers |
-
-## 🎮 Demo
-
-**Live**: [obsidian-web.vercel.app](https://obsidian-web.vercel.app)
-
-Login with your GitHub account, configure your vault repository, and start browsing your notes from any device.
-
-## 🎓 Learning Outcomes
-
-- PWA development and service workers
-- GitHub OAuth flow implementation
-- Serverless architecture design
-- Markdown rendering and parsing
-
-## 🔗 Links
-
-- [Live Demo](https://obsidian-web.vercel.app)
-- [GitHub Repository](https://github.com/Kikii95/obsidian-web)
+- [Demo live](https://obsidian-web.vercel.app)
+- [GitHub](https://github.com/Kikii95/obsidian-web)

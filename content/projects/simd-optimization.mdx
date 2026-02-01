@@ -1,6 +1,6 @@
 ---
 title: "SIMD Math Optimization"
-description: "High-performance math library using SIMD intrinsics (SSE/AVX) for game engine vector and matrix operations"
+description: "Bibliothèque mathématique haute performance utilisant intrinsics SIMD (SSE/AVX) pour moteurs de jeu"
 date: "2025-10-15"
 category: "école"
 tags: ["C++", "SIMD", "SSE", "AVX", "Performance", "Math"]
@@ -12,68 +12,50 @@ gallery: []
 
 # SIMD Math Optimization
 
-A high-performance math library leveraging SIMD instructions for vectorized operations commonly used in game engines.
+Bibliothèque mathématique haute performance utilisant les instructions SIMD pour les opérations vectorielles et matricielles des moteurs de jeu.
 
-## 🎯 Context
+## Contexte
 
-| | |
-|---|---|
-| **Duration** | 4 weeks |
-| **Team** | Individual competition |
-| **Role** | Solo developer |
-| **Status** | 🟢 Completed |
+Projet école GTech3, compétition d'optimisation, 4 semaines. Projet individuel.
 
-This project was part of a performance optimization challenge, implementing math operations using SIMD intrinsics to achieve maximum throughput.
+Implémentation d'opérations mathématiques avec intrinsics SIMD pour atteindre le débit maximal.
 
-## 💻 Tech Stack
+## Stack
 
-| Category | Technologies |
-|----------|--------------|
-| Language | C++ |
-| Intrinsics | SSE4.2, AVX, AVX2 |
-| Benchmarking | Custom profiler |
-| Build | CMake |
+- C++
+- SSE4.2, AVX, AVX2 (intrinsics)
+- Profiler custom
+- CMake
 
-## 🚀 Key Features
+## Fonctionnalités
 
-- **Vector Math**: Vec2, Vec3, Vec4 with SIMD backing
-- **Matrix Operations**: 4x4 matrices with vectorized multiply
-- **Quaternions**: SIMD-optimized rotations
-- **Batch Processing**: Transform arrays of vectors
-- **Fallback Path**: Scalar implementations for compatibility
+- Math vectorielle : Vec2, Vec3, Vec4 avec backing SIMD
+- Opérations matricielles : matrices 4x4 avec multiplication vectorisée
+- Quaternions : rotations optimisées SIMD
+- Batch processing : transformation de tableaux de vecteurs
+- Fallback scalaire pour compatibilité
 
-## 🔧 Technical Highlights
+## Points Techniques
 
-### SIMD Architecture
+Extensions SIMD x86 utilisées :
+- SSE : registres 128-bit, 4 floats en parallèle
+- AVX : registres 256-bit, 8 floats en parallèle
+- Alignement mémoire pour load/store optimaux
 
-Leveraged x86 SIMD extensions:
-- **SSE**: 128-bit registers, 4x float parallel
-- **AVX**: 256-bit registers, 8x float parallel
-- Memory alignment for optimal load/store
+Techniques d'optimisation :
+- Layout de données (SoA vs AoS)
+- Patterns d'accès cache-friendly
+- Parallélisme au niveau instruction
+- Élimination de branches
 
-### Optimizations
+## Résultats
 
-Techniques employed:
-- Data layout optimization (SoA vs AoS)
-- Cache-friendly access patterns
-- Instruction-level parallelism
-- Branch elimination
-
-## 📊 Performance Results
-
-| Operation | Scalar | SIMD | Speedup |
-|-----------|--------|------|---------|
+| Opération | Scalaire | SIMD | Speedup |
+|-----------|----------|------|---------|
 | Vec4 dot | 4 ops | 1 op | ~4x |
 | Mat4 mul | 64 ops | 16 ops | ~4x |
 | Batch transform | N ops | N/4 ops | ~4x |
 
-## 🎓 Learning Outcomes
+## Liens
 
-- CPU architecture and SIMD units
-- Intrinsics programming
-- Performance profiling and optimization
-- Memory access patterns
-
-## 📚 Academic Project
-
-Developed during GTech3 SIMD Contest. Code available upon request.
+Code disponible sur demande.

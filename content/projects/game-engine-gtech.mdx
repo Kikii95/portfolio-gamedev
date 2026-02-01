@@ -1,6 +1,6 @@
 ---
 title: "Custom Game Engine"
-description: "Full-featured game engine built from scratch with OpenGL renderer, ECS architecture, and editor tools"
+description: "Moteur de jeu complet avec renderer OpenGL, architecture ECS et outils d'édition"
 date: "2025-06-01"
 category: "école"
 tags: ["C++", "OpenGL", "ImGui", "Game Engine", "ECS"]
@@ -10,64 +10,39 @@ thumbnail: "/images/projects/game-engine-thumb.jpg"
 gallery: []
 ---
 
-# Custom Game Engine — GTech3
+# Custom Game Engine
 
-A comprehensive game engine developed from scratch during my GTech3 curriculum, featuring a modern OpenGL renderer and entity-component-system architecture.
+Moteur de jeu développé from scratch avec renderer OpenGL moderne et architecture entity-component-system.
 
-## 🎯 Context
+## Contexte
 
-| | |
-|---|---|
-| **Duration** | 6 months (full year course) |
-| **Team** | Individual project |
-| **Role** | Solo developer |
-| **Status** | 🟢 Completed |
+Projet école GTech3, développé tout au long de l'année (6 mois). Projet individuel.
 
-This engine was built progressively throughout my third year, implementing core game engine systems from scratch to understand the fundamentals of real-time graphics and game architecture.
+Construction progressive des systèmes fondamentaux d'un moteur de jeu pour comprendre l'architecture des moteurs temps réel et le graphisme 3D.
 
-## 💻 Tech Stack
+## Stack
 
-| Category | Technologies |
-|----------|--------------|
-| Language | C++20 |
-| Graphics | OpenGL 4.5, GLSL |
-| UI | Dear ImGui |
-| Math | GLM |
-| Build | CMake |
+- C++20
+- OpenGL 4.5, GLSL
+- Dear ImGui (éditeur)
+- GLM (maths)
+- CMake
 
-## 🚀 Key Features
+## Fonctionnalités
 
-- **OpenGL Renderer**: Modern deferred rendering pipeline
-- **ECS Architecture**: Data-oriented entity management
-- **Scene Graph**: Hierarchical transform system
-- **Editor Tools**: ImGui-based level editor
-- **Asset Pipeline**: Model and texture loading
-- **Shader System**: Hot-reloading GLSL shaders
+- Renderer OpenGL : pipeline de rendu différé
+- Architecture ECS : gestion d'entités data-oriented
+- Scene Graph : système de transformations hiérarchiques
+- Éditeur ImGui : level editor intégré
+- Pipeline d'assets : chargement modèles et textures
+- Système de shaders : hot-reload GLSL
 
-## 🔧 Technical Highlights
+## Points Techniques
 
-### Rendering Pipeline
+Pipeline de rendu différé avec G-buffer pour la géométrie, passe d'éclairage multi-lumières, effets post-process (bloom, tone mapping), shadow mapping.
 
-Implemented a deferred rendering pipeline with:
-- G-buffer for geometry pass
-- Lighting pass with multiple light types
-- Post-processing effects (bloom, tone mapping)
-- Shadow mapping
+ECS data-oriented : entités = IDs, components = données pures, systems = comportements. Séparation claire pour la performance et la maintenabilité.
 
-### Entity-Component-System
+## Liens
 
-Data-oriented design separating:
-- Entities as IDs
-- Components as pure data
-- Systems for behavior
-
-## 🎓 Learning Outcomes
-
-- 3D graphics programming fundamentals
-- Game engine architecture patterns
-- Memory management and optimization
-- Tool development for game creation
-
-## 📚 Academic Project
-
-Developed during GTech3 Game Engine course. Code available upon request.
+Code disponible sur demande.

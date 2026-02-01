@@ -1,11 +1,11 @@
 ---
 title: "WSL Terminal"
-description: "Modern terminal emulator for WSL2 with multi-tab, split panes, and developer tools built with Tauri"
-date: "2025-12-10"
+description: "Émulateur de terminal moderne pour WSL2 avec multi-onglets et outils développeur"
+date: "2026-01-20"
 category: "perso"
 tags: ["Tauri", "Rust", "React", "Terminal", "WSL"]
 featured: true
-status: "terminé"
+status: "stable"
 github: "https://github.com/Kikii95/wsl-terminal"
 thumbnail: "/images/projects/wsl-terminal-thumb.jpg"
 gallery: []
@@ -13,76 +13,51 @@ gallery: []
 
 # WSL Terminal
 
-A modern, feature-rich terminal emulator for WSL2 built with Tauri 2.0, React 19, and xterm.js. All the features of a professional terminal, optimized for WSL development.
+Émulateur de terminal moderne pour WSL2. Toutes les fonctionnalités d'un terminal pro, optimisé pour le développement sous WSL.
 
-## 🎯 Context
+## Contexte
 
-| | |
-|---|---|
-| **Duration** | 2 weeks |
-| **Team** | Solo |
-| **Status** | 🟢 Complete (v0.9.3) |
+Projet perso démarré en décembre 2025. Développé en solo sur 2 semaines.
 
-Windows Terminal is good, but I wanted something with deeper developer integration — Git panels, Docker management, project navigation, and a customizable UI without electron's overhead.
+Windows Terminal est correct, mais je voulais quelque chose avec une meilleure intégration développeur : panneaux Git, gestion Docker, navigation projet, UI personnalisable — sans la lourdeur d'Electron.
 
-## 💻 Tech Stack
+## Stack
 
-| Category | Technologies |
-|----------|--------------|
-| Framework | Tauri 2.0 |
-| Backend | Rust 1.77+ |
-| Frontend | React 19, TypeScript 5, TailwindCSS 4 |
-| Terminal | xterm.js 5 with addons |
-| State | Zustand |
+- Tauri 2.0
+- Rust 1.77+ (backend)
+- React 19, TypeScript 5, TailwindCSS 4 (frontend)
+- xterm.js 5 avec addons
+- Zustand (state management)
 
-## 🚀 Key Features
+## Fonctionnalités
 
-### Terminal Core
-- **Multi-tab Support**: Unlimited sessions with drag-and-drop reordering
-- **Split Panes**: Horizontal and vertical splits with resizable panels
-- **Multi-window**: Detach tabs into separate windows
-- **Session Restore**: Automatic restoration on restart
-- **Search**: Full text search with Ctrl+F
+Terminal :
+- Multi-onglets avec drag-and-drop
+- Split panes horizontal/vertical redimensionnables
+- Multi-fenêtres (détacher des onglets)
+- Restauration de session automatique
+- Recherche Ctrl+F
 
-### Developer Tools
-- **Git Panel**: Branch management, staging, commits, push/pull
-- **Docker Panel**: Container and image management
-- **SSH Manager**: Save and quick-connect to SSH hosts
-- **Project Switcher**: Navigate projects by category
-- **Quick Commands**: Save and execute frequent commands
+Outils dev :
+- Panneau Git : branches, staging, commits, push/pull
+- Panneau Docker : conteneurs et images
+- Manager SSH : sauvegarde et connexion rapide
+- Switcher de projets par catégorie
+- Commandes rapides sauvegardées
 
-### UI/UX
-- **6 Themes**: Catppuccin, Dracula, Nord, One Dark, Gruvbox, Tokyo Night
-- **Command Palette**: Quick access with Ctrl+Shift+P
-- **Quake Mode**: Dropdown terminal with customizable hotkey
-- **Notifications**: Alert when long commands complete
+UI :
+- 6 thèmes (Catppuccin, Dracula, Nord, One Dark, Gruvbox, Tokyo Night)
+- Palette de commandes Ctrl+Shift+P
+- Mode Quake (terminal dropdown)
+- Notifications fin de commandes longues
 
-## 🔧 Technical Highlights
+## Points Techniques
 
-### Performance
+Léger comparé aux alternatives Electron : ~15MB d'installeur, 80-120MB de RAM. Le backend Tauri gère le spawn des shells et l'IPC, React gère l'UI.
 
-Lightweight compared to Electron alternatives: ~15MB installer, ~80-120MB RAM. The Tauri backend handles shell spawning and IPC, while React handles the UI efficiently.
+Supporte toutes les distributions WSL installées (détection auto), PowerShell et CMD. Le switcher de projets s'intègre avec ma structure `~/projects/`.
 
-### Shell Integration
+## Liens
 
-Supports all installed WSL distributions (auto-detected), PowerShell, and CMD. The project switcher integrates with my `~/projects/` directory structure.
-
-## 📊 Performance
-
-| Metric | Value |
-|--------|-------|
-| Installer | ~15MB |
-| RAM Usage | 80-120MB |
-| Startup | < 1s |
-
-## 🎓 Learning Outcomes
-
-- Tauri 2.0 IPC and state management
-- xterm.js integration and customization
-- WSL interop from native apps
-- Complex React state with Zustand
-
-## 🔗 Links
-
-- [GitHub Repository](https://github.com/Kikii95/wsl-terminal)
-- Installers available in Releases
+- [GitHub](https://github.com/Kikii95/wsl-terminal)
+- Installeurs dans les Releases

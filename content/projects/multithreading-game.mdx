@@ -1,6 +1,6 @@
 ---
 title: "Multithreaded Game"
-description: "Performance-optimized game using C++ multithreading for smooth gameplay and parallel processing"
+description: "Jeu optimisé avec multithreading C++ pour gameplay fluide et traitement parallèle"
 date: "2025-09-15"
 category: "école"
 tags: ["C++", "Threading", "CMake", "SFML", "Performance"]
@@ -12,56 +12,38 @@ gallery: []
 
 # Multithreaded Game
 
-A performance-focused game project demonstrating advanced C++ multithreading techniques for smooth gameplay.
+Jeu démontrant les techniques avancées de multithreading C++ pour un gameplay fluide.
 
-## 🎯 Context
+## Contexte
 
-| | |
-|---|---|
-| **Duration** | 2 months |
-| **Team** | Group project (4 people) |
-| **Role** | Core systems developer |
-| **Status** | 🟢 Completed |
+Projet école GTech3, 2 mois. Équipe de 4, rôle : développeur systèmes core.
 
-This project was developed as part of my GTech3 game development curriculum, focusing on parallel processing and thread synchronization for real-time game systems.
+Focus sur le traitement parallèle et la synchronisation de threads pour des systèmes de jeu temps réel.
 
-## 💻 Tech Stack
+## Stack
 
-| Category | Technologies |
-|----------|--------------|
-| Language | C++17/20 |
-| Build | CMake |
-| Graphics | SFML |
-| Threading | std::thread, mutex, condition variables |
+- C++17/20
+- CMake
+- SFML (graphismes)
+- std::thread, mutex, condition variables
 
-## 🚀 Key Features
+## Fonctionnalités
 
-- **Parallel Game Systems**: Separate threads for rendering, physics, and game logic
-- **Thread-safe Resource Management**: Lock-free data structures where possible
-- **Performance Optimization**: Profiled and optimized for consistent frame times
-- **Job System**: Task-based parallelism for scalable workloads
+- Systèmes de jeu parallélisés (rendu, physique, logique sur threads séparés)
+- Gestion de ressources thread-safe (structures lock-free quand possible)
+- Optimisation performance pour frame times constants
+- Job system pour parallélisme scalable
 
-## 🔧 Technical Highlights
+## Points Techniques
 
-### Thread Architecture
+Architecture multi-thread avec threads dédiés :
+- Main : coordination game loop + input
+- Render : soumission graphique
+- Physics : collision et simulation
+- Audio : traitement son
 
-The game uses a multi-threaded architecture with dedicated threads for:
-- Main thread: Game loop coordination and input
-- Render thread: Graphics submission
-- Physics thread: Collision and simulation
-- Audio thread: Sound processing
+Synchronisation via mutex locks, opérations atomiques et condition variables pour éviter les race conditions tout en maintenant la performance.
 
-### Synchronization
+## Liens
 
-Implemented various synchronization primitives including mutex locks, atomic operations, and condition variables to prevent race conditions while maintaining performance.
-
-## 🎓 Learning Outcomes
-
-- Deep understanding of C++ threading primitives
-- Race condition debugging and prevention
-- Performance profiling and optimization
-- Real-time systems design
-
-## 📚 Academic Project
-
-This project was developed during my GTech3 studies. Code available upon request.
+Code disponible sur demande.
