@@ -21,17 +21,11 @@ Exploration des fondamentaux du traitement de signal numérique via une applicat
 
 ## Cahier des Charges
 
-Objectifs du projet :
-- Parser et lire des fichiers WAV (PCM)
-- Affichage waveform en temps réel
-- Implémenter des effets DSP (EQ, compression, reverb, delay)
-- Édition non-destructive avec preview
-
-Contraintes :
-- API audio Windows (XAudio2 ou WASAPI)
-- Formats WAV 8/16/24-bit, mono/stereo
-- Latence < 50ms pour la lecture
-- Interface utilisateur fonctionnelle
+Consignes école :
+- Parser et lire des fichiers WAV
+- Affichage waveform
+- Implémenter au moins 2 effets DSP
+- API audio Windows, latence < 50ms
 
 ## Stack
 
@@ -40,13 +34,14 @@ Contraintes :
 - Parser WAV custom
 - Win32 / ImGui (UI)
 
-## Fonctionnalités
+## Notre Implémentation
 
-- Import/export WAV (PCM complet)
-- Affichage waveform temps réel
-- Effets DSP : EQ, compression, reverb, delay
-- Édition non-destructive avec preview de la chaîne d'effets
-- Outils de sélection : cut, copy, paste de régions audio
+Au-delà des consignes (2 effets demandés), nous avons poussé le projet :
+
+- **4 effets DSP complets** : EQ paramétrique, compression RMS, reverb à convolution, delay avec feedback
+- **Édition non-destructive** : preview de la chaîne d'effets avant application
+- **Outils de sélection avancés** : cut, copy, paste de régions audio avec précision sample
+- **Support formats étendus** : 8/16/24-bit, mono/stereo (au-delà du 16-bit demandé)
 
 ## Points Techniques
 

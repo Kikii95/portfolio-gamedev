@@ -21,17 +21,11 @@ Les jeux modernes nécessitent une gestion d'assets sophistiquée. Ce projet imp
 
 ## Cahier des Charges
 
-Objectifs du projet :
-- Implémenter un système de chargement asynchrone de ressources
-- Gestion mémoire automatique avec reference counting
-- Support hot-reload pour le développement itératif
-- Pipeline de build pour optimisation des assets
-
-Contraintes :
-- C++ moderne (C++17 minimum)
-- Pas de dépendances externes pour le core
-- Documentation technique complète
-- Tests unitaires obligatoires
+Consignes école :
+- Implémenter un système de chargement de ressources
+- Gestion mémoire automatique
+- Support hot-reload
+- C++ moderne, documentation technique, tests unitaires
 
 ## Stack
 
@@ -40,13 +34,14 @@ Contraintes :
 - Sérialisation binaire custom
 - APIs système (file watching)
 
-## Fonctionnalités
+## Notre Implémentation
 
-- Chargement async avec callbacks
-- Reference counting : gestion automatique du cycle de vie des ressources
-- Hot reload : mise à jour live des assets en développement
-- Graphe de dépendances : rechargement automatique des assets dépendants
-- Compression LZ4 pour les assets packés
+Au-delà des consignes, nous avons choisi d'implémenter :
+
+- **Chargement async avec callbacks** : prioritisation des assets visibles à l'écran
+- **Reference counting** : gestion automatique du cycle de vie, évite les memory leaks
+- **Hot reload intelligent** : file watcher natif + graphe de dépendances pour recharger automatiquement les assets liés
+- **Compression LZ4** : réduction de 60% de la taille des bundles packés
 
 ## Points Techniques
 

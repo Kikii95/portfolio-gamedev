@@ -21,17 +21,10 @@ Implémentation d'opérations mathématiques avec intrinsics SIMD pour atteindre
 
 ## Cahier des Charges
 
-Objectifs du projet :
-- Implémenter une bibliothèque mathématique SIMD (SSE/AVX)
-- Benchmarker contre implémentation scalaire
-- Atteindre un speedup minimum de 4x
-- Fallback pour plateformes non-SIMD
-
-Contraintes :
-- Intrinsics x86 (pas d'assembleur inline)
-- Support SSE4.2 minimum, AVX optionnel
-- Tests de précision numérique
-- Documentation des techniques d'optimisation
+Consignes école :
+- Implémenter des opérations vectorielles SIMD
+- Benchmarker vs scalaire, speedup minimum 4x
+- Intrinsics x86 (pas d'asm inline), SSE4.2 minimum
 
 ## Stack
 
@@ -40,13 +33,15 @@ Contraintes :
 - Profiler custom
 - CMake
 
-## Fonctionnalités
+## Notre Implémentation
 
-- Math vectorielle : Vec2, Vec3, Vec4 avec backing SIMD
-- Opérations matricielles : matrices 4x4 avec multiplication vectorisée
-- Quaternions : rotations optimisées SIMD
-- Batch processing : transformation de tableaux de vecteurs
-- Fallback scalaire pour compatibilité
+Au-delà des vecteurs demandés, j'ai implémenté une bibliothèque mathématique complète :
+
+- **Hiérarchie complète** : Vec2, Vec3, Vec4, Mat4, Quaternion — pas juste Vec4
+- **AVX en plus de SSE** : registres 256-bit pour batch processing (8 floats vs 4)
+- **Quaternions SIMD** : rotations optimisées, souvent négligées dans les implémentations basiques
+- **Data layouts optimisés** : support SoA (Structure of Arrays) pour transformations batch
+- **Runtime dispatch** : détection CPU au démarrage pour choisir SSE/AVX automatiquement
 
 ## Points Techniques
 

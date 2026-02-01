@@ -21,17 +21,11 @@ Comprendre les formats de fichiers 3D est essentiel en dev jeux. Ce projet plong
 
 ## Cahier des Charges
 
-Objectifs du projet :
-- Parser le format binaire FBX 7.x
-- Extraire mesh, matériaux et données d'animation
-- Reconstruire la hiérarchie de scène
+Consignes école :
+- Parser le format binaire FBX (sans SDK officiel)
+- Extraire les données mesh de base
 - Gérer la décompression zlib
-
-Contraintes :
-- Pas d'utilisation du SDK FBX officiel
-- Support des fichiers compressés et non-compressés
-- Export vers format intermédiaire simple
-- Documentation du format parsé
+- Documenter le format
 
 ## Stack
 
@@ -40,13 +34,15 @@ Contraintes :
 - FBX Binary (7.x)
 - zlib (compression FBX)
 
-## Fonctionnalités
+## Notre Implémentation
 
-- Parsing format binaire : traversée des nœuds FBX bas niveau
-- Extraction mesh : vertices, normales, UVs, indices
-- Support matériaux : propriétés basiques
-- Hiérarchie de scène : relations parent-enfant des transforms
-- Données animation : extraction keyframes
+Au-delà du parsing basique demandé, nous avons implémenté :
+
+- **Parser FBX complet** : traversal bas-niveau de l'arbre de nodes, support v7.4 et v7.5
+- **Extraction mesh avancée** : vertices, normals, UVs multiples, indices, bone weights pour skinning
+- **Hiérarchie de scène complète** : reconstruction des relations parent-enfant avec transforms
+- **Données d'animation** : extraction des curves et keyframes pour skeletal animation
+- **Export dual format** : JSON lisible pour debug + binaire optimisé pour runtime
 
 ## Points Techniques
 

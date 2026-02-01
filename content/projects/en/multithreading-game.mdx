@@ -21,17 +21,11 @@ Focus on parallel processing and thread synchronization for real-time game syste
 
 ## Requirements
 
-Project objectives:
-- Parallelize game systems (render, physics, logic)
+School requirements:
+- Parallelize at least 2 game systems
 - Thread-safe resource management
-- Implement a job system
-- Optimize for consistent frame times
-
-Constraints:
-- C++17/20 with std::thread
-- No detectable race conditions
 - Stable frame time < 16ms (60 FPS)
-- Performance profiling and documentation
+- C++17/20 with std::thread, no race conditions
 
 ## Stack
 
@@ -40,12 +34,14 @@ Constraints:
 - SFML (graphics)
 - std::thread, mutex, condition variables
 
-## Features
+## Our Implementation
 
-- Parallelized game systems (render, physics, logic on separate threads)
-- Thread-safe resource management (lock-free structures when possible)
-- Performance optimization for consistent frame times
-- Job system for scalable parallelism
+Beyond the 2 systems required, we implemented a complete architecture:
+
+- **4 dedicated threads**: Main (game loop + input), Render, Physics, Audio — vs 2 required
+- **Custom job system**: scalable parallelism with work stealing, not just fixed threads
+- **Lock-free structures**: SPSC/MPSC queues to minimize contention
+- **Built-in profiler**: frame time visualization per system, bottleneck identification
 
 ## Technical Details
 

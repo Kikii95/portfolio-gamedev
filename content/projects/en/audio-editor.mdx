@@ -21,17 +21,11 @@ Exploring digital signal processing fundamentals through a practical audio editi
 
 ## Requirements
 
-Project objectives:
-- Parse and play WAV files (PCM)
-- Real-time waveform display
-- Implement DSP effects (EQ, compression, reverb, delay)
-- Non-destructive editing with preview
-
-Constraints:
-- Windows audio API (XAudio2 or WASAPI)
-- WAV formats 8/16/24-bit, mono/stereo
-- Latency < 50ms for playback
-- Functional user interface
+School requirements:
+- Parse and play WAV files
+- Waveform display
+- Implement at least 2 DSP effects
+- Windows audio API, latency < 50ms
 
 ## Stack
 
@@ -40,13 +34,14 @@ Constraints:
 - Custom WAV parser
 - Win32 / ImGui (UI)
 
-## Features
+## Our Implementation
 
-- WAV import/export (full PCM)
-- Real-time waveform display
-- DSP effects: EQ, compression, reverb, delay
-- Non-destructive editing with effect chain preview
-- Selection tools: cut, copy, paste audio regions
+Beyond the requirements (2 effects requested), we pushed the project further:
+
+- **4 complete DSP effects**: parametric EQ, RMS compression, convolution reverb, delay with feedback
+- **Non-destructive editing**: effect chain preview before applying
+- **Advanced selection tools**: cut, copy, paste audio regions with sample precision
+- **Extended format support**: 8/16/24-bit, mono/stereo (beyond the required 16-bit)
 
 ## Technical Details
 

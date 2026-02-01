@@ -21,17 +21,11 @@ Understanding 3D file formats is essential in game dev. This project dives into 
 
 ## Requirements
 
-Project objectives:
-- Parse FBX 7.x binary format
-- Extract mesh, materials and animation data
-- Reconstruct scene hierarchy
+School requirements:
+- Parse binary FBX format (no official SDK)
+- Extract basic mesh data
 - Handle zlib decompression
-
-Constraints:
-- No official FBX SDK usage
-- Support compressed and uncompressed files
-- Export to simple intermediate format
-- Documentation of parsed format
+- Document the format
 
 ## Stack
 
@@ -40,13 +34,15 @@ Constraints:
 - FBX Binary (7.x)
 - zlib (FBX compression)
 
-## Features
+## Our Implementation
 
-- Binary format parsing: low-level FBX node traversal
-- Mesh extraction: vertices, normals, UVs, indices
-- Material support: basic properties
-- Scene hierarchy: parent-child transform relationships
-- Animation data: keyframe extraction
+Beyond the basic parsing required, we implemented:
+
+- **Complete FBX parser**: low-level node tree traversal, v7.4 and v7.5 support
+- **Advanced mesh extraction**: vertices, normals, multiple UVs, indices, bone weights for skinning
+- **Full scene hierarchy**: parent-child transform relationship reconstruction
+- **Animation data**: curve and keyframe extraction for skeletal animation
+- **Dual export format**: readable JSON for debug + optimized binary for runtime
 
 ## Technical Details
 

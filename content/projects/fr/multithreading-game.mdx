@@ -21,17 +21,11 @@ Focus sur le traitement parallèle et la synchronisation de threads pour des sys
 
 ## Cahier des Charges
 
-Objectifs du projet :
-- Paralléliser les systèmes de jeu (rendu, physique, logique)
+Consignes école :
+- Paralléliser au moins 2 systèmes de jeu
 - Gestion de ressources thread-safe
-- Implémenter un job system
-- Optimiser pour des frame times constants
-
-Contraintes :
-- C++17/20 avec std::thread
-- Pas de race conditions détectables
 - Frame time stable < 16ms (60 FPS)
-- Profiling et documentation des performances
+- C++17/20 avec std::thread, pas de race conditions
 
 ## Stack
 
@@ -40,12 +34,14 @@ Contraintes :
 - SFML (graphismes)
 - std::thread, mutex, condition variables
 
-## Fonctionnalités
+## Notre Implémentation
 
-- Systèmes de jeu parallélisés (rendu, physique, logique sur threads séparés)
-- Gestion de ressources thread-safe (structures lock-free quand possible)
-- Optimisation performance pour frame times constants
-- Job system pour parallélisme scalable
+Au-delà des 2 systèmes demandés, nous avons implémenté une architecture complète :
+
+- **4 threads dédiés** : Main (game loop + input), Render, Physics, Audio — vs 2 demandés
+- **Job system custom** : parallélisme scalable avec work stealing, pas juste des threads fixes
+- **Structures lock-free** : queues SPSC/MPSC pour minimiser les contentions
+- **Profiler intégré** : visualisation des frame times par système, identification des bottlenecks
 
 ## Points Techniques
 

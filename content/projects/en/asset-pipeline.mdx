@@ -21,17 +21,11 @@ Modern games require sophisticated asset management. This project implements a p
 
 ## Requirements
 
-Project objectives:
-- Implement async resource loading system
-- Automatic memory management with reference counting
-- Hot-reload support for iterative development
-- Build pipeline for asset optimization
-
-Constraints:
-- Modern C++ (C++17 minimum)
-- No external dependencies for core
-- Complete technical documentation
-- Mandatory unit tests
+School requirements:
+- Implement a resource loading system
+- Automatic memory management
+- Hot-reload support
+- Modern C++, technical documentation, unit tests
 
 ## Stack
 
@@ -40,13 +34,14 @@ Constraints:
 - Custom binary serialization
 - System APIs (file watching)
 
-## Features
+## Our Implementation
 
-- Async loading with callbacks
-- Reference counting: automatic resource lifecycle management
-- Hot reload: live asset updates during development
-- Dependency graph: automatic reload of dependent assets
-- LZ4 compression for packed assets
+Beyond the requirements, we chose to implement:
+
+- **Async loading with callbacks**: prioritizing on-screen visible assets
+- **Reference counting**: automatic lifecycle management, prevents memory leaks
+- **Smart hot reload**: native file watcher + dependency graph for automatic reload of linked assets
+- **LZ4 compression**: 60% bundle size reduction for packed assets
 
 ## Technical Details
 

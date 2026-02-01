@@ -21,17 +21,10 @@ Implementing math operations with SIMD intrinsics to achieve maximum throughput.
 
 ## Requirements
 
-Project objectives:
-- Implement a SIMD math library (SSE/AVX)
-- Benchmark against scalar implementation
-- Achieve minimum 4x speedup
-- Fallback for non-SIMD platforms
-
-Constraints:
-- x86 intrinsics (no inline assembly)
-- SSE4.2 minimum support, AVX optional
-- Numerical precision tests
-- Optimization techniques documentation
+School requirements:
+- Implement SIMD vector operations
+- Benchmark vs scalar, minimum 4x speedup
+- x86 intrinsics (no inline asm), SSE4.2 minimum
 
 ## Stack
 
@@ -40,13 +33,15 @@ Constraints:
 - Custom profiler
 - CMake
 
-## Features
+## Our Implementation
 
-- Vector math: Vec2, Vec3, Vec4 with SIMD backing
-- Matrix operations: 4x4 matrices with vectorized multiplication
-- Quaternions: SIMD-optimized rotations
-- Batch processing: vector array transformation
-- Scalar fallback for compatibility
+Beyond the required vectors, I implemented a complete math library:
+
+- **Full hierarchy**: Vec2, Vec3, Vec4, Mat4, Quaternion — not just Vec4
+- **AVX on top of SSE**: 256-bit registers for batch processing (8 floats vs 4)
+- **SIMD quaternions**: optimized rotations, often neglected in basic implementations
+- **Optimized data layouts**: SoA (Structure of Arrays) support for batch transforms
+- **Runtime dispatch**: CPU detection at startup to auto-select SSE/AVX
 
 ## Technical Details
 
