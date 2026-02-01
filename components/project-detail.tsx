@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { ArrowLeft, Github, Calendar, Tag, FileText, ExternalLink, Download, Cog, Wrench, Sparkles } from "lucide-react";
+import { ArrowLeft, Github, Calendar, Tag, FileText, ExternalLink, Download } from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
 import { ProjectMetadata } from "@/lib/mdx/projects";
@@ -241,7 +241,7 @@ export function ProjectDetail({ metadata, content }: ProjectDetailProps) {
                       {t('detail.technicalDoc')}
                     </Button>
                   </DialogTrigger>
-                  <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
+                  <DialogContent className="max-w-4xl max-h-[85vh] overflow-y-auto">
                     <DialogHeader>
                       <DialogTitle className="text-2xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                         {t('detail.technicalDoc')}
@@ -251,78 +251,34 @@ export function ProjectDetail({ metadata, content }: ProjectDetailProps) {
                       </DialogDescription>
                     </DialogHeader>
 
-                    <div className="space-y-6 mt-4">
-                      {/* Architecture */}
-                      <div>
-                        <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-                          <Cog className="h-5 w-5 text-primary" /> {t('detail.architecture')}
-                        </h3>
-                        <Card className="bg-muted/50">
-                          <CardContent className="pt-4 space-y-2">
-                            <div className="grid grid-cols-2 gap-2 text-sm">
-                              <div>
-                                <span className="font-medium text-muted-foreground">{t('detail.categoryLabel')}</span>
-                                <p className="text-foreground">{categoryLabels[metadata.category]}</p>
-                              </div>
-                              <div>
-                                <span className="font-medium text-muted-foreground">{t('detail.dateLabel')}</span>
-                                <p className="text-foreground">
-                                  {new Date(metadata.date).toLocaleDateString(locale === 'fr' ? 'fr-FR' : 'en-US', {
-                                    year: 'numeric',
-                                    month: 'long',
-                                  })}
-                                </p>
-                              </div>
-                              {metadata.status && (
-                                <div>
-                                  <span className="font-medium text-muted-foreground">{t('detail.statusLabel')}</span>
-                                  <div className="mt-1">
-                                    <StatusBadge status={metadata.status as ProjectStatus} variant="card" showTooltip={false} />
-                                  </div>
-                                </div>
-                              )}
-                            </div>
-                          </CardContent>
-                        </Card>
-                      </div>
-
-                      {/* Technologies Stack */}
-                      <div>
-                        <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-                          <Wrench className="h-5 w-5 text-primary" /> {t('detail.techStack')}
-                        </h3>
-                        <div className="flex flex-wrap gap-2">
-                          {metadata.tags.map((tag) => (
-                            <Badge key={tag} variant="secondary" className="text-sm">
-                              {tag}
-                            </Badge>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Features & Details */}
-                      <div>
-                        <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-                          <Sparkles className="h-5 w-5 text-primary" /> {t('detail.mainFeatures')}
-                        </h3>
-                        <Card className="bg-muted/50">
-                          <CardContent className="pt-4">
-                            <div className="prose prose-invert prose-sm max-w-none
-                              prose-p:text-muted-foreground
-                              prose-ul:text-muted-foreground
-                              prose-li:marker:text-primary
-                            ">
-                              <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                                {metadata.techDetails || content.split('\n\n')[0] || metadata.description}
-                              </ReactMarkdown>
-                            </div>
-                          </CardContent>
-                        </Card>
+                    <div className="mt-4">
+                      {/* Technical Details Content - Direct Prose Rendering */}
+                      <div className="overflow-x-auto">
+                        <article className="prose prose-invert max-w-none
+                          prose-headings:font-bold
+                          prose-h2:text-xl prose-h2:text-primary prose-h2:mt-6 prose-h2:mb-3 prose-h2:border-b prose-h2:border-border/50 prose-h2:pb-2
+                          prose-h3:text-lg prose-h3:text-accent prose-h3:mt-4 prose-h3:mb-2
+                          prose-p:text-muted-foreground prose-p:leading-relaxed prose-p:my-2
+                          prose-strong:text-foreground
+                          prose-code:text-accent prose-code:bg-muted prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:before:content-none prose-code:after:content-none
+                          prose-pre:bg-muted prose-pre:border prose-pre:border-border prose-pre:rounded-lg prose-pre:p-4 prose-pre:overflow-x-auto prose-pre:text-xs
+                          prose-ul:text-muted-foreground prose-ul:my-2
+                          prose-ol:text-muted-foreground prose-ol:my-2
+                          prose-li:marker:text-primary prose-li:my-1
+                          prose-table:border prose-table:border-border prose-table:text-sm
+                          prose-th:bg-muted prose-th:px-3 prose-th:py-2 prose-th:text-left prose-th:font-semibold prose-th:border-b prose-th:border-border
+                          prose-td:px-3 prose-td:py-2 prose-td:border-b prose-td:border-border/50
+                          prose-hr:border-border prose-hr:my-4
+                        ">
+                          <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
+                            {metadata.techDetails || content.split('\n\n')[0] || metadata.description}
+                          </ReactMarkdown>
+                        </article>
                       </div>
 
                       {/* Repository Link */}
                       {metadata.github && (
-                        <div>
+                        <div className="mt-6">
                           <Button asChild className="w-full" size="lg">
                             <a href={metadata.github} target="_blank" rel="noopener noreferrer">
                               <Github className="mr-2 h-5 w-5" />
