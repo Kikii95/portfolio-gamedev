@@ -1,29 +1,35 @@
 # Portfolio GameDev
 
-Portfolio moderne pour développeur de jeux vidéo, construit avec Next.js 14 et Shadcn/UI.
+Portfolio moderne pour développeur de jeux vidéo, construit avec Next.js 16 et React 19.
 
 ## 🎯 Stack Technique
 
-- **Framework** : Next.js 14 (App Router)
-- **Langage** : TypeScript
-- **Styling** : TailwindCSS + Shadcn/UI
-- **Contenu** : MDX (Markdown + JSX)
-- **Déploiement** : Vercel
+| Catégorie | Technologies |
+|-----------|--------------|
+| **Framework** | Next.js 16 (App Router) |
+| **Runtime** | React 19 |
+| **Langage** | TypeScript |
+| **Styling** | TailwindCSS 4 + Shadcn/UI |
+| **Animations** | Framer Motion |
+| **3D** | React Three Fiber + Drei |
+| **Contenu** | MDX (gray-matter) |
+| **i18n** | next-intl (FR/EN) |
+| **Déploiement** | Vercel |
 
 ## 🚀 Démarrage Rapide
 
 ```bash
-# Installation
-npm install
+# Installation (pnpm obligatoire)
+pnpm install
 
 # Développement
-npm run dev
+pnpm dev
 
 # Build production
-npm run build
+pnpm build
 
 # Démarrage production
-npm start
+pnpm start
 ```
 
 Ouvrir [http://localhost:3000](http://localhost:3000) dans le navigateur.
@@ -32,16 +38,27 @@ Ouvrir [http://localhost:3000](http://localhost:3000) dans le navigateur.
 
 ```
 portfolio-gamedev/
-├── app/                    # Pages Next.js (App Router)
-├── components/             # Composants React réutilisables
+├── app/[locale]/           # Pages Next.js (App Router + i18n)
+├── components/             # Composants React
 │   ├── ui/                 # Composants Shadcn/UI
-│   └── project-card.tsx    # Card projet personnalisée
+│   ├── project-card.tsx    # Card projet
+│   └── three/              # Composants 3D (R3F)
 ├── content/                # Contenu MDX
-│   └── projects/           # Projets (1 fichier .mdx = 1 projet)
+│   └── projects/           # Projets (15 MDX)
 ├── lib/                    # Utilitaires
 │   └── mdx/                # Helpers MDX
+├── messages/               # Traductions (fr.json, en.json)
 └── public/                 # Assets statiques
 ```
+
+## 📊 Projets (15 total)
+
+| Catégorie | Nombre | Exemples |
+|-----------|--------|----------|
+| **Perso (Tools)** | 5 | DAW, System Monitor, Process Tracker... |
+| **Perso (GameDev)** | 1 | Template ECS (SFML) |
+| **École** | 7 | Game Engine, Physics, SIMD, Audio... |
+| **Travail** | 2 | LLM Automation, Hype (privés) |
 
 ## ✨ Ajouter un Projet
 
@@ -53,10 +70,12 @@ title: "Nom du Projet"
 description: "Description courte"
 date: "2025-11-27"
 category: "école"
-tags: ["C++", "Unity"]
+tags: ["C++", "OpenGL"]
 featured: true
+status: "terminé"
 github: "https://github.com/user/repo"
 thumbnail: "/images/projects/thumb.jpg"
+gallery: []
 ---
 
 # Contenu du projet
@@ -64,33 +83,36 @@ thumbnail: "/images/projects/thumb.jpg"
 Markdown + composants React ici...
 ```
 
-Le projet apparaîtra automatiquement sur la page d'accueil.
+Le projet apparaîtra automatiquement sur la page `/projects`.
 
-## 🎨 Design System
+## 🎨 Features
 
-Utilise Shadcn/UI pour les composants :
-- Dark mode par défaut
-- Accessible (WCAG AA)
-- Composants copiés dans le code → 100% customisables
+- **Dark mode** par défaut
+- **Filtres dynamiques** : année, catégorie, tags
+- **Animations fluides** (Framer Motion)
+- **i18n** : Français + Anglais
+- **Responsive** : Mobile-first
+- **SEO optimisé** : Métadonnées dynamiques
 
 ## 📝 Commandes Utiles
 
 ```bash
 # Ajouter un composant Shadcn/UI
-npx shadcn@latest add [component-name]
+pnpm dlx shadcn@latest add [component-name]
 
 # Linter
-npm run lint
+pnpm lint
 
 # Typecheck
-npx tsc --noEmit
+pnpm exec tsc --noEmit
 ```
 
 ## 🔗 Liens
 
-- [Next.js Documentation](https://nextjs.org/docs)
+- [Next.js 16 Documentation](https://nextjs.org/docs)
 - [Shadcn/UI Components](https://ui.shadcn.com)
-- [TailwindCSS](https://tailwindcss.com)
+- [Framer Motion](https://www.framer.com/motion/)
+- [React Three Fiber](https://docs.pmnd.rs/react-three-fiber)
 
 ## 📄 Licence
 
