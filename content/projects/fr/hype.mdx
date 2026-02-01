@@ -7,6 +7,51 @@ tags: ["TypeScript", "React Native", "Next.js", "PostgreSQL", "Mobile"]
 featured: false
 status: "actif"
 gallery: []
+techDetails: |
+  ## Architecture
+
+  Monorepo cross-platform avec code partagé :
+
+  ```
+  hype/
+  ├── apps/
+  │   ├── mobile/          # React Native (Expo)
+  │   └── web-admin/       # Next.js dashboard
+  ├── packages/
+  │   └── shared/          # Types + utils partagés
+  └── backend/             # REST API
+  ```
+
+  ## Stack Détaillé
+
+  ### Mobile
+  | Tech | Version | Rôle |
+  |------|---------|------|
+  | React Native | 0.73 | Framework mobile |
+  | Expo | 51 | Build + OTA updates |
+  | TypeScript | 5.x | Typage strict |
+  | React Query | 5.x | Data fetching |
+
+  ### Web Admin
+  | Tech | Version | Rôle |
+  |------|---------|------|
+  | Next.js | 14 | Dashboard organisateurs |
+  | TypeScript | 5.x | Typage strict |
+  | TailwindCSS | 3.x | Styling |
+
+  ### Backend
+  | Tech | Version | Rôle |
+  |------|---------|------|
+  | REST API | - | Backend services |
+  | PostgreSQL | 16 | Base de données |
+  | PostGIS | - | Requêtes géospatiales |
+
+  ## Features Techniques
+
+  - Monorepo pnpm avec packages partagés
+  - Géolocalisation pour moteur de découverte
+  - Notifications push (Firebase)
+  - Real-time updates (WebSocket)
 ---
 
 # Hype
@@ -21,27 +66,22 @@ Projet startup démarré en juin 2025. Rôle : Full-stack Developer. Phase MVP.
 
 Problème : trouver des trucs à faire ne devrait pas nécessiter de checker 10 apps différentes.
 
-## Stack
+## Ce que ça fait
 
-- React Native, Expo (mobile)
-- Next.js, TypeScript (web admin)
-- REST API (backend)
-- PostgreSQL
-- Monorepo pnpm
+**Découverte** :
+- Feed personnalisé basé sur préférences et localisation
+- Filtres : catégorie, distance, date, prix
+- Recommandations intelligentes
 
-## Fonctionnalités
+**Social** :
+- Voir les intérêts des amis
+- Partager et sauvegarder des événements
+- Notifications temps réel
 
-- Découverte intelligente basée sur préférences et localisation
-- Mises à jour temps réel des événements
-- Intégration sociale : voir les intérêts des amis
-- Cross-platform : iOS et Android natifs
-- Dashboard web pour les organisateurs
-
-## Points Techniques
-
-Architecture monorepo avec pnpm, partage de code entre app mobile, dashboard web et backend. Cohérence garantie, duplication minimale.
-
-Services de géolocalisation pour le moteur de découverte, événements pertinents selon proximité et préférences de déplacement.
+**Organisateurs** :
+- Dashboard web pour créer/gérer événements
+- Analytics de participation
+- Promotion ciblée
 
 ## Liens
 

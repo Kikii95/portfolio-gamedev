@@ -9,6 +9,53 @@ status: "archive"
 github: "https://github.com/Kikii95/template-ECS"
 buildUrl: "https://github.com/Kikii95/template-ECS/releases/latest"
 gallery: []
+techDetails: |
+  ## ECS Architecture
+
+  Pure Entity-Component-System architecture:
+
+  ```
+  Entity (ID)
+      │
+      ├── Component A (Data)
+      ├── Component B (Data)
+      └── Component C (Data)
+           │
+           └── Systems (Behavior)
+               ├── Active (continuous)
+               ├── Reactive (event-driven)
+               └── TurnBased (discrete)
+  ```
+
+  ## Tech Stack
+
+  | Tech | Version | Role |
+  |------|---------|------|
+  | C++ | 20 | Core language |
+  | SFML | 2.5+ | 2D rendering |
+  | CMake | 3.20+ | Build system |
+  | Patterns | ECS, Factory, Observer | Architecture |
+
+  ## Statistics
+
+  - **36 Components** modular
+  - **35 Systems** decoupled
+  - **8+ Modules**: core, transform, graphics, gameplay, inventory, interaction, AI, audio, network
+
+  ## Collision Optimizations
+
+  Spatial hashing O(n) vs O(n²):
+
+  | Entities | Brute Force | Spatial Hash | Speedup |
+  |----------|-------------|--------------|---------|
+  | 125 | 125,000 checks | 1,000 checks | 25x |
+  | 1000 | 500,000 checks | 2,000 checks | 250x |
+
+  ## Memory Safety
+
+  - Smart pointers + RAII
+  - Memory pooling for frequent allocations
+  - Thread-safe with mutexes and atomics
 ---
 
 # ECS Template
@@ -21,52 +68,21 @@ School project GTech3 started in November 2025, solo development for the Game Li
 
 Goal: create a reusable engine as a base for other projects, with a clean and extensible architecture.
 
-## Stack
+## What it does
 
-- C++20
-- SFML 2.5+ (rendering)
-- CMake 3.20+
-- Patterns: ECS, Factory, Observer
-
-## Architecture
-
-Statistics:
-- 36 modular Components
-- 35 decoupled Systems
-- 8+ Modules (core, transform, graphics, gameplay, inventory, interaction, AI, audio, network)
-
-System types:
-- Active: continuous execution (render, physics)
-- Reactive: event response
-- TurnBased: turn-based games
-- UI: user interface
-
-Supported game types:
+**Supported game types**:
 - Real-time: FPS, platformers, action
 - Turn-based: strategy, tactical RPG
 - Grid-based: roguelikes, puzzles
 - Hybrid: mode combinations
 
-## Features
-
-- Pure ECS architecture: entities as IDs, components as data, systems for behavior
+**Architecture**:
+- Entities as pure IDs
+- Components as data
+- Systems for behavior
 - Total logic/data decoupling
-- Memory pooling for frequent allocations
-- Spatial hashing for collisions
-- Thread-safe with mutexes and atomics
-- Memory-safe with smart pointers and RAII
-- Complete documentation
 
-## Technical Details
-
-Collision optimization via spatial hashing:
-- O(n) instead of O(n²)
-- 125 entities: 25x faster (125,000 → 1,000 checks)
-- 1000 entities: 250x faster (500,000 → 2,000 checks)
-
-## Demo
-
-Pirate Space Explorer: complete demo game using the engine.
+**Demo**: Pirate Space Explorer — complete game using the engine.
 
 ## Links
 

@@ -19,6 +19,7 @@ export interface ProjectMetadata {
   thumbnail?: string;
   video?: string;
   gallery?: string[];
+  techDetails?: string;
   slug: string;
 }
 

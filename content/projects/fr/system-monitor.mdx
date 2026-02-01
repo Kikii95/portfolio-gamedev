@@ -8,51 +8,100 @@ featured: true
 status: "stable"
 github: "https://github.com/Kikii95/system-monitor"
 gallery: []
+techDetails: |
+  ## Architecture
+
+  Design en couches séparant collecte, historique et rendu :
+
+  ```
+  /proc/* + sysinfo + nvml
+           │
+           ▼
+  ┌─────────────────┐
+  │   Collectors    │  ← CPU, Memory, GPU, Network, Disk, Process
+  └────────┬────────┘
+           │
+           ▼
+  ┌─────────────────┐
+  │ MetricsHistory  │  ← RingBuffer<60> pour sparklines
+  └────────┬────────┘
+           │
+           ▼
+  ┌─────────────────┐
+  │    Widgets      │  ← ratatui::Widget pour chaque métrique
+  └────────┬────────┘
+           │
+           ▼
+  ┌─────────────────┐
+  │ ratatui::Frame  │  ← Diff rendering, terminal output
+  └─────────────────┘
+  ```
+
+  ## Stack Détaillé
+
+  | Tech | Version | Rôle |
+  |------|---------|------|
+  | Rust | 1.75+ | Langage système zero-cost |
+  | Ratatui | 0.26 | TUI framework (successeur tui-rs) |
+  | sysinfo | 0.30 | Métriques système cross-platform |
+  | nvml-wrapper | 0.9 | API NVIDIA NVML (GPU) |
+  | crossterm | 0.27 | Terminal I/O cross-platform |
+  | clap | 4.x | CLI parsing |
+  | thiserror | 1.x | Error handling |
+
+  ## Métriques Performance
+
+  - **CPU** : 0.0% utilisation en idle
+  - **RAM** : ~4MB footprint
+  - **Binaire** : 1.7MB (stripped, LTO enabled)
+  - **Startup** : <100ms
+
+  ## Optimisations
+
+  - **Lazy Updates** : refresh uniquement si `tick_elapsed`
+  - **Diff Rendering** : ratatui compare buffers, redessine que les cellules modifiées
+  - **Batch /proc Reads** : single `refresh_all()` pour toutes métriques
+  - **SmartString** : stack-allocated pour petites strings (noms process)
+
+  ## Release Profile
+
+  ```toml
+  [profile.release]
+  opt-level = 3
+  lto = true
+  codegen-units = 1
+  panic = "abort"
+  strip = true
+  ```
 ---
 
 # System Monitor
 
-Moniteur de performances système en terminal. Inspiré de htop/btop/nvtop mais plus léger, écrit en Rust.
+Moniteur de performances système en terminal. Inspiré de htop/btop/nvtop mais beaucoup plus léger.
 
 ## Contexte
 
 Projet perso démarré en novembre 2025. Développé en solo sur une semaine.
 
-Objectif : un moniteur système minimaliste, pilotable au clavier, qui consomme presque rien tout en étant visuellement agréable.
+Objectif : un moniteur système minimaliste, pilotable au clavier, qui consomme presque rien tout en restant visuellement agréable.
 
-## Stack
+## Ce que ça fait
 
-- Rust 1.75+
-- Ratatui (TUI framework)
-- sysinfo (métriques système)
-- nvml-wrapper (GPU NVIDIA)
-- Cross-platform : Linux, Windows, macOS, WSL2
-
-## Fonctionnalités
-
-Performance :
+**Performance** :
 - Consommation quasi-nulle : 0.0% CPU, ~4MB RAM
 - Binaire unique de 1.7MB
 - Démarrage instantané (<100ms)
 
-Monitoring :
+**Monitoring** :
 - CPU, RAM, Swap en temps réel
-- GPU NVIDIA : usage, VRAM, température, consommation
+- GPU NVIDIA : usage, VRAM, température, power draw
 - Sparklines 60 secondes pour toutes les métriques
-- Processus triés par consommation
+- Top 5 processus par consommation
 
-Interface :
-- 9 thèmes visuels : Matrix, Dracula, Nord, Tokyo Night, Gruvbox, Cyberpunk, Ocean, Forest, Sunset
+**Interface** :
+- 9 thèmes visuels (Matrix, Dracula, Nord, Tokyo Night, Gruvbox, etc.)
 - Navigation clavier complète
-- Config persistante sauvegardée en un keypress
-
-## Points Techniques
-
-Design zero-overhead : les métriques sont collectées via sysinfo (APIs système natives). Le TUI ne redessine que quand les données changent.
-
-Intégration GPU via nvml-wrapper (bibliothèque NVML de NVIDIA), accès temps réel à l'utilisation, mémoire, température et consommation.
-
-Config stockée dans `~/.config/system-monitor/config.toml` (Linux/WSL) ou `%APPDATA%` (Windows).
+- Config persistante en un keypress
 
 ## Liens
 

@@ -7,6 +7,49 @@ tags: ["C++", "CMake", "3D", "Binary Parsing", "FBX"]
 featured: false
 status: "archive"
 gallery: []
+techDetails: |
+  ## Structure FBX Binaire
+
+  Arbre de nœuds avec propriétés typées :
+
+  ```
+  FBX File
+  └── Node Tree
+      ├── Objects
+      │   ├── Geometry (mesh data)
+      │   ├── Deformer (bone weights)
+      │   └── AnimationCurve (keyframes)
+      └── Connections (scene hierarchy)
+  ```
+
+  ## Stack Détaillé
+
+  | Tech | Version | Rôle |
+  |------|---------|------|
+  | C++ | 17 | Langage core |
+  | CMake | 3.x | Build system |
+  | zlib | 1.2 | Décompression FBX |
+  | FBX Binary | 7.4/7.5 | Format cible |
+
+  ## Parsing Implémenté
+
+  - Traversal bas-niveau de l'arbre de nodes
+  - Support v7.4 et v7.5
+  - Décompression zlib optionnelle
+  - Encodage custom strings et arrays
+
+  ## Extraction de Données
+
+  - **Géométrie** : vertices, polygones, normales, indices
+  - **UVs** : canaux multiples
+  - **Skinning** : bone weights pour skeletal animation
+  - **Animation** : curves et keyframes
+  - **Hiérarchie** : relations parent-enfant avec transforms
+
+  ## Export
+
+  - JSON lisible pour debug
+  - Binaire optimisé pour runtime
 ---
 
 # FBX Parser
@@ -19,44 +62,22 @@ Projet école GTech3, 5 semaines. Équipe de 3, rôle : implémentation du parse
 
 Comprendre les formats de fichiers 3D est essentiel en dev jeux. Ce projet plonge dans la spécification binaire FBX.
 
-## Cahier des Charges
+## Cahier des Charges École
 
-Consignes école :
 - Parser le format binaire FBX (sans SDK officiel)
 - Extraire les données mesh de base
 - Gérer la décompression zlib
 - Documenter le format
 
-## Stack
-
-- C++
-- CMake
-- FBX Binary (7.x)
-- zlib (compression FBX)
-
 ## Notre Implémentation
 
-Au-delà du parsing basique demandé, nous avons implémenté :
+Au-delà du parsing basique demandé :
 
-- **Parser FBX complet** : traversal bas-niveau de l'arbre de nodes, support v7.4 et v7.5
-- **Extraction mesh avancée** : vertices, normals, UVs multiples, indices, bone weights pour skinning
-- **Hiérarchie de scène complète** : reconstruction des relations parent-enfant avec transforms
-- **Données d'animation** : extraction des curves et keyframes pour skeletal animation
-- **Export dual format** : JSON lisible pour debug + binaire optimisé pour runtime
-
-## Points Techniques
-
-Structure binaire FBX :
-- Arbre de nœuds
-- Tableaux de propriétés avec types variés
-- Compression zlib optionnelle
-- Encodage custom pour strings et arrays
-
-Extraction de données :
-- Géométrie (vertices, polygones, normales)
-- Mappings UV (canaux multiples)
-- Poids de bones pour le skinning
-- Courbes d'animation
+- **Parser FBX complet** : support v7.4 et v7.5
+- **Extraction mesh avancée** : vertices, normals, UVs multiples, bone weights
+- **Hiérarchie de scène** : reconstruction des relations parent-enfant
+- **Données d'animation** : extraction curves et keyframes
+- **Export dual format** : JSON debug + binaire runtime
 
 ## Liens
 

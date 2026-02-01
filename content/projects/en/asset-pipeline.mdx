@@ -7,6 +7,48 @@ tags: ["C++", "CMake", "Asset Management", "Game Engine"]
 featured: false
 status: "archive"
 gallery: []
+techDetails: |
+  ## Architecture
+
+  Resource Manager with dependency graph:
+
+  ```
+  ┌─────────────────────────────────────────┐
+  │           Resource Manager              │
+  ├──────────┬──────────┬──────────┬────────┤
+  │ Registry │ Loader   │ Cache    │ Watch  │
+  │ (lookup) │ (async)  │ (memory) │ (hot)  │
+  └──────────┴──────────┴──────────┴────────┘
+              │
+              ▼
+  ┌─────────────────────────────────────────┐
+  │         Dependency Graph                │
+  │  Texture A ──► Shader B ──► Material C  │
+  └─────────────────────────────────────────┘
+  ```
+
+  ## Tech Stack
+
+  | Tech | Version | Role |
+  |------|---------|------|
+  | C++ | 17 | Core language |
+  | CMake | 3.x | Build system |
+  | LZ4 | 1.9 | Asset compression |
+  | File watching | OS APIs | Hot reload |
+
+  ## Features Implemented
+
+  - **Async loading**: callbacks, visible asset prioritization
+  - **Reference counting**: automatic lifecycle management
+  - **Smart hot reload**: file watcher + dependency graph
+  - **LZ4 compression**: 60% bundle size reduction
+
+  ## Offline Pipeline
+
+  - Texture compression (BCn formats)
+  - Mesh optimization
+  - Shader compilation
+  - Asset bundling
 ---
 
 # Asset Pipeline Engine
@@ -17,45 +59,23 @@ Robust asset management system for game engines: loading, caching, hot-reload an
 
 School project GTech3, 5 weeks. Team of 3, role: core pipeline architect.
 
-Modern games require sophisticated asset management. This project implements a production-ready pipeline for game resources.
+Modern games require sophisticated asset management. This project implements a production-ready pipeline.
 
-## Requirements
+## School Requirements
 
-School requirements:
 - Implement a resource loading system
 - Automatic memory management
 - Hot-reload support
-- Modern C++, technical documentation, unit tests
-
-## Stack
-
-- C++
-- CMake
-- Custom binary serialization
-- System APIs (file watching)
+- Modern C++, documentation, unit tests
 
 ## Our Implementation
 
-Beyond the requirements, we chose to implement:
+Beyond requirements:
 
-- **Async loading with callbacks**: prioritizing on-screen visible assets
-- **Reference counting**: automatic lifecycle management, prevents memory leaks
-- **Smart hot reload**: native file watcher + dependency graph for automatic reload of linked assets
-- **LZ4 compression**: 60% bundle size reduction for packed assets
-
-## Technical Details
-
-Centralized Resource Manager handling:
-- Asset registration and lookup
-- Memory budget
-- Load prioritization
-- Garbage collection
-
-Offline build pipeline for:
-- Texture compression (BCn formats)
-- Mesh optimization
-- Shader compilation
-- Asset bundling
+- **Async loading with callbacks**: visible asset prioritization
+- **Reference counting**: prevents memory leaks
+- **Smart hot reload**: file watcher + dependency graph
+- **LZ4 compression**: 60% bundle size reduction
 
 ## Links
 

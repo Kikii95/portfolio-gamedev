@@ -8,6 +8,42 @@ featured: false
 status: "pause"
 github: "https://github.com/Kikii95/daw-custom"
 gallery: []
+techDetails: |
+  ## Architecture
+
+  Modular audio engine with chainable effect processors:
+
+  ```
+  Audio Input → [Effect Chain] → Mixer → Output
+                    │
+      ┌─────────────┼─────────────┐
+      │             │             │
+    EQ      Compressor      Reverb
+  (Biquad)    (RMS)      (Schroeder)
+  ```
+
+  ## Tech Stack
+
+  | Tech | Version | Role |
+  |------|---------|------|
+  | C++ | 20 | Core language |
+  | JUCE | 7 | Audio framework (GPL) |
+  | CMake | 3.22+ | Build system |
+  | ASIO | - | Minimal real-time latency |
+  | ALSA | - | Linux backend |
+
+  ## DSP Implementation
+
+  - **Parametric EQ**: Biquad filters per band
+  - **Compressor**: RMS detection, attack/release
+  - **Reverb**: Schroeder algorithm
+  - **Delay**: Delay lines with feedback
+
+  ## Specifications
+
+  - Sample rates: 44.1kHz / 48kHz
+  - Latency: minimal via ASIO
+  - License: GPL v3 (due to JUCE)
 ---
 
 # DAW Custom
@@ -20,47 +56,22 @@ Personal project started in November 2025. Solo development.
 
 Goal: a DAW tailored for mashup creation and sound design, without commercial DAW bloat. Building it myself to deeply understand audio processing.
 
-## Stack
+## What it does
 
-- C++20
-- JUCE 7 (audio framework, GPL license)
-- CMake 3.22+
-- ASIO for real-time
-
-Linux dependencies: ALSA, X11, graphics libs
-
-## Specifications
-
-- Real-time audio engine: 44.1/48kHz
-- Minimal latency via ASIO
-- License: GPL v3 (due to JUCE GPL)
-
-## Features
-
-Mixer:
+**Mixer**:
 - Multi-track with timeline
 - WAV, MP3, FLAC import/export
 - VST3 hosting
 
-Built-in effects:
+**Built-in effects**:
 - Parametric EQ
 - Compressor
 - Reverb
 - Delay
 
-Sound design:
+**Sound design**:
 - Kick Designer for electronic music
 - Basic synthesizer (oscillators, filter, envelope)
-
-## Technical Details
-
-Each effect is a chainable modular audio processor.
-
-DSP implemented from scratch:
-- Biquad filters for EQ
-- RMS compression
-- Schroeder reverb
-- Delay lines with feedback
 
 ## Links
 

@@ -8,11 +8,62 @@ featured: false
 status: "pause"
 github: "https://github.com/Kikii95/process-tracker"
 gallery: []
+techDetails: |
+  ## Architecture
+
+  Tauri app with Rust-side process management:
+
+  ```
+  ┌─────────────────────────────────────┐
+  │           React Dashboard           │
+  │   (Service cards + Status monitor)  │
+  └──────────────┬──────────────────────┘
+                 │ IPC
+  ┌──────────────┴──────────────────────┐
+  │           Rust Process Manager      │
+  │  (spawn, health check, restart)     │
+  └─────────────────────────────────────┘
+  ```
+
+  ## Tech Stack
+
+  | Tech | Version | Role |
+  |------|---------|------|
+  | Tauri | 2.0 | Desktop framework |
+  | Rust | 1.77+ | Process management |
+  | React | 18 | UI dashboard |
+  | TypeScript | 5 | Frontend typing |
+  | TailwindCSS | 3 | Styling |
+  | Vite | 5 | Build tooling |
+
+  ## Configuration
+
+  ```json
+  // .ptrc (commit to Git)
+  {
+    "services": [
+      { "name": "api", "command": "pnpm dev", "port": 3000 },
+      { "name": "db", "command": "docker start postgres" }
+    ]
+  }
+  ```
+
+  - `.ptrc`: service definitions (versioned)
+  - `.pt-registry.json`: runtime state (gitignored)
+  - Environment variable support
+  - Configurable health check timeouts
+
+  ## Advanced Features
+
+  - External process detection
+  - Service groups (batch operations)
+  - WSL support from Windows
+  - Auto-restart on crash
 ---
 
 # Process Tracker
 
-Desktop app to manage local development services. No more duplicate processes, port conflicts and uncertainty about what's running.
+Desktop app to manage local development services. No more duplicate processes, port conflicts and uncertainty.
 
 ## Context
 
@@ -20,41 +71,20 @@ Personal project started in December 2025. Solo development over one week.
 
 Problem solved: when developing with multiple services (backend, frontend, database), you often end up with duplicate processes, port conflicts, and no visibility on what's running.
 
-## Stack
+## What it does
 
-- Tauri 2.0 (desktop framework)
-- Rust (backend)
-- React, TypeScript, TailwindCSS (frontend)
-- Vite (build)
-- Cross-platform: Windows, Linux
-
-## Configuration
-
-- `.ptrc` JSON file to define services (commit to Git)
-- `.pt-registry.json` for runtime state (ignore in Git)
-- Environment variable support
-- Customizable health check timeouts
-
-## Features
-
-Service management:
+**Service management**:
 - One-click Start/Stop/Restart
 - Global status dashboard
-- HTTP health checks
+- Automatic HTTP health checks
 - Service dependency management
 - Execution history
 
-Advanced:
-- External process detection (services started elsewhere)
+**Advanced**:
+- External process detection
 - Service groups for batch operations
 - WSL support from Windows
 - Auto-restart crashed services
-
-## Technical Details
-
-Services are defined in a simple YAML/JSON file. The tracker monitors process state, handles graceful shutdown and can auto-restart crashed services.
-
-WSL integration: can execute commands in WSL distributions, allowing Linux service management from a Windows GUI.
 
 ## Links
 

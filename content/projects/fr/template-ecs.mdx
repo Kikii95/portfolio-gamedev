@@ -9,6 +9,53 @@ status: "archive"
 github: "https://github.com/Kikii95/template-ECS"
 buildUrl: "https://github.com/Kikii95/template-ECS/releases/latest"
 gallery: []
+techDetails: |
+  ## Architecture ECS
+
+  Architecture pure Entity-Component-System :
+
+  ```
+  Entity (ID)
+      │
+      ├── Component A (Data)
+      ├── Component B (Data)
+      └── Component C (Data)
+           │
+           └── Systems (Behavior)
+               ├── Active (continuous)
+               ├── Reactive (event-driven)
+               └── TurnBased (discrete)
+  ```
+
+  ## Stack Détaillé
+
+  | Tech | Version | Rôle |
+  |------|---------|------|
+  | C++ | 20 | Langage core |
+  | SFML | 2.5+ | Rendu 2D |
+  | CMake | 3.20+ | Build system |
+  | Patterns | ECS, Factory, Observer | Architecture |
+
+  ## Statistiques
+
+  - **36 Components** modulaires
+  - **35 Systems** découplés
+  - **8+ Modules** : core, transform, graphics, gameplay, inventory, interaction, AI, audio, network
+
+  ## Optimisations Collisions
+
+  Spatial hashing O(n) vs O(n²) :
+
+  | Entités | Brute Force | Spatial Hash | Speedup |
+  |---------|-------------|--------------|---------|
+  | 125 | 125,000 checks | 1,000 checks | 25x |
+  | 1000 | 500,000 checks | 2,000 checks | 250x |
+
+  ## Memory Safety
+
+  - Smart pointers + RAII
+  - Memory pooling pour allocations fréquentes
+  - Thread-safe avec mutexes et atomics
 ---
 
 # Template ECS
@@ -21,52 +68,21 @@ Projet école GTech3 démarré en novembre 2025, développé en solo pour le cou
 
 Objectif : créer un moteur réutilisable comme base pour d'autres projets, avec une architecture propre et extensible.
 
-## Stack
+## Ce que ça fait
 
-- C++20
-- SFML 2.5+ (rendu)
-- CMake 3.20+
-- Patterns : ECS, Factory, Observer
-
-## Architecture
-
-Statistiques :
-- 36 Components modulaires
-- 35 Systems découplés
-- 8+ Modules (core, transform, graphics, gameplay, inventory, interaction, AI, audio, network)
-
-Types de Systems :
-- Active : exécution continue (rendu, physique)
-- Reactive : réponse aux événements
-- TurnBased : jeux au tour par tour
-- UI : interface utilisateur
-
-Types de jeux supportés :
+**Types de jeux supportés** :
 - Temps réel : FPS, platformers, action
 - Tour par tour : stratégie, tactical RPG
 - Grille : roguelikes, puzzles
 - Hybride : combinaison des modes
 
-## Fonctionnalités
-
-- Architecture ECS pure : entités comme IDs, components comme données, systems pour le comportement
+**Architecture** :
+- Entités comme IDs purs
+- Components comme données
+- Systems pour le comportement
 - Découplage total logique/données
-- Memory pooling pour allocations fréquentes
-- Spatial hashing pour collisions
-- Thread-safe avec mutexes et atomics
-- Memory-safe avec smart pointers et RAII
-- Documentation complète
 
-## Points Techniques
-
-Optimisation collisions via spatial hashing :
-- O(n) au lieu de O(n²)
-- 125 entités : 25x plus rapide (125,000 → 1,000 checks)
-- 1000 entités : 250x plus rapide (500,000 → 2,000 checks)
-
-## Demo
-
-Pirate Space Explorer : jeu de démonstration complet utilisant le moteur.
+**Demo** : Pirate Space Explorer — jeu complet utilisant le moteur.
 
 ## Liens
 

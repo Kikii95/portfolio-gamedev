@@ -1,17 +1,60 @@
 ---
 title: "FBX Parser"
-description: "Binary FBX file parser for 3D model import, animations and scene data"
+description: "Binary FBX file parser for importing 3D models, animations and scene data"
 date: "2025-10-01"
 category: "école"
 tags: ["C++", "CMake", "3D", "Binary Parsing", "FBX"]
 featured: false
 status: "archive"
 gallery: []
+techDetails: |
+  ## Binary FBX Structure
+
+  Node tree with typed properties:
+
+  ```
+  FBX File
+  └── Node Tree
+      ├── Objects
+      │   ├── Geometry (mesh data)
+      │   ├── Deformer (bone weights)
+      │   └── AnimationCurve (keyframes)
+      └── Connections (scene hierarchy)
+  ```
+
+  ## Tech Stack
+
+  | Tech | Version | Role |
+  |------|---------|------|
+  | C++ | 17 | Core language |
+  | CMake | 3.x | Build system |
+  | zlib | 1.2 | FBX decompression |
+  | FBX Binary | 7.4/7.5 | Target format |
+
+  ## Parsing Implementation
+
+  - Low-level node tree traversal
+  - Support for v7.4 and v7.5
+  - Optional zlib decompression
+  - Custom string and array encoding
+
+  ## Data Extraction
+
+  - **Geometry**: vertices, polygons, normals, indices
+  - **UVs**: multiple channels
+  - **Skinning**: bone weights for skeletal animation
+  - **Animation**: curves and keyframes
+  - **Hierarchy**: parent-child relations with transforms
+
+  ## Export
+
+  - Readable JSON for debug
+  - Optimized binary for runtime
 ---
 
 # FBX Parser
 
-Custom parser for the FBX binary format, enabling import of 3D models, skeletal animations and scene hierarchies.
+Custom parser for FBX binary format, enabling import of 3D models, skeletal animations and scene hierarchies.
 
 ## Context
 
@@ -19,44 +62,22 @@ School project GTech3, 5 weeks. Team of 3, role: binary parser implementation.
 
 Understanding 3D file formats is essential in game dev. This project dives into the FBX binary specification.
 
-## Requirements
+## School Requirements
 
-School requirements:
-- Parse binary FBX format (no official SDK)
+- Parse FBX binary format (without official SDK)
 - Extract basic mesh data
 - Handle zlib decompression
 - Document the format
 
-## Stack
-
-- C++
-- CMake
-- FBX Binary (7.x)
-- zlib (FBX compression)
-
 ## Our Implementation
 
-Beyond the basic parsing required, we implemented:
+Beyond basic parsing required:
 
-- **Complete FBX parser**: low-level node tree traversal, v7.4 and v7.5 support
-- **Advanced mesh extraction**: vertices, normals, multiple UVs, indices, bone weights for skinning
-- **Full scene hierarchy**: parent-child transform relationship reconstruction
-- **Animation data**: curve and keyframe extraction for skeletal animation
-- **Dual export format**: readable JSON for debug + optimized binary for runtime
-
-## Technical Details
-
-FBX binary structure:
-- Node tree
-- Property arrays with varied types
-- Optional zlib compression
-- Custom encoding for strings and arrays
-
-Data extraction:
-- Geometry (vertices, polygons, normals)
-- UV mappings (multiple channels)
-- Bone weights for skinning
-- Animation curves
+- **Complete FBX parser**: support for v7.4 and v7.5
+- **Advanced mesh extraction**: vertices, normals, multiple UVs, bone weights
+- **Scene hierarchy**: parent-child relationship reconstruction
+- **Animation data**: curve and keyframe extraction
+- **Dual format export**: JSON debug + binary runtime
 
 ## Links
 

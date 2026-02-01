@@ -7,6 +7,43 @@ tags: ["C++", "Threading", "CMake", "SFML", "Performance"]
 featured: false
 status: "archive"
 gallery: []
+techDetails: |
+  ## Multi-Thread Architecture
+
+  4 dedicated threads vs 2 required:
+
+  ```
+  ┌─────────────────────────────────────────┐
+  │              Thread Pool                │
+  ├──────────┬──────────┬──────────┬────────┤
+  │   Main   │  Render  │ Physics  │ Audio  │
+  │ (loop +  │ (submit  │(collision│(sound  │
+  │  input)  │ graphics)│  + sim)  │process)│
+  └──────────┴──────────┴──────────┴────────┘
+  ```
+
+  ## Tech Stack
+
+  | Tech | Version | Role |
+  |------|---------|------|
+  | C++ | 17/20 | Core language |
+  | std::thread | stdlib | Threading primitives |
+  | std::mutex | stdlib | Synchronization |
+  | SFML | 2.5 | Graphics |
+  | CMake | 3.x | Build system |
+
+  ## Synchronization
+
+  - **Mutex locks**: critical sections
+  - **Condition variables**: inter-thread signaling
+  - **Atomics**: lock-free counters and flags
+  - **SPSC/MPSC queues**: contention-free communication
+
+  ## Performance
+
+  - Stable frame time < 16ms (60 FPS)
+  - Custom job system with work stealing
+  - Built-in profiler for bottleneck identification
 ---
 
 # Multithreaded Game
@@ -19,39 +56,21 @@ School project GTech3, 2 months. Team of 4, role: core systems developer.
 
 Focus on parallel processing and thread synchronization for real-time game systems.
 
-## Requirements
+## School Requirements
 
-School requirements:
 - Parallelize at least 2 game systems
 - Thread-safe resource management
 - Stable frame time < 16ms (60 FPS)
 - C++17/20 with std::thread, no race conditions
 
-## Stack
-
-- C++17/20
-- CMake
-- SFML (graphics)
-- std::thread, mutex, condition variables
-
 ## Our Implementation
 
-Beyond the 2 systems required, we implemented a complete architecture:
+Beyond the 2 required systems:
 
-- **4 dedicated threads**: Main (game loop + input), Render, Physics, Audio — vs 2 required
-- **Custom job system**: scalable parallelism with work stealing, not just fixed threads
-- **Lock-free structures**: SPSC/MPSC queues to minimize contention
-- **Built-in profiler**: frame time visualization per system, bottleneck identification
-
-## Technical Details
-
-Multi-threaded architecture with dedicated threads:
-- Main: game loop coordination + input
-- Render: graphics submission
-- Physics: collision and simulation
-- Audio: sound processing
-
-Synchronization via mutex locks, atomic operations and condition variables to avoid race conditions while maintaining performance.
+- **4 dedicated threads**: Main, Render, Physics, Audio
+- **Custom job system** with work stealing
+- **Lock-free structures**: SPSC/MPSC queues
+- **Built-in profiler**: frame time visualization
 
 ## Links
 

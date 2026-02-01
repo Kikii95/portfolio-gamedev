@@ -7,6 +7,51 @@ tags: ["TypeScript", "React Native", "Next.js", "PostgreSQL", "Mobile"]
 featured: false
 status: "actif"
 gallery: []
+techDetails: |
+  ## Architecture
+
+  Cross-platform monorepo with shared code:
+
+  ```
+  hype/
+  ├── apps/
+  │   ├── mobile/          # React Native (Expo)
+  │   └── web-admin/       # Next.js dashboard
+  ├── packages/
+  │   └── shared/          # Shared types + utils
+  └── backend/             # REST API
+  ```
+
+  ## Tech Stack
+
+  ### Mobile
+  | Tech | Version | Role |
+  |------|---------|------|
+  | React Native | 0.73 | Mobile framework |
+  | Expo | 51 | Build + OTA updates |
+  | TypeScript | 5.x | Strict typing |
+  | React Query | 5.x | Data fetching |
+
+  ### Web Admin
+  | Tech | Version | Role |
+  |------|---------|------|
+  | Next.js | 14 | Organizers dashboard |
+  | TypeScript | 5.x | Strict typing |
+  | TailwindCSS | 3.x | Styling |
+
+  ### Backend
+  | Tech | Version | Role |
+  |------|---------|------|
+  | REST API | - | Backend services |
+  | PostgreSQL | 16 | Database |
+  | PostGIS | - | Geospatial queries |
+
+  ## Technical Features
+
+  - pnpm monorepo with shared packages
+  - Geolocation for discovery engine
+  - Push notifications (Firebase)
+  - Real-time updates (WebSocket)
 ---
 
 # Hype
@@ -21,27 +66,22 @@ Startup project started in June 2025. Role: Full-stack Developer. MVP phase.
 
 Problem: finding things to do shouldn't require checking 10 different apps.
 
-## Stack
+## What it does
 
-- React Native, Expo (mobile)
-- Next.js, TypeScript (web admin)
-- REST API (backend)
-- PostgreSQL
-- pnpm monorepo
+**Discovery**:
+- Personalized feed based on preferences and location
+- Filters: category, distance, date, price
+- Smart recommendations
 
-## Features
+**Social**:
+- See friends' interests
+- Share and save events
+- Real-time notifications
 
-- Smart discovery based on preferences and location
-- Real-time event updates
-- Social integration: see friends' interests
-- Cross-platform: native iOS and Android
-- Web dashboard for organizers
-
-## Technical Details
-
-Monorepo architecture with pnpm, code sharing between mobile app, web dashboard and backend. Consistency guaranteed, minimal duplication.
-
-Geolocation services for the discovery engine, relevant events based on proximity and travel preferences.
+**Organizers**:
+- Web dashboard to create/manage events
+- Attendance analytics
+- Targeted promotion
 
 ## Links
 

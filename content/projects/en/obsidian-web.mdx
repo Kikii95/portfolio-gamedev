@@ -9,62 +9,78 @@ status: "maintenance"
 github: "https://github.com/Kikii95/obsidian-web"
 buildUrl: "https://obsidian-web.vercel.app"
 gallery: []
+techDetails: |
+  ## Architecture
+
+  100% client-side — no proprietary backend. All operations go directly through the GitHub API.
+
+  ```
+  Browser/PWA ◄──► Next.js API ◄──► GitHub API ◄──► obsidian-vault (repo)
+       │                │
+       └── Service Worker (Cache + Offline)
+  ```
+
+  Data flow:
+  - Read: Octokit → Parse frontmatter → Extract wikilinks → Markdown render
+  - Write: CodeMirror → SHA validation → GitHub commit → Sync
+
+  ## Tech Stack
+
+  | Tech | Version | Role |
+  |------|---------|------|
+  | Next.js | 16 | SSR Framework + API Routes |
+  | TypeScript | 5.9 | Strict typing |
+  | NextAuth.js | 5.x | GitHub OAuth + Sessions |
+  | Octokit | 4.x | Official GitHub API client |
+  | CodeMirror | 6 | Mobile-friendly Markdown editor |
+  | D3.js | 7 | Force-directed graph visualization |
+  | Zustand | 5.x | Lightweight state management |
+  | PostgreSQL | 16 | Tags/backlinks/graph index |
+  | TailwindCSS | 4 | Utility-first styling |
+
+  ## Metrics & Features
+
+  - 36 color themes (18 dark + 18 light) via OKLCH
+  - Implemented phases: P0 (Auth) → P7 (CRUD Notes/Folders)
+  - Offline support via Service Worker + Cache API
+  - Private notes: path-based (`_private/`) + frontmatter + `#private` tag
+  - Lock System: SHA-256 PIN, configurable auto-lock timer
+  - Media: images, PDFs, canvas (React Flow), audio, Excalidraw
+
+  ## Security
+
+  - Data never passes through third-party server: GitHub OAuth → encrypted JWT cookie
+  - Access restriction via `ALLOWED_USERS` (whitelist)
+  - PIN hashed with SHA-256, never stored in plaintext
 ---
 
 # Obsidian Web
 
-Web app to view and edit an Obsidian vault from any device. GitHub serves as the sync backend.
+Access your Obsidian notes from any device — mobile, tablet, desktop.
 
 ## Context
 
 Personal project started in November 2025. Solo development over 2 weeks.
 
-Initial need: access my Obsidian notes on mobile without paying for Obsidian Sync. Solution: use GitHub as a free and reliable sync layer.
+Initial need: access my Obsidian notes on mobile without paying for Obsidian Sync ($8/month). Solution: use GitHub as a free and reliable sync layer.
 
-## Stack
+## What it does
 
-- Next.js 16, TypeScript 5.9
-- TailwindCSS 4, Radix UI
-- GitHub API (serverless, no backend)
-- PostgreSQL (index for fast queries)
-- Zustand (state management)
-- CodeMirror 6 (editor)
-- D3.js (graph visualization)
-- Vercel (hosting)
-
-## Features
-
-Editing:
-- CodeMirror 6 editor with keyboard shortcuts
-- Full Markdown support with syntax highlighting
+**Editing**:
+- Markdown editor with keyboard shortcuts
 - Quick switcher (Ctrl+P) for fast navigation
 - Automatic daily notes
 - Full tag and backlink support
 
-Visualization:
-- Force-directed graph view (D3.js) of connections
+**Visualization**:
+- Graph view of note connections
 - Activity heatmap (commit history)
-- Media support: images, PDFs, canvas (React Flow), audio, Excalidraw
+- Media support: images, PDFs, Excalidraw
 
-Sync & Security:
-- GitHub sync, no proprietary server
-- GitHub OAuth auth with encrypted JWT token
-- Private notes with PIN lock
-- Version history via Git commits
-- Export markdown/PDF, import drag-drop
-
-PWA:
-- Installable on all devices
+**Mobile & Offline**:
+- Installable as native app (PWA)
 - Works offline
-- 36 color themes (18 dark + 18 light)
-
-## Technical Details
-
-100% client-side architecture. No backend, all operations go directly through the GitHub API.
-
-PostgreSQL index for fast tag/backlink/graph queries. The D3.js graph uses force-directed simulation to position nodes.
-
-Data never passes through a third-party server: GitHub OAuth → encrypted JWT cookie token.
+- Sync via GitHub, no proprietary server
 
 ## Links
 

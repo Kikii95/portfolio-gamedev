@@ -7,11 +7,62 @@ tags: ["C++", "SIMD", "SSE", "AVX", "Performance", "Math"]
 featured: false
 status: "archive"
 gallery: []
+techDetails: |
+  ## Architecture SIMD
+
+  Hiérarchie de types avec dispatch runtime :
+
+  ```
+  ┌─────────────────────────────────────────┐
+  │         Runtime CPU Detection           │
+  │    (SSE4.2 / AVX / AVX2 disponible?)    │
+  └──────────────┬──────────────────────────┘
+                 │
+       ┌─────────┴─────────┐
+       ▼                   ▼
+  ┌─────────┐         ┌─────────┐
+  │  SSE    │         │  AVX    │
+  │ 128-bit │         │ 256-bit │
+  │ 4 floats│         │ 8 floats│
+  └─────────┘         └─────────┘
+  ```
+
+  ## Stack Détaillé
+
+  | Tech | Version | Rôle |
+  |------|---------|------|
+  | C++ | 17 | Langage core |
+  | SSE4.2 | x86 intrinsics | Registres 128-bit |
+  | AVX/AVX2 | x86 intrinsics | Registres 256-bit |
+  | CMake | 3.x | Build system |
+
+  ## Types Implémentés
+
+  - Vec2, Vec3, Vec4 (SIMD)
+  - Mat4 (SIMD)
+  - Quaternion (SIMD)
+  - Support SoA (Structure of Arrays) pour batch
+
+  ## Techniques d'Optimisation
+
+  - Alignement mémoire (16/32 bytes)
+  - Data layout SoA vs AoS
+  - Patterns cache-friendly
+  - Élimination de branches
+  - Runtime dispatch SSE/AVX
+
+  ## Benchmarks
+
+  | Opération | Scalaire | SIMD | Speedup |
+  |-----------|----------|------|---------|
+  | Vec4 dot | 4 ops | 1 op | ~4x |
+  | Mat4 mul | 64 ops | 16 ops | ~4x |
+  | Batch transform | N ops | N/4 ops | ~4x |
 ---
 
 # SIMD Math Optimization
 
-Bibliothèque mathématique haute performance utilisant les instructions SIMD pour les opérations vectorielles et matricielles des moteurs de jeu.
+Bibliothèque mathématique haute performance utilisant les instructions SIMD pour les opérations vectorielles et matricielles.
 
 ## Contexte
 
@@ -19,50 +70,21 @@ Projet école GTech3, compétition d'optimisation, 4 semaines. Projet individuel
 
 Implémentation d'opérations mathématiques avec intrinsics SIMD pour atteindre le débit maximal.
 
-## Cahier des Charges
+## Cahier des Charges École
 
-Consignes école :
 - Implémenter des opérations vectorielles SIMD
 - Benchmarker vs scalaire, speedup minimum 4x
 - Intrinsics x86 (pas d'asm inline), SSE4.2 minimum
 
-## Stack
+## Mon Implémentation
 
-- C++
-- SSE4.2, AVX, AVX2 (intrinsics)
-- Profiler custom
-- CMake
+Au-delà des vecteurs demandés :
 
-## Notre Implémentation
-
-Au-delà des vecteurs demandés, j'ai implémenté une bibliothèque mathématique complète :
-
-- **Hiérarchie complète** : Vec2, Vec3, Vec4, Mat4, Quaternion — pas juste Vec4
-- **AVX en plus de SSE** : registres 256-bit pour batch processing (8 floats vs 4)
-- **Quaternions SIMD** : rotations optimisées, souvent négligées dans les implémentations basiques
-- **Data layouts optimisés** : support SoA (Structure of Arrays) pour transformations batch
-- **Runtime dispatch** : détection CPU au démarrage pour choisir SSE/AVX automatiquement
-
-## Points Techniques
-
-Extensions SIMD x86 utilisées :
-- SSE : registres 128-bit, 4 floats en parallèle
-- AVX : registres 256-bit, 8 floats en parallèle
-- Alignement mémoire pour load/store optimaux
-
-Techniques d'optimisation :
-- Layout de données (SoA vs AoS)
-- Patterns d'accès cache-friendly
-- Parallélisme au niveau instruction
-- Élimination de branches
-
-## Résultats
-
-| Opération | Scalaire | SIMD | Speedup |
-|-----------|----------|------|---------|
-| Vec4 dot | 4 ops | 1 op | ~4x |
-| Mat4 mul | 64 ops | 16 ops | ~4x |
-| Batch transform | N ops | N/4 ops | ~4x |
+- **Hiérarchie complète** : Vec2, Vec3, Vec4, Mat4, Quaternion
+- **AVX en plus de SSE** : 8 floats vs 4
+- **Quaternions SIMD** : rotations optimisées
+- **Data layouts optimisés** : support SoA
+- **Runtime dispatch** : détection CPU automatique
 
 ## Liens
 

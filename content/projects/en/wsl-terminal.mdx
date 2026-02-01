@@ -8,11 +8,51 @@ featured: false
 status: "pause"
 github: "https://github.com/Kikii95/wsl-terminal"
 gallery: []
+techDetails: |
+  ## Architecture
+
+  Tauri app with Rust backend and React frontend:
+
+  ```
+  ┌─────────────────────────────────────┐
+  │           React Frontend            │
+  │  (xterm.js + Zustand + TailwindCSS) │
+  └──────────────┬──────────────────────┘
+                 │ IPC (Tauri)
+  ┌──────────────┴──────────────────────┐
+  │           Rust Backend              │
+  │    (Shell spawn + Process mgmt)     │
+  └─────────────────────────────────────┘
+  ```
+
+  ## Tech Stack
+
+  | Tech | Version | Role |
+  |------|---------|------|
+  | Tauri | 2.0 | Lightweight desktop framework |
+  | Rust | 1.77+ | Backend process management |
+  | React | 19 | UI framework |
+  | TypeScript | 5 | Strict typing |
+  | xterm.js | 5 | Terminal emulation |
+  | TailwindCSS | 4 | Styling |
+  | Zustand | 5 | State management |
+
+  ## Metrics
+
+  - **Installer**: ~15MB (vs ~150MB Electron)
+  - **RAM**: 80-120MB in use
+  - **Supported shells**: WSL (all distros), PowerShell, CMD
+
+  ## Integrations
+
+  - Auto-detection of installed WSL distributions
+  - Project switcher integrated with `~/projects/`
+  - File watcher for hot reload config
 ---
 
 # WSL Terminal
 
-Modern terminal emulator for WSL2. All features of a pro terminal, optimized for WSL development.
+Modern terminal emulator for WSL2, optimized for development.
 
 ## Context
 
@@ -20,48 +60,25 @@ Personal project started in December 2025. Solo development over 2 weeks.
 
 Windows Terminal is fine, but I wanted something with better developer integration: Git panels, Docker management, project navigation, customizable UI — without Electron's overhead.
 
-## Stack
+## What it does
 
-- Tauri 2.0 (desktop framework)
-- Rust 1.77+ (backend)
-- React 19, TypeScript 5, TailwindCSS 4 (frontend)
-- xterm.js 5 with addons
-- Zustand (state management)
-
-## Specifications
-
-- Installer: ~15MB
-- RAM: 80-120MB
-- Supported shells: WSL (all distributions), PowerShell, CMD
-
-## Features
-
-Terminal:
+**Terminal**:
 - Multi-tabs with drag-and-drop
 - Resizable horizontal/vertical split panes
 - Multi-window (detach tabs)
 - Automatic session restore
-- Ctrl+F search
 
-Dev tools:
+**Dev tools**:
 - Git panel: branches, staging, commits, push/pull
 - Docker panel: containers and images
 - SSH manager: save and quick connect
 - Project switcher by category
-- Saved quick commands
 
-Interface:
-- 6 themes: Catppuccin Mocha, Dracula, Nord, One Dark, Gruvbox, Tokyo Night
+**Interface**:
+- 6 themes (Catppuccin, Dracula, Nord, One Dark, Gruvbox, Tokyo Night)
 - Font ligatures (Fira Code, JetBrains Mono)
 - Command palette Ctrl+Shift+P
-- Quake mode (dropdown terminal)
-- Long command completion notifications
-
-## Technical Details
-
-Lightweight compared to Electron alternatives thanks to Tauri. Rust backend handles shell spawning and IPC, React handles the UI.
-
-Auto-detection of all installed WSL distributions. Project switcher integrates with the `~/projects/` structure.
+- Quake mode (dropdown)
 
 ## Links
 

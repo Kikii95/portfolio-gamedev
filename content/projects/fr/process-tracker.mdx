@@ -8,11 +8,62 @@ featured: false
 status: "pause"
 github: "https://github.com/Kikii95/process-tracker"
 gallery: []
+techDetails: |
+  ## Architecture
+
+  Application Tauri avec gestion de processus côté Rust :
+
+  ```
+  ┌─────────────────────────────────────┐
+  │           React Dashboard           │
+  │   (Service cards + Status monitor)  │
+  └──────────────┬──────────────────────┘
+                 │ IPC
+  ┌──────────────┴──────────────────────┐
+  │           Rust Process Manager      │
+  │  (spawn, health check, restart)     │
+  └─────────────────────────────────────┘
+  ```
+
+  ## Stack Détaillé
+
+  | Tech | Version | Rôle |
+  |------|---------|------|
+  | Tauri | 2.0 | Desktop framework |
+  | Rust | 1.77+ | Process management |
+  | React | 18 | UI dashboard |
+  | TypeScript | 5 | Frontend typage |
+  | TailwindCSS | 3 | Styling |
+  | Vite | 5 | Build tooling |
+
+  ## Configuration
+
+  ```json
+  // .ptrc (commit dans Git)
+  {
+    "services": [
+      { "name": "api", "command": "pnpm dev", "port": 3000 },
+      { "name": "db", "command": "docker start postgres" }
+    ]
+  }
+  ```
+
+  - `.ptrc` : définition services (versionné)
+  - `.pt-registry.json` : état runtime (gitignored)
+  - Support variables d'environnement
+  - Timeouts health check configurables
+
+  ## Features Avancées
+
+  - Détection processus externes
+  - Groupes de services (batch operations)
+  - Support WSL depuis Windows
+  - Redémarrage automatique si crash
 ---
 
 # Process Tracker
 
-Application desktop pour gérer les services de développement local. Fini les processus dupliqués, conflits de ports et incertitudes sur ce qui tourne.
+Application desktop pour gérer les services de développement local. Fini les processus dupliqués, conflits de ports et incertitudes.
 
 ## Contexte
 
@@ -20,41 +71,20 @@ Projet perso démarré en décembre 2025. Développé en solo sur une semaine.
 
 Problème résolu : quand on développe avec plusieurs services (backend, frontend, database), on se retrouve souvent avec des processus dupliqués, des conflits de ports, et aucune visibilité sur ce qui tourne.
 
-## Stack
+## Ce que ça fait
 
-- Tauri 2.0 (desktop framework)
-- Rust (backend)
-- React, TypeScript, TailwindCSS (frontend)
-- Vite (build)
-- Cross-platform : Windows, Linux
-
-## Configuration
-
-- Fichier `.ptrc` JSON pour définir les services (à commit dans Git)
-- `.pt-registry.json` pour l'état runtime (à ignorer dans Git)
-- Support des variables d'environnement
-- Timeouts de health check personnalisables
-
-## Fonctionnalités
-
-Gestion services :
+**Gestion services** :
 - Start/Stop/Restart en un clic
 - Dashboard de statut global
-- Health checks HTTP
+- Health checks HTTP automatiques
 - Gestion des dépendances entre services
 - Historique des exécutions
 
-Avancé :
-- Détection de processus externes (services démarrés ailleurs)
-- Groupes de services pour opérations batch
+**Avancé** :
+- Détection de processus externes
+- Groupes de services pour batch operations
 - Support WSL depuis Windows
-- Redémarrage automatique des services crashés
-
-## Points Techniques
-
-Les services sont définis dans un fichier YAML/JSON simple. Le tracker surveille l'état des processus, gère l'arrêt propre et peut redémarrer automatiquement les services crashés.
-
-Intégration WSL : peut exécuter des commandes dans les distributions WSL, permettant de gérer des services Linux depuis une GUI Windows.
+- Redémarrage auto des services crashés
 
 ## Liens
 

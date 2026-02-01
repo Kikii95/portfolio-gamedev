@@ -9,62 +9,78 @@ status: "maintenance"
 github: "https://github.com/Kikii95/obsidian-web"
 buildUrl: "https://obsidian-web.vercel.app"
 gallery: []
+techDetails: |
+  ## Architecture
+
+  100% client-side — aucun backend propriétaire. Toutes les opérations passent directement par l'API GitHub.
+
+  ```
+  Browser/PWA ◄──► Next.js API ◄──► GitHub API ◄──► obsidian-vault (repo)
+       │                │
+       └── Service Worker (Cache + Offline)
+  ```
+
+  Flux de données :
+  - Lecture : Octokit → Parse frontmatter → Extract wikilinks → Rendu Markdown
+  - Écriture : CodeMirror → SHA validation → GitHub commit → Sync
+
+  ## Stack Détaillé
+
+  | Tech | Version | Rôle |
+  |------|---------|------|
+  | Next.js | 16 | Framework SSR + API Routes |
+  | TypeScript | 5.9 | Typage strict |
+  | NextAuth.js | 5.x | OAuth GitHub + Sessions |
+  | Octokit | 4.x | Client GitHub API officiel |
+  | CodeMirror | 6 | Éditeur Markdown mobile-friendly |
+  | D3.js | 7 | Graphe force-directed des connexions |
+  | Zustand | 5.x | State management léger |
+  | PostgreSQL | 16 | Index tags/backlinks/graph |
+  | TailwindCSS | 4 | Styling utility-first |
+
+  ## Métriques & Features
+
+  - 36 thèmes couleurs (18 dark + 18 light) via OKLCH
+  - Phases implémentées : P0 (Auth) → P7 (CRUD Notes/Folders)
+  - Support offline via Service Worker + Cache API
+  - Notes privées : path-based (`_private/`) + frontmatter + tag `#private`
+  - Lock System : PIN SHA-256, auto-lock timer configurable
+  - Media : images, PDFs, canvas (React Flow), audio, Excalidraw
+
+  ## Sécurité
+
+  - Données jamais sur serveur tiers : GitHub OAuth → JWT cookie chiffré
+  - Restriction accès par `ALLOWED_USERS` (whitelist)
+  - PIN hashé SHA-256, jamais stocké en clair
 ---
 
 # Obsidian Web
 
-Application web pour consulter et éditer un vault Obsidian depuis n'importe quel appareil. GitHub sert de backend de synchronisation.
+Accédez à vos notes Obsidian depuis n'importe quel appareil — mobile, tablet, PC.
 
 ## Contexte
 
 Projet perso démarré en novembre 2025. Développé en solo sur 2 semaines.
 
-Besoin initial : accéder à mes notes Obsidian sur mobile sans payer Obsidian Sync. Solution : utiliser GitHub comme couche de sync gratuite et fiable.
+Besoin initial : accéder à mes notes Obsidian sur mobile sans payer Obsidian Sync (8$/mois). Solution : utiliser GitHub comme couche de sync gratuite et fiable.
 
-## Stack
+## Ce que ça fait
 
-- Next.js 16, TypeScript 5.9
-- TailwindCSS 4, Radix UI
-- GitHub API (serverless, pas de backend)
-- PostgreSQL (index pour requêtes rapides)
-- Zustand (state management)
-- CodeMirror 6 (éditeur)
-- D3.js (visualisation graphe)
-- Vercel (hosting)
-
-## Fonctionnalités
-
-Édition :
-- Éditeur CodeMirror 6 avec raccourcis clavier
-- Support Markdown complet avec coloration syntaxique
+**Édition** :
+- Éditeur Markdown avec raccourcis clavier
 - Quick switcher (Ctrl+P) pour navigation rapide
 - Daily notes automatiques
-- Support complet des tags et backlinks
+- Support complet tags et backlinks
 
-Visualisation :
-- Vue graphe force-directed (D3.js) des connexions
+**Visualisation** :
+- Vue graphe des connexions entre notes
 - Heatmap d'activité (historique commits)
-- Support média : images, PDFs, canvas (React Flow), audio, Excalidraw
+- Support média : images, PDFs, Excalidraw
 
-Sync & Sécurité :
+**Mobile & Offline** :
+- Installable comme app native (PWA)
+- Fonctionne hors-ligne
 - Sync via GitHub, pas de serveur propriétaire
-- Auth GitHub OAuth avec token JWT chiffré
-- Notes privées avec verrouillage PIN
-- Historique de versions via commits Git
-- Export markdown/PDF, import drag-drop
-
-PWA :
-- Installable sur tous appareils
-- Fonctionne offline
-- 36 thèmes couleurs (18 dark + 18 light)
-
-## Points Techniques
-
-Architecture 100% client-side. Aucun backend, toutes les opérations passent directement par l'API GitHub.
-
-Index PostgreSQL pour les requêtes tags/backlinks/graphe rapides. Le graphe D3.js utilise une simulation force-directed pour positionner les nœuds.
-
-Les données ne transitent jamais par un serveur tiers : GitHub OAuth → token JWT cookie chiffré.
 
 ## Liens
 

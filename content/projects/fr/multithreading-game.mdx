@@ -7,6 +7,43 @@ tags: ["C++", "Threading", "CMake", "SFML", "Performance"]
 featured: false
 status: "archive"
 gallery: []
+techDetails: |
+  ## Architecture Multi-Thread
+
+  4 threads dédiés vs 2 demandés :
+
+  ```
+  ┌─────────────────────────────────────────┐
+  │              Thread Pool                │
+  ├──────────┬──────────┬──────────┬────────┤
+  │   Main   │  Render  │ Physics  │ Audio  │
+  │ (loop +  │ (submit  │(collision│(sound  │
+  │  input)  │ graphics)│  + sim)  │process)│
+  └──────────┴──────────┴──────────┴────────┘
+  ```
+
+  ## Stack Détaillé
+
+  | Tech | Version | Rôle |
+  |------|---------|------|
+  | C++ | 17/20 | Langage core |
+  | std::thread | stdlib | Threading primitives |
+  | std::mutex | stdlib | Synchronisation |
+  | SFML | 2.5 | Graphismes |
+  | CMake | 3.x | Build system |
+
+  ## Synchronisation
+
+  - **Mutex locks** : sections critiques
+  - **Condition variables** : signalisation inter-thread
+  - **Atomics** : compteurs et flags lock-free
+  - **Queues SPSC/MPSC** : communication sans contention
+
+  ## Performance
+
+  - Frame time stable < 16ms (60 FPS)
+  - Job system custom avec work stealing
+  - Profiler intégré pour identification bottlenecks
 ---
 
 # Multithreaded Game
@@ -19,39 +56,21 @@ Projet école GTech3, 2 mois. Équipe de 4, rôle : développeur systèmes core.
 
 Focus sur le traitement parallèle et la synchronisation de threads pour des systèmes de jeu temps réel.
 
-## Cahier des Charges
+## Cahier des Charges École
 
-Consignes école :
 - Paralléliser au moins 2 systèmes de jeu
 - Gestion de ressources thread-safe
 - Frame time stable < 16ms (60 FPS)
 - C++17/20 avec std::thread, pas de race conditions
 
-## Stack
-
-- C++17/20
-- CMake
-- SFML (graphismes)
-- std::thread, mutex, condition variables
-
 ## Notre Implémentation
 
-Au-delà des 2 systèmes demandés, nous avons implémenté une architecture complète :
+Au-delà des 2 systèmes demandés :
 
-- **4 threads dédiés** : Main (game loop + input), Render, Physics, Audio — vs 2 demandés
-- **Job system custom** : parallélisme scalable avec work stealing, pas juste des threads fixes
-- **Structures lock-free** : queues SPSC/MPSC pour minimiser les contentions
-- **Profiler intégré** : visualisation des frame times par système, identification des bottlenecks
-
-## Points Techniques
-
-Architecture multi-thread avec threads dédiés :
-- Main : coordination game loop + input
-- Render : soumission graphique
-- Physics : collision et simulation
-- Audio : traitement son
-
-Synchronisation via mutex locks, opérations atomiques et condition variables pour éviter les race conditions tout en maintenant la performance.
+- **4 threads dédiés** : Main, Render, Physics, Audio
+- **Job system custom** avec work stealing
+- **Structures lock-free** : queues SPSC/MPSC
+- **Profiler intégré** : visualisation frame times
 
 ## Liens
 

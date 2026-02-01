@@ -7,6 +7,48 @@ tags: ["C++", "XAudio2", "DSP", "Audio", "WAV"]
 featured: false
 status: "archive"
 gallery: []
+techDetails: |
+  ## Architecture
+
+  Pipeline audio avec effets chaînables :
+
+  ```
+  WAV File → Parser → [Effect Chain] → XAudio2 → Output
+                           │
+        ┌──────────────────┼──────────────────┐
+        │                  │                  │
+      EQ            Compressor           Reverb
+   (Biquad)           (RMS)          (Convolution)
+  ```
+
+  ## Stack Détaillé
+
+  | Tech | Version | Rôle |
+  |------|---------|------|
+  | C++ | 17 | Langage core |
+  | XAudio2 | Windows API | Moteur audio temps réel |
+  | Win32/ImGui | - | Interface utilisateur |
+  | Parser WAV | Custom | Lecture fichiers audio |
+
+  ## Parser WAV Custom
+
+  - Parsing header RIFF
+  - Formats : 8/16/24-bit, mono/stereo
+  - Navigation chunks et métadonnées
+  - Au-delà du 16-bit demandé
+
+  ## Effets DSP Implémentés
+
+  - **EQ paramétrique** : Filtres biquad par bande
+  - **Compresseur** : Détection RMS avec attack/release
+  - **Reverb** : Bases de convolution
+  - **Delay** : Delay lines avec feedback
+
+  ## Spécifications
+
+  - Latence : < 50ms (API audio Windows)
+  - Édition non-destructive avec preview
+  - Sélection sample-accurate : cut/copy/paste
 ---
 
 # Audio Editor
@@ -19,42 +61,21 @@ Projet école GTech3, 6 semaines. Équipe de 3, rôle : développeur DSP et mote
 
 Exploration des fondamentaux du traitement de signal numérique via une application d'édition audio pratique.
 
-## Cahier des Charges
+## Cahier des Charges École
 
-Consignes école :
 - Parser et lire des fichiers WAV
 - Affichage waveform
 - Implémenter au moins 2 effets DSP
 - API audio Windows, latence < 50ms
 
-## Stack
-
-- C++
-- XAudio2 (API audio)
-- Parser WAV custom
-- Win32 / ImGui (UI)
-
 ## Notre Implémentation
 
-Au-delà des consignes (2 effets demandés), nous avons poussé le projet :
+Au-delà des consignes (2 effets demandés) :
 
-- **4 effets DSP complets** : EQ paramétrique, compression RMS, reverb à convolution, delay avec feedback
-- **Édition non-destructive** : preview de la chaîne d'effets avant application
-- **Outils de sélection avancés** : cut, copy, paste de régions audio avec précision sample
-- **Support formats étendus** : 8/16/24-bit, mono/stereo (au-delà du 16-bit demandé)
-
-## Points Techniques
-
-Parser WAV custom gérant :
-- Parsing header RIFF
-- Formats multiples (8/16/24-bit, mono/stereo)
-- Navigation chunks et métadonnées
-
-Effets audio implémentés from scratch :
-- Biquad filters pour bandes EQ
-- Compresseur RMS
-- Delay line avec feedback
-- Bases de reverb à convolution
+- **4 effets DSP complets** : EQ, compression, reverb, delay
+- **Édition non-destructive** : preview avant application
+- **Outils de sélection avancés** : cut/copy/paste sample-accurate
+- **Support formats étendus** : 8/16/24-bit, mono/stereo
 
 ## Liens
 

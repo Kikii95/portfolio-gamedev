@@ -7,6 +7,48 @@ tags: ["C++", "CMake", "Asset Management", "Game Engine"]
 featured: false
 status: "archive"
 gallery: []
+techDetails: |
+  ## Architecture
+
+  Resource Manager avec graphe de dépendances :
+
+  ```
+  ┌─────────────────────────────────────────┐
+  │           Resource Manager              │
+  ├──────────┬──────────┬──────────┬────────┤
+  │ Registry │ Loader   │ Cache    │ Watch  │
+  │ (lookup) │ (async)  │ (memory) │ (hot)  │
+  └──────────┴──────────┴──────────┴────────┘
+              │
+              ▼
+  ┌─────────────────────────────────────────┐
+  │         Dependency Graph                │
+  │  Texture A ──► Shader B ──► Material C  │
+  └─────────────────────────────────────────┘
+  ```
+
+  ## Stack Détaillé
+
+  | Tech | Version | Rôle |
+  |------|---------|------|
+  | C++ | 17 | Langage core |
+  | CMake | 3.x | Build system |
+  | LZ4 | 1.9 | Compression assets |
+  | File watching | OS APIs | Hot reload |
+
+  ## Features Implémentées
+
+  - **Chargement async** : callbacks, prioritisation assets visibles
+  - **Reference counting** : gestion automatique cycle de vie
+  - **Hot reload intelligent** : file watcher + graphe dépendances
+  - **Compression LZ4** : réduction 60% taille bundles
+
+  ## Pipeline Offline
+
+  - Compression textures (formats BCn)
+  - Optimisation mesh
+  - Compilation shaders
+  - Bundling d'assets
 ---
 
 # Asset Pipeline Engine
@@ -17,45 +59,23 @@ Système de gestion d'assets robuste pour moteurs de jeu : chargement, cache, ho
 
 Projet école GTech3, 5 semaines. Équipe de 3, rôle : architecte du pipeline core.
 
-Les jeux modernes nécessitent une gestion d'assets sophistiquée. Ce projet implémente un pipeline production-ready pour les ressources de jeu.
+Les jeux modernes nécessitent une gestion d'assets sophistiquée. Ce projet implémente un pipeline production-ready.
 
-## Cahier des Charges
+## Cahier des Charges École
 
-Consignes école :
 - Implémenter un système de chargement de ressources
 - Gestion mémoire automatique
 - Support hot-reload
-- C++ moderne, documentation technique, tests unitaires
-
-## Stack
-
-- C++
-- CMake
-- Sérialisation binaire custom
-- APIs système (file watching)
+- C++ moderne, documentation, tests unitaires
 
 ## Notre Implémentation
 
-Au-delà des consignes, nous avons choisi d'implémenter :
+Au-delà des consignes :
 
-- **Chargement async avec callbacks** : prioritisation des assets visibles à l'écran
-- **Reference counting** : gestion automatique du cycle de vie, évite les memory leaks
-- **Hot reload intelligent** : file watcher natif + graphe de dépendances pour recharger automatiquement les assets liés
-- **Compression LZ4** : réduction de 60% de la taille des bundles packés
-
-## Points Techniques
-
-Resource Manager centralisé gérant :
-- Enregistrement et lookup d'assets
-- Budget mémoire
-- Prioritisation du chargement
-- Garbage collection
-
-Pipeline de build offline pour :
-- Compression textures (formats BCn)
-- Optimisation mesh
-- Compilation shaders
-- Bundling d'assets
+- **Chargement async avec callbacks** : prioritisation assets visibles
+- **Reference counting** : évite les memory leaks
+- **Hot reload intelligent** : file watcher + graphe de dépendances
+- **Compression LZ4** : réduction 60% taille bundles
 
 ## Liens
 

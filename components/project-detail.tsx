@@ -313,7 +313,7 @@ export function ProjectDetail({ metadata, content }: ProjectDetailProps) {
                               prose-li:marker:text-primary
                             ">
                               <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                                {content.split('\n\n')[0] || metadata.description}
+                                {metadata.techDetails || content.split('\n\n')[0] || metadata.description}
                               </ReactMarkdown>
                             </div>
                           </CardContent>

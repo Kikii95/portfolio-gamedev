@@ -8,6 +8,42 @@ featured: false
 status: "pause"
 github: "https://github.com/Kikii95/daw-custom"
 gallery: []
+techDetails: |
+  ## Architecture
+
+  Moteur audio modulaire où chaque effet est un processeur chaînable :
+
+  ```
+  Audio Input → [Effect Chain] → Mixer → Output
+                    │
+      ┌─────────────┼─────────────┐
+      │             │             │
+    EQ      Compressor      Reverb
+  (Biquad)    (RMS)      (Schroeder)
+  ```
+
+  ## Stack Détaillé
+
+  | Tech | Version | Rôle |
+  |------|---------|------|
+  | C++ | 20 | Langage core |
+  | JUCE | 7 | Framework audio (GPL) |
+  | CMake | 3.22+ | Build system |
+  | ASIO | - | Latence minimale temps réel |
+  | ALSA | - | Backend Linux |
+
+  ## DSP Implémenté
+
+  - **EQ paramétrique** : Filtres biquad par bande
+  - **Compresseur** : Détection RMS, attack/release
+  - **Reverb** : Algorithme Schroeder
+  - **Delay** : Delay lines avec feedback
+
+  ## Spécifications
+
+  - Sample rates : 44.1kHz / 48kHz
+  - Latence : minimale via ASIO
+  - Licence : GPL v3 (due à JUCE)
 ---
 
 # DAW Custom
@@ -20,47 +56,22 @@ Projet perso démarré en novembre 2025. Développé en solo.
 
 Objectif : un DAW taillé pour la création de mashups et le sound design, sans le bloat des DAW commerciaux. Construire moi-même pour comprendre le traitement audio en profondeur.
 
-## Stack
+## Ce que ça fait
 
-- C++20
-- JUCE 7 (framework audio, licence GPL)
-- CMake 3.22+
-- ASIO pour le temps réel
-
-Dépendances Linux : ALSA, X11, libs graphiques
-
-## Spécifications
-
-- Moteur audio temps réel : 44.1/48kHz
-- Latence minimale via ASIO
-- Licence : GPL v3 (due à JUCE GPL)
-
-## Fonctionnalités
-
-Mixer :
+**Mixer** :
 - Multi-pistes avec timeline
 - Import/export WAV, MP3, FLAC
 - Hosting VST3
 
-Effets intégrés :
+**Effets intégrés** :
 - EQ paramétrique
 - Compresseur
 - Reverb
 - Delay
 
-Sound design :
+**Sound design** :
 - Kick Designer pour musique électronique
 - Synthétiseur basique (oscillateurs, filtre, enveloppe)
-
-## Points Techniques
-
-Chaque effet est un processeur audio modulaire chaînable.
-
-DSP implémenté from scratch :
-- Biquad filters pour l'EQ
-- Compression RMS
-- Reverb Schroeder
-- Delay lines avec feedback
 
 ## Liens
 

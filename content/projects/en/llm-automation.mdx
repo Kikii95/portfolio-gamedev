@@ -7,6 +7,63 @@ tags: ["Python", "FastAPI", "LangGraph", "TypeScript", "PostgreSQL", "AI"]
 featured: false
 status: "actif"
 gallery: []
+techDetails: |
+  ## Architecture
+
+  Full-stack monorepo with Python backend and Next.js frontend:
+
+  ```
+  llm-automation/
+  ├── apps/
+  │   └── web/                 # Next.js 14 Frontend
+  │       ├── app/             # App Router
+  │       └── components/      # shadcn/ui + features
+  ├── packages/
+  │   └── shared/              # Shared TypeScript types
+  └── src/llm_automation/      # Python Backend
+      ├── api/                 # FastAPI REST + WebSocket
+      ├── agents/              # Domain-specific agents
+      ├── orchestration/       # Multi-agent (LangGraph)
+      ├── connectors/          # Gmail, Calendar, Drive, Notion, Outlook, Slack, GitHub
+      └── rag/                 # Vector stores + embeddings
+  ```
+
+  ## Tech Stack
+
+  ### Backend
+  | Tech | Version | Role |
+  |------|---------|------|
+  | Python | 3.11+ | Backend language |
+  | FastAPI | 0.115 | REST API + WebSocket |
+  | LangGraph | 0.2 | Multi-agent orchestration |
+  | LangChain | 0.3 | LLM abstraction |
+  | Pydantic | 2.x | Strict validation |
+  | Loguru | 0.7 | Structured logging |
+  | pytest | 8.x | Tests (2650+) |
+
+  ### Frontend
+  | Tech | Version | Role |
+  |------|---------|------|
+  | Next.js | 14 | App Router SSR |
+  | TypeScript | 5.x | Strict mode |
+  | shadcn/ui | 2024 | UI components |
+  | React Query | 5.x | Data fetching |
+  | Vitest | 2.x | Tests (900+) |
+
+  ## Metrics
+
+  - **Version**: v3.0.0-beta.36
+  - **Backend Tests**: 2650+ (72% coverage)
+  - **Frontend Tests**: 900+ (80%+ coverage)
+  - **Connectors**: 7 (Gmail, Calendar, Drive, Notion, Outlook, Slack, GitHub)
+  - **Tools**: 62 operational
+  - **Completed Phases**: 5/6 (Milestone 1)
+
+  ## Supported Providers
+
+  - Claude API (Anthropic)
+  - OpenAI (GPT-4)
+  - Ollama (local models)
 ---
 
 # LLM Automation Platform
@@ -21,29 +78,23 @@ Professional project started in September 2025. Role: Lead Developer. Small team
 
 The platform allows non-technical users to build complex automation workflows with LLMs, with enterprise-grade reliability and security.
 
-## Stack
+## What it does
 
-- Python 3.11+, FastAPI (backend)
-- LangGraph, LangChain (AI orchestration)
-- TypeScript, React (frontend)
-- PostgreSQL
-- Docker, Redis (infra)
+**No-Code Builder**:
+- Visual drag-and-drop workflow builder
+- Agent configuration via web interface
+- Industry-specific templates
 
-## Features
+**Connectors**:
+- Email: Gmail, Outlook
+- Productivity: Google Calendar, Drive, Notion
+- Communication: Slack
+- Dev: GitHub
 
-- Multi-provider support: Claude, OpenAI, Ollama (local)
-- Visual workflow builder with drag-and-drop
-- RAG integration for custom knowledge bases
-- Extensible plugin system
-- Enterprise security: RBAC, audit logs
-
-## Technical Details
-
-Agent architecture with LangGraph for stateful multi-step workflows. Each agent can use tools, maintain conversation context and handle complex decision trees.
-
-Multi-provider abstraction: unified interface allowing switching between Claude, GPT-4 and local Ollama models as needed.
-
-Metrics: 77% test coverage, 1296 tests.
+**Enterprise**:
+- Multi-provider (Claude, GPT-4, local Ollama)
+- RAG for custom knowledge bases
+- RBAC, audit logs, quotas
 
 ## Links
 
