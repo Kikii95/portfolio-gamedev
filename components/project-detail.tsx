@@ -13,8 +13,11 @@ import { ArrowLeft, Github, Calendar, Tag, FileText, ExternalLink, Download } fr
 import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
 import { ProjectMetadata } from "@/lib/mdx/projects";
+import { ProjectStatus } from "@/lib/status-config";
 import { useState } from "react";
 import { ProjectGallery } from "./project-gallery";
+import { StatusBadge } from "./status-badge";
+import { markdownComponents } from "./mdx-components";
 
 interface ProjectDetailProps {
   metadata: ProjectMetadata;
@@ -25,13 +28,6 @@ export function ProjectDetail({ metadata, content }: ProjectDetailProps) {
   const locale = useLocale();
   const t = useTranslations('projects');
   const [techDetailsOpen, setTechDetailsOpen] = useState(false);
-
-  const statusLabels = {
-    'en-cours': t('status.en-cours'),
-    'stand-by': t('status.stand-by'),
-    'stable': t('status.stable'),
-    'terminé': t('status.terminé')
-  };
 
   const categoryLabels = {
     'école': t('category.école'),
@@ -81,21 +77,7 @@ export function ProjectDetail({ metadata, content }: ProjectDetailProps) {
                   </Badge>
                 )}
                 {metadata.status && (
-                  <Badge
-                    className={`backdrop-blur-md ${
-                      metadata.status === 'en-cours'
-                        ? "bg-blue-500/30 text-blue-300 border-blue-400/50"
-                        : metadata.status === 'stand-by'
-                        ? "bg-orange-500/30 text-orange-300 border-orange-400/50"
-                        : metadata.status === 'stable'
-                        ? "bg-cyan-500/30 text-cyan-300 border-cyan-400/50"
-                        : "bg-green-500/30 text-green-300 border-green-400/50"
-                    }`}
-                    variant="outline"
-                  >
-                    {metadata.status === 'en-cours' ? '🔄' : metadata.status === 'stand-by' ? '⏸️' : metadata.status === 'stable' ? '📦' : '✅'}{' '}
-                    {statusLabels[metadata.status]}
-                  </Badge>
+                  <StatusBadge status={metadata.status as ProjectStatus} variant="hero" />
                 )}
               </div>
 
@@ -168,7 +150,7 @@ export function ProjectDetail({ metadata, content }: ProjectDetailProps) {
               prose-hr:border-border
               prose-table:border prose-table:border-border prose-th:bg-muted prose-th:p-3 prose-td:p-3
             ">
-              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+              <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
                 {content}
               </ReactMarkdown>
             </article>
@@ -215,14 +197,8 @@ export function ProjectDetail({ metadata, content }: ProjectDetailProps) {
                 {/* Status */}
                 {metadata.status && (
                   <div className="flex items-start gap-3">
-                    <div className="mt-1">
-                      {metadata.status === 'en-cours' ? '🔄' : metadata.status === 'stand-by' ? '⏸️' : metadata.status === 'stable' ? '📦' : '✅'}
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium">{t('detail.status')}</p>
-                      <p className="text-sm text-muted-foreground">
-                        {statusLabels[metadata.status]}
-                      </p>
+                    <div className="mt-0.5">
+                      <StatusBadge status={metadata.status as ProjectStatus} variant="card" />
                     </div>
                   </div>
                 )}
@@ -300,7 +276,9 @@ export function ProjectDetail({ metadata, content }: ProjectDetailProps) {
                               {metadata.status && (
                                 <div>
                                   <span className="font-medium text-muted-foreground">{t('detail.statusLabel')}</span>
-                                  <p className="text-foreground">{statusLabels[metadata.status]}</p>
+                                  <div className="mt-1">
+                                    <StatusBadge status={metadata.status as ProjectStatus} variant="card" showTooltip={false} />
+                                  </div>
                                 </div>
                               )}
                             </div>

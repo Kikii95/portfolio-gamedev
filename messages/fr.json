@@ -35,11 +35,18 @@
       "travail": "Travail"
     },
     "status": {
-      "en-cours": "En cours",
-      "stand-by": "Stand-By",
+      "actif": "Actif",
+      "actifDescription": "En développement actif",
+      "pause": "En pause",
+      "pauseDescription": "Suspendu, reprise prévue",
       "stable": "Stable",
-      "terminé": "Terminé"
+      "stableDescription": "Fonctionnel, peut-être repris",
+      "maintenance": "Maintenance",
+      "maintenanceDescription": "Terminé, updates occasionnelles",
+      "archive": "Archivé",
+      "archiveDescription": "Terminé définitivement"
     },
+    "statusLegend": "Légende des statuts",
     "featured": "Featured",
     "detail": {
       "information": "Informations",

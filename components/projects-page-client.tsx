@@ -9,6 +9,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useMemo, useEffect } from "react";
 import { Filter, X } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { StatusLegend } from "./status-legend";
 
 interface ProjectsPageClientProps {
   projects: ProjectMetadata[];
@@ -184,6 +185,9 @@ export function ProjectsPageClient({ projects }: ProjectsPageClientProps) {
             </div>
           </div>
         </motion.div>
+
+        {/* Status Legend */}
+        <StatusLegend />
 
         {/* Projects Grid with Animation */}
         <AnimatePresence mode="wait">

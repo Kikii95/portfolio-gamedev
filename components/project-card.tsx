@@ -5,9 +5,11 @@ import Image from "next/image";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ProjectMetadata } from "@/lib/mdx/projects";
+import { ProjectStatus } from "@/lib/status-config";
 import { motion } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
 import { useState, useRef } from "react";
+import { StatusBadge } from "./status-badge";
 
 interface ProjectCardProps {
   project: ProjectMetadata;
@@ -19,13 +21,6 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
   const locale = useLocale();
   const [isHovered, setIsHovered] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
-
-  const statusLabels = {
-    'en-cours': t('status.en-cours'),
-    'stand-by': t('status.stand-by'),
-    'stable': t('status.stable'),
-    'terminé': t('status.terminé')
-  };
 
   const categoryLabels = {
     'école': t('category.école'),
@@ -101,20 +96,7 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
                 </Badge>
               )}
               {project.status && (
-                <Badge
-                  className={
-                    project.status === 'en-cours'
-                      ? "bg-blue-500/20 text-blue-400 border-blue-500/50"
-                      : project.status === 'stand-by'
-                      ? "bg-orange-500/20 text-orange-400 border-orange-500/50"
-                      : project.status === 'stable'
-                      ? "bg-cyan-500/20 text-cyan-400 border-cyan-500/50"
-                      : "bg-green-500/20 text-green-400 border-green-500/50"
-                  }
-                  variant="outline"
-                >
-                  {project.status === 'en-cours' ? '🔄' : project.status === 'stand-by' ? '⏸️' : project.status === 'stable' ? '📦' : '✅'} {statusLabels[project.status]}
-                </Badge>
+                <StatusBadge status={project.status as ProjectStatus} variant="card" />
               )}
             </div>
             <CardTitle className="group-hover:text-primary transition-colors">
