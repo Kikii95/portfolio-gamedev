@@ -21,7 +21,7 @@ export function StatusBadge({ status, variant = "card", showTooltip = true }: St
 
   const badge = (
     <Badge variant="outline" className={`${classes} ${variant === "hero" ? "backdrop-blur-md" : ""}`}>
-      {config.icon} {label}
+      {label}
     </Badge>
   );
 

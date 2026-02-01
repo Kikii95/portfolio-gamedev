@@ -40,7 +40,7 @@ export function StatusLegend() {
                   return (
                     <div key={status} className="flex flex-col gap-1">
                       <div className="flex items-center gap-2">
-                        <span>{config.icon}</span>
+                        <span className={`w-2 h-2 rounded-full ${config.dotClass}`} />
                         <span className="font-medium text-sm">{t(`status.${status}`)}</span>
                       </div>
                       <p className="text-xs text-muted-foreground">{t(`status.${status}Description`)}</p>
