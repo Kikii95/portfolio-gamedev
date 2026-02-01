@@ -3,9 +3,14 @@ import { HomeHero } from "@/components/home-hero";
 import { ProjectsGrid } from "@/components/projects-grid";
 import { getTranslations } from "next-intl/server";
 
-export default async function Home() {
+interface HomeProps {
+  params: Promise<{ locale: string }>;
+}
+
+export default async function Home({ params }: HomeProps) {
+  const { locale } = await params;
   const t = await getTranslations('home');
-  const projects = getAllProjects();
+  const projects = getAllProjects(locale);
   const featuredProjects = projects.filter((p) => p.metadata.featured);
 
   return (

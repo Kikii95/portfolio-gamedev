@@ -22,23 +22,37 @@ Problème résolu : quand on développe avec plusieurs services (backend, fronte
 
 ## Stack
 
-- Tauri 2.0
+- Tauri 2.0 (desktop framework)
 - Rust (backend)
-- React, TypeScript (frontend)
+- React, TypeScript, TailwindCSS (frontend)
+- Vite (build)
 - Cross-platform : Windows, Linux
+
+## Configuration
+
+- Fichier `.ptrc` JSON pour définir les services (à commit dans Git)
+- `.pt-registry.json` pour l'état runtime (à ignorer dans Git)
+- Support des variables d'environnement
+- Timeouts de health check personnalisables
 
 ## Fonctionnalités
 
-- Start/Stop/Restart des services en un clic
+Gestion services :
+- Start/Stop/Restart en un clic
 - Dashboard de statut global
 - Health checks HTTP
 - Gestion des dépendances entre services
 - Historique des exécutions
+
+Avancé :
+- Détection de processus externes (services démarrés ailleurs)
+- Groupes de services pour opérations batch
 - Support WSL depuis Windows
+- Redémarrage automatique des services crashés
 
 ## Points Techniques
 
-Les services sont définis dans un fichier YAML simple. Le tracker surveille l'état des processus, gère l'arrêt propre et peut redémarrer automatiquement les services crashés.
+Les services sont définis dans un fichier YAML/JSON simple. Le tracker surveille l'état des processus, gère l'arrêt propre et peut redémarrer automatiquement les services crashés.
 
 Intégration WSL : peut exécuter des commandes dans les distributions WSL, permettant de gérer des services Linux depuis une GUI Windows.
 

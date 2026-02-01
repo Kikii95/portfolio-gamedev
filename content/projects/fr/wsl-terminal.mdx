@@ -22,11 +22,17 @@ Windows Terminal est correct, mais je voulais quelque chose avec une meilleure i
 
 ## Stack
 
-- Tauri 2.0
+- Tauri 2.0 (desktop framework)
 - Rust 1.77+ (backend)
 - React 19, TypeScript 5, TailwindCSS 4 (frontend)
 - xterm.js 5 avec addons
 - Zustand (state management)
+
+## Spécifications
+
+- Installeur : ~15MB
+- RAM : 80-120MB
+- Shells supportés : WSL (toutes distributions), PowerShell, CMD
 
 ## Fonctionnalités
 
@@ -44,17 +50,18 @@ Outils dev :
 - Switcher de projets par catégorie
 - Commandes rapides sauvegardées
 
-UI :
-- 6 thèmes (Catppuccin, Dracula, Nord, One Dark, Gruvbox, Tokyo Night)
+Interface :
+- 6 thèmes : Catppuccin Mocha, Dracula, Nord, One Dark, Gruvbox, Tokyo Night
+- Font ligatures (Fira Code, JetBrains Mono)
 - Palette de commandes Ctrl+Shift+P
 - Mode Quake (terminal dropdown)
 - Notifications fin de commandes longues
 
 ## Points Techniques
 
-Léger comparé aux alternatives Electron : ~15MB d'installeur, 80-120MB de RAM. Le backend Tauri gère le spawn des shells et l'IPC, React gère l'UI.
+Léger comparé aux alternatives Electron grâce à Tauri. Le backend Rust gère le spawn des shells et l'IPC, React gère l'UI.
 
-Supporte toutes les distributions WSL installées (détection auto), PowerShell et CMD. Le switcher de projets s'intègre avec ma structure `~/projects/`.
+Détection auto de toutes les distributions WSL installées. Le switcher de projets s'intègre avec la structure `~/projects/`.
 
 ## Liens
 

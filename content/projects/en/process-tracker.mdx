@@ -22,23 +22,37 @@ Problem solved: when developing with multiple services (backend, frontend, datab
 
 ## Stack
 
-- Tauri 2.0
+- Tauri 2.0 (desktop framework)
 - Rust (backend)
-- React, TypeScript (frontend)
+- React, TypeScript, TailwindCSS (frontend)
+- Vite (build)
 - Cross-platform: Windows, Linux
+
+## Configuration
+
+- `.ptrc` JSON file to define services (commit to Git)
+- `.pt-registry.json` for runtime state (ignore in Git)
+- Environment variable support
+- Customizable health check timeouts
 
 ## Features
 
-- Start/Stop/Restart services in one click
+Service management:
+- One-click Start/Stop/Restart
 - Global status dashboard
 - HTTP health checks
 - Service dependency management
 - Execution history
+
+Advanced:
+- External process detection (services started elsewhere)
+- Service groups for batch operations
 - WSL support from Windows
+- Auto-restart crashed services
 
 ## Technical Details
 
-Services are defined in a simple YAML file. The tracker monitors process state, handles graceful shutdown and can auto-restart crashed services.
+Services are defined in a simple YAML/JSON file. The tracker monitors process state, handles graceful shutdown and can auto-restart crashed services.
 
 WSL integration: can execute commands in WSL distributions, allowing Linux service management from a Windows GUI.
 

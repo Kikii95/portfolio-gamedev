@@ -23,27 +23,48 @@ Besoin initial : accéder à mes notes Obsidian sur mobile sans payer Obsidian S
 
 ## Stack
 
-- React, TypeScript
-- TailwindCSS
+- Next.js 16, TypeScript 5.9
+- TailwindCSS 4, Radix UI
 - GitHub API (serverless, pas de backend)
-- Vercel
-- PWA avec service worker
+- PostgreSQL (index pour requêtes rapides)
+- Zustand (state management)
+- CodeMirror 6 (éditeur)
+- D3.js (visualisation graphe)
+- Vercel (hosting)
 
 ## Fonctionnalités
 
-- Accès mobile complet au vault
+Édition :
+- Éditeur CodeMirror 6 avec raccourcis clavier
+- Support Markdown complet avec coloration syntaxique
+- Quick switcher (Ctrl+P) pour navigation rapide
+- Daily notes automatiques
+- Support complet des tags et backlinks
+
+Visualisation :
+- Vue graphe force-directed (D3.js) des connexions
+- Heatmap d'activité (historique commits)
+- Support média : images, PDFs, canvas (React Flow), audio, Excalidraw
+
+Sync & Sécurité :
 - Sync via GitHub, pas de serveur propriétaire
-- PWA installable, fonctionne offline
-- Vue graphe des connexions entre notes
-- Backlinks automatiques
-- Daily notes
-- Support complet des tags
+- Auth GitHub OAuth avec token JWT chiffré
+- Notes privées avec verrouillage PIN
+- Historique de versions via commits Git
+- Export markdown/PDF, import drag-drop
+
+PWA :
+- Installable sur tous appareils
+- Fonctionne offline
+- 36 thèmes couleurs (18 dark + 18 light)
 
 ## Points Techniques
 
 Architecture 100% client-side. Aucun backend, toutes les opérations passent directement par l'API GitHub.
 
-Auth via GitHub OAuth. Token stocké dans un JWT cookie chiffré. Les données ne transitent jamais par un serveur tiers.
+Index PostgreSQL pour les requêtes tags/backlinks/graphe rapides. Le graphe D3.js utilise une simulation force-directed pour positionner les nœuds.
+
+Les données ne transitent jamais par un serveur tiers : GitHub OAuth → token JWT cookie chiffré.
 
 ## Liens
 

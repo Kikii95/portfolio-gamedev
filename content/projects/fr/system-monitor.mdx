@@ -24,25 +24,37 @@ Objectif : un moniteur système minimaliste, pilotable au clavier, qui consomme 
 
 - Rust 1.75+
 - Ratatui (TUI framework)
-- NVML (GPU NVIDIA)
+- sysinfo (métriques système)
+- nvml-wrapper (GPU NVIDIA)
 - Cross-platform : Linux, Windows, macOS, WSL2
 
 ## Fonctionnalités
 
+Performance :
 - Consommation quasi-nulle : 0.0% CPU, ~4MB RAM
-- 9 thèmes visuels (Matrix, Tokyo Night, etc.)
-- Monitoring GPU NVIDIA : usage, VRAM, température, consommation
-- Sparklines 60 secondes pour toutes les métriques
-- Config persistante sauvegardée en un keypress
 - Binaire unique de 1.7MB
+- Démarrage instantané (<100ms)
+
+Monitoring :
+- CPU, RAM, Swap en temps réel
+- GPU NVIDIA : usage, VRAM, température, consommation
+- Sparklines 60 secondes pour toutes les métriques
+- Processus triés par consommation
+
+Interface :
+- 9 thèmes visuels : Matrix, Dracula, Nord, Tokyo Night, Gruvbox, Cyberpunk, Ocean, Forest, Sunset
+- Navigation clavier complète
+- Config persistante sauvegardée en un keypress
 
 ## Points Techniques
 
-Design zero-overhead : les métriques sont collectées via les APIs système natives. Le TUI ne redessine que quand les données changent.
+Design zero-overhead : les métriques sont collectées via sysinfo (APIs système natives). Le TUI ne redessine que quand les données changent.
 
-Intégration GPU via la bibliothèque NVML de NVIDIA, accès temps réel à l'utilisation, mémoire, température et consommation.
+Intégration GPU via nvml-wrapper (bibliothèque NVML de NVIDIA), accès temps réel à l'utilisation, mémoire, température et consommation.
+
+Config stockée dans `~/.config/system-monitor/config.toml` (Linux/WSL) ou `%APPDATA%` (Windows).
 
 ## Liens
 
 - [GitHub](https://github.com/Kikii95/system-monitor)
-- Binaires pré-compilés dans les Releases
+- Binaires pré-compilés dans les Releases (Linux, macOS Intel/ARM, Windows)

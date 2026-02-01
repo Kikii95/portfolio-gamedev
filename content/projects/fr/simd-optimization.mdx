@@ -19,6 +19,20 @@ Projet école GTech3, compétition d'optimisation, 4 semaines. Projet individuel
 
 Implémentation d'opérations mathématiques avec intrinsics SIMD pour atteindre le débit maximal.
 
+## Cahier des Charges
+
+Objectifs du projet :
+- Implémenter une bibliothèque mathématique SIMD (SSE/AVX)
+- Benchmarker contre implémentation scalaire
+- Atteindre un speedup minimum de 4x
+- Fallback pour plateformes non-SIMD
+
+Contraintes :
+- Intrinsics x86 (pas d'assembleur inline)
+- Support SSE4.2 minimum, AVX optionnel
+- Tests de précision numérique
+- Documentation des techniques d'optimisation
+
 ## Stack
 
 - C++

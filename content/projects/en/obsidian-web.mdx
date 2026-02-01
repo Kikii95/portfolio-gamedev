@@ -23,27 +23,48 @@ Initial need: access my Obsidian notes on mobile without paying for Obsidian Syn
 
 ## Stack
 
-- React, TypeScript
-- TailwindCSS
+- Next.js 16, TypeScript 5.9
+- TailwindCSS 4, Radix UI
 - GitHub API (serverless, no backend)
-- Vercel
-- PWA with service worker
+- PostgreSQL (index for fast queries)
+- Zustand (state management)
+- CodeMirror 6 (editor)
+- D3.js (graph visualization)
+- Vercel (hosting)
 
 ## Features
 
-- Full mobile vault access
+Editing:
+- CodeMirror 6 editor with keyboard shortcuts
+- Full Markdown support with syntax highlighting
+- Quick switcher (Ctrl+P) for fast navigation
+- Automatic daily notes
+- Full tag and backlink support
+
+Visualization:
+- Force-directed graph view (D3.js) of connections
+- Activity heatmap (commit history)
+- Media support: images, PDFs, canvas (React Flow), audio, Excalidraw
+
+Sync & Security:
 - GitHub sync, no proprietary server
-- Installable PWA, works offline
-- Graph view of note connections
-- Automatic backlinks
-- Daily notes
-- Full tag support
+- GitHub OAuth auth with encrypted JWT token
+- Private notes with PIN lock
+- Version history via Git commits
+- Export markdown/PDF, import drag-drop
+
+PWA:
+- Installable on all devices
+- Works offline
+- 36 color themes (18 dark + 18 light)
 
 ## Technical Details
 
 100% client-side architecture. No backend, all operations go directly through the GitHub API.
 
-Auth via GitHub OAuth. Token stored in an encrypted JWT cookie. Data never passes through a third-party server.
+PostgreSQL index for fast tag/backlink/graph queries. The D3.js graph uses force-directed simulation to position nodes.
+
+Data never passes through a third-party server: GitHub OAuth → encrypted JWT cookie token.
 
 ## Links
 

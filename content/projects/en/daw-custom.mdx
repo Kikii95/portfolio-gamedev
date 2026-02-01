@@ -23,24 +23,44 @@ Goal: a DAW tailored for mashup creation and sound design, without commercial DA
 ## Stack
 
 - C++20
-- JUCE 7 (GPL)
+- JUCE 7 (audio framework, GPL license)
 - CMake 3.22+
 - ASIO for real-time
 
+Linux dependencies: ALSA, X11, graphics libs
+
+## Specifications
+
+- Real-time audio engine: 44.1/48kHz
+- Minimal latency via ASIO
+- License: GPL v3 (due to JUCE GPL)
+
 ## Features
 
-- Multi-track mixer with timeline
+Mixer:
+- Multi-track with timeline
 - WAV, MP3, FLAC import/export
-- Built-in effects: EQ, Compressor, Reverb, Delay
+- VST3 hosting
+
+Built-in effects:
+- Parametric EQ
+- Compressor
+- Reverb
+- Delay
+
+Sound design:
 - Kick Designer for electronic music
 - Basic synthesizer (oscillators, filter, envelope)
-- VST3 hosting
 
 ## Technical Details
 
-Real-time audio engine at 44.1/48kHz with minimal latency. Each effect is a chainable modular audio processor.
+Each effect is a chainable modular audio processor.
 
-DSP implemented from scratch: biquad filters for EQ, RMS compression, Schroeder reverb, delay lines with feedback.
+DSP implemented from scratch:
+- Biquad filters for EQ
+- RMS compression
+- Schroeder reverb
+- Delay lines with feedback
 
 ## Links
 

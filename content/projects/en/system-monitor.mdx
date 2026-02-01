@@ -24,25 +24,37 @@ Goal: a minimalist system monitor, keyboard-driven, that consumes almost nothing
 
 - Rust 1.75+
 - Ratatui (TUI framework)
-- NVML (NVIDIA GPU)
+- sysinfo (system metrics)
+- nvml-wrapper (NVIDIA GPU)
 - Cross-platform: Linux, Windows, macOS, WSL2
 
 ## Features
 
+Performance:
 - Near-zero consumption: 0.0% CPU, ~4MB RAM
-- 9 visual themes (Matrix, Tokyo Night, etc.)
-- NVIDIA GPU monitoring: usage, VRAM, temperature, power
-- 60-second sparklines for all metrics
-- Persistent config saved in one keypress
 - Single 1.7MB binary
+- Instant startup (<100ms)
+
+Monitoring:
+- CPU, RAM, Swap in real-time
+- NVIDIA GPU: usage, VRAM, temperature, power draw
+- 60-second sparklines for all metrics
+- Processes sorted by consumption
+
+Interface:
+- 9 visual themes: Matrix, Dracula, Nord, Tokyo Night, Gruvbox, Cyberpunk, Ocean, Forest, Sunset
+- Full keyboard navigation
+- Persistent config saved in one keypress
 
 ## Technical Details
 
-Zero-overhead design: metrics are collected via native system APIs. The TUI only redraws when data changes.
+Zero-overhead design: metrics are collected via sysinfo (native system APIs). The TUI only redraws when data changes.
 
-GPU integration via NVIDIA's NVML library, real-time access to usage, memory, temperature and power consumption.
+GPU integration via nvml-wrapper (NVIDIA's NVML library), real-time access to usage, memory, temperature and power consumption.
+
+Config stored in `~/.config/system-monitor/config.toml` (Linux/WSL) or `%APPDATA%` (Windows).
 
 ## Links
 
 - [GitHub](https://github.com/Kikii95/system-monitor)
-- Pre-compiled binaries in Releases
+- Pre-compiled binaries in Releases (Linux, macOS Intel/ARM, Windows)
