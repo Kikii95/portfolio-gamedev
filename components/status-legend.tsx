@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Info } from "lucide-react";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Button } from "@/components/ui/button";
 import { STATUS_CONFIG, type ProjectStatus } from "@/lib/status-config";
@@ -17,7 +17,8 @@ export function StatusLegend() {
   return (
     <Collapsible open={isOpen} onOpenChange={setIsOpen} className="mb-6">
       <CollapsibleTrigger asChild>
-        <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground gap-2">
+        <Button variant="outline" size="sm" className="gap-2 border-primary/30 hover:border-primary hover:bg-primary/5">
+          <Info className="h-4 w-4 text-primary" />
           <span>{t("statusLegend")}</span>
           <motion.div animate={{ rotate: isOpen ? 180 : 0 }} transition={{ duration: 0.2 }}>
             <ChevronDown className="h-4 w-4" />
