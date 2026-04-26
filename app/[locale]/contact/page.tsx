@@ -92,13 +92,10 @@ export default function ContactPage() {
               <div>
                 <h3 className="text-lg font-semibold mb-2">{t('availability.title')}</h3>
                 <p className="text-muted-foreground mb-4">
-                  {t.rich('availability.description', {
-                    stage: () => <strong className="text-foreground">{t('availability.stage')}</strong>,
-                    alternance: () => <strong className="text-foreground">{t('availability.alternance')}</strong>,
-                  })}
+                  {t('availability.description')}
                 </p>
                 <Button asChild>
-                  <a href="mailto:killian.abboud@gmail.com">{t('availability.cta')}</a>
+                  <a href="https://datadawn.fr" target="_blank" rel="noopener noreferrer">{t('availability.cta')}</a>
                 </Button>
               </div>
             </div>

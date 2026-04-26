@@ -18,9 +18,9 @@ export default function AboutPage() {
   const cvUrl = locale === 'fr' ? '/cv/CV_FR.pdf' : '/cv/CV_EN.pdf';
 
   const skills = {
-    gameEngines: ["Unity", "Unreal Engine", "Godot", "Custom Engines"],
-    languages: ["C++", "C#", "TypeScript", "Python", "GLSL"],
-    tools: ["Git", "CMake", "Visual Studio", "VS Code", "Blender"],
+    gameEngines: ["Custom Engines", "Unreal Engine"],
+    languages: ["C++", "TypeScript", "Python", "C#", "GLSL"],
+    tools: ["Git", "CMake", "Tauri", "VS Code", "Visual Studio"],
     web: ["Next.js", "React", "Node.js", "PostgreSQL", "TailwindCSS"],
   };
 

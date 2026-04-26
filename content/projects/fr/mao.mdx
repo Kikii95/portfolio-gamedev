@@ -1,5 +1,5 @@
 ---
-title: "MAO — Multi-Agent Orchestrator"
+title: "MAO - Multi-Agent Orchestrator"
 description: "Framework d'orchestration de 3 agents Claude (Prompt, Chef, Worker) pour générer des projets de A à Z via Claude Code CLI"
 date: "2026-04-25"
 category: "perso"
@@ -59,13 +59,13 @@ techDetails: |
 
   Sept pages React (Vite + shadcn/ui + Zustand) :
 
-  - **Prompt** — éditeur de cahier des charges avec preview
-  - **Dashboard** — vue cross-projet, timeline runs
-  - **Settings** — config agents (modèles, params, capabilities)
-  - **Security** — approval queue, audit log
-  - **Split view** — Chef ↔ Worker en temps réel via WebSocket
-  - **Stats** — tokens, durées, taux de succès
-  - **Memory** — CRUD sur les memories accumulées
+  - **Prompt** - éditeur de cahier des charges avec preview
+  - **Dashboard** - vue cross-projet, timeline runs
+  - **Settings** - config agents (modèles, params, capabilities)
+  - **Security** - approval queue, audit log
+  - **Split view** - Chef ↔ Worker en temps réel via WebSocket
+  - **Stats** - tokens, durées, taux de succès
+  - **Memory** - CRUD sur les memories accumulées
 
   Backend FastAPI + WebSockets (uvicorn).
 
@@ -95,7 +95,7 @@ techDetails: |
   | Zustand | latest | State front |
 ---
 
-# MAO — Multi-Agent Orchestrator
+# MAO - Multi-Agent Orchestrator
 
 Framework qui fait collaborer plusieurs agents Claude pour générer des projets entiers sans micro-management.
 
@@ -109,14 +109,14 @@ Claude Code seul fait du super boulot, mais sur des tâches longues il faut le p
 
 ## Ce qui rend MAO particulier
 
-**Coût zéro API** — Le worker utilise Claude Code CLI en subprocess. MAO consomme ton abonnement, pas tes tokens. Runs longs au coût marginal nul.
+**Coût zéro API** - Le worker utilise Claude Code CLI en subprocess. MAO consomme ton abonnement, pas tes tokens. Runs longs au coût marginal nul.
 
-**Memory system** — Phase 5a : MAO apprend (patterns, erreurs, succès) et réinjecte ces leçons dans les system prompts. La 50e exécution est meilleure que la première.
+**Memory system** - Phase 5a : MAO apprend (patterns, erreurs, succès) et réinjecte ces leçons dans les system prompts. La 50e exécution est meilleure que la première.
 
-**Overnight mode** — `tmux` détaché, checkpoint atomique, resume après crash WSL/OOM. Run de 8h+ sans surveillance.
+**Overnight mode** - `tmux` détaché, checkpoint atomique, resume après crash WSL/OOM. Run de 8h+ sans surveillance.
 
-**Web UI temps réel** — Split view Chef/Worker via WebSocket, dashboard cross-projet, security approval queue.
+**Web UI temps réel** - Split view Chef/Worker via WebSocket, dashboard cross-projet, security approval queue.
 
 ## Liens
 
-Repo privé. Outil utilisé en local sur WSL — pas de démo hostée.
+Repo privé. Outil utilisé en local sur WSL - pas de démo hostée.

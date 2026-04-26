@@ -11,7 +11,7 @@
       "greeting": "Salut, je suis",
       "name": "Killian",
       "title": "Développeur Jeux Vidéo",
-      "description": "Passionné par la création d'expériences interactives immersives. Spécialisé en C++, Unity, et développement web. Actuellement en 3ème année à GTech Gaming Campus.",
+      "description": "Passionné par la création d'expériences interactives immersives. Spécialisé en C++, web et développement d'outils. Actuellement en 3ème année à GTech Gaming Campus.",
       "viewProjects": "Voir mes projets",
       "downloadCV": "Télécharger CV"
     },
@@ -72,8 +72,8 @@
     "title": "À Propos",
     "subtitle": "Développeur de jeux vidéo passionné par la création d'expériences interactives.",
     "whoAmI": "Qui suis-je ?",
-    "bio1": "Je suis un développeur de jeux vidéo en 3ème année à GTech Gaming Campus, passionné par la programmation gameplay, le développement de moteurs de jeu et l'architecture logicielle.",
-    "bio2": "Mon objectif est de créer des expériences de jeu innovantes et techniques, en combinant compétences en C++, Unity, et développement web moderne.",
+    "bio1": "Je suis un développeur de jeux vidéo en 3ème année à GTech Gaming Campus, spécialisé en développement de moteurs de jeu, web et outils dev. L'architecture logicielle et la performance sont mes terrains de jeu.",
+    "bio2": "Mon objectif : construire des outils et des expériences techniques solides, en combinant C++, web moderne (Next.js, React) et développement d'outils (Tauri, CLI, automation).",
     "skillsTitle": "Compétences Techniques",
     "skillsCategories": {
       "gameEngines": "Moteurs de Jeu",
@@ -87,7 +87,7 @@
         "period": "2023 - 2026",
         "title": "Bachelor Développeur de Jeux Vidéo",
         "school": "GTech Gaming Campus",
-        "description": "3ème année - Spécialisation Programmation Gameplay & Moteurs"
+        "description": "3ème année - Spécialisation Moteurs de jeu"
       }
     },
     "cv": {
@@ -114,10 +114,8 @@
       "profile": "Mon Profil"
     },
     "availability": {
-      "title": "Disponibilité",
-      "description": "Actuellement en recherche de {stage} ou {alternance} en développement de jeux vidéo pour 2025.",
-      "stage": "stage",
-      "alternance": "alternance",
+      "title": "Vous cherchez un dev pour 2026 ?",
+      "description": "Je travaille à travers ma société DataDawn sur des projets web, outils et dev applicatif. Si vous avez un projet à concrétiser, parlons-en.",
       "cta": "Discutons de votre projet"
     }
   },
