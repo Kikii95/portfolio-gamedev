@@ -8,6 +8,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { FileText, Download } from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
 import { useState } from "react";
+import Image from "next/image";
 
 export default function AboutPage() {
   const t = useTranslations('about');
@@ -38,13 +39,27 @@ export default function AboutPage() {
         </div>
 
         {/* Bio */}
-        <Card className="mb-8">
+        <Card className="mb-8 overflow-hidden">
           <CardHeader>
             <CardTitle>{t('whoAmI')}</CardTitle>
           </CardHeader>
-          <CardContent className="prose prose-lg dark:prose-invert max-w-none">
-            <p>{t('bio1')}</p>
-            <p>{t('bio2')}</p>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-6 items-start">
+              <div className="relative aspect-[3/4] w-full max-w-[200px] mx-auto md:mx-0 overflow-hidden rounded-lg ring-1 ring-border">
+                <Image
+                  src="/images/portrait.jpeg"
+                  alt="Killian Abboud"
+                  fill
+                  sizes="(max-width: 768px) 200px, 200px"
+                  className="object-cover"
+                  priority
+                />
+              </div>
+              <div className="prose prose-lg dark:prose-invert max-w-none">
+                <p>{t('bio1')}</p>
+                <p>{t('bio2')}</p>
+              </div>
+            </div>
           </CardContent>
         </Card>
 
