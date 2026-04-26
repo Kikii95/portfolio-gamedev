@@ -1,0 +1,87 @@
+---
+title: "HUMAIN"
+description: "Jeu de cartes introspectif iOS/Android : 11 thèmes, 115 questions miroir entre vulnérabilité et gratitude"
+date: "2026-04-26"
+category: "perso"
+tags: ["React Native", "Expo", "TypeScript", "Reanimated", "Mobile", "iOS", "Android"]
+featured: true
+status: "stable"
+gallery: []
+techDetails: |
+  ## Concept
+
+  Jeu de cartes pour 2+ joueurs, sans compétition, conçu pour renforcer l'écoute et le respect. Chaque partie thématique propose 5 paires de questions miroir : une face sombre (vulnérabilité, doutes) et une face lumière (gratitude, force).
+
+  ## Architecture
+
+  ```
+  ┌─────────────────────────────────────────┐
+  │              App (Expo)                 │
+  ├─────────────┬───────────────────────────┤
+  │  Navigation │  React Navigation v7      │
+  │  Theme      │  Tokens centralisés       │
+  │  Constants  │  Animation durations      │
+  │  Screens    │  Home / Game / Catalog    │
+  │  Components │  Card / Flip / Gradient   │
+  │  Data       │  11 thèmes × 5 paires     │
+  └─────────────┴───────────────────────────┘
+  ```
+
+  ## Animation 3D
+
+  Le retournement des cartes utilise une perspective 3D custom via `react-native-reanimated` 4.1, sans `useNativeDriver` (incompatible avec les transformations 3D matricielles). Interpolations sur `rotateY`, gestion fine de l'opacité face avant/arrière.
+
+  ## Design System
+
+  | Token | Valeur |
+  |-------|--------|
+  | Noir profond | `#0D0D0D` |
+  | Doré | `#D4A574` |
+  | Crème | `#F0E6D8` |
+  | Headers | Playfair Display |
+  | Body | DM Sans |
+
+  ## Stack
+
+  | Tech | Version | Rôle |
+  |------|---------|------|
+  | React Native | 0.81 | Runtime mobile |
+  | Expo | SDK 54 | Build, OTA, linking |
+  | TypeScript | 5.9 (strict) | Typage |
+  | Reanimated | 4.1 | Flip 3D |
+  | React Navigation | v7 | Native stack |
+  | EAS | latest | Build + Submit |
+
+  ## Quality Shield
+
+  - Strict mode TS, **0 `any`**
+  - **0 magic number** : tous les tokens dans `theme/` et `constants/`
+  - Fichiers <300 lignes, composants <150
+  - 42 fichiers TS, 1420 lignes, 0 erreur de type
+
+  ## Offline-first
+
+  Tout est embarqué : aucun backend, aucun appel réseau, jeu standalone. Les 115 questions sont stockées en données typées, splittées en 3 fichiers pour la lisibilité.
+---
+
+# HUMAIN
+
+Application mobile introspective pour rapprocher des gens autour de questions qui comptent. Pas de gagnant, pas de score : juste l'écoute.
+
+## Contexte
+
+Projet personnel démarré en avril 2026, v1.0.0 publiée le 26/04. Conçu, designé et développé en solo. Propriété intellectuelle personnelle.
+
+## Ce que ça fait
+
+**11 thèmes** — Chaque partie creuse un sujet (relation à soi, aux autres, au temps qui passe, à la peur…). 5 paires de questions par thème.
+
+**Mécanique miroir** — Pour chaque sujet, deux questions complémentaires : une qui pousse à parler de ce qui fait mal, une qui pousse à reconnaître ce qui aide. Tu choisis quelle face retourner.
+
+**Variante "Vers les autres"** — Au lieu de répondre soi-même, on devine ce que l'autre dirait.
+
+**Catalogue filtrable** — Toutes les questions consultables hors partie, par thème.
+
+## Distribution
+
+Repo privé. Build EAS pour iOS et Android. Pas de démo publique (IP perso).

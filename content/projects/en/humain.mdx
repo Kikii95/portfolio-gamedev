@@ -1,0 +1,87 @@
+---
+title: "HUMAIN"
+description: "Introspective iOS/Android card game: 11 themes, 115 mirror questions between vulnerability and gratitude"
+date: "2026-04-26"
+category: "perso"
+tags: ["React Native", "Expo", "TypeScript", "Reanimated", "Mobile", "iOS", "Android"]
+featured: true
+status: "stable"
+gallery: []
+techDetails: |
+  ## Concept
+
+  Card game for 2+ players, no competition, built to strengthen listening and respect. Each themed round serves 5 mirror pairs: a dark side (vulnerability, doubts) and a light side (gratitude, strength).
+
+  ## Architecture
+
+  ```
+  ┌─────────────────────────────────────────┐
+  │              App (Expo)                 │
+  ├─────────────┬───────────────────────────┤
+  │  Navigation │  React Navigation v7      │
+  │  Theme      │  Centralized tokens       │
+  │  Constants  │  Animation durations      │
+  │  Screens    │  Home / Game / Catalog    │
+  │  Components │  Card / Flip / Gradient   │
+  │  Data       │  11 themes × 5 pairs      │
+  └─────────────┴───────────────────────────┘
+  ```
+
+  ## 3D Animation
+
+  Card flips use a custom 3D perspective via `react-native-reanimated` 4.1, without `useNativeDriver` (incompatible with matrix-based 3D transforms). Interpolation on `rotateY` with fine-grained front/back opacity control.
+
+  ## Design System
+
+  | Token | Value |
+  |-------|-------|
+  | Deep black | `#0D0D0D` |
+  | Gold | `#D4A574` |
+  | Cream | `#F0E6D8` |
+  | Headers | Playfair Display |
+  | Body | DM Sans |
+
+  ## Stack
+
+  | Tech | Version | Role |
+  |------|---------|------|
+  | React Native | 0.81 | Mobile runtime |
+  | Expo | SDK 54 | Build, OTA, linking |
+  | TypeScript | 5.9 (strict) | Typing |
+  | Reanimated | 4.1 | 3D flip |
+  | React Navigation | v7 | Native stack |
+  | EAS | latest | Build + Submit |
+
+  ## Quality Shield
+
+  - Strict TS, **0 `any`**
+  - **0 magic number**: every token lives in `theme/` and `constants/`
+  - Files <300 lines, components <150
+  - 42 TS files, 1420 lines, 0 type errors
+
+  ## Offline-first
+
+  Everything ships in the bundle: no backend, no network calls, fully standalone. The 115 questions are typed data, split across 3 files for readability.
+---
+
+# HUMAIN
+
+Introspective mobile app to bring people closer through questions that matter. No winner, no score — just listening.
+
+## Context
+
+Personal project started April 2026, v1.0.0 released 26/04. Designed and built solo. Personal IP.
+
+## What it does
+
+**11 themes** — Each round digs into one topic (self, others, time passing, fear…). 5 question pairs per theme.
+
+**Mirror mechanic** — For each subject, two complementary questions: one that pushes you to share what hurts, one that pushes you to acknowledge what helps. You choose which side to flip.
+
+**"Toward others" variant** — Instead of answering for yourself, you guess what the other person would say.
+
+**Filterable catalog** — All questions browsable outside a game, by theme.
+
+## Distribution
+
+Private repo. EAS build for iOS and Android. No public demo (personal IP).

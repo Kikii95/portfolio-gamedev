@@ -1,0 +1,122 @@
+---
+title: "MAO — Multi-Agent Orchestrator"
+description: "Framework orchestrating 3 Claude agents (Prompt, Chef, Worker) to bootstrap entire projects through Claude Code CLI"
+date: "2026-04-25"
+category: "perso"
+tags: ["Python 3.11", "FastAPI", "React 18", "Vite", "Claude Code CLI", "WebSockets", "Pydantic", "Multi-Agent"]
+featured: true
+status: "actif"
+gallery: []
+techDetails: |
+  ## Concept
+
+  Three Claude agents collaborate to bootstrap a full project without human micro-management:
+
+  ```
+  ┌──────────────┐
+  │ PromptAgent  │  Dialogue with the user
+  │  (dialogue)  │  → structured spec
+  └──────┬───────┘
+         │
+         ▼
+  ┌──────────────┐
+  │  ChefAgent   │  Decomposes into tasks
+  │  (planning)  │  → capability tags, order, priorities
+  └──────┬───────┘
+         │
+         ▼
+  ┌──────────────┐
+  │ WorkerAgent  │  Executes via Claude Code CLI
+  │ (execution)  │  → real code on disk
+  └──────────────┘
+  ```
+
+  Workflow: `mao init` → conversation → `mao run` → bootstrapped project.
+
+  ## Zero API cost
+
+  The worker uses **Claude Code CLI as a subprocess** instead of calling the Anthropic API directly. As a result, MAO burns your **Claude Code subscription**, not API tokens. Long, frequent runs at marginal cost zero.
+
+  ## Memory system (Phase 5a)
+
+  Self-learning: MAO captures what it discovers during execution.
+
+  | Type | Example |
+  |------|---------|
+  | PATTERN | "For Next.js 15, default to the app router" |
+  | LEARNING | "pnpm install fails if Node <20" |
+  | DECISION | "Prefer Tauri over Electron for bundle size" |
+  | ERROR | "Prisma generate must run after every schema change" |
+  | SUCCESS | "Outbox pattern works for offline-first" |
+
+  Combined retrieval: keyword + recency + confidence. Markdown injection into agent system prompts.
+
+  ## Hierarchical execution (Phase 5b)
+
+  For large projects, an **ArchitectAgent** decomposes the spec into acyclic subsystems before handing off to Chefs/Workers. Coordination via an internal message bus. Specialized workers (backend, frontend, test, devops) routed by capability tags.
+
+  ## Web UI
+
+  Seven React pages (Vite + shadcn/ui + Zustand):
+
+  - **Prompt** — spec editor with preview
+  - **Dashboard** — cross-project view, run timeline
+  - **Settings** — agent config (models, params, capabilities)
+  - **Security** — approval queue, audit log
+  - **Split view** — Chef ↔ Worker live via WebSocket
+  - **Stats** — tokens, durations, success rate
+  - **Memory** — CRUD on accumulated memories
+
+  Backend: FastAPI + WebSockets (uvicorn).
+
+  ## Security module
+
+  - **Approval queue**: sensitive commands gated by manual validation
+  - **Auto-whitelist**: common dev scripts detected (package.json, Makefile, pyproject.toml)
+  - **JSONL audit log**: full trace, replayable
+  - **Modes**: `autonomous` (whitelist only), `strict` (everything human-validated)
+
+  ## Overnight mode
+
+  For long runs (multiple hours): execution in detached `tmux`, **atomic checkpoint** between every task, resume after WSL/OOM crash. Crash-free across 8h+ runs.
+
+  ## Stack
+
+  | Tech | Version | Role |
+  |------|---------|------|
+  | Python | 3.11+ | Core orchestration |
+  | Pydantic | latest | Typed models |
+  | Typer | latest | CLI |
+  | Loguru | latest | Structured logs |
+  | FastAPI | 0.109+ | Web UI backend |
+  | WebSockets | 12+ | Live stream |
+  | React | 18 | Web UI |
+  | Vite | latest | Front build |
+  | Zustand | latest | Front state |
+---
+
+# MAO — Multi-Agent Orchestrator
+
+Framework that makes several Claude agents collaborate to generate entire projects without constant micro-management.
+
+## Context
+
+Personal project started 03/02/2026. v0.5.0 (memory) in April, v0.8.0 shipped 25/04 with cross-project dashboard, run history and the memoria UI.
+
+## Why
+
+Claude Code on its own does great work, but on long tasks you have to babysit it. MAO automates the loop: one agent talks to you to clarify the spec, another plans, a third executes. You come back to an already-bootstrapped project.
+
+## What makes MAO different
+
+**Zero API cost** — The worker uses Claude Code CLI as a subprocess. MAO burns your subscription, not your tokens. Long runs at marginal cost zero.
+
+**Memory system** — Phase 5a: MAO learns (patterns, errors, successes) and reinjects those lessons into agent system prompts. The 50th run is better than the first.
+
+**Overnight mode** — Detached `tmux`, atomic checkpoint, resume after WSL/OOM crash. 8h+ unsupervised runs.
+
+**Live Web UI** — Chef/Worker split view over WebSocket, cross-project dashboard, security approval queue.
+
+## Links
+
+Private repo. Local tool on WSL — no hosted demo.

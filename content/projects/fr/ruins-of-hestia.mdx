@@ -1,0 +1,116 @@
+---
+title: "Ruins Of Hestia"
+description: "Jeu hybride gestion de village + expéditions action : Cali, une Primoris écrasée sur Hestia, doit comprendre la corruption Harmathys"
+date: "2026-04-29"
+category: "école"
+tags: ["C++20", "Vulkan 1.3", "CMake", "vcpkg", "ECS", "GLFW", "Game Design", "Procedural Generation", "Team Project"]
+featured: true
+status: "actif"
+gallery: []
+techDetails: |
+  ## Pitch
+
+  Cali, créature humanoïde du peuple **Primoris**, s'écrase sur la planète **Hestia** suite à un problème moteur. Elle se réveille sans mémoire, recueillie par les **Perséphins**. Avec l'aide d'**Iris**, un jeune Perséphin courageux, elle découvre que la planète est ravagée par la **corruption Harmathys** — un mécanisme de défense activé par l'arrivée des Primoris, qui transforme les habitants pacifiques en créatures agressives.
+
+  ## Genre & boucle de gameplay
+
+  Hybride **gestion de village** + **expéditions action/exploration**. Le joueur alterne entre deux phases :
+
+  ```
+  ┌──────────────────┐         ┌──────────────────┐
+  │  PHASE VILLAGE   │ ◄─────► │ PHASE EXPÉDITION │
+  │  (gestion iso.)  │ cycles  │  (action ZQSD)   │
+  ├──────────────────┤         ├──────────────────┤
+  │ • Drag & drop    │         │ • Combat         │
+  │ • Bâtiments      │         │ • Puzzles        │
+  │ • Population     │         │ • Récolte        │
+  │ • Héros          │         │ • Boss           │
+  └──────────────────┘         └──────────────────┘
+  ```
+
+  Chaque expédition consomme un **cycle** village (1 ration/villageois). Le village s'étend de 3×3 → 10×10 parcelles de 7×7 cases via les fragments de carte ramenés des expéditions.
+
+  ## Univers — 6 peuples
+
+  | Peuple | Zone | Caractéristiques |
+  |--------|------|------------------|
+  | Perséphins | Plaines centrales | Marchands nomades, sociaux |
+  | Yōtl | Dunes de sable | Guerriers, code d'honneur |
+  | Arynes | Forêts écarlates | Artistes, festifs |
+  | Kaprass | Montagnes | Astrologues, isolés |
+  | Khétus | Côtes | Navigateurs, pêcheurs |
+  | Primoris | Espace | Colons, technologie avancée |
+
+  Cinq peuples = cinq biomes jouables avec ressources, ennemis et ambiance propres. Les Primoris sont la cause involontaire de la corruption.
+
+  ## Mécaniques village
+
+  Cinq bâtiments clés :
+
+  - **Arbre de vie** — Bâtiment central, plafonne le niveau des autres bâtiments
+  - **Habitation** — Augmente la capacité de villageois
+  - **Hôpital** — Purifie les villageois corrompus + soigne les héros
+  - **Forge** — Craft d'équipement (T1-T4) + reroll de stats via gemmes
+  - **Caserne** — Lance les **excursions** (1-3 héros en autonomie)
+
+  ## Mécaniques expédition
+
+  - **5 biomes × 4 zones** + mode **Endless** débloqué après zone 16
+  - **5 classes de héros** : DPS, Tank, Healer, Récolteur, Chercheur de trésor
+  - **Tiers T1-T5** sur ressources, équipement et traits
+  - **6 couleurs de gemmes** pour reroll (incolore = matériau, colorées = bloquent un trait)
+  - **5 types de puzzles** : Piano, Plaque, Caisse-Plaque, Tangram, Memory
+  - Stats riches : armure, force, vitesse, fortune, chance, critique, combo, enchaînement, portée…
+
+  ## Stack technique
+
+  | Tech | Version | Rôle |
+  |------|---------|------|
+  | C++ | 20 | Langage core |
+  | Vulkan | 1.3 | Pipeline graphique |
+  | CMake | 3.20+ | Build system |
+  | vcpkg | latest | Dépendances |
+  | GLFW | 3.x | Windowing |
+  | GLM | latest | Math 3D |
+  | RtAudio | 5.x | Audio |
+  | stb_image | latest | Textures |
+
+  Engine custom organisé en 5 librairies GPC : **Framework** (clock, transform, state machine), **Render** (Vulkan, textures, shaders), **Audio**, **Assets** (loader, macros), **Engine** (pattern Entity-Component-System complet).
+
+  Génération procédurale tile-based pour les maps d'expédition : choix de forme de zone → liaison départ/arrivée → fermeture des murs → représentation en arbre pour les puzzles → collapsing des salles.
+
+  ## Équipe & contexte
+
+  **17 personnes** — Tech : Ethan Gilotin & Tristan Monat-Merlen (leads) + 7 devs ; Art : Eloïse Nicouleau ; Business : Mathéo Kasiborski ; TV/Multimédia : Théo Deldicque. **154+ commits**, 6 contributors actifs côté code.
+
+  Projet **Gaming Campus Awards 2025-2026** — validation Bachelor 3A.
+
+  | Date | Rendu | Status |
+  |------|-------|--------|
+  | 03/02/2026 | Pitch | ✅ |
+  | 25/02/2026 | MAAV (compositeurs) | ✅ |
+  | 27/02/2026 | Préproduction | ✅ |
+  | 29/04/2026 | Final | ⏳ |
+---
+
+# Ruins Of Hestia
+
+Jeu en équipe développé pour les Gaming Campus Awards 25-26. Rôle dev sur l'engine custom C++/Vulkan.
+
+## Contexte
+
+Grand Projet Commun Bachelor 3A — 17 personnes réparties sur cinq pôles (Tech, Art, Business, TV, Sound). Production sur cinq mois de janvier à fin avril 2026.
+
+## Concept
+
+Hybride **management** + **action/exploration**. On gère un village de Perséphins en vue isométrique drag & drop, et on part en expéditions vue isométrique fixe ZQSD pour récolter des ressources, combattre la corruption et avancer dans l'histoire de Cali.
+
+Cinq biomes jouables (un par peuple), 5 classes de héros, système de tiers T1-T5 sur tout (ressources, équipement, traits), reroll par gemmes colorées, puzzles intégrés (Piano, Plaque, Caisse, Tangram, Memory), mode endless après la zone 16.
+
+## Stack & engine
+
+C++20, Vulkan 1.3, CMake + vcpkg. Engine custom : 5 libs (Framework, Render, Audio, Assets, Engine ECS) + scenes. Pipeline graphique avec shaders GLSL/SPIR-V, compute pour les particules GPU. Génération procédurale tile-based des maps d'expédition.
+
+## Liens
+
+Repo privé (école). Pas de démo publique avant le rendu final du 29/04/2026.

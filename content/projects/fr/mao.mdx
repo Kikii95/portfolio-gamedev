@@ -1,0 +1,122 @@
+---
+title: "MAO — Multi-Agent Orchestrator"
+description: "Framework d'orchestration de 3 agents Claude (Prompt, Chef, Worker) pour générer des projets de A à Z via Claude Code CLI"
+date: "2026-04-25"
+category: "perso"
+tags: ["Python 3.11", "FastAPI", "React 18", "Vite", "Claude Code CLI", "WebSockets", "Pydantic", "Multi-Agent"]
+featured: true
+status: "actif"
+gallery: []
+techDetails: |
+  ## Concept
+
+  Trois agents Claude qui collaborent pour bootstrapper un projet complet sans intervention humaine :
+
+  ```
+  ┌──────────────┐
+  │ PromptAgent  │  Dialogue avec l'utilisateur
+  │  (dialogue)  │  → cahier des charges structuré
+  └──────┬───────┘
+         │
+         ▼
+  ┌──────────────┐
+  │  ChefAgent   │  Décompose en tâches
+  │ (planning)   │  → tags de capacités, ordre, priorités
+  └──────┬───────┘
+         │
+         ▼
+  ┌──────────────┐
+  │ WorkerAgent  │  Exécute via Claude Code CLI
+  │ (exécution)  │  → code réel sur disque
+  └──────────────┘
+  ```
+
+  Workflow : `mao init` → conversation → `mao run` → projet bootstrappé.
+
+  ## Coût zéro API
+
+  Le worker utilise **Claude Code CLI en subprocess** au lieu d'appeler l'API Anthropic directement. Conséquence : MAO consomme ton **abonnement Claude Code**, pas des tokens API. Runs longs et nombreux à coût marginal nul.
+
+  ## Memory system (Phase 5a)
+
+  Auto-apprentissage : MAO capture ce qu'il découvre pendant l'exécution.
+
+  | Type | Exemple |
+  |------|---------|
+  | PATTERN | "Pour Next.js 15, utiliser app router par défaut" |
+  | LEARNING | "pnpm install échoue si Node <20" |
+  | DECISION | "Préférer Tauri à Electron pour le bundle size" |
+  | ERROR | "Prisma generate doit tourner après chaque schema change" |
+  | SUCCESS | "Le pattern outbox marche pour offline-first" |
+
+  Retrieval combiné : keyword + recency + confidence. Injection markdown dans les system prompts des agents.
+
+  ## Hierarchical execution (Phase 5b)
+
+  Pour les gros projets, un **ArchitectAgent** décompose en sous-systèmes acycliques avant de déléguer aux Chef/Workers. Coordination via un message bus interne. Workers spécialisés (backend, frontend, test, devops) routés par capability tags.
+
+  ## Web UI
+
+  Sept pages React (Vite + shadcn/ui + Zustand) :
+
+  - **Prompt** — éditeur de cahier des charges avec preview
+  - **Dashboard** — vue cross-projet, timeline runs
+  - **Settings** — config agents (modèles, params, capabilities)
+  - **Security** — approval queue, audit log
+  - **Split view** — Chef ↔ Worker en temps réel via WebSocket
+  - **Stats** — tokens, durées, taux de succès
+  - **Memory** — CRUD sur les memories accumulées
+
+  Backend FastAPI + WebSockets (uvicorn).
+
+  ## Module Security
+
+  - **Approval queue** : commandes sensibles passent par validation manuelle
+  - **Auto-whitelist** : scripts dev courants détectés (package.json, Makefile, pyproject.toml)
+  - **Audit log JSONL** : trace complète, replay possible
+  - **Modes** : `autonomous` (whitelist seule), `strict` (tout valide humain)
+
+  ## Overnight mode
+
+  Pour les runs longs (plusieurs heures) : exécution en `tmux` détaché, **checkpoint atomique** entre chaque task, resume après crash WSL/OOM. Crash-free sur 8h+ de runs.
+
+  ## Stack
+
+  | Tech | Version | Rôle |
+  |------|---------|------|
+  | Python | 3.11+ | Core orchestration |
+  | Pydantic | latest | Modèles typés |
+  | Typer | latest | CLI |
+  | Loguru | latest | Logs structurés |
+  | FastAPI | 0.109+ | Backend Web UI |
+  | WebSockets | 12+ | Stream temps réel |
+  | React | 18 | Web UI |
+  | Vite | latest | Build front |
+  | Zustand | latest | State front |
+---
+
+# MAO — Multi-Agent Orchestrator
+
+Framework qui fait collaborer plusieurs agents Claude pour générer des projets entiers sans micro-management.
+
+## Contexte
+
+Projet personnel démarré le 03/02/2026. v0.5.0 (memory) en avril, v0.8.0 shippée le 25/04 avec dashboard cross-projet, run history et UI memoria.
+
+## Pourquoi
+
+Claude Code seul fait du super boulot, mais sur des tâches longues il faut le piloter sans relâche. MAO automatise cette boucle : un agent te parle pour clarifier le besoin, un autre planifie, un troisième exécute. Tu reviens sur un projet déjà bootstrappé.
+
+## Ce qui rend MAO particulier
+
+**Coût zéro API** — Le worker utilise Claude Code CLI en subprocess. MAO consomme ton abonnement, pas tes tokens. Runs longs au coût marginal nul.
+
+**Memory system** — Phase 5a : MAO apprend (patterns, erreurs, succès) et réinjecte ces leçons dans les system prompts. La 50e exécution est meilleure que la première.
+
+**Overnight mode** — `tmux` détaché, checkpoint atomique, resume après crash WSL/OOM. Run de 8h+ sans surveillance.
+
+**Web UI temps réel** — Split view Chef/Worker via WebSocket, dashboard cross-projet, security approval queue.
+
+## Liens
+
+Repo privé. Outil utilisé en local sur WSL — pas de démo hostée.
