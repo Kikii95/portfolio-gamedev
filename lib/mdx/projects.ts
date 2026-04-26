@@ -13,6 +13,7 @@ export interface ProjectMetadata {
   category: 'école' | 'perso' | 'travail';
   tags: string[];
   featured?: boolean;
+  pinned?: boolean;
   status?: 'actif' | 'pause' | 'stable' | 'maintenance' | 'archive';
   github?: string;
   buildUrl?: string;
@@ -58,6 +59,11 @@ export function getAllProjects(locale: string = 'fr'): Project[] {
     });
 
   return allProjects.sort((a, b) => {
+    const aPinned = a.metadata.pinned ? 1 : 0;
+    const bPinned = b.metadata.pinned ? 1 : 0;
+    if (aPinned !== bPinned) {
+      return bPinned - aPinned;
+    }
     if (a.metadata.date < b.metadata.date) {
       return 1;
     } else {
