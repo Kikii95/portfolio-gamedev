@@ -55,7 +55,7 @@
       "status": "Status",
       "links": "Links",
       "githubRepo": "GitHub Repository",
-      "downloadBuild": "Download Build",
+      "downloadBuild": "View project",
       "technicalDoc": "Technical Documentation",
       "technicalDocSubtitle": "Technical details and project architecture",
       "architecture": "Architecture",
