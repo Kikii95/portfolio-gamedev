@@ -48,6 +48,8 @@
     },
     "statusLegend": "Status Legend",
     "featured": "Featured",
+    "beta": "Beta",
+    "betaTooltip": "Public beta in progress - testable now",
     "detail": {
       "information": "Information",
       "date": "Date",

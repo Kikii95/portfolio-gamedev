@@ -14,6 +14,7 @@ export interface ProjectMetadata {
   tags: string[];
   featured?: boolean;
   pinned?: boolean;
+  beta?: boolean;
   status?: 'actif' | 'pause' | 'stable' | 'maintenance' | 'archive';
   github?: string;
   buildUrl?: string;

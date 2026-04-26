@@ -103,6 +103,18 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
                   {t('featured')}
                 </Badge>
               )}
+              {project.beta && (
+                <Badge
+                  title={t('betaTooltip')}
+                  className="relative bg-amber-500/15 text-amber-400 border border-amber-500/40 hover:bg-amber-500/25 transition-colors"
+                >
+                  <span className="relative flex h-2 w-2 mr-1.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-400"></span>
+                  </span>
+                  {t('beta')}
+                </Badge>
+              )}
               {project.status && (
                 <StatusBadge status={project.status as ProjectStatus} variant="card" />
               )}
