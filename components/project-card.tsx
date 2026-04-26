@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { ProjectMetadata } from "@/lib/mdx/projects";
 import { ProjectStatus } from "@/lib/status-config";
 import { motion } from "framer-motion";
@@ -104,16 +105,23 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
                 </Badge>
               )}
               {project.beta && (
-                <Badge
-                  title={t('betaTooltip')}
-                  className="relative bg-amber-500/15 text-amber-400 border border-amber-500/40 hover:bg-amber-500/25 transition-colors"
-                >
-                  <span className="relative flex h-2 w-2 mr-1.5">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-400"></span>
-                  </span>
-                  {t('beta')}
-                </Badge>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Badge
+                      onClick={(e) => e.preventDefault()}
+                      className="relative bg-amber-500/15 text-amber-400 border border-amber-500/40 hover:bg-amber-500/25 transition-colors cursor-help"
+                    >
+                      <span className="relative flex h-2 w-2 mr-1.5">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-400"></span>
+                      </span>
+                      {t('beta')}
+                    </Badge>
+                  </TooltipTrigger>
+                  <TooltipContent side="top" className="bg-amber-500/95 text-amber-950 font-medium border border-amber-400/50 shadow-lg shadow-amber-500/20">
+                    {t('betaTooltip')}
+                  </TooltipContent>
+                </Tooltip>
               )}
               {project.status && (
                 <StatusBadge status={project.status as ProjectStatus} variant="card" />
