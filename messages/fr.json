@@ -10,8 +10,8 @@
     "hero": {
       "greeting": "Salut, je suis",
       "name": "Killian",
-      "title": "Développeur Jeux Vidéo",
-      "description": "Passionné par la création d'expériences interactives immersives. Spécialisé en C++, web et développement d'outils. Actuellement en 3ème année à GTech Gaming Campus.",
+      "title": "Développeur",
+      "description": "Spécialisé en moteurs de jeu, web et outils dev. Bachelor en cours à GTech Gaming Campus, mais mon terrain dépasse largement le jeu vidéo.",
       "viewProjects": "Voir mes projets",
       "downloadCV": "Télécharger CV"
     },
@@ -19,7 +19,7 @@
   },
   "projects": {
     "title": "Mes Projets",
-    "description": "Une sélection de mes projets en développement de jeux vidéo, outils et applications web.",
+    "description": "Une sélection de mes projets : moteurs de jeu, outils dev, applications web.",
     "filters": "Filtres",
     "projectsCount": "{count, plural, =0 {Aucun projet} one {# projet} other {# projets}} en {year}",
     "categories": "Catégories",
@@ -70,10 +70,10 @@
   },
   "about": {
     "title": "À Propos",
-    "subtitle": "Développeur de jeux vidéo passionné par la création d'expériences interactives.",
+    "subtitle": "Développeur. Moteurs, web, outils - tout ce qui demande de l'architecture solide et de la perf.",
     "whoAmI": "Qui suis-je ?",
-    "bio1": "Je suis un développeur de jeux vidéo en 3ème année à GTech Gaming Campus, spécialisé en développement de moteurs de jeu, web et outils dev. L'architecture logicielle et la performance sont mes terrains de jeu.",
-    "bio2": "Mon objectif : construire des outils et des expériences techniques solides, en combinant C++, web moderne (Next.js, React) et développement d'outils (Tauri, CLI, automation).",
+    "bio1": "Je suis développeur, en 3ème année à GTech Gaming Campus. Le cursus est orienté jeu vidéo, mais ma spécialité va bien au-delà : moteurs custom, web moderne, outils dev et automation.",
+    "bio2": "Mon objectif : construire des outils et des produits techniques solides, en combinant C++ (engine, perf), web (Next.js, React) et tooling (Tauri, CLI, automation).",
     "skillsTitle": "Compétences Techniques",
     "skillsCategories": {
       "gameEngines": "Moteurs de Jeu",
@@ -93,13 +93,13 @@
     "cv": {
       "viewButton": "Consulter mon CV",
       "dialogTitle": "Curriculum Vitae",
-      "dialogDescription": "Mon parcours, compétences et expériences en développement de jeux vidéo",
+      "dialogDescription": "Mon parcours, mes compétences et mes expériences en développement",
       "downloadButton": "Télécharger le CV"
     }
   },
   "contact": {
     "title": "Me Contacter",
-    "subtitle": "Intéressé par une collaboration, un stage ou simplement discuter de jeux vidéo ? N'hésitez pas à me contacter !",
+    "subtitle": "Intéressé par une collaboration ou un projet à concrétiser ? N'hésitez pas à me contacter.",
     "email": {
       "title": "Email",
       "description": "Envoyez-moi un email"
@@ -120,12 +120,12 @@
     }
   },
   "footer": {
-    "brand": "Portfolio GameDev",
-    "tagline": "Développeur de jeux vidéo passionné.\n3ème année GTech Gaming Campus.",
+    "brand": "Killian Abboud",
+    "tagline": "Développeur. Moteurs, web, outils.\n3ème année GTech Gaming Campus.",
     "navigation": "Navigation",
     "technologies": "Technologies",
     "social": "Réseaux",
-    "copyright": "Portfolio GameDev. Tous droits réservés.",
+    "copyright": "Killian Abboud. Tous droits réservés.",
     "madeWith": "Fait avec",
     "in": "en Next.js 14"
   },

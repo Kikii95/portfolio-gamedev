@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio GameDev | Game Developer",
-  description: "Game developer portfolio. Specialized in C++, web and tooling development. 3rd year at GTech Gaming Campus.",
+  title: "Killian Abboud | Developer Portfolio",
+  description: "Developer portfolio. Specialized in game engines, web and dev tooling. 3rd year at GTech Gaming Campus.",
 };
 
 export default function RootLayout({

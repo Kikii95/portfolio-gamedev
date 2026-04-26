@@ -10,8 +10,8 @@
     "hero": {
       "greeting": "Hi, I'm",
       "name": "Killian",
-      "title": "Game Developer",
-      "description": "Passionate about creating immersive interactive experiences. Specialized in C++, web and tooling development. Currently in 3rd year at GTech Gaming Campus.",
+      "title": "Developer",
+      "description": "Specialized in game engines, web and dev tooling. Bachelor in progress at GTech Gaming Campus, but my work goes well beyond gaming.",
       "viewProjects": "View My Projects",
       "downloadCV": "Download CV"
     },
@@ -19,7 +19,7 @@
   },
   "projects": {
     "title": "My Projects",
-    "description": "A selection of my projects in game development, tools and web applications.",
+    "description": "A selection of my projects: game engines, dev tools, web apps.",
     "filters": "Filters",
     "projectsCount": "{count, plural, =0 {No projects} one {# project} other {# projects}} in {year}",
     "categories": "Categories",
@@ -70,10 +70,10 @@
   },
   "about": {
     "title": "About",
-    "subtitle": "Game developer passionate about creating interactive experiences.",
+    "subtitle": "Developer. Engines, web, tools - anything that demands solid architecture and performance.",
     "whoAmI": "Who am I?",
-    "bio1": "I'm a game developer in 3rd year at GTech Gaming Campus, specialized in game engine development, web and dev tooling. Software architecture and performance are my playgrounds.",
-    "bio2": "My goal: build solid technical tools and experiences, combining C++, modern web (Next.js, React) and tooling development (Tauri, CLI, automation).",
+    "bio1": "I'm a developer, currently in my 3rd year at GTech Gaming Campus. The school is game-focused, but my real specialty goes well beyond that: custom engines, modern web, dev tools and automation.",
+    "bio2": "My goal: build solid technical tools and products, combining C++ (engine, performance), web (Next.js, React) and tooling (Tauri, CLI, automation).",
     "skillsTitle": "Technical Skills",
     "skillsCategories": {
       "gameEngines": "Game Engines",
@@ -93,13 +93,13 @@
     "cv": {
       "viewButton": "View my CV",
       "dialogTitle": "Curriculum Vitae",
-      "dialogDescription": "My background, skills and experience in game development",
+      "dialogDescription": "My background, skills and experience as a developer",
       "downloadButton": "Download CV"
     }
   },
   "contact": {
     "title": "Contact Me",
-    "subtitle": "Interested in collaboration, internship or just discussing video games? Feel free to reach out!",
+    "subtitle": "Interested in a collaboration or have a project to ship? Feel free to reach out.",
     "email": {
       "title": "Email",
       "description": "Send me an email"
@@ -120,12 +120,12 @@
     }
   },
   "footer": {
-    "brand": "Portfolio GameDev",
-    "tagline": "Passionate game developer.\n3rd year at GTech Gaming Campus.",
+    "brand": "Killian Abboud",
+    "tagline": "Developer. Engines, web, tools.\n3rd year at GTech Gaming Campus.",
     "navigation": "Navigation",
     "technologies": "Technologies",
     "social": "Social",
-    "copyright": "Portfolio GameDev. All rights reserved.",
+    "copyright": "Killian Abboud. All rights reserved.",
     "madeWith": "Made with",
     "in": "in Next.js 14"
   },

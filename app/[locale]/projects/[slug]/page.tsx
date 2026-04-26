@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
   }
 
   return {
-    title: `${project.metadata.title} | Portfolio GameDev`,
+    title: `${project.metadata.title} | Killian Abboud`,
     description: project.metadata.description,
   };
 }
