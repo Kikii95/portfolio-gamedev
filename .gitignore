@@ -42,3 +42,4 @@ next-env.d.ts
 design/claude-design/
 design/planche/
 design/captures/
+.env*.local
