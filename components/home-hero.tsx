@@ -46,7 +46,7 @@ export function HomeHero() {
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="group">
-              <Link href={`/${locale}/about`}>
+              <Link href={`/${locale}/jeu/about`}>
                 <span className="group-hover:scale-110 transition-transform inline-block">
                   {tNav('about')}
                 </span>

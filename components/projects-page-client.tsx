@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { Filter, X, ChevronDown } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { StatusLegend } from "./status-legend";
@@ -32,7 +32,7 @@ export function ProjectsPageClient({ projects }: ProjectsPageClientProps) {
 
   const [selectedYear, setSelectedYear] = useState<string>(defaultYear);
   const [selectedCategory, setSelectedCategory] = useState<CategoryFilter>("all");
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [pickedTags, setSelectedTags] = useState<string[]>([]);
   const [techsOpen, setTechsOpen] = useState(false);
 
   // First filter by year (primary filter)
@@ -52,15 +52,11 @@ export function ProjectsPageClient({ projects }: ProjectsPageClientProps) {
     return Array.from(tags).sort();
   }, [projectsInYear]);
 
-  // Reset tags if not available in current year (categories are always available)
-  useEffect(() => {
-    if (selectedTags.length > 0) {
-      const validTags = selectedTags.filter((tag) => availableTags.includes(tag));
-      if (validTags.length !== selectedTags.length) {
-        setSelectedTags(validTags);
-      }
-    }
-  }, [selectedYear, availableTags, selectedTags]);
+  // Tags no longer available in the selected year are ignored
+  const selectedTags = useMemo(
+    () => pickedTags.filter((tag) => availableTags.includes(tag)),
+    [pickedTags, availableTags]
+  );
 
   // Then apply secondary filters (category + tags) on year-filtered projects
   const filteredProjects = useMemo(() => {

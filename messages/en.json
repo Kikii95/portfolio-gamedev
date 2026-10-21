@@ -146,5 +146,180 @@
       "november": "November",
       "december": "December"
     }
+  },
+  "releve": {
+    "nav": {
+      "realisations": "Work",
+      "methode": "Method",
+      "parcours": "Background",
+      "contact": "Contact",
+      "atelier": "Game dev workshop",
+      "cv": "Resume",
+      "menu": "Menu"
+    },
+    "hero": {
+      "statut": "running this morning",
+      "titre": "I automate repetitive work, with a human still in charge.",
+      "poste": "Process automation & AI integration",
+      "dispo": "Available from November 2026",
+      "lieu": "Paris region",
+      "contrat": "Permanent or fixed-term",
+      "chapo": "I start on the ground: I watch how the team works, spot what costs hours, then set up the automation and AI that take it over. These systems already run, for small businesses and every day.",
+      "voir": "See the work",
+      "contact": "Get in touch",
+      "journal": "this morning's log",
+      "journalSuite": "and it keeps going"
+    },
+    "journal": [
+      [
+        "07:00",
+        "personal assistant · morning brief ready",
+        "ok"
+      ],
+      [
+        "08:00",
+        "job watch · offers collected, scored",
+        "ok"
+      ],
+      [
+        "08:05",
+        "job watch · withdrawn offers expired",
+        "ok"
+      ],
+      [
+        "08:13",
+        "SME assistant · reply ready for approval",
+        "waiting"
+      ],
+      [
+        "09:00",
+        "personal assistant · a draft awaits my go-ahead",
+        "waiting"
+      ],
+      [
+        "21:05",
+        "filing · captures sorted into cards",
+        "ok"
+      ]
+    ],
+    "etats": {
+      "ok": "ok",
+      "attente": "waiting"
+    },
+    "chiffres": [
+      {
+        "chiffre": "2",
+        "texte": "AI assistants in service at small-business clients"
+      },
+      {
+        "chiffre": "154",
+        "texte": "employers checked every morning for my family"
+      },
+      {
+        "chiffre": "5",
+        "texte": "mailboxes handled, nothing sent without a go-ahead"
+      }
+    ],
+    "realisations": {
+      "titre": "Work",
+      "chapo": "Each project reads like an execution log: what triggers it, what it does alone, where a person approves, what it delivers.",
+      "deroule": "A typical run",
+      "lire": "Read the case",
+      "pieces": "Evidence",
+      "autres": "Also built",
+      "autresChapo": "Complete web products, designed and built solo."
+    },
+    "methode": {
+      "titre": "AI prepares. You approve. It ships.",
+      "chapo": "Autonomy is set action by action: what can be undone may run alone, what commits waits for a person. Try it:",
+      "feuDe": "Assistant",
+      "feuHeure": "09:00",
+      "feuMessage": "Draft ready: reply to the supplier chasing an invoice, attachment found in Drive. Send it?",
+      "vasy": "Go",
+      "envoye": "Sent",
+      "annuler": "Cancel",
+      "tampon": "approved",
+      "etapes": [
+        [
+          "declencheur",
+          "Something comes in",
+          "an email, a job offer, a schedule, a form"
+        ],
+        [
+          "auto",
+          "AI prepares",
+          "it reads, sorts, drafts, computes"
+        ],
+        [
+          "attente",
+          "A person approves",
+          "wherever the action commits"
+        ],
+        [
+          "livre",
+          "Delivered, and logged",
+          "who approved what, and when"
+        ],
+        [
+          "reprise",
+          "One error never blocks the rest",
+          "it is flagged and retried"
+        ]
+      ],
+      "annule": "cancelled, nothing sent"
+    },
+    "parcours": {
+      "titre": "Background",
+      "lignes": [
+        [
+          "2025 – today",
+          "Founder, DataDawn",
+          "Process automation and AI for small-business owners: analysis, quotes, rollout, follow-up."
+        ],
+        [
+          "2022 – 2024 · summers",
+          "Office clerk, AXA agency",
+          "Front desk, appointments, email triage, client files; agency website and IT upkeep."
+        ],
+        [
+          "2019 – 2022 · summers",
+          "Bookkeeping assistant, SARL BMCA",
+          "Bank statements and purchase/sales invoices entry."
+        ],
+        [
+          "2026",
+          "Bachelor in software development",
+          "Game development track, Gaming Campus (G.Tech), Lyon."
+        ]
+      ],
+      "outils": "Everyday tools"
+    },
+    "contact": {
+      "titre": "Let's talk about your repetitive work",
+      "chapo": "I'm looking for a permanent or fixed-term role from November 2026, in the Paris region: automation, AI integration, operations.",
+      "mail": "Send an email",
+      "linkedin": "LinkedIn",
+      "github": "GitHub",
+      "cv": "Download resume"
+    },
+    "aiguillage": {
+      "texte": "I also build games and engines in C++.",
+      "lien": "The game dev workshop"
+    },
+    "fiche": {
+      "retour": "All work",
+      "demande": "Request",
+      "intervention": "Intervention",
+      "resultat": "Result",
+      "periode": "Period",
+      "role": "Role",
+      "outils": "Tools",
+      "suivante": "Next case",
+      "schema": "Flow diagram"
+    },
+    "piece": {
+      "lire": "Play the demo",
+      "video": "video"
+    }
   }
 }

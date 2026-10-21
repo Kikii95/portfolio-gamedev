@@ -1,25 +1,26 @@
 "use client";
 
-import { useRef, useMemo } from 'react';
+import { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
+const PARTICLES_COUNT = 2500;
+const SPREAD = 60;
+
+function createPositions(): Float32Array {
+  const positions = new Float32Array(PARTICLES_COUNT * 3);
+  for (let i = 0; i < positions.length; i++) {
+    positions[i] = (Math.random() - 0.5) * SPREAD;
+  }
+  return positions;
+}
+
+const POSITIONS = createPositions();
+
 function Particles() {
   const meshRef = useRef<THREE.Points>(null);
-
-  const particlesCount = 2500;
-
-  const positions = useMemo(() => {
-    const positions = new Float32Array(particlesCount * 3);
-
-    for (let i = 0; i < particlesCount; i++) {
-      positions[i * 3] = (Math.random() - 0.5) * 60;
-      positions[i * 3 + 1] = (Math.random() - 0.5) * 60;
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 60;
-    }
-
-    return positions;
-  }, []);
+  const particlesCount = PARTICLES_COUNT;
+  const positions = POSITIONS;
 
   useFrame((state) => {
     if (!meshRef.current) return;

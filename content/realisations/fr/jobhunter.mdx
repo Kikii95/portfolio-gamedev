@@ -1,0 +1,44 @@
+---
+ordre: 2
+titre: "La recherche d'emploi de mes proches, faite chaque matin"
+accroche: "JobHunter collecte les offres, les note contre le profil de chacun, calcule le trajet réel et range le tout dans un hub."
+statut: "en service"
+periode: "2026"
+role: "Conception et développement de bout en bout"
+demande: "Mes proches cherchent un emploi et passent des heures sur les sites d'offres, sans savoir lesquelles valent la peine ni combien de temps de trajet elles imposent."
+intervention: "Une chaîne quotidienne : collecte par les API officielles (France Travail et les plateformes de recrutement publiques des employeurs), notation par IA contre la fiche de chaque personne, calcul du trajet jusqu'à l'adresse exacte, puis un hub web où chacun consulte, note et suit ses candidatures."
+resultat: "Un hub en service, utilisé par mes proches, un compte chacun. Les offres retirées par leur source expirent seules, la liste noire de chaque fiche s'applique dès l'arrivée, et les retours de chacun affinent le passage suivant."
+recu:
+  titre: "JOBHUNTER · CHAQUE MATIN"
+  chiffre: "154"
+  legende: "employeurs interrogés chaque jour, en plus de France Travail"
+  lignes:
+    - ["Pour", "mes proches, un compte chacun"]
+    - ["Passage", "planifié, rattrapé au besoin"]
+    - ["Offres retirées", "expirées automatiquement"]
+etapes:
+  - { heure: "08:00", type: declencheur, etiquette: "planifié", verbe: "Le passage du matin démarre", detail: "rattrapé si l'ordinateur était éteint" }
+  - { heure: "08:01", type: auto, verbe: "Collecte les offres de France Travail et de 154 employeurs", detail: "API officielles et plateformes de recrutement publiques" }
+  - { heure: "08:03", type: auto, verbe: "Note chaque offre contre la fiche du candidat", detail: "Claude, sans accès à des outils, par lots" }
+  - { heure: "08:04", type: reprise, etiquette: "reprise", verbe: "Lieu trop vague : aucun trajet inventé", detail: "« Paris » seul : trajet inconnu, l'offre reste notée" }
+  - { heure: "08:05", type: auto, verbe: "Calcule le trajet jusqu'à l'adresse exacte", detail: "transports en commun d'Île-de-France" }
+  - { heure: "08:06", type: livre, etiquette: "livré", verbe: "Les offres arrivent dans le hub de chacun", detail: "notes et retours affinent le passage suivant" }
+pieces:
+  - { type: video, src: "/medias/jobhunter/jobhunter.mp4", poster: "/medias/jobhunter/jobhunter-poster.webp", legende: "Fil d'offres notées, fiche d'une offre, mode Découvrir", duree: "vidéo · 0:43" }
+  - { type: image, src: "/medias/jobhunter/01-fil-offres-bureau.webp", legende: "Le fil : chaque offre notée contre la fiche" }
+  - { type: image, src: "/medias/jobhunter/02-fiche-offre-bureau.webp", legende: "Pourquoi ça colle : la note décomposée" }
+  - { type: image, src: "/medias/jobhunter/04-fiche-candidat-bureau.webp", legende: "La fiche du candidat, qui guide la notation" }
+  - { type: image, src: "/medias/jobhunter/03-decouverte-mobile.webp", legende: "Découvrir, sur téléphone", format: mobile }
+outils: ["Python", "API France Travail", "Claude", "Next.js", "PostgreSQL", "Vercel"]
+liens: []
+---
+
+## Pourquoi un hub plutôt qu'une liste
+
+Une liste d'offres se lit une fois. Le hub garde la mémoire : ce qui a été écarté ne revient pas, ce qui a été aimé fait remonter les offres proches, et chaque candidature a son suivi.
+
+## Les garde-fous
+
+- **Rien d'inventé** : une offre sans lien public vérifiable est écartée ; un lieu flou ne reçoit pas de trajet.
+- **Sources officielles** : API publiques uniquement, débits respectés, aucune protection contournée.
+- **Chacun chez soi** : les données d'un membre ne sont jamais visibles d'un autre.

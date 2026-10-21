@@ -1,14 +1,11 @@
 "use client";
 
-import Link from "next/link";
-import { useTranslations, useLocale } from "next-intl";
+import { useTranslations } from "next-intl";
 import { Github, Linkedin, Mail } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 
 export function Footer() {
   const t = useTranslations('footer');
-  const tNav = useTranslations('nav');
-  const locale = useLocale();
   const currentYear = new Date().getFullYear();
 
   return (
