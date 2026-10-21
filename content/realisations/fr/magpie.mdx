@@ -1,0 +1,31 @@
+---
+ordre: 4
+titre: "Mes captures rangées en fiches, sans que j'y touche"
+accroche: "Magpie transforme les vidéos, liens et captures d'écran que je mets de côté en fiches classées et recherchables."
+statut: "en service"
+periode: "2026"
+role: "Conception et développement"
+demande: "Des centaines de captures accumulées sur le téléphone (recettes, lieux, outils, idées) que je ne retrouve jamais au moment où j'en ai besoin."
+intervention: "Une boîte de réception où j'envoie mes captures, puis une passe d'IA qui lit chaque contenu, en tire l'essentiel, rédige une fiche classée par type, compresse les médias et met l'index à jour."
+resultat: "Des fiches rangées et recherchables, consultables depuis une application web. Le tri passe par mon abonnement Claude : aucun coût d'API à la capture."
+recu:
+  titre: "MAGPIE · RANGEMENT"
+  chiffre: "0 €"
+  legende: "de coût d'API par capture rangée"
+  lignes:
+    - ["Entrée", "vidéos, liens, captures"]
+    - ["Sortie", "fiches classées par type"]
+etapes:
+  - { heure: "21:00", type: declencheur, etiquette: "capture", verbe: "Une capture arrive dans la boîte de réception", detail: "partagée depuis le téléphone" }
+  - { heure: "21:02", type: auto, verbe: "Lit le contenu et en tire l'essentiel" }
+  - { heure: "21:03", type: reprise, etiquette: "doublon", verbe: "Déjà rangée : rattachée à la fiche existante" }
+  - { heure: "21:04", type: auto, verbe: "Rédige une fiche classée par type", detail: "recette, lieu, outil, idée…" }
+  - { heure: "21:05", type: livre, etiquette: "rangé", verbe: "La fiche est rangée et recherchable" }
+pieces: []
+outils: ["Claude Code", "Python", "Next.js", "Obsidian"]
+liens: []
+---
+
+## Ne jamais perdre une capture
+
+Une capture qui n'a pas pu être traitée n'est jamais jetée : elle attend le passage suivant. La boîte de réception est déplacée avant traitement, pas vidée.

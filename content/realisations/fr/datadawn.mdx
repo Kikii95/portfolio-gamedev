@@ -1,0 +1,43 @@
+---
+ordre: 1
+titre: "Des assistants IA en service chez des PME"
+accroche: "DataDawn, mon cabinet d'automatisation : l'IA prépare le travail répétitif, l'équipe valide ce qui compte."
+statut: "en service"
+periode: "2025 – aujourd'hui"
+role: "Fondateur : analyse des process, conception, mise en service, suivi"
+demande: "Des dirigeants de TPE et PME perdent des heures sur les mêmes tâches : répondre aux questions des salariés, trier et répondre aux mails entrants, relancer les impayés. Ils veulent gagner ce temps sans perdre la main sur ce qui part chez leurs clients."
+intervention: "Entretiens avec les dirigeants et étude de leurs procédures, cahier des charges, devis. Puis mise en place des automatisations (workflows n8n, API, modèles d'IA) et d'un portail client où chaque entreprise active ses outils, valide les envois sensibles avant leur départ et retrouve ses factures."
+resultat: "Deux assistants IA en service chez des clients : l'un répond aux questions des salariés à partir des documents de l'entreprise (hébergé en Europe, contrat de 12 mois), l'autre prépare les réponses aux mails entrants. Une relance automatique des impayés est en bêta pour des cabinets d'assurance."
+recu:
+  titre: "DATADAWN · DEPUIS 2025"
+  chiffre: "2"
+  legende: "assistants IA en service chez des clients"
+  lignes:
+    - ["Hébergement", "Europe"]
+    - ["Envois sensibles", "validés par le client"]
+    - ["Cadre", "RGPD, accès tracés"]
+etapes:
+  - { heure: "08:12", type: declencheur, etiquette: "mail entrant", verbe: "Un mail client arrive dans la boîte de l'entreprise" }
+  - { heure: "08:12", type: auto, verbe: "L'assistant le classe et retrouve le contexte", detail: "documents de l'entreprise, échanges précédents" }
+  - { heure: "08:13", type: auto, verbe: "Il rédige une réponse dans le ton de la maison" }
+  - { heure: "08:13", type: attente, etiquette: "feu vert", verbe: "La réponse attend la validation d'une personne", detail: "depuis le portail : envoyer, corriger ou écarter" }
+  - { heure: "08:40", type: livre, etiquette: "envoyé", verbe: "Le mail part, l'échange est tracé" }
+pieces: []
+outils: ["n8n", "API REST", "Webhooks", "Claude", "Mistral", "PostgreSQL", "Next.js", "Stripe"]
+liens:
+  - { label: "datadawn.fr", href: "https://datadawn.fr" }
+---
+
+## Ce que l'équipe voit
+
+Rien de nouveau à apprendre : les mails arrivent au même endroit, les réponses préparées attendent dans le portail. Un clic envoie, un autre corrige. Les envois sensibles ne partent jamais sans accord.
+
+## Ce qui tourne derrière
+
+Des workflows n8n branchés sur la messagerie et les documents de l'entreprise, un modèle d'IA choisi selon la donnée traitée (hébergement européen pour les documents internes), une branche d'erreur sur chaque étape : un mail mal compris ne bloque pas les autres, il est signalé.
+
+## Ce que je fais pour chaque client
+
+1. **Observer** : comment l'équipe travaille vraiment, où partent les heures.
+2. **Chiffrer** : le temps gagné, le coût, un devis signé.
+3. **Mettre en service** : démonstration, prise en main, suivi après le lancement.

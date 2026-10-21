@@ -146,5 +146,180 @@
       "november": "novembre",
       "december": "décembre"
     }
+  },
+  "releve": {
+    "nav": {
+      "realisations": "Réalisations",
+      "methode": "Méthode",
+      "parcours": "Parcours",
+      "contact": "Contact",
+      "atelier": "Atelier jeu vidéo",
+      "cv": "CV",
+      "menu": "Menu"
+    },
+    "hero": {
+      "statut": "en service ce matin",
+      "titre": "J'automatise les tâches répétitives, avec un humain qui garde la main.",
+      "poste": "Automatisation des process & intégration de l'IA",
+      "dispo": "Disponible en novembre 2026",
+      "lieu": "Île-de-France",
+      "contrat": "CDI ou CDD",
+      "chapo": "Je pars du terrain : j'observe comment l'équipe travaille, je repère ce qui coûte des heures, puis je mets en place l'automatisation et l'IA qui s'en chargent. Ces systèmes tournent déjà, chez des PME et au quotidien.",
+      "voir": "Voir les réalisations",
+      "contact": "Me contacter",
+      "journal": "relevé de ce matin",
+      "journalSuite": "et ça continue"
+    },
+    "journal": [
+      [
+        "07:00",
+        "assistant perso · point du matin préparé",
+        "ok"
+      ],
+      [
+        "08:00",
+        "veille emploi · offres collectées, notées",
+        "ok"
+      ],
+      [
+        "08:05",
+        "veille emploi · offres retirées expirées",
+        "ok"
+      ],
+      [
+        "08:13",
+        "assistant PME · réponse prête à valider",
+        "attente"
+      ],
+      [
+        "09:00",
+        "assistant perso · un brouillon attend mon feu vert",
+        "attente"
+      ],
+      [
+        "21:05",
+        "rangement · captures classées en fiches",
+        "ok"
+      ]
+    ],
+    "etats": {
+      "ok": "ok",
+      "attente": "attente"
+    },
+    "chiffres": [
+      {
+        "chiffre": "2",
+        "texte": "assistants IA en service chez des clients PME"
+      },
+      {
+        "chiffre": "154",
+        "texte": "employeurs interrogés chaque matin pour mes proches"
+      },
+      {
+        "chiffre": "5",
+        "texte": "comptes mail suivis, rien ne part sans feu vert"
+      }
+    ],
+    "realisations": {
+      "titre": "Réalisations",
+      "chapo": "Chaque réalisation se lit comme un relevé d'exécution : ce qui la déclenche, ce qu'elle fait seule, où une personne valide, ce qu'elle livre.",
+      "deroule": "Déroulé type d'un passage",
+      "lire": "Lire la fiche",
+      "pieces": "Pièces justificatives",
+      "autres": "Aussi construit",
+      "autresChapo": "Des produits web complets, conçus et développés seul."
+    },
+    "methode": {
+      "titre": "L'IA prépare. Vous validez. Ça part.",
+      "chapo": "Le bon niveau d'autonomie se règle action par action : ce qui est réversible peut partir seul, ce qui engage attend une personne. Essayez :",
+      "feuDe": "Assistant",
+      "feuHeure": "09:00",
+      "feuMessage": "Brouillon prêt : réponse au fournisseur qui relance sa facture, pièce jointe retrouvée dans le Drive. J'envoie ?",
+      "vasy": "Vas-y",
+      "envoye": "Envoyé",
+      "annuler": "Annuler",
+      "tampon": "validé",
+      "etapes": [
+        [
+          "declencheur",
+          "Un événement arrive",
+          "un mail, une offre, un horaire, un formulaire"
+        ],
+        [
+          "auto",
+          "L'IA prépare",
+          "elle lit, trie, rédige, calcule"
+        ],
+        [
+          "attente",
+          "Une personne valide",
+          "là où l'action engage"
+        ],
+        [
+          "livre",
+          "C'est livré, et tracé",
+          "qui a validé quoi, et quand"
+        ],
+        [
+          "reprise",
+          "Une erreur ne bloque pas le reste",
+          "elle est signalée et reprise"
+        ]
+      ],
+      "annule": "annulé, rien n'est parti"
+    },
+    "parcours": {
+      "titre": "Parcours",
+      "lignes": [
+        [
+          "2025 – aujourd'hui",
+          "Fondateur de DataDawn",
+          "Automatisation des process et IA pour dirigeants de TPE/PME : analyse, devis, mise en service, suivi."
+        ],
+        [
+          "2022 – 2024 · étés",
+          "Employé de bureau, agence AXA",
+          "Accueil, rendez-vous, tri des mails, dossiers clients ; site de l'agence et maintenance informatique."
+        ],
+        [
+          "2019 – 2022 · étés",
+          "Aide-comptable, SARL BMCA",
+          "Saisie des relevés bancaires et des factures d'achat et de vente."
+        ],
+        [
+          "2026",
+          "Bachelor Développeur informatique",
+          "Option jeu vidéo, Gaming Campus (G.Tech), Lyon."
+        ]
+      ],
+      "outils": "Outils du quotidien"
+    },
+    "contact": {
+      "titre": "Parlons de vos tâches répétitives",
+      "chapo": "Je cherche un poste en CDI ou CDD à partir de novembre 2026, en Île-de-France : automatisation, intégration de l'IA, opérations.",
+      "mail": "Écrire un mail",
+      "linkedin": "LinkedIn",
+      "github": "GitHub",
+      "cv": "Télécharger le CV"
+    },
+    "aiguillage": {
+      "texte": "Je développe aussi des jeux et des moteurs en C++.",
+      "lien": "L'atelier jeu vidéo"
+    },
+    "fiche": {
+      "retour": "Toutes les réalisations",
+      "demande": "Demande",
+      "intervention": "Intervention",
+      "resultat": "Résultat",
+      "periode": "Période",
+      "role": "Rôle",
+      "outils": "Outils",
+      "suivante": "Réalisation suivante",
+      "schema": "Schéma du flux"
+    },
+    "piece": {
+      "lire": "Lire la démo",
+      "video": "vidéo"
+    }
   }
 }

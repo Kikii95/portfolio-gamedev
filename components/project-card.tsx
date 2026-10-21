@@ -54,7 +54,7 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <Link href={`/${locale}/projects/${project.slug}`}>
+      <Link href={`/${locale}/jeu/projects/${project.slug}`}>
         <Card className="h-full transition-all duration-300 hover:shadow-[0_0_30px_rgba(232,69,69,0.3)] hover:border-primary/50 cursor-pointer group overflow-hidden">
           {/* Image/Video Section with padding frame */}
           <div className="p-4">

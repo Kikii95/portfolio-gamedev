@@ -1,0 +1,74 @@
+/* Relevé d'exécution — tokens (docs/direction-artistique.md § 3-4) */
+html:has(.releve-site) {
+  font-size: clamp(1rem, 0.35vw + 0.85rem, 1.6rem);
+  background: #F5F6F3;
+  scroll-behavior: smooth;
+}
+
+.releve-site {
+  --papier: #F5F6F3;
+  --papier-pli: #ECEEE9;
+  --carte: #FFFFFF;
+  --filet: #D6D9D2;
+  --marge: #C9CEC4;
+  --encre: #1C211F;
+  --encre-douce: #4B524E;
+  --encre-pale: #646B66;
+  --feu-vert: #12804F;
+  --feu-vert-fond: #E3F2EA;
+  --attente: #A86400;
+  --attente-fond: #FBF0DC;
+  --declencheur: #1E5FB4;
+  --declencheur-fond: #E4EDF8;
+  --reprise: #B23A26;
+  --reprise-fond: #F8E6E2;
+  --ombre-agrafe: 0 1px 2px rgba(28, 33, 31, 0.1), 0 0.4rem 1.1rem -0.5rem rgba(28, 33, 31, 0.22);
+  --rayon-pastille: 999px;
+  --rayon-piece: 0.375rem;
+  --rayon-bouton: 0.5rem;
+  --police: var(--font-grotesk), system-ui, sans-serif;
+  --mono: var(--font-releve-mono), ui-monospace, monospace;
+  --gouttiere: clamp(1rem, 4vw, 3rem);
+  --largeur: min(100% - 2 * var(--gouttiere), 78rem);
+  --courbe: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  min-height: 100vh;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: var(--papier);
+  color: var(--encre);
+  font-family: var(--police);
+  line-height: 1.5;
+}
+
+.releve-site a { color: inherit; }
+.releve-site :focus-visible { outline: 2px solid var(--declencheur); outline-offset: 0.2rem; border-radius: 0.2rem; }
+.releve-site ::selection { background: var(--feu-vert-fond); }
+.releve-site .mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.releve-site .cadre { width: var(--largeur); margin-inline: auto; }
+
+.releve-site h1,
+.releve-site h2,
+.releve-site h3 { margin: 0; letter-spacing: -0.02em; text-wrap: balance; }
+.releve-site h1 { font-size: clamp(2.1rem, 4.2vw + 0.6rem, 4.1rem); line-height: 1.02; font-weight: 800; }
+.releve-site h2 { font-size: clamp(1.6rem, 2.2vw + 0.7rem, 2.6rem); line-height: 1.08; font-weight: 750; }
+.releve-site h3 { font-size: clamp(1.2rem, 0.8vw + 0.9rem, 1.55rem); line-height: 1.2; font-weight: 700; }
+.releve-site p { margin: 0; text-wrap: pretty; }
+.releve-site .chapo { font-size: clamp(1.05rem, 0.4vw + 0.95rem, 1.25rem); color: var(--encre-douce); max-width: 38em; }
+
+.releve-site .bouton {
+  display: inline-grid;
+  place-items: center;
+  min-height: 2.875rem;
+  padding: 0 1.25rem;
+  border-radius: var(--rayon-bouton);
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 120ms ease, background-color 160ms ease;
+}
+.releve-site .bouton:active { transform: scale(0.97); }
+.releve-site .bouton.plein { background: var(--encre); color: var(--papier); }
+.releve-site .bouton.plein:hover { background: #2C3330; }
+.releve-site .bouton.trait { border: 1px solid var(--marge); color: var(--encre); background: var(--carte); }
+.releve-site .bouton.trait:hover { border-color: var(--encre-pale); }

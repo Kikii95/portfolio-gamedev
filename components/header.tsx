@@ -16,17 +16,17 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navigation = [
-    { name: t('home'), href: `/${locale}` },
-    { name: t('projects'), href: `/${locale}/projects` },
-    { name: t('about'), href: `/${locale}/about` },
-    { name: t('contact'), href: `/${locale}/contact` },
+    { name: t('home'), href: `/${locale}/jeu` },
+    { name: t('projects'), href: `/${locale}/jeu/projects` },
+    { name: t('about'), href: `/${locale}/jeu/about` },
+    { name: t('contact'), href: `/${locale}/jeu/contact` },
   ];
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <nav className="container mx-auto flex h-16 items-center justify-between px-4">
         {/* Logo */}
-        <Link href="/" className="flex items-center space-x-2">
+        <Link href={`/${locale}`} className="flex items-center space-x-2">
           <span className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
             Killian Abboud
           </span>
@@ -53,7 +53,7 @@ export function Header() {
         <div className="flex gap-2 items-center">
           <LanguageSwitcher />
           <Button asChild className="hidden md:flex">
-            <Link href={`/${locale}/contact`}>{t('contactMe')}</Link>
+            <Link href={`/${locale}/jeu/contact`}>{t('contactMe')}</Link>
           </Button>
           {/* Mobile Menu Button */}
           <button
@@ -113,7 +113,7 @@ export function Header() {
                 className="pt-2"
               >
                 <Button asChild className="w-full">
-                  <Link href={`/${locale}/contact`} onClick={() => setMobileMenuOpen(false)}>
+                  <Link href={`/${locale}/jeu/contact`} onClick={() => setMobileMenuOpen(false)}>
                     {t('contactMe')}
                   </Link>
                 </Button>

@@ -1,7 +1,6 @@
 "use client";
 
-import { ReactNode } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { createElement } from "react";
 import type { Components } from "react-markdown";
 import {
   ClipboardList,
@@ -52,36 +51,16 @@ function getSectionIcon(title: string): LucideIcon {
   return Pin;
 }
 
-interface SectionCardProps {
-  title: string;
-  children: ReactNode;
+function SectionIcon({ title, className }: { title: string; className: string }) {
+  return createElement(getSectionIcon(title), { className });
 }
-
-function SectionCard({ title, children }: SectionCardProps) {
-  const Icon = getSectionIcon(title);
-
-  return (
-    <Card className="my-6 bg-muted/30 border-border/50">
-      <CardHeader className="pb-3">
-        <CardTitle className="flex items-center gap-2 text-xl text-primary">
-          <Icon className="h-5 w-5" />
-          <span>{title}</span>
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="pt-0">{children}</CardContent>
-    </Card>
-  );
-}
-
-let currentSection: { title: string; content: ReactNode[] } | null = null;
 
 export const markdownComponents: Components = {
   h2: ({ children }) => {
     const title = String(children);
-    const Icon = getSectionIcon(title);
     return (
       <h2 className="text-2xl font-bold text-primary mt-8 mb-4 flex items-center gap-2" id={title.toLowerCase().replace(/\s+/g, "-")}>
-        <Icon className="h-6 w-6" />
+        <SectionIcon title={title} className="h-6 w-6" />
         <span>{title}</span>
       </h2>
     );

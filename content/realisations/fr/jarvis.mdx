@@ -1,0 +1,36 @@
+---
+ordre: 3
+titre: "Un assistant personnel qui prépare, et attend mon feu vert"
+accroche: "JARVIS trie mes mails, tient l'agenda et les rappels de cinq comptes, et ne fait rien d'important sans un « Vas-y »."
+statut: "en service"
+periode: "2026"
+role: "Conception et développement, usage quotidien"
+demande: "Cinq boîtes mail, plusieurs agendas, des relances à ne pas oublier : trop de petites tâches dispersées, et le risque de rater ce qui compte."
+intervention: "Des routines IA planifiées qui lisent les nouveaux mails, les trient et les résument, préparent les brouillons et le point du jour. Toute action engageante passe par une notification Telegram avec deux boutons : « Vas-y » ou « Annuler »."
+resultat: "Un point quotidien qui arrive seul, des brouillons prêts à partir, et un contrôle humain sur chaque envoi. Le même principe que chez mes clients, testé d'abord sur moi."
+recu:
+  titre: "JARVIS · ASSISTANT PERSONNEL"
+  chiffre: "5"
+  legende: "comptes suivis : mails, agenda et rappels"
+  lignes:
+    - ["Validation", "feu vert sur Telegram"]
+    - ["Rythme", "routines planifiées"]
+etapes:
+  - { heure: "07:00", type: declencheur, etiquette: "planifié", verbe: "La routine du matin démarre" }
+  - { heure: "07:01", type: auto, verbe: "Lit les nouveaux mails des cinq comptes" }
+  - { heure: "07:03", type: auto, verbe: "Trie, résume, repère ce qui appelle une réponse" }
+  - { heure: "07:05", type: auto, verbe: "Prépare les brouillons et le point du jour" }
+  - { heure: "07:05", type: attente, etiquette: "feu vert", verbe: "Attend mon accord sur Telegram", detail: "« Vas-y » ou « Annuler »" }
+  - { heure: "07:20", type: livre, etiquette: "fait", verbe: "Envoie, range, met l'agenda à jour" }
+pieces: []
+outils: ["Claude", "MCP", "Python", "Telegram", "Google Workspace"]
+liens: []
+---
+
+## L'humain dans la boucle, par construction
+
+JARVIS peut lire et préparer sans limite. Envoyer, accepter un rendez-vous ou supprimer passe toujours par une notification qui attend une réponse. Sans réponse, rien ne part.
+
+## Ce que j'en ai appris pour mes clients
+
+Le bon niveau d'autonomie se règle action par action : ce qui est réversible peut partir seul, ce qui engage attend une personne.
