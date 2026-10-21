@@ -23,7 +23,12 @@ etapes:
   - { heure: "08:04", type: reprise, etiquette: "reprise", verbe: "Lieu trop vague : aucun trajet inventé", detail: "« Paris » seul : trajet inconnu, l'offre reste notée" }
   - { heure: "08:05", type: auto, verbe: "Calcule le trajet jusqu'à l'adresse exacte", detail: "transports en commun d'Île-de-France" }
   - { heure: "08:06", type: livre, etiquette: "livré", verbe: "Les offres arrivent dans le hub de chacun", detail: "notes et retours affinent le passage suivant" }
-pieces: []
+pieces:
+  - { type: video, src: "/medias/jobhunter/jobhunter.mp4", poster: "/medias/jobhunter/jobhunter-poster.webp", legende: "Fil d'offres notées, fiche d'une offre, mode Découvrir", duree: "vidéo · 0:43" }
+  - { type: image, src: "/medias/jobhunter/01-fil-offres-bureau.webp", legende: "Le fil : chaque offre notée contre la fiche" }
+  - { type: image, src: "/medias/jobhunter/02-fiche-offre-bureau.webp", legende: "Pourquoi ça colle : la note décomposée" }
+  - { type: image, src: "/medias/jobhunter/04-fiche-candidat-bureau.webp", legende: "La fiche du candidat, qui guide la notation" }
+  - { type: image, src: "/medias/jobhunter/03-decouverte-mobile.webp", legende: "Découvrir, sur téléphone", format: mobile }
 outils: ["Python", "API France Travail", "Claude", "Next.js", "PostgreSQL", "Vercel"]
 liens: []
 ---

@@ -65,6 +65,7 @@
 .releve-site .piece { margin: 0; background: var(--carte); border: 1px solid var(--filet); border-radius: var(--rayon-piece); padding: 0.5rem; box-shadow: var(--ombre-agrafe); transform: rotate(var(--penche, -1deg)); transition: transform 260ms var(--courbe), box-shadow 260ms ease; }
 .releve-site .piece:hover { transform: rotate(0deg) translateY(-0.15rem); }
 .releve-site .piece .ecran { position: relative; aspect-ratio: 16 / 10; border-radius: 0.2rem; background: var(--papier-pli); overflow: hidden; }
+.releve-site .piece.mobile { width: min(100%, 17rem); justify-self: center; }
 .releve-site .piece.mobile .ecran { aspect-ratio: 390 / 844; }
 .releve-site .piece img,
 .releve-site .piece video { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
@@ -81,7 +82,7 @@
 @keyframes pulse { 0%, 100% { opacity: 0; } 50% { opacity: 0.28; } }
 @keyframes tampon { from { opacity: 0; transform: rotate(-8deg) scale(1.5); } }
 @keyframes recu-tombe { from { opacity: 0; transform: translateY(-1.2em); clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
-@keyframes agrafe { from { opacity: 0.2; transform: rotate(0deg) translateY(1.2rem); } }
+@keyframes agrafe { from { transform: rotate(0deg) translateY(1.2rem); } }
 @keyframes ligne-arrive { from { opacity: 0; transform: translateY(0.4em); } }
 @keyframes clignote { 50% { opacity: 0; } }
 

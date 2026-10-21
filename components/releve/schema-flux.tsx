@@ -48,7 +48,7 @@ export function SchemaFlux({ etapes, titre }: { etapes: Etape[]; titre: string }
       <g className="paquets" aria-hidden="true">
         {[0, 1, 2].map((n) => (
           <circle key={n} className="paquet" r="4">
-            <animateMotion dur={`${DUREE_PAQUET}s`} begin={`${(n * DUREE_PAQUET) / 3}s`} repeatCount="indefinite" path={chemin} />
+            <animateMotion dur={`${DUREE_PAQUET}s`} begin={`-${(n * DUREE_PAQUET) / 3}s`} repeatCount="indefinite" path={chemin} />
           </circle>
         ))}
       </g>

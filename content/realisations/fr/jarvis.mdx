@@ -22,7 +22,11 @@ etapes:
   - { heure: "07:05", type: auto, verbe: "Prépare les brouillons et le point du jour" }
   - { heure: "07:05", type: attente, etiquette: "feu vert", verbe: "Attend mon accord sur Telegram", detail: "« Vas-y » ou « Annuler »" }
   - { heure: "07:20", type: livre, etiquette: "fait", verbe: "Envoie, range, met l'agenda à jour" }
-pieces: []
+pieces:
+  - { type: video, src: "/medias/jarvis/jarvis.mp4", poster: "/medias/jarvis/jarvis-poster.webp", legende: "La présentation de JARVIS, section par section", duree: "vidéo · 0:24" }
+  - { type: image, src: "/medias/jarvis/02-journee-bureau.webp", legende: "Ce qu'il fait, heure par heure" }
+  - { type: image, src: "/medias/jarvis/03-trajet-bureau.webp", legende: "D'un mail reçu à un bouton sur mon téléphone" }
+  - { type: image, src: "/medias/jarvis/05-garde-fous-bureau.webp", legende: "Ce qu'il ne fera jamais sans moi" }
 outils: ["Claude", "MCP", "Python", "Telegram", "Google Workspace"]
 liens: []
 ---
