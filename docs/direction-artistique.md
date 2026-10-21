@@ -175,4 +175,4 @@ vignette factice — et jamais affichée en production.
 - Origine : tag `da-origine`, captures `~/projects/perso/wt-da/_captures/portfolio-gamedev/origine/`
 - Design System : https://claude.ai/artifact/6b5kmDyXJvsx4ti6wbiFiN
 - Canevas : https://claude.ai/artifact/4zTi9rWmBasYi7z9M4hU4p (variante retenue par le juge : A « le relevé du matin », 43/50, avec la ligne de poste et les chiffres-preuves de B, la formule « L'IA prépare. Vous validez. Ça part. » de C en titre de la section méthode)
-- Planche d'évolution : (à créer)
+- Planche d'évolution : https://claude.ai/artifact/DCNU5T5ioLj9oF5ujiE5Nj
