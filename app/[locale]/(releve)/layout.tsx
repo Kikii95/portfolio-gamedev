@@ -4,6 +4,7 @@ import { SCRIPT_THEME } from '@/components/releve/bascule-theme';
 import './styles/tokens.css';
 import './styles/mise-en-page.css';
 import './styles/composants.css';
+import './styles/projets.css';
 
 export default function ReleveLayout({ children }: { children: React.ReactNode }) {
   return (

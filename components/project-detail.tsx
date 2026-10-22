@@ -59,7 +59,7 @@ export function ProjectDetail({ metadata, content }: ProjectDetailProps) {
               transition={{ duration: 0.6 }}
             >
               <Button variant="ghost" asChild className="mb-4 group">
-                <Link href={`/${locale}/jeu/projects`}>
+                <Link href={`/${locale}/ecole/projects`}>
                   <ArrowLeft className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1" />
                   {t('backToProjects')}
                 </Link>

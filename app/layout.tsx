@@ -25,7 +25,7 @@ const plexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://portfolio-gamedev.vercel.app"),
+  metadataBase: new URL("https://killian-abboud.vercel.app"),
   title: "Killian Abboud | Automatisation des process & intégration de l'IA",
   description:
     "Des automatisations et des assistants IA qui tournent déjà, chez des PME et au quotidien, avec un humain qui garde la main.",

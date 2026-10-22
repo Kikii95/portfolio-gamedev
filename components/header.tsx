@@ -16,10 +16,10 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navigation = [
-    { name: t('home'), href: `/${locale}/jeu` },
-    { name: t('projects'), href: `/${locale}/jeu/projects` },
-    { name: t('about'), href: `/${locale}/jeu/about` },
-    { name: t('contact'), href: `/${locale}/jeu/contact` },
+    { name: t('home'), href: `/${locale}/ecole` },
+    { name: t('projects'), href: `/${locale}/ecole/projects` },
+    { name: t('about'), href: `/${locale}/ecole/about` },
+    { name: t('contact'), href: `/${locale}/ecole/contact` },
   ];
 
   return (
@@ -53,7 +53,7 @@ export function Header() {
         <div className="flex gap-2 items-center">
           <LanguageSwitcher />
           <Button asChild className="hidden md:flex">
-            <Link href={`/${locale}/jeu/contact`}>{t('contactMe')}</Link>
+            <Link href={`/${locale}/ecole/contact`}>{t('contactMe')}</Link>
           </Button>
           {/* Mobile Menu Button */}
           <button
@@ -113,7 +113,7 @@ export function Header() {
                 className="pt-2"
               >
                 <Button asChild className="w-full">
-                  <Link href={`/${locale}/jeu/contact`} onClick={() => setMobileMenuOpen(false)}>
+                  <Link href={`/${locale}/ecole/contact`} onClick={() => setMobileMenuOpen(false)}>
                     {t('contactMe')}
                   </Link>
                 </Button>
