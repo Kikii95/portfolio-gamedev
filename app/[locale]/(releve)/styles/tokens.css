@@ -22,6 +22,11 @@ html:has(.releve-site) {
   --declencheur-fond: #E4EDF8;
   --reprise: #B23A26;
   --reprise-fond: #F8E6E2;
+  /* accents de structure des sections (DA § 3.4), jamais un état */
+  --perso: #5B3FB8;
+  --perso-fond: #ECE7FA;
+  --ecole: #C8143C;
+  --ecole-fond: #FBE6EA;
   --sur-accent: #FFFFFF;
   --pied-fond: #1C211F;
   --pied-texte: #F5F6F3;
@@ -68,6 +73,10 @@ html:has(.releve-site) {
   --declencheur-fond: #182B47;
   --reprise: #F0806A;
   --reprise-fond: #3B1F19;
+  --perso: #A894F5;
+  --perso-fond: #2A2147;
+  --ecole: #FF5C7A;
+  --ecole-fond: #3D1720;
   --sur-accent: #0C1410;
   --pied-fond: #0B0E0D;
   --pied-texte: #E6EAE7;
@@ -95,6 +104,10 @@ html[data-releve="sombre"] .releve-site {
   --declencheur-fond: #182B47;
   --reprise: #F0806A;
   --reprise-fond: #3B1F19;
+  --perso: #A894F5;
+  --perso-fond: #2A2147;
+  --ecole: #FF5C7A;
+  --ecole-fond: #3D1720;
   --sur-accent: #0C1410;
   --pied-fond: #0B0E0D;
   --pied-texte: #E6EAE7;

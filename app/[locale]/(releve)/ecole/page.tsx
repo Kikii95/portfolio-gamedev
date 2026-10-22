@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
-import { CarteEcole } from '@/components/releve/carte-ecole';
+import { aUnePiece, CarteEcole, LigneEcole } from '@/components/releve/carte-ecole';
+import { Registre } from '@/components/releve/registre';
 import { chemin } from '@/lib/releve/chemin';
 import { projetsEcole } from '@/lib/releve/ecole';
 
@@ -17,6 +18,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 export default async function EcolePage({ params }: { params: Params }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'releve.ecole' });
+  const tp = await getTranslations({ locale, namespace: 'releve.projets' });
   const projets = projetsEcole(locale);
   return (
     <div className="page-projets cadre" data-section="ecole">
@@ -32,10 +34,17 @@ export default async function EcolePage({ params }: { params: Params }) {
           <section key={famille} className="projets-famille" aria-labelledby={`famille-${famille}`}>
             <h2 id={`famille-${famille}`}>{t(`familles.${famille}`)}</h2>
             <div className="projets-grille">
-              {liste.map((p, i) => (
+              {liste.filter((p) => aUnePiece(p.metadata)).map((p, i) => (
                 <CarteEcole key={p.metadata.slug} meta={p.metadata} rang={i} href={chemin(locale, `/ecole/${p.metadata.slug}`)} />
               ))}
             </div>
+            {liste.some((p) => !aUnePiece(p.metadata)) && (
+              <Registre legende={tp('registre')}>
+                {liste.filter((p) => !aUnePiece(p.metadata)).map((p) => (
+                  <LigneEcole key={p.metadata.slug} meta={p.metadata} href={chemin(locale, `/ecole/${p.metadata.slug}`)} />
+                ))}
+              </Registre>
+            )}
           </section>
         );
       })}

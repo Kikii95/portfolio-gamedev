@@ -171,7 +171,12 @@
       "voir": "Voir les réalisations",
       "contact": "Me contacter",
       "journal": "relevé de ce matin",
-      "journalSuite": "et ça continue"
+      "journalSuite": "et ça continue",
+      "bordereau": "poste recherché",
+      "cleQuand": "quand",
+      "cleLieu": "où",
+      "cleContrat": "contrat",
+      "cv": "Télécharger le CV"
     },
     "journal": [
       [
@@ -347,7 +352,8 @@
       "tous": "Tous mes projets",
       "details": "Tout le détail",
       "fermer": "Fermer",
-      "ouvrirPage": "Ouvrir la page"
+      "ouvrirPage": "Ouvrir la page",
+      "registre": "sans démo filmée · la fiche écrite fait foi"
     },
     "ecole": {
       "metaTitre": "École & gamedev — Killian Abboud",

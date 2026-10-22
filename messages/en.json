@@ -171,7 +171,12 @@
       "voir": "See the work",
       "contact": "Get in touch",
       "journal": "this morning's log",
-      "journalSuite": "and it keeps going"
+      "journalSuite": "and it keeps going",
+      "bordereau": "role I'm looking for",
+      "cleQuand": "when",
+      "cleLieu": "where",
+      "cleContrat": "contract",
+      "cv": "Download my resume"
     },
     "journal": [
       [
@@ -347,7 +352,8 @@
       "tous": "All my projects",
       "details": "Full details",
       "fermer": "Close",
-      "ouvrirPage": "Open the page"
+      "ouvrirPage": "Open the page",
+      "registre": "no demo video yet · the written record"
     },
     "ecole": {
       "metaTitre": "School & game dev — Killian Abboud",

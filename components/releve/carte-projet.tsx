@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import type { ProjetPerso, StatutProjet } from '@/lib/releve/projets';
-import { Cartouche } from './cartouche';
 import { DetailsProjet } from './details-projet';
 import { PieceJustificative } from './piece-justificative';
+import { LigneRegistre } from './registre';
 
 const ETIQUETTE: Record<StatutProjet, string> = { service: 'livre', beta: 'attente', dev: 'attente', pause: 'neutre' };
 
@@ -17,18 +17,26 @@ export function CarteProjet({ projet, ficheHref, rang }: CarteProjetProps) {
   const t = useTranslations('releve');
   return (
     <article className="projet">
-      {projet.piece ? (
+      {projet.piece && (
         <PieceJustificative piece={projet.piece} libelleLecture={t('piece.lire')} penche={rang % 2 ? 0.8 : -0.8} />
-      ) : (
-        <Cartouche href={ficheHref ?? projet.site} techno={projet.cartouche ?? projet.outils[0]} pile={projet.outils} />
       )}
       <div className="projet-tete">
-        <h3>{projet.titre}</h3>
+        <h3>{ficheHref ? <Link href={ficheHref}>{projet.titre}</Link> : projet.titre}</h3>
         <span className={`etiquette ${ETIQUETTE[projet.statut]}`}>{t(`projets.statuts.${projet.statut}`)}</span>
       </div>
       <p>{projet.texte}</p>
       <p className="projet-outils mono">{projet.outils.join(' · ')}</p>
       <div className="projet-liens">
+        <LiensProjet projet={projet} ficheHref={ficheHref} />
+      </div>
+    </article>
+  );
+}
+
+function LiensProjet({ projet, ficheHref }: Omit<CarteProjetProps, 'rang'>) {
+  const t = useTranslations('releve');
+  return (
+    <>
         {ficheHref && <Link href={ficheHref}>{t('projets.voirFiche')} →</Link>}
         {projet.detail && <DetailsProjet slug={projet.detail} collection="perso" />}
         {projet.site && (
@@ -36,7 +44,20 @@ export function CarteProjet({ projet, ficheHref, rang }: CarteProjetProps) {
             {t('projets.voirSite')} ↗
           </a>
         )}
-      </div>
-    </article>
+    </>
+  );
+}
+
+export function LigneProjet({ projet, ficheHref }: Omit<CarteProjetProps, 'rang'>) {
+  const t = useTranslations('releve');
+  return (
+    <LigneRegistre
+      titre={projet.titre}
+      href={ficheHref}
+      texte={projet.texte}
+      outils={projet.outils}
+      etiquette={{ classe: ETIQUETTE[projet.statut], libelle: t(`projets.statuts.${projet.statut}`) }}
+      liens={<LiensProjet projet={projet} ficheHref={ficheHref} />}
+    />
   );
 }

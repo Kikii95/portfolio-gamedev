@@ -13,30 +13,48 @@
 .releve-site .nav-large a:hover { color: var(--encre); }
 .releve-site .nav-large .bouton { min-height: 2.4rem; color: var(--encre); }
 .releve-site .vers-atelier { font-family: var(--mono); font-size: 0.85rem; }
-.releve-site .langue { font-family: var(--mono); font-size: 0.8rem; }
+.releve-site .langue { font-family: var(--mono); font-size: 0.8rem; display: inline-grid; place-items: center; min-width: 2.75rem; min-height: 2.75rem; }
 .releve-site .menu summary { list-style: none; cursor: pointer; font-family: var(--mono); font-size: 0.9rem; padding: 0.75rem 0; color: var(--encre-douce); }
 .releve-site .menu summary::-webkit-details-marker { display: none; }
 .releve-site .menu nav { position: absolute; left: 0; right: 0; top: 100%; display: grid; gap: 0.2rem; padding: 0.6rem var(--gouttiere) 1.2rem; background: var(--papier); border-bottom: 1px solid var(--filet); box-shadow: var(--ombre-agrafe); }
 .releve-site .menu nav a { padding: 0.7rem 0; text-decoration: none; border-bottom: 1px dashed var(--filet); }
 .releve-site .menu nav .bouton { margin-top: 0.6rem; border-bottom: 1px solid var(--marge); }
+.releve-site .cv-mobile { margin-inline-start: auto; min-height: 2.75rem; padding-inline: 1rem; }
 @media (min-width: 60em) {
   .releve-site .nav-large { display: flex; }
-  .releve-site .menu { display: none; }
+  .releve-site .menu, .releve-site .cv-mobile { display: none; }
 }
 
-/* Hero */
-.releve-site .hero { display: grid; gap: clamp(2rem, 4vw, 4rem); padding-top: clamp(2.2rem, 6vw, 6rem); align-items: center; }
+/* Hero : statut, titre, bordereau de poste (ce que cherche un recruteur), preuves, journal */
+.releve-site .hero { display: grid; gap: clamp(1.6rem, 4vw, 4rem); padding-top: clamp(1.6rem, 6vw, 6rem); align-items: center; }
 .releve-site .hero-texte { display: flex; flex-direction: column; gap: 1.1rem; }
 .releve-site .statut { color: var(--feu-vert); font-size: 0.85rem; display: flex; align-items: center; gap: 0.5rem; }
-.releve-site .voyant { width: 0.55rem; height: 0.55rem; border-radius: 50%; background: var(--feu-vert); box-shadow: 0 0 0 0 var(--feu-vert); animation: voyant 2.4s ease-out infinite; }
-.releve-site .poste { display: flex; flex-wrap: wrap; gap: 0.3rem 0.9rem; font-size: 0.98rem; color: var(--encre-douce); }
-.releve-site .poste strong { color: var(--encre); flex-basis: 100%; font-size: 1.08rem; }
-.releve-site .poste span:not(:last-child)::after { content: "·"; margin-left: 0.9rem; color: var(--marge); }
-.releve-site .hero-actions { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 0.4rem; }
+.releve-site .voyant { width: 0.55rem; height: 0.55rem; border-radius: 50%; background: var(--feu-vert); box-shadow: 0 0 0 0 var(--feu-vert); animation: voyant 2.4s ease-out 5; }
+.releve-site .hero h1 { font-size: clamp(1.85rem, 3.4vw + 0.6rem, 3.5rem); font-weight: 750; }
+.releve-site .bordereau { display: grid; gap: 0.55rem; max-width: 32rem; padding: 0.8rem 1rem 1rem; background: var(--carte); border: 1px solid var(--filet); border-radius: var(--rayon-piece); box-shadow: var(--ombre-agrafe); animation: bordereau-sort 560ms var(--courbe) 120ms both; }
+.releve-site .bordereau-tete { font-size: 0.78rem; color: var(--encre-pale); padding-bottom: 0.45rem; border-bottom: 1px dashed var(--filet); }
+.releve-site .bordereau-poste { font-weight: 700; font-size: 1.08rem; line-height: 1.3; }
+.releve-site .bordereau-lignes { margin: 0; display: grid; gap: 0.2rem; }
+.releve-site .bordereau-lignes div { display: grid; grid-template-columns: 4.6em minmax(0, 1fr); gap: 0.6rem; align-items: baseline; }
+.releve-site .bordereau-lignes dt { font-size: 0.78rem; color: var(--encre-pale); }
+.releve-site .bordereau-lignes dd { margin: 0; color: var(--encre); }
+.releve-site .bordereau-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.4rem; }
+.releve-site .bordereau-actions .bouton { padding-inline: 1rem; }
+.releve-site .bordereau-actions .bouton.plein { flex: 1 1 auto; }
+.releve-site .lien-suite { align-self: start; font-weight: 600; text-decoration: underline 1px var(--marge); text-underline-offset: 0.3em; padding-block: 0.6rem; }
+.releve-site .lien-suite:hover { text-decoration-color: var(--encre); }
 .releve-site .hero-journal { width: 100%; }
+.releve-site .hero .chiffres { margin-top: 0; width: 100%; }
+@media (max-width: 59.99em) {
+  .releve-site .hero .chiffres { order: 1; }
+  .releve-site .hero .hero-journal { order: 2; }
+}
 @media (min-width: 60em) {
   .releve-site .hero { grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); }
+  .releve-site .hero .chiffres { grid-column: 1 / -1; }
 }
+@keyframes bordereau-sort { from { clip-path: inset(0 0 100% 0); transform: translateY(-0.6rem); } to { clip-path: inset(0 0 0 0); transform: none; } }
+@media (prefers-reduced-motion: reduce) { .releve-site .bordereau { animation: none; } }
 @keyframes voyant { 70% { box-shadow: 0 0 0 0.45rem transparent; } 100% { box-shadow: 0 0 0 0 transparent; } }
 
 /* Chiffres-preuves : une rangée sobre, pas des cartes */
@@ -98,6 +116,7 @@
 /* Pied de page */
 .releve-site .pied { background: var(--pied-fond); color: var(--pied-texte); border-top: 1px solid var(--filet); padding-block: clamp(3rem, 6vw, 5.5rem) clamp(2rem, 4vw, 3rem); }
 .releve-site .pied h2 { color: var(--pied-texte); }
+.releve-site .pied :focus-visible { outline-color: var(--pied-texte); }
 .releve-site .pied .chapo { color: var(--pied-doux); margin-top: 1rem; }
 .releve-site .pied-grille { display: grid; gap: clamp(2.4rem, 5vw, 4rem); }
 .releve-site .pied-actions { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 1.6rem; }
@@ -150,7 +169,7 @@
   .releve-site .fiche-tete .recu { justify-self: end; }
 }
 
-.releve-site .bascule-theme { display: inline-grid; place-items: center; width: 2.4rem; height: 2.4rem; border: 1px solid var(--marge); border-radius: var(--rayon-pastille); background: var(--carte); color: var(--encre); cursor: pointer; transition: border-color 160ms ease, transform 120ms ease; }
+.releve-site .bascule-theme { display: inline-grid; place-items: center; width: 2.75rem; height: 2.75rem; border: 1px solid var(--marge); border-radius: var(--rayon-pastille); background: var(--carte); color: var(--encre); cursor: pointer; transition: border-color 160ms ease, transform 120ms ease; }
 .releve-site .bascule-theme:hover { border-color: var(--encre-pale); }
 .releve-site .bascule-theme:active { transform: scale(0.94); }
 .releve-site .bascule-theme span { width: 1rem; height: 1rem; border-radius: 50%; border: 2px solid currentColor; background: linear-gradient(90deg, currentColor 50%, transparent 50%); transition: transform 320ms var(--courbe); }

@@ -2,7 +2,6 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { getRealisations } from '@/lib/releve/realisations';
 import { AUTRES_REALISATIONS } from '@/lib/releve/autres';
 import { Hero } from '@/components/releve/hero';
-import { Chiffres } from '@/components/releve/chiffres';
 import { EntreeRealisation } from '@/components/releve/entree-realisation';
 import { Methode } from '@/components/releve/methode';
 import { AutresRealisations } from '@/components/releve/autres-realisations';
@@ -17,7 +16,6 @@ export default async function Accueil({ params }: { params: Promise<{ locale: st
   return (
     <>
       <Hero />
-      <Chiffres />
       <section className="realisations cadre" id="realisations" aria-labelledby="titre-realisations">
         <header className="section-tete">
           <h2 id="titre-realisations">{t('titre')}</h2>

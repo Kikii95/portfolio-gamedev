@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
-import { CarteProjet } from '@/components/releve/carte-projet';
+import { CarteProjet, LigneProjet } from '@/components/releve/carte-projet';
+import { Registre } from '@/components/releve/registre';
 import { DetailsProjet } from '@/components/releve/details-projet';
 import { chemin } from '@/lib/releve/chemin';
 import { FAMILLES, LABO, PROJETS } from '@/lib/releve/projets';
@@ -16,6 +17,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 export default async function ProjetsPage({ params }: { params: Params }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'releve.projets' });
+  const fiche = (slug?: string) => (slug ? chemin(locale, `/realisations/${slug}`) : undefined);
   return (
     <div className="page-projets cadre" data-section="perso">
       <header className="projets-entete">
@@ -30,10 +32,17 @@ export default async function ProjetsPage({ params }: { params: Params }) {
           <section key={famille} className="projets-famille" aria-labelledby={`famille-${famille}`}>
             <h2 id={`famille-${famille}`}>{t(`familles.${famille}`)}</h2>
             <div className="projets-grille">
-              {liste.map((p, i) => (
-                <CarteProjet key={p.titre} projet={p} rang={i} ficheHref={p.fiche ? chemin(locale, `/realisations/${p.fiche}`) : undefined} />
+              {liste.filter((p) => p.piece).map((p, i) => (
+                <CarteProjet key={p.titre} projet={p} rang={i} ficheHref={fiche(p.fiche)} />
               ))}
             </div>
+            {liste.some((p) => !p.piece) && (
+              <Registre legende={t('registre')}>
+                {liste.filter((p) => !p.piece).map((p) => (
+                  <LigneProjet key={p.titre} projet={p} ficheHref={fiche(p.fiche)} />
+                ))}
+              </Registre>
+            )}
           </section>
         );
       })}

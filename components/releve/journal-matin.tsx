@@ -10,7 +10,7 @@ export function JournalMatin() {
 
   return (
     <div className="journal hero-journal" aria-label={t('hero.journal')}>
-      <div className="entete">
+      <div className="journal-tete">
         <span>{t('hero.journal')}</span>
         <span className="ok">● {t('etats.ok')}</span>
       </div>

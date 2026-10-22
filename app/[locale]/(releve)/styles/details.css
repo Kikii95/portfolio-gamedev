@@ -14,9 +14,8 @@
 .releve-site .fenetre-contenu { overflow-y: auto; overscroll-behavior: contain; padding: clamp(1.2rem, 3vw, 2.2rem) clamp(1rem, 3vw, 2rem) clamp(2rem, 4vw, 3rem); display: grid; gap: 1.6rem; }
 .releve-site .fenetre-tete { display: grid; gap: 0.7rem; }
 .releve-site .fenetre-tete h2 { font-size: clamp(1.6rem, 2vw + 1rem, 2.4rem); letter-spacing: -0.02em; }
-.releve-site .fenetre-tete h2::after { content: "."; color: var(--section); }
 .releve-site .fenetre-contenu .projet-liens a { color: var(--section); }
-.releve-site .fenetre-contenu .fiche-corps h2 { border-inline-start: 3px solid var(--section); padding-inline-start: 0.7rem; }
+.releve-site .fenetre-contenu .fiche-corps h2 { padding-block-start: 0.7rem; background: linear-gradient(var(--section), var(--section)) no-repeat left top / 2.4em 2px; }
 .releve-site .fenetre-contenu pre { overflow-x: auto; font-size: 0.8rem; }
 .releve-site .fenetre-contenu table { display: block; overflow-x: auto; }
 .releve-site .labo-liste li { grid-template-columns: minmax(8rem, 14rem) 1fr auto; align-items: baseline; }

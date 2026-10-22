@@ -50,6 +50,9 @@ export function SiteHeader() {
           {liens}
           <IndicateurNav />
         </nav>
+        <a href={LIENS.cv} className="bouton trait cv-mobile">
+          {t('cv')}
+        </a>
         <details className="menu">
           <summary>{t('menu')}</summary>
           <nav aria-label={t('menu')}>{liens}</nav>

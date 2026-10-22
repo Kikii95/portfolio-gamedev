@@ -1,4 +1,4 @@
-/* Page « Projets perso » : même relevé, cartes plus courtes */
+/* Pages de section : pièces filmées en grille, le reste en registre */
 .releve-site .page-projets { padding-block: clamp(2.5rem, 6vw, 5rem); display: grid; gap: clamp(3rem, 6vw, 5rem); }
 .releve-site .projets-entete { display: grid; gap: 0.9rem; max-width: 46em; }
 .releve-site .surtitre { font-size: 0.85rem; }
@@ -19,3 +19,24 @@
 .releve-site .labo-titre { color: var(--encre); font-weight: 600; }
 @media (max-width: 36em) { .releve-site .labo-liste li { grid-template-columns: 1fr; gap: 0.2rem; } }
 .releve-site .vers-projets { justify-self: start; margin-top: 1.6rem; }
+
+/* Registre : les projets sans démo filmée, en lignes de relevé plutôt qu'en vignettes vides (DA § 1.3) */
+.releve-site .registre { display: grid; gap: 0.6rem; }
+.releve-site .registre-legende { font-size: 0.8rem; color: var(--encre-pale); }
+.releve-site .registre-liste { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--filet); }
+.releve-site .registre-ligne { display: grid; grid-template-columns: 4.5ch minmax(0, 1fr) auto; gap: 0.4rem clamp(0.8rem, 2vw, 1.6rem); align-items: baseline; padding-block: 1rem; border-bottom: 1px dashed var(--filet); transition: background-color 200ms var(--courbe); }
+.releve-site .registre-ligne:hover { background: linear-gradient(90deg, var(--section-fond), transparent 70%); }
+.releve-site .registre-annee { font-size: 0.85rem; color: var(--section); }
+.releve-site .registre-corps { display: grid; gap: 0.35rem; min-width: 0; }
+.releve-site .registre-corps h3 { font-size: clamp(1.1rem, 0.6vw + 0.9rem, 1.35rem); }
+.releve-site .registre-corps h3 a { color: inherit; text-decoration: none; }
+.releve-site .registre-corps h3 a:hover { color: var(--section); }
+.releve-site .registre-corps p { color: var(--encre-douce); max-width: 60ch; }
+.releve-site .registre-outils { font-size: 0.78rem; color: var(--encre-pale) !important; }
+@media (max-width: 36em) {
+  .releve-site .registre-ligne { grid-template-columns: minmax(0, 1fr) auto; }
+  .releve-site .registre-annee { grid-column: 1; }
+  .releve-site .registre-corps { grid-column: 1 / -1; grid-row: 2; }
+  .releve-site .registre-ligne > .etiquette { grid-column: 2; grid-row: 1; }
+}
+@media (prefers-reduced-motion: reduce) { .releve-site .registre-ligne { transition: none; } }
