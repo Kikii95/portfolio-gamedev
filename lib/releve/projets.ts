@@ -140,7 +140,7 @@ export const PROJETS: ProjetPerso[] = [
     statut: 'dev',
     texte: 'Un coach de musculation et de calories qui montre ses calculs au lieu de les cacher.',
     outils: ['Next.js', 'PostgreSQL', 'Drizzle', 'Vitest'],
-    cartouche: 'Musculation',
+    piece: video('halterego', 'halterego', 'Chaque chiffre se déplie en calcul sourcé', 'vidéo · 0:32'),
   },
   {
     titre: 'Politica France',
