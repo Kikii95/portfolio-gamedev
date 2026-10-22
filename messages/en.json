@@ -170,7 +170,7 @@
       "chapo": "I start on the ground: I watch how the team works, spot what costs hours, then set up the automation and AI that take it over. These systems already run, for small businesses and every day.",
       "voir": "See the work",
       "contact": "Get in touch",
-      "journal": "this morning's log",
+      "journal": "overnight log",
       "journalSuite": "and it keeps going"
     },
     "journal": [
@@ -225,12 +225,13 @@
     ],
     "realisations": {
       "titre": "Work",
-      "chapo": "Each project reads like an execution log: what triggers it, what it does alone, where a person approves, what it delivers.",
+      "chapo": "Each project reads like a trace: what triggers it, what it does alone, where a person approves, what it delivers.",
       "deroule": "A typical run",
       "lire": "Read the case",
       "pieces": "Evidence",
       "autres": "Also built",
-      "autresChapo": "Complete web products, designed and built solo."
+      "autresChapo": "Complete web products, designed and built solo.",
+      "voirDeroule": "Show the run"
     },
     "methode": {
       "titre": "AI prepares. You approve. It ships.",
@@ -367,7 +368,14 @@
     },
     "tableau": {
       "titre": "Systems in service",
-      "attente": "a person approves"
+      "attente": "a person approves",
+      "passage": "run {heure}",
+      "legende": {
+        "declencheur": "trigger",
+        "attente": "a person approves",
+        "reprise": "retry",
+        "livre": "delivered"
+      }
     }
   }
 }

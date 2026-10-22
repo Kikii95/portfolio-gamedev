@@ -27,13 +27,19 @@ export function TableauService({ realisations }: { realisations: Realisation[] }
               <span className="nom">{nomCourt(r)}</span>
               <span className="chiffre">{r.recu.chiffre}</span>
               <span className="legende">{r.recu.legende}</span>
-              <span className="heure">{r.etapes[0]?.heure}</span>
+              <span className="heure">{t('passage', { heure: r.etapes[0]?.heure ?? '' })}</span>
               <TraceMini etapes={r.etapes} />
               {r.etapes.some((e) => e.type === 'attente') && <span className="humain">◆ {t('attente')}</span>}
             </Link>
           </li>
         ))}
       </ul>
+      <p className="tableau-legende" aria-hidden="true">
+        <span className="l declencheur">{t('legende.declencheur')}</span>
+        <span className="l attente">{t('legende.attente')}</span>
+        <span className="l reprise">{t('legende.reprise')}</span>
+        <span className="l livre">{t('legende.livre')}</span>
+      </p>
     </section>
   );
 }

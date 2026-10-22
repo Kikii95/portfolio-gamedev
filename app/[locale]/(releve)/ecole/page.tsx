@@ -21,7 +21,7 @@ export default async function EcolePage({ params }: { params: Params }) {
   return (
     <div className="page-projets cadre" data-section="ecole">
       <header className="projets-entete">
-        <p className="mono surtitre">{t('surtitre', { nombre: projets.length })}</p>
+        <p className="surtitre">{t('surtitre', { nombre: projets.length })}</p>
         <h1>{t('titre')}</h1>
         <p className="chapo">{t('chapo')}</p>
       </header>

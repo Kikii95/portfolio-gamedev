@@ -1,17 +1,17 @@
 /* Accueil : hero + tableau de service, réalisations, méthode, aussi construit, parcours */
 
 /* Hero : poste, promesse, disponibilité, CV ; le tableau de service à côté (dessous sur mobile) */
-.releve-site .hero { display: grid; gap: clamp(1.6rem, 3vw, 3rem) clamp(2rem, 4vw, 4.5rem); grid-template-areas: "texte" "tableau" "chapo"; padding-top: clamp(1.8rem, 5vw, 5rem); background-image: repeating-linear-gradient(90deg, color-mix(in srgb, var(--texte) 4%, transparent) 0 1px, transparent 1px 8rem); background-position: left top; }
+.releve-site .hero { display: grid; gap: clamp(1.6rem, 3vw, 3rem) clamp(2rem, 4vw, 4.5rem); grid-template-areas: "texte" "tableau"; padding-top: clamp(1.8rem, 5vw, 5rem); background-image: repeating-linear-gradient(90deg, color-mix(in srgb, var(--texte) 4%, transparent) 0 1px, transparent 1px 8rem); background-position: left top; }
 .releve-site .hero-texte { grid-area: texte; display: flex; flex-direction: column; gap: 1rem; align-items: flex-start; }
-.releve-site .promesse { font-size: clamp(1.35rem, 1.2vw + 1rem, 1.9rem); line-height: 1.2; font-weight: 500; font-variation-settings: "wdth" 88; letter-spacing: -0.015em; color: var(--section); }
-.releve-site .hero-lead { font-size: clamp(1.0625rem, 0.4vw + 0.95rem, 1.3rem); color: var(--texte-doux); max-width: 34em; }
+.releve-site .promesse { font-size: clamp(1.35rem, 1.2vw + 1rem, 1.9rem); line-height: 1.2; font-weight: 500; font-variation-settings: "wdth" 88; letter-spacing: -0.015em; color: var(--texte); }
+.releve-site .promesse::after { content: ""; display: block; inline-size: 2.5rem; block-size: 2px; margin-top: 0.9rem; border-radius: 2px; background: var(--section); }
+.releve-site .hero-lead { font-size: clamp(1.0625rem, 0.3vw + 0.98rem, 1.22rem); color: var(--texte-doux); max-width: 36em; }
 .releve-site .hero-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.3rem; width: 100%; }
 .releve-site .hero-actions .plein { flex: 1 1 auto; }
-.releve-site .hero-chapo { grid-area: chapo; }
 .releve-site .tableau { grid-area: tableau; align-self: start; }
 @media (min-width: 30em) { .releve-site .hero-actions .plein { flex: 0 0 auto; } }
 @media (min-width: 64em) {
-  .releve-site .hero { grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); grid-template-areas: "texte tableau" "chapo tableau"; align-items: start; }
+  .releve-site .hero { grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); grid-template-areas: "texte tableau"; align-items: center; padding-bottom: clamp(1rem, 2vw, 2rem); }
 }
 
 /* Tableau de service : les systèmes en service, comme une page d'état */
@@ -20,15 +20,39 @@
 .releve-site .tableau-tete h2 { font: 500 0.95rem var(--police); letter-spacing: 0; color: var(--texte-doux); }
 .releve-site .tableau-liste { list-style: none; margin: 0; padding: 0; }
 .releve-site .tableau-liste li + li { border-top: 1px solid var(--filet); }
-.releve-site .systeme { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "nom chiffre" "legende heure" "trace trace" "humain humain"; gap: 0.25rem 1rem; padding: 0.95rem 1.1rem 1rem; text-decoration: none; transition: background-color 200ms ease; }
+.releve-site .tableau-liste { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.releve-site .tableau-liste li + li { border-top: 0; }
+.releve-site .tableau-liste li { border-top: 1px solid var(--filet); }
+.releve-site .tableau-liste li:nth-child(even) { border-left: 1px solid var(--filet); }
+.releve-site .systeme { display: grid; gap: 0.2rem; padding: 0.85rem 1rem 0.95rem; text-decoration: none; transition: background-color 200ms ease; block-size: 100%; align-content: start; }
 .releve-site .systeme:hover { background: var(--plan-haut); }
-.releve-site .systeme .nom { grid-area: nom; font-weight: 600; font-size: 1.08rem; font-variation-settings: "wdth" 88; }
+.releve-site .systeme .nom { font-weight: 600; font-size: 0.98rem; font-variation-settings: "wdth" 88; }
 .releve-site .systeme:hover .nom { color: var(--section); }
-.releve-site .systeme .chiffre { grid-area: chiffre; justify-self: end; font: 500 clamp(1.4rem, 0.8vw + 1.1rem, 1.9rem)/1 var(--donnees); font-variation-settings: "wdth" 87; letter-spacing: -0.02em; }
-.releve-site .systeme .legende { grid-area: legende; font-size: 0.92rem; color: var(--texte-doux); }
-.releve-site .systeme .heure { grid-area: heure; justify-self: end; font: 400 0.75rem var(--donnees); font-variation-settings: "wdth" 87; color: var(--texte-pale); }
-.releve-site .systeme .trace-mini { grid-area: trace; margin-top: 0.55rem; }
-.releve-site .systeme .humain { grid-area: humain; font: 400 0.72rem var(--donnees); font-variation-settings: "wdth" 87; color: var(--attente); }
+.releve-site .systeme .chiffre { order: -1; font: 500 clamp(1.6rem, 0.8vw + 1.3rem, 2rem)/1.05 var(--donnees); font-variation-settings: "wdth" 87; letter-spacing: -0.02em; }
+.releve-site .systeme .legende { font-size: 0.85rem; line-height: 1.4; color: var(--texte-doux); }
+.releve-site .systeme .heure,
+.releve-site .systeme .trace-mini,
+.releve-site .tableau-legende { display: none; }
+.releve-site .systeme .humain { font: 400 0.72rem var(--donnees); font-variation-settings: "wdth" 87; color: var(--attente); margin-top: 0.3rem; }
+@media (min-width: 40em) {
+  .releve-site .tableau-liste { grid-template-columns: minmax(0, 1fr); }
+  .releve-site .tableau-liste li:nth-child(even) { border-left: 0; }
+  .releve-site .tableau-liste li:first-child { border-top: 0; }
+  .releve-site .systeme { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "nom chiffre" "legende heure" "trace trace" "humain humain"; gap: 0.25rem 1rem; padding: 0.95rem 1.1rem 1rem; }
+  .releve-site .systeme .nom { grid-area: nom; font-size: 1.08rem; }
+  .releve-site .systeme .chiffre { grid-area: chiffre; justify-self: end; order: 0; }
+  .releve-site .systeme .legende { grid-area: legende; font-size: 0.92rem; }
+  .releve-site .systeme .heure { grid-area: heure; display: block; justify-self: end; font: 400 0.72rem var(--donnees); font-variation-settings: "wdth" 87; color: var(--texte-pale); }
+  .releve-site .systeme .trace-mini { grid-area: trace; display: grid; margin-top: 0.55rem; }
+  .releve-site .systeme .humain { grid-area: humain; margin-top: 0; }
+  .releve-site .tableau-legende { display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem; padding: 0.7rem 1.1rem; border-top: 1px solid var(--filet); font: 400 0.72rem var(--donnees); font-variation-settings: "wdth" 87; color: var(--texte-pale); }
+  .releve-site .tableau-legende .l { display: inline-flex; align-items: center; gap: 0.45em; }
+  .releve-site .tableau-legende .l::before { content: ""; inline-size: 1.1em; block-size: 0.45rem; border-radius: 2px; }
+  .releve-site .tableau-legende .declencheur::before { background: var(--texte); }
+  .releve-site .tableau-legende .attente::before { background: repeating-linear-gradient(135deg, var(--attente) 0 2px, var(--attente-voile) 2px 5px); outline: 1px solid var(--attente); }
+  .releve-site .tableau-legende .reprise::before { outline: 1px dashed var(--reprise); outline-offset: -1px; }
+  .releve-site .tableau-legende .livre::before { background: var(--en-service); }
+}
 
 /* Réalisations : un rapport par système, la trace au centre */
 .releve-site .realisations { display: flex; flex-direction: column; }
@@ -42,27 +66,38 @@
 .releve-site .entree-trace .trace { width: 100%; }
 .releve-site .entree-preuves { grid-area: preuves; display: grid; gap: 1.4rem; align-content: start; min-width: 0; }
 @media (min-width: 64em) {
-  .releve-site .entree { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); grid-template-areas: "tete preuves" "trace preuves"; }
+  .releve-site .entree { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); grid-template-areas: "tete preuves" "trace preuves"; grid-template-rows: auto 1fr; align-items: start; }
   .releve-site .entree-preuves { grid-template-columns: minmax(0, 1fr); }
 }
-@media (min-width: 100em) {
-  .releve-site .entree-preuves { grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.8fr); align-items: start; }
-}
+.releve-site .entree .rapport-tete { justify-content: flex-end; }
+.releve-site .entree .titre-r { display: none; }
+.releve-site .entree .rapport .chiffre { margin-top: -1.6rem; }
+/* déroulé replié des réalisations suivantes */
+.releve-site .deroule { width: 100%; border-top: 1px solid var(--filet); }
+.releve-site .deroule summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 1rem; min-height: 2.875rem; font-weight: 500; color: var(--texte-doux); }
+.releve-site .deroule summary::-webkit-details-marker { display: none; }
+.releve-site .deroule summary::after { content: "+"; font: 400 1.1rem var(--donnees); color: var(--section); transition: transform 220ms var(--courbe); }
+.releve-site .deroule[open] summary::after { transform: rotate(45deg); }
+.releve-site .deroule summary:hover { color: var(--texte); }
+.releve-site .deroule[open] .trace { margin-top: 0.4rem; }
 
 /* Méthode : la porte, la trace type, le journal de la nuit */
 .releve-site .methode-grille { display: grid; gap: clamp(1.6rem, 3vw, 3rem); }
 .releve-site .methode-porte { display: grid; gap: 1.6rem; align-content: start; }
 @media (min-width: 64em) { .releve-site .methode-grille { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); } }
 
-/* Aussi construit : trois écrans, sans carte autour */
+/* Aussi construit : des rangées du registre, l'écran en vignette */
 .releve-site .autres { display: grid; gap: 1rem; }
-.releve-site .autres-grille { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: clamp(1.8rem, 3vw, 3rem); margin-top: 1.4rem; }
-.releve-site .autre { display: grid; gap: 0.6rem; align-content: start; }
-.releve-site .autre h3 { margin-top: 0.8rem; }
+.releve-site .autres-grille { display: grid; margin-top: 1.2rem; border-top: 1px solid var(--filet); }
+.releve-site .autre { display: grid; gap: 0.9rem 2rem; align-items: start; padding-block: 1.4rem; border-bottom: 1px solid var(--filet); }
+.releve-site .autre .ecran-controle { grid-row: span 2; }
 .releve-site .autre h3 a { text-decoration: none; }
 .releve-site .autre h3 a:hover { color: var(--section); }
-.releve-site .autre p { color: var(--texte-doux); }
+.releve-site .autre p { color: var(--texte-doux); max-width: 40em; }
 .releve-site .vers-projets { justify-self: start; margin-top: 1.6rem; }
+@media (min-width: 48em) {
+  .releve-site .autre { grid-template-columns: minmax(14rem, 0.42fr) minmax(0, 1fr); grid-template-rows: auto 1fr; }
+}
 
 /* Parcours */
 .releve-site .parcours { display: grid; gap: 1.4rem; }

@@ -2,9 +2,11 @@
 
 /* En-tête de section */
 .releve-site .page-projets { padding-block: clamp(2.2rem, 5vw, 4.5rem); display: grid; gap: clamp(3rem, 6vw, 5rem); }
-.releve-site .projets-entete { display: grid; gap: 0.9rem; max-width: 48em; }
-.releve-site .surtitre { display: inline-flex; align-items: center; gap: 0.7em; font: 400 0.8rem var(--donnees); font-variation-settings: "wdth" 87; color: var(--section); }
-.releve-site .surtitre::before { content: ""; inline-size: 2.4em; block-size: 2px; border-radius: 2px; background: var(--section); transform-origin: left; animation: trait 700ms var(--courbe) both; }
+.releve-site .projets-entete { display: flex; flex-direction: column; gap: 0.9rem; max-width: 48em; }
+.releve-site .projets-entete h1 { order: 1; }
+.releve-site .projets-entete > :not(h1):not(.surtitre) { order: 2; }
+.releve-site .surtitre { order: 3; font-size: 0.95rem; color: var(--texte-pale); }
+.releve-site .projets-entete h1::after { content: ""; display: block; inline-size: 2.5rem; block-size: 2px; margin-top: 1rem; border-radius: 2px; background: var(--section); transform-origin: left; animation: trait 700ms var(--courbe) both; }
 .releve-site .projets-famille { display: grid; gap: 1.2rem; }
 .releve-site .projets-famille > h2 { display: flex; align-items: baseline; gap: 0.7em; }
 .releve-site [data-section] { counter-reset: famille; }
@@ -23,12 +25,9 @@
 .releve-site .projet-liens a,
 .releve-site .ouvrir-details { color: var(--section); text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--section) 40%, transparent); text-underline-offset: 0.22em; }
 .releve-site .projet-liens a:hover { text-decoration-color: var(--section); }
-@media (min-width: 56em) {
-  .releve-site .projet.avec-ecran { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; }
-  .releve-site .projet.avec-ecran:has(.ecran-controle.mobile) { grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.6fr); }
-}
-@media (min-width: 100em) {
-  .releve-site .projet.avec-ecran { grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); }
+@media (min-width: 48em) {
+  .releve-site .projet.avec-ecran { grid-template-columns: minmax(0, 1fr) minmax(14rem, 0.62fr); align-items: start; }
+  .releve-site .projet .ecran-controle.mobile { width: min(100%, 11rem); justify-self: end; }
 }
 
 /* Frise de cursus : l'archive de formation, datée, en retrait */
@@ -101,6 +100,8 @@
 .releve-site .fenetre-titre { font: 400 0.8rem var(--donnees); font-variation-settings: "wdth" 87; color: var(--texte-pale); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .releve-site .fermer-details { font: 500 0.92rem var(--police); color: var(--texte); background: transparent; border: 1px solid var(--filet-fort); border-radius: var(--rayon-pastille); min-height: 2.75rem; padding: 0 1rem; cursor: pointer; }
 .releve-site .fermer-details:hover { border-color: var(--section); }
+.releve-site .fermer-details kbd { display: none; }
+@media (hover: hover) { .releve-site .fermer-details kbd { display: inline; } }
 .releve-site .fermer-details kbd { font: 400 0.72rem var(--donnees); color: var(--texte-pale); margin-inline-start: 0.4rem; }
 .releve-site .fenetre-contenu { overflow-y: auto; overscroll-behavior: contain; padding: clamp(1.2rem, 3vw, 2.2rem) clamp(1rem, 3vw, 2rem) clamp(2rem, 4vw, 3rem); display: grid; gap: 1.6rem; align-content: start; }
 .releve-site .fenetre-tete { display: grid; gap: 0.7rem; }

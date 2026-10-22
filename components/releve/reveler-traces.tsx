@@ -11,7 +11,6 @@ export function RevelerTraces() {
   useEffect(() => {
     const site = document.querySelector<HTMLElement>('.releve-site');
     if (!site || !('IntersectionObserver' in window)) return;
-    site.dataset.reveler = 'oui';
     const observateur = new IntersectionObserver((entrees) => {
       for (const e of entrees) {
         if (!e.isIntersecting) continue;

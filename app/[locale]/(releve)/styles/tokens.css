@@ -26,7 +26,8 @@ html[data-releve="clair"]:has(.releve-site) { background: #F3F3F0; color-scheme:
   --sur-accent: #111214;
   --attente-voile: rgb(232 192 99 / 0.14);
   --service-voile: rgb(116 201 154 / 0.14);
-  --lueur-ecran: rgb(169 198 245 / 0.12);
+  --lueur-ecran: rgb(169 198 245 / 0.18);
+  --ecran-lum: 0.82;
   --vue-fond: #0B0C0D;
   --voile-modal: rgb(5 6 7 / 0.66);
   --ombre-plan: inset 0 1px 0 rgb(255 255 255 / 0.04), 0 1.1rem 2.5rem -1.5rem rgb(0 0 0 / 0.7);
@@ -74,7 +75,8 @@ html[data-releve="clair"] .releve-site {
   --sur-accent: #FFFFFF;
   --attente-voile: rgb(142 98 0 / 0.1);
   --service-voile: rgb(27 127 78 / 0.1);
-  --lueur-ecran: rgb(44 93 179 / 0.08);
+  --lueur-ecran: rgb(44 93 179 / 0.1);
+  --ecran-lum: 1;
   --vue-fond: #E9E9E5;
   --voile-modal: rgb(20 21 24 / 0.4);
   --ombre-plan: 0 1px 2px rgb(20 21 24 / 0.06), 0 0.9rem 2rem -1.4rem rgb(20 21 24 / 0.28);

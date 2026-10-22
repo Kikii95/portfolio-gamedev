@@ -3,6 +3,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import type { Realisation } from '@/lib/releve/types';
 import { chemin } from '@/lib/releve/chemin';
 import { FilExecution } from './fil-execution';
+import { TraceMini } from './trace-mini';
 import { RecuLivraison } from './recu-livraison';
 import { PieceJustificative } from './piece-justificative';
 
@@ -28,8 +29,20 @@ export function EntreeRealisation({ realisation, rang }: { realisation: Realisat
         <p className="chapo">{realisation.accroche}</p>
       </header>
       <div className="entree-trace">
-        <p className="sous-titre">{t('realisations.deroule')}</p>
-        <FilExecution etapes={realisation.etapes} enCours={enCours} />
+        {rang === 0 ? (
+          <>
+            <p className="sous-titre">{t('realisations.deroule')}</p>
+            <FilExecution etapes={realisation.etapes} enCours={enCours} />
+          </>
+        ) : (
+          <details className="deroule">
+            <summary>
+              <span>{t('realisations.voirDeroule')}</span>
+              <TraceMini etapes={realisation.etapes} />
+            </summary>
+            <FilExecution etapes={realisation.etapes} enCours={enCours} />
+          </details>
+        )}
         <Link className="bouton trait" href={fiche}>
           {t('realisations.lire')} →
         </Link>

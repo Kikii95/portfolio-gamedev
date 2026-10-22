@@ -13,37 +13,56 @@
 .releve-site .dispo .point { inline-size: 0.6rem; block-size: 0.6rem; border-radius: 50%; background: var(--en-service); animation: onde 1.8s ease-out 400ms 1 both; }
 .releve-site .dispo strong { color: var(--texte); font-weight: 500; }
 
-/* Trace de passage : le waterfall d'une trace d'observabilité */
-.releve-site .trace { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.15rem; }
-.releve-site .trace .pas { display: grid; grid-template-columns: 3.6rem minmax(0, 1fr); column-gap: 0.9rem; row-gap: 0.4rem; align-items: start; padding: 0.55rem 0; border-top: 1px solid color-mix(in srgb, var(--filet) 70%, transparent); }
-.releve-site .trace .h { font: 400 0.8rem/1.6 var(--donnees); font-variation-settings: "wdth" 87; color: var(--texte-pale); text-align: right; font-variant-numeric: tabular-nums; }
+/* Trace de passage : rail vertical sur mobile, waterfall d'observabilité sur bureau */
+.releve-site .trace { --rail: 1.1rem; list-style: none; margin: 0; padding: 0; display: grid; }
+.releve-site .trace .pas { position: relative; display: grid; grid-template-columns: 3.2rem var(--rail) minmax(0, 1fr); column-gap: 0.7rem; align-items: start; padding-block: 0.6rem; }
+.releve-site .trace .h { font: 400 0.8rem/1.75 var(--donnees); font-variation-settings: "wdth" 87; color: var(--texte-pale); text-align: right; font-variant-numeric: tabular-nums; }
+/* le rail : un trait continu qui relie les glyphes */
+.releve-site .trace .glyphe { position: relative; align-self: stretch; display: grid; justify-items: center; }
+.releve-site .trace .glyphe::before { content: ""; position: absolute; inset-block: calc(-0.6rem) calc(-0.6rem); inset-inline-start: calc(50% - 1px); inline-size: 2px; background: var(--filet-fort); }
+.releve-site .trace .pas:first-child .glyphe::before { inset-block-start: 0.85rem; }
+.releve-site .trace .pas:last-child .glyphe::before { inset-block-end: calc(100% - 0.85rem); }
+.releve-site .trace .glyphe::after { content: ""; position: relative; margin-top: 0.42rem; inline-size: 0.7rem; block-size: 0.7rem; border-radius: 50%; background: var(--fond); border: 2px solid var(--texte-doux); }
+.releve-site .trace .declencheur .glyphe::after { background: var(--texte); border-color: var(--texte); }
+.releve-site .trace .attend .glyphe::after { border-radius: 2px; transform: rotate(45deg); border-color: var(--attente); background: var(--attente-voile); }
+.releve-site .trace .livre .glyphe::after { background: var(--en-service); border-color: var(--en-service); }
+.releve-site .trace .reprise .glyphe::after { border-radius: 0; inline-size: 0.8rem; block-size: 0.7rem; border: 0; background: var(--reprise); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
 .releve-site .trace .lib { display: grid; gap: 0.15rem; min-width: 0; }
-.releve-site .trace .verbe { font-weight: 500; line-height: 1.35; }
-.releve-site .trace small { font-size: 0.88rem; color: var(--texte-pale); line-height: 1.4; }
+.releve-site .trace .verbe { font-weight: 500; line-height: 1.4; }
+.releve-site .trace small { font-size: 0.88rem; color: var(--texte-pale); line-height: 1.45; }
 .releve-site .trace .marque-etape { font: 500 0.72rem var(--donnees); font-variation-settings: "wdth" 87; margin-right: 0.5rem; color: var(--texte-doux); }
-.releve-site .trace .piste { grid-column: 2; position: relative; block-size: 0.55rem; border-radius: var(--rayon-segment); background: repeating-linear-gradient(90deg, var(--filet) 0 1px, transparent 1px calc(100% / var(--n, 5))); }
-.releve-site .trace .seg { position: absolute; inset-block: 0; left: calc(var(--i) * 100% / var(--n, 5)); width: calc(100% / var(--n, 5) - 2px); border-radius: var(--rayon-segment); background: color-mix(in srgb, var(--texte) 70%, transparent); transform-origin: left; animation: segment 520ms var(--courbe) both; animation-delay: calc(var(--i) * 90ms + 150ms); }
-.releve-site .trace .declencheur .seg { background: var(--texte); }
-.releve-site .trace .attend .seg { background: repeating-linear-gradient(135deg, var(--attente) 0 2px, var(--attente-voile) 2px 6px); outline: 1px solid var(--attente); animation: segment 520ms var(--courbe) both, respire 2.4s ease-in-out 1.2s infinite; animation-delay: calc(var(--i) * 90ms + 150ms), 1.2s; }
 .releve-site .trace .attend .verbe { color: var(--attente); }
-.releve-site .trace .livre .seg { background: var(--en-service); }
 .releve-site .trace .livre .verbe { color: var(--en-service); }
-.releve-site .trace .reprise .seg { background: transparent; outline: 1px dashed var(--reprise); }
 .releve-site .trace .reprise .verbe { color: var(--reprise); }
-/* Révélation à sens unique : sans JS, tout est plein ; avec JS, une trace se remplit quand elle entre à l'écran */
-.releve-site[data-reveler] :is(.trace, .trace-mini):not(.vue) :is(.seg, .m) { animation: none; transform: scaleX(0); }
+.releve-site .trace .attend { background: linear-gradient(90deg, var(--attente-voile), transparent 70%); border-radius: var(--rayon-segment); }
+.releve-site .trace .piste { display: none; }
 @media (min-width: 48em) {
-  .releve-site .trace .pas { grid-template-columns: 3.6rem minmax(0, 1.25fr) minmax(0, 1fr); align-items: center; }
-  .releve-site .trace .piste { grid-column: 3; block-size: 0.75rem; }
+  .releve-site .trace .pas { grid-template-columns: 3.4rem var(--rail) minmax(0, 1fr) minmax(0, 1.1fr); align-items: center; }
+  .releve-site .trace .glyphe { align-self: stretch; align-items: center; }
+  .releve-site .trace .glyphe::after { margin-top: 0; }
+  .releve-site .trace .pas:first-child .glyphe::before { inset-block-start: 50%; }
+  .releve-site .trace .pas:last-child .glyphe::before { inset-block-end: 50%; }
+  .releve-site .trace .piste { display: block; position: relative; block-size: 1rem; }
+  .releve-site .trace .piste::before { content: ""; position: absolute; inset-inline: 0; inset-block-start: calc(50% - 0.5px); block-size: 1px; background: var(--filet-fort); }
+  .releve-site .trace .seg { position: absolute; inset-block: 0; left: calc(var(--i) * 100% / var(--n, 5)); width: calc(100% / var(--n, 5) + 0.15rem); border-radius: var(--rayon-segment); background: var(--texte-doux); transform-origin: left; }
+  .releve-site .trace .declencheur .seg { background: var(--texte); }
+  .releve-site .trace .attend .seg { background: repeating-linear-gradient(135deg, var(--attente) 0 3px, var(--attente-voile) 3px 7px); outline: 1px solid var(--attente); }
+  .releve-site .trace .livre .seg { background: var(--en-service); }
+  .releve-site .trace .reprise .seg { background: var(--fond); outline: 1px dashed var(--reprise); }
 }
 
-/* Trace miniature : une rangée de segments, dans le tableau de service */
-.releve-site .trace-mini { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 2px; block-size: 0.4rem; }
-.releve-site .trace-mini .m { border-radius: 2px; background: color-mix(in srgb, var(--texte) 55%, transparent); transform-origin: left; animation: segment 420ms var(--courbe) both; animation-delay: calc(var(--i) * 70ms + 500ms); }
+/* Trace miniature : la même trace en une ligne, dans le tableau de service */
+.releve-site .trace-mini { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 0.2rem; block-size: 0.45rem; }
+.releve-site .trace-mini .m { border-radius: 2px; background: color-mix(in srgb, var(--texte) 45%, transparent); transform-origin: left; }
 .releve-site .trace-mini .declencheur { background: var(--texte); }
 .releve-site .trace-mini .attente { background: repeating-linear-gradient(135deg, var(--attente) 0 2px, var(--attente-voile) 2px 5px); outline: 1px solid var(--attente); }
 .releve-site .trace-mini .livre { background: var(--en-service); }
-.releve-site .trace-mini .reprise { background: transparent; outline: 1px dashed var(--reprise); }
+.releve-site .trace-mini .reprise { background: transparent; outline: 1px dashed var(--reprise); outline-offset: -1px; }
+
+/* Révélation : la page est complète au repos ; une trace qui entre à l'écran rejoue son passage */
+.releve-site :is(.trace, .trace-mini).vue :is(.seg, .m) { animation: segment 520ms var(--courbe) both; animation-delay: calc(var(--i) * 90ms); }
+.releve-site .trace.vue .attend .seg { animation: segment 520ms var(--courbe) both, respire 2.4s ease-in-out 1.4s infinite; animation-delay: calc(var(--i) * 90ms), 1.4s; }
+.releve-site .trace.vue .glyphe::after { animation: arrive 300ms ease-out both; animation-delay: calc(var(--i, 0) * 90ms); }
 
 /* Porte de validation : « validation requise → Vas-y / Annuler » */
 .releve-site .porte { border: 1px solid color-mix(in srgb, var(--attente) 55%, var(--filet)); border-radius: var(--rayon-plan); background: var(--plan); overflow: hidden; box-shadow: var(--ombre-plan); animation: porte-bord 2.4s ease-in-out infinite; }
@@ -78,7 +97,7 @@
 
 /* Écran de contrôle : la vidéo comme un écran allumé dans une pièce sombre */
 .releve-site .ecran-controle { position: relative; isolation: isolate; margin: 0; border: 1px solid var(--filet); border-radius: var(--rayon-plan); background: var(--plan-haut); }
-.releve-site .ecran-controle::after { content: ""; position: absolute; inset: 72% 6% -12% 6%; z-index: -1; background: radial-gradient(closest-side, var(--lueur-ecran), transparent); filter: blur(0.8rem); opacity: 0.8; transition: opacity 300ms ease; pointer-events: none; }
+.releve-site .ecran-controle::after { content: ""; position: absolute; inset: 72% 6% -12% 6%; z-index: -1; background: radial-gradient(closest-side, var(--lueur-ecran), transparent); filter: blur(1rem); opacity: 1; transition: opacity 300ms ease; pointer-events: none; }
 .releve-site .ecran-controle:hover::after { opacity: 1; }
 .releve-site .ecran-controle .barre { display: flex; justify-content: space-between; gap: 1rem; padding: 0.55rem 0.9rem; border-bottom: 1px solid var(--filet); font: 400 0.75rem/1.4 var(--donnees); font-variation-settings: "wdth" 87; color: var(--texte-pale); }
 .releve-site .ecran-controle .duree { white-space: nowrap; }
@@ -86,7 +105,7 @@
 .releve-site .ecran-controle.mobile { width: min(100%, 18rem); justify-self: center; }
 .releve-site .ecran-controle.mobile .vue { aspect-ratio: 390 / 844; }
 .releve-site .ecran-controle img,
-.releve-site .ecran-controle video { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.releve-site .ecran-controle video { filter: brightness(var(--ecran-lum, 1)); display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
 .releve-site .ecran-controle .lecture { position: absolute; inset: 0; display: grid; place-items: center; border: 0; padding: 0; background: linear-gradient(transparent 55%, rgb(0 0 0 / 0.35)); cursor: pointer; }
 .releve-site .ecran-controle .lecture span { width: 3.6rem; height: 3.6rem; border-radius: 50%; background: rgb(238 237 233 / 0.92); display: grid; place-items: center; transition: transform 160ms var(--courbe); }
 .releve-site .ecran-controle .lecture:hover span { transform: scale(1.08); }

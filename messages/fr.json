@@ -170,7 +170,7 @@
       "chapo": "Je pars du terrain : j'observe comment l'équipe travaille, je repère ce qui coûte des heures, puis je mets en place l'automatisation et l'IA qui s'en chargent. Ces systèmes tournent déjà, chez des PME et au quotidien.",
       "voir": "Voir les réalisations",
       "contact": "Me contacter",
-      "journal": "relevé de ce matin",
+      "journal": "journal de la nuit",
       "journalSuite": "et ça continue"
     },
     "journal": [
@@ -225,12 +225,13 @@
     ],
     "realisations": {
       "titre": "Réalisations",
-      "chapo": "Chaque réalisation se lit comme un relevé d'exécution : ce qui la déclenche, ce qu'elle fait seule, où une personne valide, ce qu'elle livre.",
+      "chapo": "Chaque réalisation se lit comme une trace : ce qui la déclenche, ce qu'elle fait seule, où une personne valide, ce qu'elle livre.",
       "deroule": "Déroulé type d'un passage",
       "lire": "Lire la fiche",
       "pieces": "Pièces justificatives",
       "autres": "Aussi construit",
-      "autresChapo": "Des produits web complets, conçus et développés seul."
+      "autresChapo": "Des produits web complets, conçus et développés seul.",
+      "voirDeroule": "Voir le déroulé"
     },
     "methode": {
       "titre": "L'IA prépare. Vous validez. Ça part.",
@@ -367,7 +368,14 @@
     },
     "tableau": {
       "titre": "Systèmes en service",
-      "attente": "une personne valide"
+      "attente": "une personne valide",
+      "passage": "passage {heure}",
+      "legende": {
+        "declencheur": "déclenche",
+        "attente": "une personne valide",
+        "reprise": "reprise",
+        "livre": "livré"
+      }
     }
   }
 }

@@ -19,6 +19,7 @@ export function FilExecution({ etapes, enCours }: FilExecutionProps) {
       {etapes.map((etape, i) => (
         <li key={`${etape.heure}-${i}`} className={i === enCours ? `${CLASSE[etape.type]} en-cours` : CLASSE[etape.type]}>
           <span className="h">{etape.heure}</span>
+          <span className="glyphe" aria-hidden="true" />
           <span className="lib">
             <span className="verbe">{etape.verbe}</span>
             {(etape.etiquette || etape.detail) && (

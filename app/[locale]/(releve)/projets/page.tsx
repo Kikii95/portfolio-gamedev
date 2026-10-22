@@ -19,7 +19,7 @@ export default async function ProjetsPage({ params }: { params: Params }) {
   return (
     <div className="page-projets cadre" data-section="perso">
       <header className="projets-entete">
-        <p className="mono surtitre">{t('surtitre', { nombre: PROJETS.length + LABO.length })}</p>
+        <p className="surtitre">{t('surtitre', { nombre: PROJETS.length + LABO.length })}</p>
         <h1>{t('titre')}</h1>
         <p className="chapo">{t('chapo')}</p>
       </header>

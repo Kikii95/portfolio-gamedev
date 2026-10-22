@@ -11,7 +11,7 @@ export function Hero({ realisations }: { realisations: Realisation[] }) {
       <div className="hero-texte">
         <h1>{t('hero.poste')}</h1>
         <p className="promesse">{t('methode.titre')}</p>
-        <p className="hero-lead">{t('hero.titre')}</p>
+        <p className="hero-lead">{t('hero.chapo')}</p>
         <p className="dispo">
           <i className="point" aria-hidden="true" />
           <strong>{t('hero.dispo')}</strong>
@@ -27,7 +27,6 @@ export function Hero({ realisations }: { realisations: Realisation[] }) {
         </div>
       </div>
       <TableauService realisations={realisations} />
-      <p className="chapo hero-chapo">{t('hero.chapo')}</p>
     </section>
   );
 }
