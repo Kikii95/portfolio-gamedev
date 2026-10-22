@@ -94,7 +94,7 @@ export const PROJETS: ProjetPerso[] = [
     statut: 'service',
     texte: "Le point d'accès unique de mes outils : il détient les accès à mes comptes, les sert à mes autres apps et garde la trace de chaque usage.",
     outils: ['Next.js', 'PostgreSQL', 'Drizzle', 'NextAuth'],
-    cartouche: 'Passerelle',
+    piece: { type: 'image', src: '/medias/home-gateway/schema.webp', legende: 'Schéma : qui passe par la passerelle' },
   },
   {
     titre: 'Obsidian Web',
