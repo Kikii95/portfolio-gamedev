@@ -37,6 +37,11 @@ export function CarteEcole({ meta, href, rang }: CarteEcoleProps) {
       </p>
       <div className="projet-liens">
         <DetailsProjet slug={meta.slug} collection="projects" pageHref={href} />
+        {meta.github && (
+          <a href={meta.github} target="_blank" rel="noopener noreferrer">
+            {t('ecole.code')}
+          </a>
+        )}
       </div>
     </article>
   );
