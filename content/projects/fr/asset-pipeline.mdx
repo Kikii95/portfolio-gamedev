@@ -1,83 +1,75 @@
 ---
-title: "Asset Pipeline Engine"
-description: "Système de gestion d'assets pour moteur de jeu avec hot-reload et tracking de dépendances"
-date: "2025-09-01"
+title: "Asset Engine : HexView, SafeReader, CryptFile"
+description: "Trois exercices de C et C++ sur les fichiers binaires : un visualiseur hexadécimal, un lecteur qui valide un format maison et un chiffrement réversible octet par octet"
+date: "2025-10-20"
 category: "école"
-cartouche: "Hot-reload"
-tags: ["C++", "CMake", "Asset Management", "Game Engine"]
+github: "https://github.com/Kikii95/3---Asset-Engine/tree/Kiki"
+cartouche: "Binaire"
+tags: ["C", "C++", "Fichiers binaires", "Checksum", "XOR", "Solo"]
 featured: false
 status: "archive"
 gallery: []
 techDetails: |
-  ## Architecture
+  ## Les trois exercices
 
-  Resource Manager avec graphe de dépendances :
+  | Jour | Programme | Contenu |
+  |------|-----------|---------|
+  | J1 | HexView | Dump d'un fichier en 16 octets par ligne (offset, hexadécimal, ASCII), sauvegarde du dump en `.txt`, modification d'un octet à un offset, sauvegarde du fichier modifié |
+  | J2 | SafeReader | Génération, validation et corruption de fichiers `.safe` |
+  | J3 | CryptFile | Chiffrement et déchiffrement d'un fichier avec une clé texte, test de symétrie |
+
+  ## Format `.safe` (J2)
 
   ```
-  ┌─────────────────────────────────────────┐
-  │           Resource Manager              │
-  ├──────────┬──────────┬──────────┬────────┤
-  │ Registry │ Loader   │ Cache    │ Watch  │
-  │ (lookup) │ (async)  │ (memory) │ (hot)  │
-  └──────────┴──────────┴──────────┴────────┘
-              │
-              ▼
-  ┌─────────────────────────────────────────┐
-  │         Dependency Graph                │
-  │  Texture A ──► Shader B ──► Material C  │
-  └─────────────────────────────────────────┘
+  HEADER (16 octets)
+    magic    : 4 octets (0x45464153, « SAFE »)
+    version  : 4 octets (1)
+    dataSize : 4 octets
+    checksum : 4 octets (XOR puis rotation à gauche d'un bit, octet par octet)
+  DATA (taille variable)
   ```
 
-  ## Stack Détaillé
+  Le lecteur vérifie la signature, la version, la taille déclarée contre la taille réelle, puis le checksum.
+  L'outil de corruption casse un champ à la fois pour vérifier que chaque erreur est détectée : magic, version,
+  taille, checksum, un octet de données, ou fichier tronqué.
 
-  | Tech | Version | Rôle |
-  |------|---------|------|
-  | C++ | 17 | Langage core |
-  | CMake | 3.x | Build system |
-  | LZ4 | 1.9 | Compression assets |
-  | File watching | OS APIs | Hot reload |
+  ## Chiffrement (J3)
 
-  ## Features Implémentées
+  - Chiffrement : rotation de 3 bits à gauche, puis XOR avec l'octet de clé (`((b << 3) | (b >> 5)) ^ key`).
+  - Déchiffrement : XOR, puis rotation inverse.
+  - La clé texte est répétée sur toute la longueur du fichier.
+  - Le test de symétrie chiffre, déchiffre et compare le résultat au fichier d'origine.
 
-  - **Chargement async** : callbacks, priorisation assets visibles
-  - **Reference counting** : gestion automatique cycle de vie
-  - **Hot reload intelligent** : file watcher + graphe dépendances
-  - **Compression LZ4** : réduction 60% taille bundles
+  ## Deux versions de HexView
 
-  ## Pipeline Offline
+  - **C classique** : `fopen`, `fread`, `fwrite`, `malloc`, `free`, `typedef struct`.
+  - **C++** : classe `HexView`, `std::vector`, `std::ifstream` / `std::ofstream`, remplacement d'un bloc d'octets.
 
-  - Compression textures (formats BCn)
-  - Optimisation mesh
-  - Compilation shaders
-  - Bundling d'assets
+  ## Stack
+
+  | Tech | Rôle |
+  |------|------|
+  | C / C++17 | Langage |
+  | g++ / Visual Studio | Compilation (`compile_all.sh` fourni) |
 ---
 
-# Asset Pipeline Engine
+# Asset Engine : HexView, SafeReader, CryptFile
 
-Système de gestion d'assets robuste pour moteurs de jeu : chargement, cache, hot-reload et résolution de dépendances.
+Trois petits programmes écrits pendant la semaine « Asset Engine » de GTech 3, pour apprendre à lire, valider et
+transformer des fichiers octet par octet.
 
 ## Contexte
 
-Projet école GTech3, 5 semaines. Équipe de 3, rôle : architecte du pipeline core.
+Un exercice par jour, d'après les sujets fournis (J1 « HexView », J2 « SafeReader ») : lire un fichier binaire
+quelconque, puis définir un petit format avec en-tête et somme de contrôle et le lire de façon défensive, sans jamais
+faire confiance au fichier. Travail individuel, du 20 au 23 octobre 2025.
 
-Les jeux modernes nécessitent une gestion d'assets sophistiquée. Ce projet implémente un pipeline production-ready.
+## Ce que j'y ai fait
 
-## Cahier des Charges École
-
-- Implémenter un système de chargement de ressources
-- Gestion mémoire automatique
-- Support hot-reload
-- C++ moderne, documentation, tests unitaires
-
-## Notre Implémentation
-
-Au-delà des consignes :
-
-- **Chargement async avec callbacks** : priorisation assets visibles
-- **Reference counting** : évite les memory leaks
-- **Hot reload intelligent** : file watcher + graphe de dépendances
-- **Compression LZ4** : réduction 60% taille bundles
+HexView en deux versions (C avec `malloc`/`fread`, puis C++ avec `std::vector` et une classe), SafeReader avec ses
+outils de génération et de corruption, puis CryptFile. Les trois sont ensuite regroupés dans `ExoComplet`, un fichier
+autonome par exercice (menu intégré pour SafeReader et CryptFile), avec un README et un script de compilation.
 
 ## Liens
 
-- Dépôt privé (école).
+- [3---Asset-Engine](https://github.com/Kikii95/3---Asset-Engine/tree/Kiki) (code sur la branche `Kiki`)

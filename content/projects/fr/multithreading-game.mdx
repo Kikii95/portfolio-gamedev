@@ -1,78 +1,68 @@
 ---
-title: "Multithreaded Game"
-description: "Jeu optimisé avec multithreading C++ pour gameplay fluide et traitement parallèle"
-date: "2025-09-15"
+title: "Multithreading Win32 : SafeQueue et arène à 4 threads"
+description: "Une semaine de multithreading en C++ avec l'API Win32 : file thread-safe, producteurs-consommateurs, détection de collisions parallèle, puis une arène SFML où quatre WorkerThreads se partagent la carte et communiquent par messages"
+date: "2025-11-17"
 category: "école"
+github: "https://github.com/Kikii95/5---Multithreading/tree/Kiki"
 cartouche: "Threads"
-tags: ["C++", "Threading", "CMake", "SFML", "Performance"]
+tags: ["C++", "Win32", "Multithreading", "SFML", "Producteur-consommateur", "Solo"]
 featured: false
 status: "archive"
 gallery: []
 techDetails: |
-  ## Architecture Multi-Thread
+  ## Exercices de la semaine (`Semaine Exo/`)
 
-  4 threads dédiés vs 2 demandés :
+  | Jour | Exercice | Contenu |
+  |------|----------|---------|
+  | J1 | WhackAThread | Jeu de taupe en console : chaque taupe est un thread (`CreateThread`), un thread lance les taupes, les événements passent par une file de messages |
+  | J2-3 | SafeQueue | File bornée en tampon circulaire : `CRITICAL_SECTION` et deux `CONDITION_VARIABLE` (pas pleine, pas vide), `push` bloquant, `tryPush` / `tryPop`, test producteurs-consommateurs |
+  | J3 | CollisionDetector | Collisions entre 50 000 sphères : version mono-thread, puis 2 et 4 threads, thread de suivi de la progression (`Interlocked*`) |
+  | J3-4 | SafeCollision | Même détection en producteurs-consommateurs à travers la SafeQueue, cinq configurations comparées, dont une avec accumulation locale des résultats |
+
+  ## Arène finale (`Final/TestComplet`)
 
   ```
-  ┌─────────────────────────────────────────┐
-  │              Thread Pool                │
-  ├──────────┬──────────┬──────────┬────────┤
-  │   Main   │  Render  │ Physics  │ Audio  │
-  │ (loop +  │ (submit  │(collision│(sound  │
-  │  input)  │ graphics)│  + sim)  │process)│
-  └──────────┴──────────┴──────────┴────────┘
+  Thread principal : rendu SFML (800 x 600), fin de partie, statistiques
+  ThreadManager
+    └── 4 WorkerThreads, chacun avec ses entités et une SafeQueue<Message*>
+          boucle de 16 ms : messages -> mise à jour -> collisions -> transitions
+  Carte : grille de 4 x 3 cellules de 200 px, cellule -> thread (index modulo 4)
   ```
 
-  ## Stack Détaillé
+  - **12 joueurs, 8 bonus** (PV, vitesse, bouclier, dégâts). Le dernier joueur en vie gagne.
+  - **Collision locale** (deux joueurs du même thread) : dégâts et rebond calculés sur place.
+  - **Collision distante** : le thread d'indice le plus bas l'applique à son joueur et envoie un `CollisionMessage` à
+    l'autre thread, plus un `KillRewardMessage` si son joueur meurt.
+  - **Transition** : un joueur qui change de cellule est sérialisé dans un `TransitionMessage`, retiré de son thread et
+    recréé dans le thread cible. La couleur du joueur indique son thread.
 
-  | Tech | Version | Rôle |
-  |------|---------|------|
-  | C++ | 17/20 | Langage core |
-  | std::thread | stdlib | Threading primitives |
-  | std::mutex | stdlib | Synchronisation |
-  | SFML | 2.5 | Graphismes |
-  | CMake | 3.x | Build system |
+  ## Stack
 
-  ## Synchronisation
-
-  - **Mutex locks** : sections critiques
-  - **Condition variables** : signalisation inter-thread
-  - **Atomics** : compteurs et flags lock-free
-  - **Queues SPSC/MPSC** : communication sans contention
-
-  ## Performance
-
-  - Frame time stable < 16ms (60 FPS)
-  - Job system custom avec work stealing
-  - Profiler intégré pour identification bottlenecks
+  | Tech | Rôle |
+  |------|------|
+  | C++ | Langage |
+  | API Win32 | `CreateThread`, `CRITICAL_SECTION`, `CONDITION_VARIABLE`, `Interlocked*` |
+  | SFML 2.6.1 | Rendu de l'arène |
+  | Visual Studio | Build |
 ---
 
-# Multithreaded Game
+# Multithreading Win32 : SafeQueue et arène à 4 threads
 
-Jeu démontrant les techniques avancées de multithreading C++ pour un gameplay fluide.
+Une semaine de multithreading en C++ avec l'API Win32 en GTech 3 : des exercices quotidiens, puis une arène où
+quatre threads se partagent la carte.
 
 ## Contexte
 
-Projet école GTech3, 2 mois. Équipe de 4, rôle : développeur systèmes core.
+Semaine du 17 au 24 novembre 2025. Les notes de cours (théorie, threads Win32, thread safety) sont rangées dans
+`Semaine Exo/Doc/`. Travail individuel.
 
-Focus sur le traitement parallèle et la synchronisation de threads pour des systèmes de jeu temps réel.
+## Ce que j'y ai fait
 
-## Cahier des Charges École
-
-- Paralléliser au moins 2 systèmes de jeu
-- Gestion de ressources thread-safe
-- Frame time stable < 16ms (60 FPS)
-- C++17/20 avec std::thread, pas de race conditions
-
-## Notre Implémentation
-
-Au-delà des 2 systèmes demandés :
-
-- **4 threads dédiés** : Main, Render, Physics, Audio
-- **Job system custom** avec work stealing
-- **Structures lock-free** : queues SPSC/MPSC
-- **Profiler intégré** : visualisation frame times
+Les quatre exercices de la semaine, puis deux versions de l'arène SFML : `TestMessage` (des boules qui changent de
+thread en changeant de zone) et `TestComplet` (joueurs, bonus, combats et fin de partie). Les dégâts d'une collision
+distante, les transitions de zone et les récompenses partent en message dans la SafeQueue du thread qui possède
+l'entité visée.
 
 ## Liens
 
-- Dépôt privé (école).
+- [5---Multithreading](https://github.com/Kikii95/5---Multithreading/tree/Kiki) (code sur la branche `Kiki`)

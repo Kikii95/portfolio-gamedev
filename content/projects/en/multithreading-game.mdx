@@ -1,78 +1,67 @@
 ---
-title: "Multithreaded Game"
-description: "Game optimized with C++ multithreading for smooth gameplay and parallel processing"
-date: "2025-09-15"
+title: "Win32 multithreading: SafeQueue and a 4-thread arena"
+description: "A week of C++ multithreading with the Win32 API: thread-safe queue, producers and consumers, parallel collision detection, then an SFML arena where four WorkerThreads split the map and talk through messages"
+date: "2025-11-17"
 category: "école"
+github: "https://github.com/Kikii95/5---Multithreading/tree/Kiki"
 cartouche: "Threads"
-tags: ["C++", "Threading", "CMake", "SFML", "Performance"]
+tags: ["C++", "Win32", "Multithreading", "SFML", "Producer-consumer", "Solo"]
 featured: false
 status: "archive"
 gallery: []
 techDetails: |
-  ## Multi-Thread Architecture
+  ## Weekly exercises (`Semaine Exo/`)
 
-  4 dedicated threads vs 2 required:
+  | Day | Exercise | Content |
+  |-----|----------|---------|
+  | D1 | WhackAThread | Console whack-a-mole: each mole is a thread (`CreateThread`), one thread spawns the moles, events go through a message queue |
+  | D2-3 | SafeQueue | Bounded ring-buffer queue: `CRITICAL_SECTION` and two `CONDITION_VARIABLE`s (not full, not empty), blocking `push`, `tryPush` / `tryPop`, producer-consumer test |
+  | D3 | CollisionDetector | Collisions between 50,000 spheres: single-threaded, then 2 and 4 threads, a progress monitor thread (`Interlocked*`) |
+  | D3-4 | SafeCollision | Same detection as producers and consumers through the SafeQueue, five configurations compared, one with local accumulation of results |
+
+  ## Final arena (`Final/TestComplet`)
 
   ```
-  ┌─────────────────────────────────────────┐
-  │              Thread Pool                │
-  ├──────────┬──────────┬──────────┬────────┤
-  │   Main   │  Render  │ Physics  │ Audio  │
-  │ (loop +  │ (submit  │(collision│(sound  │
-  │  input)  │ graphics)│  + sim)  │process)│
-  └──────────┴──────────┴──────────┴────────┘
+  Main thread: SFML rendering (800 x 600), game over, stats
+  ThreadManager
+    └── 4 WorkerThreads, each with its entities and a SafeQueue<Message*>
+          16 ms loop: messages -> update -> collisions -> transitions
+  Map: 4 x 3 grid of 200 px cells, cell -> thread (index modulo 4)
   ```
 
-  ## Tech Stack
+  - **12 players, 8 bonuses** (HP, speed, shield, damage). The last player alive wins.
+  - **Local collision** (two players on the same thread): damage and bounce computed in place.
+  - **Remote collision**: the lower-index thread applies it to its player and sends a `CollisionMessage` to the other
+    thread, plus a `KillRewardMessage` if its player dies.
+  - **Transition**: a player that changes cell is serialized into a `TransitionMessage`, removed from its thread and
+    rebuilt in the target thread. A player's color shows its thread.
 
-  | Tech | Version | Role |
-  |------|---------|------|
-  | C++ | 17/20 | Core language |
-  | std::thread | stdlib | Threading primitives |
-  | std::mutex | stdlib | Synchronization |
-  | SFML | 2.5 | Graphics |
-  | CMake | 3.x | Build system |
+  ## Stack
 
-  ## Synchronization
-
-  - **Mutex locks**: critical sections
-  - **Condition variables**: inter-thread signaling
-  - **Atomics**: lock-free counters and flags
-  - **SPSC/MPSC queues**: contention-free communication
-
-  ## Performance
-
-  - Stable frame time < 16ms (60 FPS)
-  - Custom job system with work stealing
-  - Built-in profiler for bottleneck identification
+  | Tech | Role |
+  |------|------|
+  | C++ | Language |
+  | Win32 API | `CreateThread`, `CRITICAL_SECTION`, `CONDITION_VARIABLE`, `Interlocked*` |
+  | SFML 2.6.1 | Arena rendering |
+  | Visual Studio | Build |
 ---
 
-# Multithreaded Game
+# Win32 multithreading: SafeQueue and a 4-thread arena
 
-Game demonstrating advanced C++ multithreading techniques for smooth gameplay.
+A week of C++ multithreading with the Win32 API at GTech 3: daily exercises, then an arena where four threads split
+the map.
 
 ## Context
 
-School project GTech3, 2 months. Team of 4, role: core systems developer.
+Week of November 17 to 24, 2025. The course notes (theory, Win32 threads, thread safety) sit in `Semaine Exo/Doc/`.
+Individual work.
 
-Focus on parallel processing and thread synchronization for real-time game systems.
+## What I did
 
-## School Requirements
-
-- Parallelize at least 2 game systems
-- Thread-safe resource management
-- Stable frame time < 16ms (60 FPS)
-- C++17/20 with std::thread, no race conditions
-
-## Our Implementation
-
-Beyond the 2 required systems:
-
-- **4 dedicated threads**: Main, Render, Physics, Audio
-- **Custom job system** with work stealing
-- **Lock-free structures**: SPSC/MPSC queues
-- **Built-in profiler**: frame time visualization
+The four exercises of the week, then two versions of the SFML arena: `TestMessage` (balls that change thread when
+they change zone) and `TestComplet` (players, bonuses, fights and game over). Remote collision damage, zone
+transitions and rewards are sent as messages to the SafeQueue of the thread that owns the target entity.
 
 ## Links
 
-- Private repository (school).
+- [5---Multithreading](https://github.com/Kikii95/5---Multithreading/tree/Kiki) (code on the `Kiki` branch)

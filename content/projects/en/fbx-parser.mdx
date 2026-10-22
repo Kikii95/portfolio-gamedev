@@ -1,85 +1,74 @@
 ---
-title: "FBX Parser"
-description: "Binary FBX file parser for importing 3D models, animations and scene data"
-date: "2025-10-01"
+title: "OBJ parser and tokenizer"
+description: "C++ parser for Wavefront OBJ files (vertices, texture coordinates, normals, faces) and a tokenizer that splits text into nested segments"
+date: "2025-11-03"
 category: "école"
-cartouche: "FBX"
-tags: ["C++", "CMake", "3D", "Binary Parsing", "FBX"]
+github: "https://github.com/Kikii95/4---Parser-FBX/tree/Kiki"
+cartouche: "OBJ"
+tags: ["C++", "CMake", "Parsing", "Wavefront OBJ", "3D", "Solo"]
 featured: false
 status: "archive"
 gallery: []
 techDetails: |
-  ## Binary FBX Structure
+  ## OBJ parser
 
-  Node tree with typed properties:
+  Supported lines:
+
+  | Command | Content |
+  |---------|---------|
+  | `v x y z [w]` | Vertex (w defaults to 1.0) |
+  | `vt u v [w]` | Texture coordinate (w defaults to 0.0) |
+  | `vn x y z` | Normal |
+  | `f ...` | Face: `v`, `v/vt`, `v//vn` or `v/vt/vn`, triangles, quads and polygons |
+  | `o name` | Object name |
+  | `#` | Comment |
+
+  File indices (1-based) are converted to 0-based; a missing index is `-1`. `vp`, `s`, `g`, `usemtl` and `mtllib`
+  lines are skipped. An error returns `false` and a message with the line number (`getLastError()`).
 
   ```
-  FBX File
-  └── Node Tree
-      ├── Objects
-      │   ├── Geometry (mesh data)
-      │   ├── Deformer (bone weights)
-      │   └── AnimationCurve (keyframes)
-      └── Connections (scene hierarchy)
+  ObjData
+    ├── vertices   : std::vector<Vertex>
+    ├── texCoords  : std::vector<TexCoord>
+    ├── normals    : std::vector<Normal>
+    ├── faces      : std::vector<Face>  (FaceVertex: vIndex, vtIndex, vnIndex)
+    └── objectName
   ```
 
-  ## Tech Stack
+  ## Tokenizer
 
-  | Tech | Version | Role |
-  |------|---------|------|
-  | C++ | 17 | Core language |
-  | CMake | 3.x | Build system |
-  | zlib | 1.2 | FBX decompression |
-  | FBX Binary | 7.4/7.5 | Target format |
+  - `tokenize`: splits text into tokens (`:`, `(`, `)`, `{`, `}`, `/`, `\`, `"`, `,` and strings).
+  - `segmentize`: groups tokens into nested segments (parentheses, braces, quotes) with a stack.
 
-  ## Parsing Implementation
+  ## Tests
 
-  - Low-level node tree traversal
-  - Support for v7.4 and v7.5
-  - Optional zlib decompression
-  - Custom string and array encoding
+  - `cube.obj`: 8 vertices, 4 texture coordinates, 6 normals, 12 triangles.
+  - `test-formats.obj`: one face of each format, plus a quad.
+  - `test.sh` builds the parser and runs it on both files.
 
-  ## Data Extraction
+  ## Stack
 
-  - **Geometry**: vertices, polygons, normals, indices
-  - **UVs**: multiple channels
-  - **Skinning**: bone weights for skeletal animation
-  - **Animation**: curves and keyframes
-  - **Hierarchy**: parent-child relations with transforms
-
-  ## Export
-
-  - Readable JSON for debug
-  - Optimized binary for runtime
+  | Tech | Role |
+  |------|------|
+  | C++17 | Language |
+  | CMake / Visual Studio | Build (two executables: `TestObjParser`, `TestTokenizer`) |
 ---
 
-# FBX Parser
+# OBJ parser and tokenizer
 
-Custom parser for FBX binary format, enabling import of 3D models, skeletal animations and scene hierarchies.
+A parser for Wavefront OBJ 3D models and a generic tokenizer, written during the GTech 3 "Parser" module.
 
 ## Context
 
-School project GTech3, 5 weeks. Team of 3, role: binary parser implementation.
+Theory week from November 3 to 7, 2025: text parsing, binary parsing, `.obj` parsing, then an introduction to the FBX
+SDK and OpenGL. The repository keeps the module's name ("Parser FBX"); the code covers the tokenizer and the OBJ
+parser. The course slides and the provided projects (`basicgl`, `bmp`, `parser`) sit in `Doc/`.
 
-Understanding 3D file formats is essential in game dev. This project dives into the FBX binary specification.
+## What I did
 
-## School Requirements
-
-- Parse FBX binary format (without official SDK)
-- Extract basic mesh data
-- Handle zlib decompression
-- Document the format
-
-## Our Implementation
-
-Beyond basic parsing required:
-
-- **Complete FBX parser**: support for v7.4 and v7.5
-- **Advanced mesh extraction**: vertices, normals, multiple UVs, bone weights
-- **Scene hierarchy**: parent-child relationship reconstruction
-- **Animation data**: curve and keyframe extraction
-- **Dual format export**: JSON debug + binary runtime
+The tokenizer and its test program, then the OBJ parser: data structures, line-by-line reading, the four face
+formats, index conversion, test files, CMake and README. Individual work.
 
 ## Links
 
-- Private repository (school).
+- [4---Parser-FBX](https://github.com/Kikii95/4---Parser-FBX/tree/Kiki) (code in `Semaine Exo/`, `Kiki` branch)

@@ -1,83 +1,75 @@
 ---
-title: "Asset Pipeline Engine"
-description: "Game engine asset management system with hot-reload and dependency tracking"
-date: "2025-09-01"
+title: "Asset Engine: HexView, SafeReader, CryptFile"
+description: "Three C and C++ exercises on binary files: a hex viewer, a reader that validates a custom format, and a byte-by-byte reversible cipher"
+date: "2025-10-20"
 category: "école"
-cartouche: "Hot-reload"
-tags: ["C++", "CMake", "Asset Management", "Game Engine"]
+github: "https://github.com/Kikii95/3---Asset-Engine/tree/Kiki"
+cartouche: "Binary"
+tags: ["C", "C++", "Binary files", "Checksum", "XOR", "Solo"]
 featured: false
 status: "archive"
 gallery: []
 techDetails: |
-  ## Architecture
+  ## The three exercises
 
-  Resource Manager with dependency graph:
+  | Day | Program | Content |
+  |-----|---------|---------|
+  | D1 | HexView | Dumps a file 16 bytes per line (offset, hex, ASCII), saves the dump to `.txt`, edits a byte at an offset, saves the edited file |
+  | D2 | SafeReader | Generates, validates and corrupts `.safe` files |
+  | D3 | CryptFile | Encrypts and decrypts a file with a text key, symmetry test |
+
+  ## `.safe` format (D2)
 
   ```
-  ┌─────────────────────────────────────────┐
-  │           Resource Manager              │
-  ├──────────┬──────────┬──────────┬────────┤
-  │ Registry │ Loader   │ Cache    │ Watch  │
-  │ (lookup) │ (async)  │ (memory) │ (hot)  │
-  └──────────┴──────────┴──────────┴────────┘
-              │
-              ▼
-  ┌─────────────────────────────────────────┐
-  │         Dependency Graph                │
-  │  Texture A ──► Shader B ──► Material C  │
-  └─────────────────────────────────────────┘
+  HEADER (16 bytes)
+    magic    : 4 bytes (0x45464153, "SAFE")
+    version  : 4 bytes (1)
+    dataSize : 4 bytes
+    checksum : 4 bytes (XOR then 1-bit left rotation, byte by byte)
+  DATA (variable size)
   ```
 
-  ## Tech Stack
+  The reader checks the signature, the version, the declared size against the real size, then the checksum.
+  The corruption tool breaks one field at a time to check that each error is caught: magic, version, size,
+  checksum, one data byte, or a truncated file.
 
-  | Tech | Version | Role |
-  |------|---------|------|
-  | C++ | 17 | Core language |
-  | CMake | 3.x | Build system |
-  | LZ4 | 1.9 | Asset compression |
-  | File watching | OS APIs | Hot reload |
+  ## Cipher (D3)
 
-  ## Features Implemented
+  - Encryption: 3-bit left rotation, then XOR with the key byte (`((b << 3) | (b >> 5)) ^ key`).
+  - Decryption: XOR, then the reverse rotation.
+  - The text key repeats over the whole file length.
+  - The symmetry test encrypts, decrypts and compares the result with the original file.
 
-  - **Async loading**: callbacks, visible asset prioritization
-  - **Reference counting**: automatic lifecycle management
-  - **Smart hot reload**: file watcher + dependency graph
-  - **LZ4 compression**: 60% bundle size reduction
+  ## Two versions of HexView
 
-  ## Offline Pipeline
+  - **Classic C**: `fopen`, `fread`, `fwrite`, `malloc`, `free`, `typedef struct`.
+  - **C++**: `HexView` class, `std::vector`, `std::ifstream` / `std::ofstream`, replacing a block of bytes.
 
-  - Texture compression (BCn formats)
-  - Mesh optimization
-  - Shader compilation
-  - Asset bundling
+  ## Stack
+
+  | Tech | Role |
+  |------|------|
+  | C / C++17 | Language |
+  | g++ / Visual Studio | Build (`compile_all.sh` included) |
 ---
 
-# Asset Pipeline Engine
+# Asset Engine: HexView, SafeReader, CryptFile
 
-Robust asset management system for game engines: loading, caching, hot-reload and dependency resolution.
+Three small programs written during the GTech 3 "Asset Engine" week, to learn how to read, validate and transform
+files byte by byte.
 
 ## Context
 
-School project GTech3, 5 weeks. Team of 3, role: core pipeline architect.
+One exercise per day, from the provided briefs (D1 "HexView", D2 "SafeReader"): read any binary file, then define a
+small format with a header and a checksum and read it defensively, never trusting the file. Individual work,
+October 20 to 23, 2025.
 
-Modern games require sophisticated asset management. This project implements a production-ready pipeline.
+## What I did
 
-## School Requirements
-
-- Implement a resource loading system
-- Automatic memory management
-- Hot-reload support
-- Modern C++, documentation, unit tests
-
-## Our Implementation
-
-Beyond requirements:
-
-- **Async loading with callbacks**: visible asset prioritization
-- **Reference counting**: prevents memory leaks
-- **Smart hot reload**: file watcher + dependency graph
-- **LZ4 compression**: 60% bundle size reduction
+HexView in two versions (C with `malloc`/`fread`, then C++ with `std::vector` and a class), SafeReader with its
+generation and corruption tools, then CryptFile. All three are then gathered in `ExoComplet`, one standalone file per
+exercise (built-in menu for SafeReader and CryptFile), with a README and a build script.
 
 ## Links
 
-- Private repository (school).
+- [3---Asset-Engine](https://github.com/Kikii95/3---Asset-Engine/tree/Kiki) (code on the `Kiki` branch)
