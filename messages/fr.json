@@ -364,6 +364,10 @@
         "ecole": "Bachelor jeu vidéo",
         "perso": "Jeu vidéo, en perso"
       }
+    },
+    "tableau": {
+      "titre": "Systèmes en service",
+      "attente": "une personne valide"
     }
   }
 }

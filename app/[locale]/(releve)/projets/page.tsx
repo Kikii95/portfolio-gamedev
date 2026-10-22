@@ -29,9 +29,9 @@ export default async function ProjetsPage({ params }: { params: Params }) {
         return (
           <section key={famille} className="projets-famille" aria-labelledby={`famille-${famille}`}>
             <h2 id={`famille-${famille}`}>{t(`familles.${famille}`)}</h2>
-            <div className="projets-grille">
-              {liste.map((p, i) => (
-                <CarteProjet key={p.titre} projet={p} rang={i} ficheHref={p.fiche ? chemin(locale, `/realisations/${p.fiche}`) : undefined} />
+            <div className="registre">
+              {liste.map((p) => (
+                <CarteProjet key={p.titre} projet={p} ficheHref={p.fiche ? chemin(locale, `/realisations/${p.fiche}`) : undefined} />
               ))}
             </div>
           </section>

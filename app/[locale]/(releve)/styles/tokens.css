@@ -1,136 +1,86 @@
-/* Relevé d'exécution — tokens (docs/direction-artistique.md § 3-4) */
+/* La trace de production — tokens (docs/direction-artistique.md § 3-4), copie du Design System */
 html:has(.releve-site) {
-  font-size: clamp(1rem, 0.35vw + 0.85rem, 1.6rem);
-  background: #F5F6F3;
+  font-size: clamp(1rem, 0.42vw + 0.8rem, 1.75rem);
+  background: #111214;
+  color-scheme: dark;
   scroll-behavior: smooth;
 }
+html[data-releve="clair"]:has(.releve-site) { background: #F3F3F0; color-scheme: light; }
 
 .releve-site {
-  --papier: #F5F6F3;
-  --papier-pli: #ECEEE9;
-  --carte: #FFFFFF;
-  --filet: #D6D9D2;
-  --marge: #C9CEC4;
-  --encre: #1C211F;
-  --encre-douce: #4B524E;
-  --encre-pale: #646B66;
-  --feu-vert: #12804F;
-  --feu-vert-fond: #E3F2EA;
-  --attente: #A86400;
-  --attente-fond: #FBF0DC;
-  --declencheur: #1E5FB4;
-  --declencheur-fond: #E4EDF8;
-  --reprise: #B23A26;
-  --reprise-fond: #F8E6E2;
-  --sur-accent: #FFFFFF;
-  --pied-fond: #1C211F;
-  --pied-texte: #F5F6F3;
-  --pied-doux: #C9CEC4;
-  --pied-filet: #3A413D;
-  --voile: rgba(28, 33, 31, 0.08);
-  --ombre-agrafe: 0 1px 2px rgba(28, 33, 31, 0.1), 0 0.4rem 1.1rem -0.5rem rgba(28, 33, 31, 0.22);
+  /* nuit : la référence */
+  --fond: #111214;
+  --plan: #17181B;
+  --plan-haut: #1E2024;
+  --filet: #2A2C31;
+  --filet-fort: #3B3E45;
+  --texte: #EEEDE9;
+  --texte-doux: #BBB9B3;
+  --texte-pale: #8F8D88;
+  --en-service: #74C99A;
+  --attente: #E8C063;
+  --reprise: #EE8C74;
+  --acc-ops: #A9C6F5;
+  --acc-atelier: #E89A6E;
+  --acc-ecole: #B9A9EE;
+  --sur-accent: #111214;
+  --attente-voile: rgb(232 192 99 / 0.14);
+  --service-voile: rgb(116 201 154 / 0.14);
+  --lueur-ecran: rgb(169 198 245 / 0.12);
+  --vue-fond: #0B0C0D;
+  --voile-modal: rgb(5 6 7 / 0.66);
+  --ombre-plan: inset 0 1px 0 rgb(255 255 255 / 0.04), 0 1.1rem 2.5rem -1.5rem rgb(0 0 0 / 0.7);
+  --entete-fond: rgb(17 18 20 / 0.82);
+
+  --rayon-plan: 0.875rem;
+  --rayon-bouton: 0.625rem;
+  --rayon-segment: 0.25rem;
   --rayon-pastille: 999px;
-  --rayon-piece: 0.375rem;
-  --rayon-bouton: 0.5rem;
-  --police: var(--font-grotesk), system-ui, sans-serif;
-  --mono: var(--font-releve-mono), ui-monospace, monospace;
+  --police: var(--font-interface), system-ui, sans-serif;
+  --donnees: var(--font-donnees), ui-monospace, monospace;
   --gouttiere: clamp(1rem, 4vw, 3rem);
-  --largeur: min(100% - 2 * var(--gouttiere), 78rem);
+  --largeur: min(100% - 2 * var(--gouttiere), 88rem);
   --courbe: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --section: var(--acc-ops);
 
   min-height: 100vh;
   flex: 1;
   display: flex;
   flex-direction: column;
-  background: var(--papier);
-  color: var(--encre);
+  background: var(--fond);
+  color: var(--texte);
   font-family: var(--police);
-  line-height: 1.5;
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  word-spacing: 0.04em;
 }
 
-/* Relevé de nuit : même sémantique, encres éclaircies (DA § 3.3) */
-@media (prefers-color-scheme: dark) {
-  html:not([data-releve="clair"]):has(.releve-site) { background: #121614; }
-  html:not([data-releve="clair"]) .releve-site {
-  --papier: #121614;
-  --papier-pli: #181D1B;
-  --carte: #1B201E;
-  --filet: #2C3430;
-  --marge: #3A433E;
-  --encre: #E6EAE7;
-  --encre-douce: #B4BCB7;
-  --encre-pale: #8C9690;
-  --feu-vert: #45C487;
-  --feu-vert-fond: #173324;
-  --attente: #E3A443;
-  --attente-fond: #36290F;
-  --declencheur: #74A8F2;
-  --declencheur-fond: #182B47;
-  --reprise: #F0806A;
-  --reprise-fond: #3B1F19;
-  --sur-accent: #0C1410;
-  --pied-fond: #0B0E0D;
-  --pied-texte: #E6EAE7;
-  --pied-filet: #2C3430;
-  --voile: rgba(0, 0, 0, 0.18);
-  --ombre-agrafe: 0 1px 2px rgba(0, 0, 0, 0.4), 0 0.4rem 1.1rem -0.5rem rgba(0, 0, 0, 0.6);
-  color-scheme: dark;
-  }
-}
-html[data-releve="sombre"]:has(.releve-site) { background: #121614; }
-html[data-releve="sombre"] .releve-site {
-  --papier: #121614;
-  --papier-pli: #181D1B;
-  --carte: #1B201E;
-  --filet: #2C3430;
-  --marge: #3A433E;
-  --encre: #E6EAE7;
-  --encre-douce: #B4BCB7;
-  --encre-pale: #8C9690;
-  --feu-vert: #45C487;
-  --feu-vert-fond: #173324;
-  --attente: #E3A443;
-  --attente-fond: #36290F;
-  --declencheur: #74A8F2;
-  --declencheur-fond: #182B47;
-  --reprise: #F0806A;
-  --reprise-fond: #3B1F19;
-  --sur-accent: #0C1410;
-  --pied-fond: #0B0E0D;
-  --pied-texte: #E6EAE7;
-  --pied-filet: #2C3430;
-  --voile: rgba(0, 0, 0, 0.18);
-  --ombre-agrafe: 0 1px 2px rgba(0, 0, 0, 0.4), 0 0.4rem 1.1rem -0.5rem rgba(0, 0, 0, 0.6);
-  color-scheme: dark;
+/* jour : la même DA en clair */
+html[data-releve="clair"] .releve-site {
+  --fond: #F3F3F0;
+  --plan: #FFFFFF;
+  --plan-haut: #F8F8F6;
+  --filet: #DEDDD8;
+  --filet-fort: #C9C8C2;
+  --texte: #141518;
+  --texte-doux: #44464B;
+  --texte-pale: #62646A;
+  --en-service: #1B7F4E;
+  --attente: #8E6200;
+  --reprise: #B5432C;
+  --acc-ops: #2C5DB3;
+  --acc-atelier: #A9502A;
+  --acc-ecole: #5E4BB8;
+  --sur-accent: #FFFFFF;
+  --attente-voile: rgb(142 98 0 / 0.1);
+  --service-voile: rgb(27 127 78 / 0.1);
+  --lueur-ecran: rgb(44 93 179 / 0.08);
+  --vue-fond: #E9E9E5;
+  --voile-modal: rgb(20 21 24 / 0.4);
+  --ombre-plan: 0 1px 2px rgb(20 21 24 / 0.06), 0 0.9rem 2rem -1.4rem rgb(20 21 24 / 0.28);
+  --entete-fond: rgb(243 243 240 / 0.86);
 }
 
-.releve-site a { color: inherit; }
-.releve-site :focus-visible { outline: 2px solid var(--declencheur); outline-offset: 0.2rem; border-radius: 0.2rem; }
-.releve-site ::selection { background: var(--feu-vert-fond); }
-.releve-site .mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
-.releve-site .cadre { width: var(--largeur); margin-inline: auto; }
-
-.releve-site h1,
-.releve-site h2,
-.releve-site h3 { margin: 0; letter-spacing: -0.02em; text-wrap: balance; }
-.releve-site h1 { font-size: clamp(2.1rem, 4.2vw + 0.6rem, 4.1rem); line-height: 1.02; font-weight: 800; }
-.releve-site h2 { font-size: clamp(1.6rem, 2.2vw + 0.7rem, 2.6rem); line-height: 1.08; font-weight: 750; }
-.releve-site h3 { font-size: clamp(1.2rem, 0.8vw + 0.9rem, 1.55rem); line-height: 1.2; font-weight: 700; }
-.releve-site p { margin: 0; text-wrap: pretty; }
-.releve-site .chapo { font-size: clamp(1.05rem, 0.4vw + 0.95rem, 1.25rem); color: var(--encre-douce); max-width: 38em; }
-
-.releve-site .bouton {
-  display: inline-grid;
-  place-items: center;
-  min-height: 2.875rem;
-  padding: 0 1.25rem;
-  border-radius: var(--rayon-bouton);
-  font-weight: 600;
-  text-decoration: none;
-  transition: transform 120ms ease, background-color 160ms ease;
-}
-.releve-site .bouton:active { transform: scale(0.97); }
-.releve-site .bouton.plein { background: var(--encre); color: var(--papier); }
-.releve-site .bouton.plein:hover { background: color-mix(in srgb, var(--encre) 86%, var(--papier)); }
-.releve-site .bouton.trait { border: 1px solid var(--marge); color: var(--encre); background: var(--carte); }
-.releve-site .bouton.trait:hover { border-color: var(--encre-pale); }
+/* Accent de section : structure seulement, jamais un état */
+.releve-site:has([data-section="perso"]) { --section: var(--acc-atelier); }
+.releve-site:has([data-section="ecole"]) { --section: var(--acc-ecole); }

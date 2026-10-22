@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, IBM_Plex_Mono, Schibsted_Grotesk } from "next/font/google";
+import type { Viewport } from "next";
+import { Geist, Geist_Mono, Instrument_Sans, Martian_Mono } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -12,17 +13,21 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const schibsted = Schibsted_Grotesk({
-  variable: "--font-grotesk",
+const instrument = Instrument_Sans({
+  variable: "--font-interface",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  axes: ["wdth"],
 });
 
-const plexMono = IBM_Plex_Mono({
-  variable: "--font-releve-mono",
+const martian = Martian_Mono({
+  variable: "--font-donnees",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  axes: ["wdth"],
 });
+
+export const viewport: Viewport = {
+  themeColor: "#111214",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://killian-abboud.vercel.app"),
@@ -43,7 +48,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const fonts = [geistSans, geistMono, schibsted, plexMono].map((f) => f.variable).join(" ");
+  const fonts = [geistSans, geistMono, instrument, martian].map((f) => f.variable).join(" ");
   return (
     <html lang="fr" suppressHydrationWarning>
       <body className={`${fonts} antialiased flex min-h-screen flex-col`} suppressHydrationWarning>

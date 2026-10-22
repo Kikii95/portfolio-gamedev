@@ -1,47 +1,52 @@
-# Handoff — Portfolio « Automatisation & IA »
+# Handoff — « La trace de production » (refonte depuis zéro, 22/10/2026)
 
-Source : `docs/direction-artistique.md`. Maquette : canevas, variante A + greffes (voir § Liens de la DA).
-Fidélité visée : haute sur tokens, polices et composants signature ; la mise en page s'adapte de 390 px à la 4K.
+DA : `docs/direction-artistique.md`. Tokens, composants et livre de marque : Design System
+https://claude.ai/artifact/6b5kmDyXJvsx4ti6wbiFiN (version 1792651785-793b). Variantes : canevas
+https://claude.ai/artifact/4zTi9rWmBasYi7z9M4hU4p, rangée « Depuis zéro ».
 
-## Routes
-| Route | Contenu |
-|---|---|
-| `/` (`/en`) | relevé : hero + journal, chiffres-preuves, réalisations, méthode, aussi construit, parcours, contact |
-| `/realisations/<slug>` | fiche d'intervention : tête + reçu, Demande / Intervention / Résultat, schéma de flux, fil complet, pièces, texte |
-| `/jeu`, `/jeu/projects/…` | atelier jeu vidéo d'origine (noir et rouge), inchangé ; anciennes URL redirigées |
+## Variante retenue
 
-## Tokens
-Couleurs : `app/[locale]/(releve)/styles/tokens.css` (copie exacte du Design System, `encre-pale` foncé à #646B66).
-Racine fluide : `html { font-size: clamp(1rem, 0.35vw + 0.85rem, 1.6rem) }` sur les pages du relevé seulement.
-Gouttière `clamp(1rem, 4vw, 3rem)`, largeur `min(100% - 2 × gouttière, 78rem)`. Rayons : pièce 0,375rem, bouton 0,5rem.
-Polices : Schibsted Grotesk 400-800 (`--font-grotesk`), IBM Plex Mono 400-600 (`--font-releve-mono`), via next/font.
+**B — Le tableau de service** (juge : B 49/60, A 47, C 47, version en ligne 26), avec trois emprunts :
+la phrase de C « L'IA prépare. Vous validez. Ça part. » en promesse sous le poste ; la porte de validation de C plus
+bas (section Méthode), boutons qui ne concurrencent pas le CV ; la trace de A (segment ambré hachuré = une personne
+valide) en miniature dans chaque ligne du tableau. Légendes ≥ 0,8 rem, métadonnées ≥ 4,5:1.
 
-## Typographie par rôle
-h1 `clamp(2.1rem, 4.2vw + .6rem, 4.1rem)` 800 · h2 `clamp(1.6rem, 2.2vw + .7rem, 2.6rem)` 750 · h3 `clamp(1.2rem, .8vw + .9rem, 1.55rem)` 700 ·
-chapô `clamp(1.05rem, .4vw + .95rem, 1.25rem)` encre-douce · heures, journal, chiffres : mono tabulaire.
+## Fidélité visée
 
-## Écran d'accueil (de haut en bas)
-1. En-tête collant : signature, ancres, atelier jeu vidéo, langue, CV (menu replié sous 60em).
-2. Hero 2 colonnes ≥ 60em : statut vert, titre, ligne de poste (poste · dispo · lieu · contrat), chapô, 2 boutons | journal du matin.
-3. Chiffres-preuves : une rangée, filets pointillés, pas de cartes.
-4. Réalisations : une entrée par cas, alternée gauche/droite ≥ 60em : méta, titre, accroche, fil (5 étapes), lien | pièce + reçu.
-5. Méthode (sur carte) : titre-formule, chapô, carte feu vert interactive | fil générique.
-6. Aussi construit : pièces agrafées + titre + phrase (n'apparaît que si des médias existent).
-7. Parcours : liste datée, outils en ligne.
-8. Pied encre : contact, liens, aiguillage vers l'atelier.
+Haute pour les tokens, polices et composants signature (copie exacte du DS) ; la mise en page s'adapte de 390 px à la 4K.
+
+## Écrans
+
+| Écran | But | De haut en bas |
+| --- | --- | --- |
+| `/` | le recruteur trouve tout en 5 s | nav (nom, liens, FR/EN, thème, CV) → hero : H1 poste, promesse, ligne de disponibilité, CV + contact ; à droite (mobile : dessous) le **tableau de service** (4 systèmes : nom, chiffre, légende, trace miniature, lien vers la fiche) → Réalisations (rapports : état, période, titre, accroche, trace de passage, écran de contrôle, rapport chiffré) → Méthode (porte de validation, trace type, journal de la nuit) → Aussi construit → Parcours → Contact |
+| `/realisations/[slug]` | la preuve détaillée | retour → en-tête (état, période, titre, accroche, rôle, outils) + rapport → Demande / Intervention / Résultat → trace complète → écrans de contrôle → corps → suivante |
+| `/projets` | l'étendue (atelier, cuivre) | en-tête → familles : rangées du **registre d'atelier** (état, titre, phrase, outils, liens, « Tout le détail ») ; écran de contrôle à droite quand il y a une vidéo → Laboratoire |
+| `/ecole` | l'archive (lilas, en retrait) | en-tête → **frise de cursus** : rangées année · titre · description · outils · état · « Tout le détail » |
+| Fenêtre « Tout le détail » | lire sans quitter la page | **inspecteur** : tiroir à droite (≥ 48 em, `min(100%, 46rem)`), plein écran sur mobile |
 
 ## Animations
-| Effet | Durée / courbe | Propriété |
-|---|---|---|
-| Fil qui se trace | lié au défilement (`view()`), sinon 1,6 s `cubic-bezier(.2,.7,.2,1)` | `transform: scaleY` |
-| Étape en attente qui pulse | 1,6 s ease-in-out, ∞, halo ≤ 0,28 | `opacity` |
-| Journal ligne à ligne | 280 ms ease-out, +160 ms par ligne | `opacity`, `transform` |
-| Tampon « validé » | 320 ms courbe maison | `opacity`, `transform: scale` |
-| Reçu qui tombe | 560 ms courbe maison | `clip-path`, `transform` |
-| Pièce agrafée | au défilement ; survol 260 ms se redresse | `transform` |
-| Paquets sur le schéma | 4,2 s, 3 paquets décalés | `animateMotion` |
-| Voyant « en service » | 2,4 s ease-out ∞ | `box-shadow` |
-Tout est coupé sous `prefers-reduced-motion` ; la page est complète au repos.
+
+| Élément | Propriété | Durée | Courbe |
+| --- | --- | --- | --- |
+| Segments de trace | `transform: scaleX` | 520 ms, +90 ms/étape | `cubic-bezier(.2,.7,.2,1)`, au défilement |
+| Segment / porte en attente | `outline-color`, `border-color` | 2,4 s, infini | `ease-in-out` |
+| Validation (Vas-y) | coche `stroke-dashoffset`, bandeau ambre → vert | 360 ms | `ease-out` |
+| Journal | `opacity`, `translateY` | 260 ms, +110 ms/ligne | `ease-out` |
+| Lueur d'écran | `opacity` 0,8 → 1 | 300 ms | `ease` |
+| Point de disponibilité | `box-shadow` (une onde) | 1,8 s, une fois | `ease-out` |
+| Inspecteur | `translateX(100% → 0)` | 380 ms | `cubic-bezier(.2,.7,.2,1)` |
+| Indicateur de nav | `transform`, largeur | 380 ms | idem |
+
+## Plafonds
+
+Halo ≤ 0,18 ; aucune lueur sur du texte ; bordures colorées ≤ 2 px ; corps ≥ 7:1, métadonnées ≥ 4,5:1.
+
+## Emblème
+
+`design/embleme/zero-c.svg` (« Le K d'exploitation », juge 41/60) : fût clair, bras ambre (l'IA prépare), bras vert
+(une personne valide). Décliné dans `public/` (favicon, apple-touch, 192/512, maskable).
 
 ## Placeholders
-Aucun. Une réalisation sans média n'affiche pas de pièce (le reçu et le fil portent la preuve).
+
+Aucun : tout le contenu vient de `lib/releve/*`, `content/`, `messages/`, `public/medias`.

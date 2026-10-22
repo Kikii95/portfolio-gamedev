@@ -1,0 +1,75 @@
+/* Accueil : hero + tableau de service, réalisations, méthode, aussi construit, parcours */
+
+/* Hero : poste, promesse, disponibilité, CV ; le tableau de service à côté (dessous sur mobile) */
+.releve-site .hero { display: grid; gap: clamp(1.6rem, 3vw, 3rem) clamp(2rem, 4vw, 4.5rem); grid-template-areas: "texte" "tableau" "chapo"; padding-top: clamp(1.8rem, 5vw, 5rem); background-image: repeating-linear-gradient(90deg, color-mix(in srgb, var(--texte) 4%, transparent) 0 1px, transparent 1px 8rem); background-position: left top; }
+.releve-site .hero-texte { grid-area: texte; display: flex; flex-direction: column; gap: 1rem; align-items: flex-start; }
+.releve-site .promesse { font-size: clamp(1.35rem, 1.2vw + 1rem, 1.9rem); line-height: 1.2; font-weight: 500; font-variation-settings: "wdth" 88; letter-spacing: -0.015em; color: var(--section); }
+.releve-site .hero-lead { font-size: clamp(1.0625rem, 0.4vw + 0.95rem, 1.3rem); color: var(--texte-doux); max-width: 34em; }
+.releve-site .hero-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.3rem; width: 100%; }
+.releve-site .hero-actions .plein { flex: 1 1 auto; }
+.releve-site .hero-chapo { grid-area: chapo; }
+.releve-site .tableau { grid-area: tableau; align-self: start; }
+@media (min-width: 30em) { .releve-site .hero-actions .plein { flex: 0 0 auto; } }
+@media (min-width: 64em) {
+  .releve-site .hero { grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); grid-template-areas: "texte tableau" "chapo tableau"; align-items: start; }
+}
+
+/* Tableau de service : les systèmes en service, comme une page d'état */
+.releve-site .tableau { border: 1px solid var(--filet); border-radius: var(--rayon-plan); background: var(--plan); box-shadow: var(--ombre-plan); overflow: hidden; }
+.releve-site .tableau-tete { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 0.85rem 1.1rem; border-bottom: 1px solid var(--filet); }
+.releve-site .tableau-tete h2 { font: 500 0.95rem var(--police); letter-spacing: 0; color: var(--texte-doux); }
+.releve-site .tableau-liste { list-style: none; margin: 0; padding: 0; }
+.releve-site .tableau-liste li + li { border-top: 1px solid var(--filet); }
+.releve-site .systeme { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "nom chiffre" "legende heure" "trace trace" "humain humain"; gap: 0.25rem 1rem; padding: 0.95rem 1.1rem 1rem; text-decoration: none; transition: background-color 200ms ease; }
+.releve-site .systeme:hover { background: var(--plan-haut); }
+.releve-site .systeme .nom { grid-area: nom; font-weight: 600; font-size: 1.08rem; font-variation-settings: "wdth" 88; }
+.releve-site .systeme:hover .nom { color: var(--section); }
+.releve-site .systeme .chiffre { grid-area: chiffre; justify-self: end; font: 500 clamp(1.4rem, 0.8vw + 1.1rem, 1.9rem)/1 var(--donnees); font-variation-settings: "wdth" 87; letter-spacing: -0.02em; }
+.releve-site .systeme .legende { grid-area: legende; font-size: 0.92rem; color: var(--texte-doux); }
+.releve-site .systeme .heure { grid-area: heure; justify-self: end; font: 400 0.75rem var(--donnees); font-variation-settings: "wdth" 87; color: var(--texte-pale); }
+.releve-site .systeme .trace-mini { grid-area: trace; margin-top: 0.55rem; }
+.releve-site .systeme .humain { grid-area: humain; font: 400 0.72rem var(--donnees); font-variation-settings: "wdth" 87; color: var(--attente); }
+
+/* Réalisations : un rapport par système, la trace au centre */
+.releve-site .realisations { display: flex; flex-direction: column; }
+.releve-site .entree { display: grid; gap: clamp(1.4rem, 2.5vw, 2.4rem) clamp(2rem, 4vw, 4rem); grid-template-areas: "tete" "preuves" "trace"; padding-block: clamp(2.2rem, 4vw, 3.8rem); border-top: 1px solid var(--filet); }
+.releve-site .entree-tete { grid-area: tete; display: grid; gap: 0.8rem; }
+.releve-site .entree-tete h3 a { text-decoration: none; }
+.releve-site .entree-tete h3 a:hover { color: var(--section); }
+.releve-site .entree-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 0.9rem; font: 400 0.8rem var(--donnees); font-variation-settings: "wdth" 87; color: var(--texte-pale); }
+.releve-site .entree-meta .numero { color: var(--section); }
+.releve-site .entree-trace { grid-area: trace; display: grid; gap: 0.8rem; align-content: start; justify-items: start; min-width: 0; }
+.releve-site .entree-trace .trace { width: 100%; }
+.releve-site .entree-preuves { grid-area: preuves; display: grid; gap: 1.4rem; align-content: start; min-width: 0; }
+@media (min-width: 64em) {
+  .releve-site .entree { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); grid-template-areas: "tete preuves" "trace preuves"; }
+  .releve-site .entree-preuves { grid-template-columns: minmax(0, 1fr); }
+}
+@media (min-width: 100em) {
+  .releve-site .entree-preuves { grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.8fr); align-items: start; }
+}
+
+/* Méthode : la porte, la trace type, le journal de la nuit */
+.releve-site .methode-grille { display: grid; gap: clamp(1.6rem, 3vw, 3rem); }
+.releve-site .methode-porte { display: grid; gap: 1.6rem; align-content: start; }
+@media (min-width: 64em) { .releve-site .methode-grille { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); } }
+
+/* Aussi construit : trois écrans, sans carte autour */
+.releve-site .autres { display: grid; gap: 1rem; }
+.releve-site .autres-grille { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: clamp(1.8rem, 3vw, 3rem); margin-top: 1.4rem; }
+.releve-site .autre { display: grid; gap: 0.6rem; align-content: start; }
+.releve-site .autre h3 { margin-top: 0.8rem; }
+.releve-site .autre h3 a { text-decoration: none; }
+.releve-site .autre h3 a:hover { color: var(--section); }
+.releve-site .autre p { color: var(--texte-doux); }
+.releve-site .vers-projets { justify-self: start; margin-top: 1.6rem; }
+
+/* Parcours */
+.releve-site .parcours { display: grid; gap: 1.4rem; }
+.releve-site .parcours-liste { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--filet); }
+.releve-site .parcours-liste li { display: grid; gap: 0.3rem 1.6rem; padding: 1.2rem 0; border-bottom: 1px solid var(--filet); }
+.releve-site .parcours-liste .periode { font: 400 0.8rem/1.8 var(--donnees); font-variation-settings: "wdth" 87; color: var(--texte-pale); }
+.releve-site .parcours-liste p { color: var(--texte-doux); margin-top: 0.3rem; }
+.releve-site .outils { color: var(--texte-doux); line-height: 1.8; }
+.releve-site .outils .mono { font: 400 0.8rem var(--donnees); font-variation-settings: "wdth" 87; color: var(--texte-pale); margin-right: 0.6rem; }
+@media (min-width: 48em) { .releve-site .parcours-liste li { grid-template-columns: minmax(10rem, 0.3fr) minmax(0, 1fr); } }

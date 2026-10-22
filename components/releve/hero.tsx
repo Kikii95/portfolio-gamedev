@@ -1,33 +1,33 @@
 import { useTranslations } from 'next-intl';
-import { JournalMatin } from './journal-matin';
+import type { Realisation } from '@/lib/releve/types';
+import { LIENS } from '@/lib/releve/chemin';
+import { TableauService } from './tableau-service';
 
-export function Hero() {
-  const t = useTranslations('releve.hero');
+export function Hero({ realisations }: { realisations: Realisation[] }) {
+  const t = useTranslations('releve');
 
   return (
     <section className="hero cadre">
       <div className="hero-texte">
-        <p className="statut mono">
-          <span className="voyant" aria-hidden="true" /> {t('statut')}
+        <h1>{t('hero.poste')}</h1>
+        <p className="promesse">{t('methode.titre')}</p>
+        <p className="hero-lead">{t('hero.titre')}</p>
+        <p className="dispo">
+          <i className="point" aria-hidden="true" />
+          <strong>{t('hero.dispo')}</strong>
+          <span>{`${t('hero.lieu')} · ${t('hero.contrat')}`}</span>
         </p>
-        <h1>{t('titre')}</h1>
-        <p className="poste">
-          <strong>{t('poste')}</strong>
-          <span>{t('dispo')}</span>
-          <span>{t('lieu')}</span>
-          <span>{t('contrat')}</span>
-        </p>
-        <p className="chapo">{t('chapo')}</p>
         <div className="hero-actions">
-          <a className="bouton plein" href="#realisations">
-            {t('voir')}
+          <a className="bouton plein" href={LIENS.cv}>
+            {t('contact.cv')}
           </a>
           <a className="bouton trait" href="#contact">
-            {t('contact')}
+            {t('hero.contact')}
           </a>
         </div>
       </div>
-      <JournalMatin />
+      <TableauService realisations={realisations} />
+      <p className="chapo hero-chapo">{t('hero.chapo')}</p>
     </section>
   );
 }

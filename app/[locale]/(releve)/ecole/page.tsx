@@ -31,9 +31,9 @@ export default async function EcolePage({ params }: { params: Params }) {
         return (
           <section key={famille} className="projets-famille" aria-labelledby={`famille-${famille}`}>
             <h2 id={`famille-${famille}`}>{t(`familles.${famille}`)}</h2>
-            <div className="projets-grille">
-              {liste.map((p, i) => (
-                <CarteEcole key={p.metadata.slug} meta={p.metadata} rang={i} href={chemin(locale, `/ecole/${p.metadata.slug}`)} />
+            <div className="frise">
+              {liste.map((p) => (
+                <CarteEcole key={p.metadata.slug} meta={p.metadata} href={chemin(locale, `/ecole/${p.metadata.slug}`)} />
               ))}
             </div>
           </section>

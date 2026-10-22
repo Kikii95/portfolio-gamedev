@@ -7,16 +7,15 @@ import type { Piece } from '@/lib/releve/types';
 interface PieceProps {
   piece: Piece;
   libelleLecture: string;
-  penche?: number;
   prioritaire?: boolean;
 }
 
 const LARGEURS = '(min-width: 60em) 45vw, 92vw';
 
-export function PieceJustificative({ piece, libelleLecture, penche = -1, prioritaire = false }: PieceProps) {
+export function PieceJustificative({ piece, libelleLecture, prioritaire = false }: PieceProps) {
   const video = useRef<HTMLVideoElement>(null);
   const [lecture, setLecture] = useState(false);
-  const classe = piece.format === 'mobile' ? 'piece agrafe mobile' : 'piece agrafe';
+  const classe = piece.format === 'mobile' ? 'ecran-controle mobile' : 'ecran-controle';
 
   function lancer() {
     setLecture(true);
@@ -24,8 +23,12 @@ export function PieceJustificative({ piece, libelleLecture, penche = -1, priorit
   }
 
   return (
-    <figure className={classe} style={{ ['--penche' as string]: `${penche}deg` }}>
-      <div className="ecran">
+    <figure className={classe}>
+      <figcaption className="barre">
+        <span>{piece.legende}</span>
+        {piece.duree && <span className="duree">{piece.duree}</span>}
+      </figcaption>
+      <div className="vue">
         {piece.type === 'video' ? (
           <>
             <video
@@ -50,10 +53,6 @@ export function PieceJustificative({ piece, libelleLecture, penche = -1, priorit
           <Image src={piece.src} alt={piece.legende} fill sizes={LARGEURS} priority={prioritaire} />
         )}
       </div>
-      <figcaption>
-        <span>{piece.legende}</span>
-        {piece.duree && <span>{piece.duree}</span>}
-      </figcaption>
     </figure>
   );
 }

@@ -7,21 +7,14 @@ const CLE = 'releve-theme';
 type Theme = 'clair' | 'sombre';
 
 function themeEffectif(): Theme {
-  const pose = document.documentElement.dataset.releve;
-  if (pose === 'clair' || pose === 'sombre') return pose;
-  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'sombre' : 'clair';
+  return document.documentElement.dataset.releve === 'clair' ? 'clair' : 'sombre';
 }
 
 const EVENEMENT = 'releve-theme';
 
 function abonner(rappel: () => void) {
-  const media = window.matchMedia('(prefers-color-scheme: dark)');
-  media.addEventListener('change', rappel);
   window.addEventListener(EVENEMENT, rappel);
-  return () => {
-    media.removeEventListener('change', rappel);
-    window.removeEventListener(EVENEMENT, rappel);
-  };
+  return () => window.removeEventListener(EVENEMENT, rappel);
 }
 
 export function BasculeTheme() {
@@ -39,9 +32,9 @@ export function BasculeTheme() {
     window.dispatchEvent(new Event(EVENEMENT));
   };
 
-  const label = theme === 'sombre' ? t('themeClair') : t('themeSombre');
+  const label = theme === 'clair' ? t('themeSombre') : t('themeClair');
   return (
-    <button type="button" className="bascule-theme" onClick={basculer} aria-pressed={theme === 'sombre'} aria-label={label} title={label}>
+    <button type="button" className="bascule-theme" onClick={basculer} aria-pressed={theme === 'clair'} aria-label={label} title={label}>
       <span aria-hidden="true" />
     </button>
   );

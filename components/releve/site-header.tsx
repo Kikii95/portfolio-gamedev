@@ -43,17 +43,22 @@ export function SiteHeader() {
     <header className="entete">
       <div className="cadre entete-ligne">
         <Link href={accueil} className="signature">
-          <Image src="/favicon.svg" alt="" width={28} height={28} className="marque" />
+          <Image src="/favicon.svg" alt="" width={28} height={28} className="marque" unoptimized />
           Killian Abboud
         </Link>
         <nav className="nav-large" aria-label={t('menu')}>
           {liens}
           <IndicateurNav />
         </nav>
-        <details className="menu">
-          <summary>{t('menu')}</summary>
-          <nav aria-label={t('menu')}>{liens}</nav>
-        </details>
+        <div className="entete-droite">
+          <a href={LIENS.cv} className="bouton trait cv-court">
+            {t('cv')}
+          </a>
+          <details className="menu">
+            <summary>{t('menu')}</summary>
+            <nav aria-label={t('menu')}>{liens}</nav>
+          </details>
+        </div>
       </div>
     </header>
   );

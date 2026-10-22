@@ -16,18 +16,18 @@ export function FicheEcole({ projet }: { projet: Project }) {
 
   return (
     <article className="fiche cadre" data-section="ecole">
-      <Link className="retour mono" href={chemin(locale, '/ecole')}>
+      <Link className="retour" href={chemin(locale, '/ecole')}>
         ← {t('ecole.retour')}
       </Link>
       <header className="fiche-tete">
         <div>
-          <p className="entree-meta mono">
-            <span className={`etiquette ${ETIQUETTE_ECOLE[statut]}`}>{t(`ecole.statuts.${statut}`)}</span>
+          <p className="entree-meta">
+            <span className={ETIQUETTE_ECOLE[statut]}>{t(`ecole.statuts.${statut}`)}</span>
             <span>{m.date.slice(0, 4)}</span>
           </p>
           <h1>{m.title}</h1>
           <p className="chapo">{m.description}</p>
-          <p className="projet-outils mono">{m.tags.join(' · ')}</p>
+          <p className="projet-outils">{m.tags.join(' · ')}</p>
           {m.github && (
             <p className="projet-liens">
               <a href={m.github} target="_blank" rel="noopener noreferrer">
@@ -39,8 +39,8 @@ export function FicheEcole({ projet }: { projet: Project }) {
       </header>
       {pieces.length > 0 && (
         <div className="pieces-grille">
-          {pieces.map((p, i) => (
-            <PieceJustificative key={p.src} piece={p} libelleLecture={t('piece.lire')} penche={i % 2 ? 0.6 : -0.6} />
+          {pieces.map((p) => (
+            <PieceJustificative key={p.src} piece={p} libelleLecture={t('piece.lire')} />
           ))}
         </div>
       )}

@@ -17,7 +17,7 @@ export function CorpsDetails({ projet, pageHref, libellePage }: CorpsDetailsProp
       <header className="fenetre-tete">
         <h2>{m.title}</h2>
         <p className="chapo">{m.description}</p>
-        <p className="projet-outils mono">{m.tags.join(' · ')}</p>
+        <p className="projet-outils">{m.tags.join(' · ')}</p>
         <p className="projet-liens">
           {pageHref && <a href={pageHref}>{libellePage} →</a>}
           {m.buildUrl && (

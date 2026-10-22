@@ -1,0 +1,82 @@
+/* Base : typographie, boutons, en-tête, pied (DA § 2, § 4) — 390 px → 4K, aucune valeur absolue */
+.releve-site a { color: inherit; }
+.releve-site :focus-visible { outline: 2px solid var(--section); outline-offset: 0.2rem; border-radius: 0.2rem; }
+.releve-site ::selection { background: color-mix(in srgb, var(--section) 30%, transparent); }
+.releve-site .cadre { width: var(--largeur); margin-inline: auto; }
+.releve-site .contenu { flex: 1; display: flex; flex-direction: column; gap: clamp(4.5rem, 9vw, 8rem); padding-bottom: clamp(4rem, 8vw, 7rem); }
+
+.releve-site h1,
+.releve-site h2,
+.releve-site h3 { margin: 0; font-weight: 600; font-variation-settings: "wdth" 82; letter-spacing: -0.025em; text-wrap: balance; }
+.releve-site h1 { font-size: clamp(2.2rem, 3.6vw + 0.9rem, 3.75rem); line-height: 1.02; }
+.releve-site h2 { font-size: clamp(1.7rem, 2vw + 0.9rem, 2.5rem); line-height: 1.08; }
+.releve-site h3 { font-size: clamp(1.3rem, 0.9vw + 0.95rem, 1.7rem); line-height: 1.16; font-variation-settings: "wdth" 88; letter-spacing: -0.015em; }
+.releve-site p { margin: 0; text-wrap: pretty; }
+.releve-site .chapo { font-size: clamp(1.0625rem, 0.35vw + 0.98rem, 1.25rem); color: var(--texte-doux); max-width: 40em; }
+.releve-site .section-tete { display: grid; gap: 0.8rem; margin-bottom: clamp(1.8rem, 3.5vw, 3rem); }
+.releve-site .section-tete h2::before { content: ""; display: block; inline-size: 2.5rem; block-size: 2px; margin-bottom: 1rem; background: var(--section); border-radius: 2px; }
+.releve-site .sous-titre { font: 400 0.8rem var(--donnees); font-variation-settings: "wdth" 87; color: var(--texte-pale); }
+.releve-site .graduation { background-image: repeating-linear-gradient(90deg, color-mix(in srgb, var(--texte) 5%, transparent) 0 1px, transparent 1px 8rem); }
+
+/* Boutons */
+.releve-site .bouton { display: inline-grid; place-items: center; min-height: 2.875rem; padding: 0 1.2rem; border-radius: var(--rayon-bouton); border: 1px solid transparent; font: 500 0.98rem var(--police); text-decoration: none; cursor: pointer; transition: transform 120ms ease, background-color 160ms ease, border-color 160ms ease; }
+.releve-site .bouton:active { transform: scale(0.97); }
+.releve-site .bouton.plein { background: var(--texte); color: var(--fond); }
+.releve-site .bouton.plein:hover { background: color-mix(in srgb, var(--texte) 86%, var(--fond)); }
+.releve-site .bouton.trait { border-color: var(--filet-fort); color: var(--texte); background: transparent; }
+.releve-site .bouton.trait:hover { border-color: var(--section); }
+
+/* En-tête : barre translucide, CV toujours visible */
+.releve-site .entete { position: sticky; top: 0; z-index: 10; background: var(--entete-fond); backdrop-filter: blur(0.75rem); border-bottom: 1px solid var(--filet); }
+.releve-site .entete-ligne { position: relative; display: flex; align-items: center; justify-content: space-between; gap: 0.8rem; min-height: 3.75rem; }
+.releve-site .signature { display: inline-flex; align-items: center; gap: 0.6rem; font-weight: 600; font-size: 1.05rem; font-variation-settings: "wdth" 88; text-decoration: none; }
+.releve-site .marque { width: 1.75rem; height: 1.75rem; border-radius: 0.4rem; }
+.releve-site .entete-droite { display: flex; align-items: center; gap: 0.5rem; }
+.releve-site .nav-large { display: none; align-items: center; gap: clamp(0.9rem, 1.4vw, 1.6rem); font-size: 0.95rem; }
+.releve-site .nav-large a { text-decoration: none; color: var(--texte-doux); transition: color 160ms ease; }
+.releve-site .nav-large a:hover { color: var(--texte); }
+.releve-site .nav-large .bouton { min-height: 2.5rem; color: var(--texte); }
+.releve-site .langue { font: 500 0.78rem var(--donnees); font-variation-settings: "wdth" 87; }
+.releve-site .cv-court { min-height: 2.75rem; padding: 0 0.95rem; font-size: 0.92rem; }
+.releve-site .menu summary { list-style: none; cursor: pointer; display: grid; place-items: center; min-height: 2.75rem; padding: 0 0.4rem; font-size: 0.95rem; color: var(--texte-doux); }
+.releve-site .menu summary::-webkit-details-marker { display: none; }
+.releve-site .menu nav { position: absolute; left: calc(-1 * var(--gouttiere)); right: calc(-1 * var(--gouttiere)); top: 100%; display: grid; gap: 0.1rem; padding: 0.6rem var(--gouttiere) 1.2rem; background: var(--fond); border-bottom: 1px solid var(--filet); box-shadow: var(--ombre-plan); }
+.releve-site .menu nav a { padding: 0.75rem 0; text-decoration: none; border-bottom: 1px solid var(--filet); }
+.releve-site .menu nav .bascule-theme { margin-top: 0.8rem; }
+.releve-site .menu nav .bouton { margin-top: 0.6rem; }
+.releve-site:has([data-section="perso"]) .nav-perso,
+.releve-site:has([data-section="ecole"]) .nav-ecole { color: var(--section); }
+@media (min-width: 64em) {
+  .releve-site .nav-large { display: flex; }
+  .releve-site .entete-droite { display: none; }
+}
+
+/* Indicateur de section : trait de 2 px à l'accent de la section */
+.releve-site .indicateur-nav { position: absolute; left: 0; bottom: -1px; block-size: 2px; inline-size: calc(var(--l, 0) * 1px); transform: translateX(calc(var(--x, 0) * 1px)); background: var(--section); border-radius: 2px; transition: transform 380ms var(--courbe), inline-size 380ms var(--courbe), opacity 240ms ease; pointer-events: none; }
+.releve-site .indicateur-nav[data-visible="non"] { opacity: 0; }
+
+/* Bascule de thème : un disque mi-plein */
+.releve-site .bascule-theme { display: inline-grid; place-items: center; width: 2.6rem; height: 2.6rem; border: 1px solid var(--filet-fort); border-radius: var(--rayon-pastille); background: transparent; color: var(--texte); cursor: pointer; transition: border-color 160ms ease; }
+.releve-site .bascule-theme:hover { border-color: var(--section); }
+.releve-site .bascule-theme span { width: 1rem; height: 1rem; border-radius: 50%; border: 2px solid currentColor; background: linear-gradient(90deg, currentColor 50%, transparent 50%); transition: transform 320ms var(--courbe); }
+.releve-site .bascule-theme[aria-pressed="true"] span { transform: rotate(180deg); }
+
+/* Pied de page : le contact */
+.releve-site .pied { border-top: 1px solid var(--filet); background: var(--plan); padding-block: clamp(3rem, 6vw, 5.5rem) clamp(2rem, 4vw, 3rem); }
+.releve-site .pied-grille { display: grid; gap: clamp(2.4rem, 5vw, 4rem); }
+.releve-site .pied .chapo { margin-top: 1rem; }
+.releve-site .pied-actions { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 1.6rem; }
+.releve-site .pied-liens { display: flex; flex-wrap: wrap; gap: 0.6rem 1.6rem; margin-top: 1.6rem; font-size: 0.95rem; }
+.releve-site .pied-liens a { color: var(--texte-doux); text-underline-offset: 0.22em; }
+.releve-site .pied-liens a:hover { color: var(--section); }
+.releve-site .aiguillage { display: grid; gap: 0.4rem; align-self: end; padding: 1.2rem 1.4rem; border: 1px solid var(--filet); border-radius: var(--rayon-plan); text-decoration: none; color: var(--texte-doux); background: var(--fond); transition: border-color 200ms ease; }
+.releve-site .aiguillage strong { color: var(--texte); font-weight: 600; }
+.releve-site .aiguillage:hover { border-color: var(--acc-ecole); }
+.releve-site:has([data-section="ecole"]) .pied .aiguillage { display: none; }
+@media (min-width: 60em) {
+  .releve-site .pied-grille { grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.6fr); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .releve-site *, .releve-site *::before, .releve-site *::after { animation: none !important; transition: none !important; }
+}

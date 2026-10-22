@@ -11,28 +11,38 @@ function heurePlusUne(heure: string): string {
 
 type Decision = 'attente' | 'valide' | 'annule';
 
+const CLASSE: Record<Decision, string> = { attente: 'porte', valide: 'porte valide', annule: 'porte annule' };
+
 export function CarteFeuVert() {
   const t = useTranslations('releve.methode');
   const [decision, setDecision] = useState<Decision>('attente');
   const heure = t('feuHeure');
-  const valide = decision === 'valide';
+  const enAttente = decision === 'attente';
+  const bandeau = enAttente ? `◆ ${t('feuDe')}` : decision === 'valide' ? `${t('tampon')} · ${heurePlusUne(heure)}` : t('annule');
 
   return (
-    <div className={decision === 'attente' ? 'feu' : 'feu valide'} aria-live="polite">
-      <div className="de">
-        <span>{t('feuDe')}</span>
+    <div className={CLASSE[decision]} aria-live="polite">
+      <div className="bandeau">
+        <span className="bandeau-etat">
+          {decision === 'valide' && (
+            <svg className="coche" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M3 8.5l3 3 7-7" />
+            </svg>
+          )}
+          {bandeau}
+        </span>
         <span>{heure}</span>
       </div>
-      {valide && <span className="tampon">{`${t('tampon')} ${heurePlusUne(heure)}`}</span>}
-      {decision === 'annule' && <span className="tampon annule">{t('annule')}</span>}
-      <p className="message">{t('feuMessage')}</p>
-      <div className="actions">
-        <button type="button" className="vas-y" onClick={() => setDecision('valide')} disabled={decision !== 'attente'}>
-          {valide ? t('envoye') : t('vasy')}
-        </button>
-        <button type="button" className="annuler" onClick={() => setDecision('annule')} disabled={decision !== 'attente'}>
-          {t('annuler')}
-        </button>
+      <div className="corps">
+        <p className="message">{t('feuMessage')}</p>
+        <div className="actions">
+          <button type="button" className="vas-y" onClick={() => setDecision('valide')} disabled={!enAttente}>
+            {decision === 'valide' ? t('envoye') : t('vasy')}
+          </button>
+          <button type="button" className="annuler" onClick={() => setDecision('annule')} disabled={!enAttente}>
+            {t('annuler')}
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -20,7 +20,7 @@ export function SiteFooter() {
               {t('contact.cv')}
             </a>
           </div>
-          <p className="pied-liens mono">
+          <p className="pied-liens">
             <a href={LIENS.mail}>killian.abboud@gmail.com</a>
             <a href={LIENS.linkedin} target="_blank" rel="noopener noreferrer">{t('contact.linkedin')}</a>
             <a href={LIENS.github} target="_blank" rel="noopener noreferrer">{t('contact.github')}</a>

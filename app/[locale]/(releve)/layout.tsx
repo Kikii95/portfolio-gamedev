@@ -1,12 +1,12 @@
 import { SiteHeader } from '@/components/releve/site-header';
 import { SiteFooter } from '@/components/releve/site-footer';
 import { SCRIPT_THEME } from '@/components/releve/bascule-theme';
+import { RevelerTraces } from '@/components/releve/reveler-traces';
 import './styles/tokens.css';
-import './styles/mise-en-page.css';
+import './styles/base.css';
 import './styles/composants.css';
-import './styles/projets.css';
+import './styles/accueil.css';
 import './styles/sections.css';
-import './styles/details.css';
 
 export default function ReleveLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -15,6 +15,7 @@ export default function ReleveLayout({ children }: { children: React.ReactNode }
       <SiteHeader />
       <main className="contenu">{children}</main>
       <SiteFooter />
+      <RevelerTraces />
     </div>
   );
 }

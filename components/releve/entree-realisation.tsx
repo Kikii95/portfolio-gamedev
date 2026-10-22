@@ -6,35 +6,36 @@ import { FilExecution } from './fil-execution';
 import { RecuLivraison } from './recu-livraison';
 import { PieceJustificative } from './piece-justificative';
 
-const ETAPES_APERCU = 4;
-
 export function EntreeRealisation({ realisation, rang }: { realisation: Realisation; rang: number }) {
   const t = useTranslations('releve');
   const locale = useLocale();
   const piece = realisation.pieces[0];
   const numero = String(rang + 1).padStart(2, '0');
   const enCours = realisation.etapes.findIndex((e) => e.type === 'attente');
+  const fiche = chemin(locale, `/realisations/${realisation.slug}`);
 
   return (
-    <article className={rang % 2 ? 'entree inverse' : 'entree'} aria-labelledby={`r-${realisation.slug}`}>
-      <div className="entree-texte">
-        <p className="entree-meta mono">
-          <span>{numero}</span>
-          <span className="etiquette livre">{realisation.statut}</span>
+    <article className="entree" aria-labelledby={`r-${realisation.slug}`}>
+      <header className="entree-tete">
+        <p className="entree-meta">
+          <span className="numero">{numero}</span>
+          <span className="etat service">{realisation.statut}</span>
           <span>{realisation.periode}</span>
         </p>
         <h3 id={`r-${realisation.slug}`}>
-          <Link href={chemin(locale, `/realisations/${realisation.slug}`)}>{realisation.titre}</Link>
+          <Link href={fiche}>{realisation.titre}</Link>
         </h3>
         <p className="chapo">{realisation.accroche}</p>
-        <p className="sous-titre mono">{t('realisations.deroule')}</p>
-        <FilExecution etapes={realisation.etapes.slice(0, ETAPES_APERCU + 1)} enCours={enCours} />
-        <Link className="bouton trait" href={chemin(locale, `/realisations/${realisation.slug}`)}>
+      </header>
+      <div className="entree-trace">
+        <p className="sous-titre">{t('realisations.deroule')}</p>
+        <FilExecution etapes={realisation.etapes} enCours={enCours} />
+        <Link className="bouton trait" href={fiche}>
           {t('realisations.lire')} →
         </Link>
       </div>
       <div className="entree-preuves">
-        {piece && <PieceJustificative piece={piece} libelleLecture={t('piece.lire')} penche={rang % 2 ? 1.2 : -1.2} />}
+        {piece && <PieceJustificative piece={piece} libelleLecture={t('piece.lire')} />}
         <RecuLivraison recu={realisation.recu} statut={realisation.statut} />
       </div>
     </article>

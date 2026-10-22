@@ -1,72 +1,95 @@
-# Direction artistique — volet « Automatisation & IA »
+# Direction artistique — « La trace de production »
 
-> Établie le 22/10/2026 (refonte `/da`), à partir de trois analyses indépendantes (lecteur, recruteur, designer
-> produit) et des captures de l'origine (`~/projects/perso/wt-da/_captures/portfolio-gamedev/origine/`, tag `da-origine`).
-> Le volet « jeu vidéo & moteurs » garde son identité d'origine (noir, rouge) sous `/jeu` : les deux volets ne se
-> mélangent pas.
+> Établie le 22/10/2026, refonte `/da` **depuis zéro** (branche `design/da-zero`). Point de départ : trois analyses
+> indépendantes (lecteur, ancien recruteur, directeur artistique) qui n'ont vu ni le site ni l'ancienne DA, puis la
+> consigne de Killian : « sombre clean tech, mais adapté à la cible ; pas de néon ; ça reste mon portfolio ».
+> L'ancienne DA (« relevé d'exécution », papier clair) est conservée dans [`direction-artistique-v1.md`](direction-artistique-v1.md) :
+> elle sert de repère à dépasser, pas de base.
+>
+> Design System : https://claude.ai/artifact/6b5kmDyXJvsx4ti6wbiFiN
+> Canevas des variantes (rangée « Depuis zéro ») : https://claude.ai/artifact/4zTi9rWmBasYi7z9M4hU4p
+> Planche d'évolution : https://claude.ai/artifact/DCNU5T5ioLj9oF5ujiE5Nj
 
 ## 0. Fiche cible
 
-- **Ce qu'est le site** (convergence des 3 analyses) : une **preuve d'exploitation**. Pas une vitrine de projets :
-  le relevé de systèmes qui tournent déjà seuls, chez des clients ou pour des proches, avec un humain qui garde la main.
-- **Pour qui** : d'abord un recruteur ou un RH qui ouvre le lien depuis un mail de candidature, **sur téléphone, 30 à
-  90 secondes** ; ensuite un manager ops / RevOps ou un dirigeant de PME, **sur PC, 3 à 5 minutes**, la veille d'un
-  entretien. Lumière du jour, bureau ou transports.
-- **Registre** : bureautique / métier → **fond clair**, net, lisible longtemps ; une énergie calme (« ça tourne, c'est
-  sous contrôle »), jamais l'effet « waouh IA ».
-- **Affordances de l'origine à garder** : bilingue FR/EN, fiches projet en MDX avec galerie image/vidéo, statut du
-  projet (actif, pause…), lien vers la démo en ligne, photo portrait.
+- **Ce qu'est le site** (convergence des 3 analyses) : **la preuve que des systèmes tournent déjà en production et
+  qu'un humain les valide.** Pas une vitrine de développeur : un dossier de preuves d'exploitation, signé par celui qui
+  les fait tourner.
+- **Pour qui, dans l'ordre** : (1) un recruteur (consultant n8n, AI product builder, RevOps junior) qui ouvre le lien
+  depuis un CV ou LinkedIn, **sur téléphone, 30 à 90 s**, en journée, au bureau ou dans les transports : il vérifie le
+  poste, la disponibilité, le lieu, le contrat, une preuve chiffrée, et veut le CV en un geste. (2) Le manager ops ou
+  RevOps, sur PC, 3 à 5 min, sceptique : méthode, gestion d'erreur, garde-fous. (3) Le dirigeant de PME, souvent le
+  soir, méfiant envers l'IA : « est-ce qu'on garde la main ? ».
+- **Registre** : outil professionnel tech, **sombre, clean, récent** (choix de Killian, la cible tolère et l'image
+  l'exige), **sans néon ni gaming** (les 3 analyses). Le sombre est **ardoise neutre, pas noir pur, pas bleuté** ; le texte
+  est calibré pour le plein jour sur téléphone (corps ≥ 1,0625 rem, contraste ≥ 7:1 pour le corps, ≥ 4,5:1 pour les
+  métadonnées). Énergie basse à moyenne, tenue : **ce qui bouge, c'est l'état des systèmes, jamais la décoration.**
+  Un thème clair issu de la même DA reste au choix (bascule), pour la lecture en plein soleil.
+- **Divergence relevée** : deux analyses sur trois recommandaient un fond clair par défaut (lecture de jour, monde des
+  documents). Tranché pour le sombre par la consigne de Killian, avec trois compensations : contraste renforcé, aucune
+  couleur fluo, thème clair impeccable à un clic.
+- **Ce qui doit rester à l'image de Killian** : un dev nocturne, à jour, qui construit des systèmes qui tournent pour de
+  vrai ; un « je » direct, des chiffres vrais et modestes, des vidéos courtes de vrais écrans, le principe « l'IA
+  prépare, une personne valide, c'est tracé ».
+- **Premier écran mobile, dans l'ordre** (3/3 analyses) : nom + poste, la promesse, disponibilité · lieu · contrat,
+  CV + contact, puis les preuves chiffrées. Le journal vient après, comme preuve, pas comme accroche.
+- **Affordances à garder** : trois portes (`/`, `/projets`, `/ecole`) avec un accent par section ; indicateur de
+  section sous la nav ; fenêtre « Tout le détail » ; CV PDF ; FR/EN ; bascule de thème ; vidéos sans lecture
+  automatique, avec poster ; statut de chaque projet ; carte « Vas-y / Annuler » interactive.
 
-## 1. Le principe : un relevé d'exécution signé, pas une galerie de projets
+## 1. Le principe : une trace de production, pas une vitrine
 
-Une automatisation qui tourne laisse une trace : un déclencheur horodaté, des étapes qui s'enchaînent, parfois un feu
-vert humain, puis un résultat livré. C'est ce relevé que le site montre. Les captures et les vidéos sont les **pièces
-justificatives** du relevé, pas des illustrations.
+Quand un système tourne en production, l'équipe qui l'exploite ne regarde pas une galerie : elle regarde une
+**trace** (chaque passage, horodaté, découpé en étapes, avec ce qui a attendu et ce qui a été livré) et une **porte de
+validation** (le « Review required → Approve » d'un déploiement). C'est ce que le site montre de Killian : ses
+systèmes, en train de passer, et la main humaine à l'endroit où elle compte. Les vidéos sont des **écrans de
+contrôle** : on regarde la chose tourner.
 
-Trois choses le caractérisent, et le site doit les reprendre littéralement :
-1. **Tout est horodaté et ordonné** — chaque réalisation se lit de haut en bas comme un fil d'exécution :
-   déclencheur → étapes → feu vert → résultat. Les heures et les durées sont en chasse fixe.
-2. **L'humain garde la main** — l'étape de validation (« Vas-y » / « Annuler » sur Telegram) est un objet visible et
-   cliquable, pas une mention dans un paragraphe.
-3. **Chaque affirmation a sa preuve** — un résultat est toujours accompagné de sa capture, de sa vidéo ou de son lien
-   vivant. Une case sans preuve ne s'affiche pas (fini les vignettes vides `</>`).
+Trois choses le caractérisent, et le site les reprend littéralement :
+1. **Le temps est l'axe** — chaque réalisation se lit comme une trace horizontale : déclencheur → ce que l'IA fait →
+   la porte humaine (un segment qui *attend*) → livré. Heures en chasse fixe, segments alignés sur une graduation.
+2. **La porte de validation est un objet** — l'endroit où l'humain valide est un composant à part, cliquable, avec son
+   état (en attente → validé à 09:01) ; jamais une phrase dans un paragraphe.
+3. **L'état fait la couleur** — rien n'est coloré pour décorer : une teinte dit « en service », « attend une
+   personne », « reprise après erreur », ou la section où l'on se trouve. Le reste est en niveaux d'ardoise.
 
-La règle de contrôle : **si une page ressemble à un template de portfolio de développeur (grille de cartes avec
-vignette + badges techno, type « Vercel portfolio starter ») ou à l'éditeur sombre de n8n, elle est ratée.**
+La règle de contrôle : **si une page ressemble à un template de portfolio de développeur (grille de cartes vignette +
+badges techno), à l'éditeur sombre de n8n, à un dashboard Grafana néon ou à une page « IA » à dégradé violet — ou si
+elle rappelle encore le relevé papier — elle est ratée.**
 
 ## 2. Structure de page
 
 | Élément | Traitement |
 | --- | --- |
-| Fond | Papier de relevé : blanc cassé froid, un filet vertical fin à gauche (la « marge de saisie ») où s'alignent les heures |
-| Marges / grille | Colonne de lecture `min(68ch, 100%)` ; à droite (≥ 64em) une colonne « pièces » pour captures et vidéos |
-| Titre | Grotesque éditoriale, sans couleur ni dégradé ; l'heure ou le statut à gauche dans la marge, jamais une étiquette mono au-dessus |
-| Bloc | Une **étape** : ligne d'heure, verbe d'action, détail, pièce justificative ; séparées par le trait du fil, pas par des cartes |
-| Séparateur | Le fil d'exécution lui-même (trait vertical continu avec pastilles) ; ailleurs un filet de 1 px |
-| Navigation | Barre haute discrète : nom, « Réalisations », « À propos », « Contact », bascule FR/EN, et l'aiguillage « Atelier jeu vidéo → » |
+| Fond | Ardoise `--fond` uni ; une **graduation** discrète (filets verticaux tous les `8rem`, alpha 4 %) dans le hero et les traces seulement, comme l'axe du temps d'une trace |
+| Marges / grille | Conteneur `min(100% - 2 × gouttière, 88rem)` ; grilles en `fr`/`minmax()` ; colonne de lecture `min(64ch, 100%)` |
+| Titre | Instrument Sans condensée (`wdth` 82), graisse 600, blanc cassé ; jamais de mot coloré, jamais d'étiquette mono en capitales au-dessus |
+| Bloc | Le **plan** : surface `--plan` à peine plus claire, filet 1 px `--filet`, rayon `0.875rem` ; une réalisation = un plan large, pas une carte de grille |
+| Séparateur | Filet 1 px pleine largeur ; la trace elle-même entre les blocs d'une fiche |
+| Navigation | Barre haute translucide (fond 82 %, flou 0,75 rem), nom à gauche, liens, langue, thème, **CV toujours visible** (même sur mobile) ; indicateur de section = trait de 2 px à l'accent de la section |
 
-**Voix** : française, directe, au passé composé ou au présent d'exploitation (« reçoit », « note », « prépare »,
-« attend ton feu vert », « a livré »). Des verbes et des chiffres, pas d'adjectifs (« innovant », « passionné »,
-« dynamique » interdits). Les noms d'outils (n8n, Claude, API France Travail) apparaissent **après** le bénéfice, jamais
-en titre. Aucun nom ni chiffre de client réel DataDawn (mémoire « zéro donnée forensique ») : « un cabinet de gestion
-locative », « une PME du BTP ».
+**Voix** : française, directe, au présent d'exploitation (« reçoit », « prépare », « attend ton feu vert », « a
+livré »). Des verbes et des chiffres, pas d'adjectifs (« innovant », « passionné » interdits). Les noms d'outils
+viennent après le bénéfice. Zéro nom ni chiffre réel de client DataDawn (« un cabinet de gestion locative », « une PME
+du BTP »). Rien d'exploitable sur Home Gateway (ni URL, ni fournisseur). Aucun numéro de téléphone. Aucun lien vers un
+dépôt privé.
 
 ### 2.1 Responsive : la même DA de 390 px à la 4K
 
-Aucune valeur absolue de mise en page : `rem`/`ch`/`%`/`cqi`, `clamp()`, grilles `minmax()`/`auto-fit`, ruptures en
-`em`. Seuls filets et ombres en px (1-2 px).
+Aucune valeur absolue de mise en page : `rem`/`em`/`ch`/`%`/`vw`/`dvh`, bornés par `clamp()`/`min()` ; grilles `fr`,
+`minmax()`, `auto-fit` ; ruptures en `em`. Seuls filets, bordures et ombres en px (1-2 px).
 
 | Largeur | Ce que fait la page |
 | --- | --- |
-| Mobile 390-430 | Une colonne : heure au-dessus de l'étape (la marge se replie en ligne), pièces sous leur étape, pleine largeur ; carte « feu vert » collante en bas d'une fiche le temps d'une démo |
-| PC HD 1366 | Marge d'heures à gauche (`8ch`), texte `min(60ch)`, pièces à droite en colonne `minmax(22rem, 1fr)` |
-| PC Full HD 1920 | Idem, pièces plus grandes ; le hero montre le relevé « ce matin » à côté du titre |
-| PC 2K 2560 | Échelle fluide : la racine grandit (`clamp`), aucune colonne n'est figée ; la pièce principale d'une fiche passe à 2/5 de la largeur |
-| PC 4K 3840 | Même composition qu'en 2K à l'échelle ; contenu ≥ 60 % de la largeur (pas d'îlot) |
+| Mobile 390-430 | Une colonne. Hero : nom + poste, promesse, ligne de disponibilité, CV plein + contact, puis les 3 preuves en ligne de compteurs. Trace verticale (segments empilés, la porte humaine en surbrillance). Nav : nom, CV, menu |
+| PC HD 1366 | Hero en deux colonnes (texte 1,15 fr / journal 0,85 fr). Traces horizontales. Réalisation : texte + trace à gauche, écran de contrôle à droite |
+| PC Full HD 1920 | Idem, écrans plus grands ; la graduation du hero s'étend sur toute la largeur |
+| PC 2K 2560 | Échelle fluide (la racine grandit) ; conteneur 88 rem à l'échelle, couvre ≥ 60 % de la largeur |
+| PC 4K 3840 | Même composition qu'en 2K, à l'échelle ; aucun îlot |
 
-- **Échelle fluide** : `html { font-size: clamp(1rem, 0.35vw + 0.85rem, 1.6rem) }`.
-- **Réglages utilisateur** : bascule FR/EN (longueurs de libellés), `prefers-reduced-motion`.
-- Barre haute : sur une ligne ≥ 48em ; en dessous, nom + menu, l'aiguillage jeu vidéo passe dans le menu.
+- **Échelle fluide** : `html { font-size: clamp(1rem, 0.42vw + 0.8rem, 1.75rem) }`.
+- **Réglages utilisateur** : thème sombre (défaut) / clair, FR/EN (libellés plus longs), `prefers-reduced-motion`.
+- Barre haute : tous les liens sur une ligne ≥ 64 em ; en dessous, nom + CV + menu.
 
 ## 3. Couleurs
 
@@ -74,141 +97,109 @@ Aucune valeur absolue de mise en page : `rem`/`ch`/`%`/`cqi`, `clamp()`, grilles
 
 | Couleur | Sens | Origine dans le sujet |
 | --- | --- | --- |
-| Vert feu vert `--feu-vert` | **validé / livré / en service** | le bouton « Vas-y », la ligne de statut « en service » |
-| Ambre `--attente` | **en attente d'une décision humaine** | la notification qui attend ton feu vert |
-| Bleu signal `--declencheur` | **déclencheur** (événement entrant : mail, offre, horaire) | le webhook, le cron, le message qui arrive |
-| Brique `--reprise` | **erreur gérée / reprise** (« ce qui casse et comment c'est géré ») | la branche d'erreur d'un workflow |
-| Graphite `--encre` | texte, étapes automatiques | l'encre du relevé |
+| Vert sauge `--en-service` | **en service / validé / livré** | l'état « healthy » d'un service, la coche d'approbation |
+| Ambre `--attente` | **attend une personne** | la porte de validation « Review required » |
+| Corail `--reprise` | **erreur gérée, reprise** | le span en erreur d'une trace, rattrapé |
+| Blanc cassé `--texte` | déclencheur et étapes automatiques | la trace neutre : ce qui passe seul n'a pas besoin de couleur |
 
-Dans tout contexte d'état, ces teintes ne veulent dire que ça. Aucune autre couleur vive. Le rouge `#E10600` de
-l'origine n'existe plus sur ce volet (il appartient à l'atelier jeu vidéo).
+Accents de **structure** (jamais un état) : ils colorent l'indicateur de section, les liens, la graduation et le
+filet haut des plans de leur section.
+
+| Section | Accent | Pourquoi |
+| --- | --- | --- |
+| `/` Automatisation & IA | **Glacier** `--acc-ops` | la lumière froide et précise d'un écran de supervision : le registre « production » |
+| `/projets` Projets perso | **Cuivre** `--acc-atelier` | l'atelier, le fait main, la chaleur des projets du soir |
+| `/ecole` École & gamedev | **Lilas** `--acc-ecole` | l'archive de formation, en retrait, datée |
 
 ### 3.2 Tokens
 
 ```css
-:root {
-  /* papier du relevé */
-  --papier: #F5F6F3;
-  --papier-pli: #ECEEE9;
-  --carte: #FFFFFF;
-  --filet: #D6D9D2;
-  --marge: #C9CEC4;
-  /* encre */
-  --encre: #1C211F;
-  --encre-douce: #4B524E;
-  --encre-pale: #646B66;   /* #6F7671 à l'origine : foncé pour tenir 4,5:1 sur papier */
-  /* sémantique (§3.1) */
-  --feu-vert: #12804F;
-  --feu-vert-fond: #E3F2EA;
-  --attente: #A86400;
-  --attente-fond: #FBF0DC;
-  --declencheur: #1E5FB4;
-  --declencheur-fond: #E4EDF8;
-  --reprise: #B23A26;
-  --reprise-fond: #F8E6E2;
+:root, [data-theme="nuit"] {          /* référence : sombre */
+  --fond: #111214;  --plan: #17181B;  --plan-haut: #1E2024;
+  --filet: #2A2C31; --filet-fort: #3B3E45;
+  --texte: #EEEDE9; --texte-doux: #BBB9B3; --texte-pale: #8F8D88;
+  --en-service: #74C99A; --attente: #E8C063; --reprise: #EE8C74;
+  --acc-ops: #A9C6F5;   --acc-atelier: #E89A6E;  --acc-ecole: #B9A9EE;
+  --sur-accent: #111214;
+}
+[data-theme="jour"] {                  /* thème clair, même sémantique */
+  --fond: #F3F3F0;  --plan: #FFFFFF;  --plan-haut: #F8F8F6;
+  --filet: #DEDDD8; --filet-fort: #C9C8C2;
+  --texte: #141518; --texte-doux: #44464B; --texte-pale: #62646A;
+  --en-service: #1B7F4E; --attente: #8E6200; --reprise: #B5432C;
+  --acc-ops: #2C5DB3;   --acc-atelier: #A9502A;  --acc-ecole: #5E4BB8;
+  --sur-accent: #FFFFFF;
 }
 ```
-Clair = référence. Un thème sombre existe depuis le 22/10/2026 (demande de Killian) : § 3.3.
 
-### 3.3 Relevé de nuit (thème sombre)
-
-Le même relevé, lu de nuit : papier graphite, encres éclaircies, **même sémantique** (§ 3.1). Ce n'est ni l'éditeur
-sombre de n8n ni le noir et rouge de l'atelier jeu : pas de noir pur, pas de néon, pas de lueur.
-Suit `prefers-color-scheme` ; le bouton de l'en-tête force clair ou sombre (`html[data-releve]`, retenu dans
-`localStorage`, posé avant le premier rendu).
-
-| Token | Sombre |
-| --- | --- |
-| `--papier` / `--papier-pli` / `--carte` | #121614 / #181D1B / #1B201E |
-| `--filet` / `--marge` | #2C3430 / #3A433E |
-| `--encre` / `--encre-douce` / `--encre-pale` | #E6EAE7 / #B4BCB7 / #8C9690 |
-| `--feu-vert` / `--attente` / `--declencheur` / `--reprise` | #45C487 / #E3A443 / #74A8F2 / #F0806A |
-| fonds sémantiques | #173324 / #36290F / #182B47 / #3B1F19 |
-| `--sur-accent` (texte sur bouton vert) | #0C1410 |
-| pied de page | #0B0E0D, filet en tête |
-
-Contraste ≥ 4,5:1 sur `--papier` sombre pour toutes les encres et sémantiques. Les pièces justificatives (captures)
-restent telles quelles : ce sont des documents agrafés, pas de l'interface.
-Contraste texte ≥ 4,5:1 sur `--papier` pour `--encre`, `--encre-douce`, `--encre-pale` et chaque sémantique.
-Pulsation de l'étape en cours : halo `--feu-vert` alpha 0 → 0,28, rayon ≤ 0,6rem.
-
-### 3.4 Trois portes, trois accents (22/10/2026)
-
-Un seul site, une seule DA ; chaque section a son **accent de structure** (`--section`, `styles/sections.css`). Il teint
-surtitres, filets tracés, numéros de famille, liens, rubrique active de l'en-tête et sélection. **Jamais un état** :
-« en service » reste vert partout, l'erreur reprise reste brique.
-
-| Section | Rôle | Clair | Sombre |
-|---|---|---|---|
-| `/` Automatisation & IA | la page des candidatures | `#12804F` (feu vert) | `#45C487` |
-| `/projets` Projets perso | ce que j'ai construit hors école | `#5B3FB8` violet encre | `#A894F5` |
-| `/ecole` École & gamedev | Bachelor, moteurs, Unity | `#C8143C` carmin (rappel de l'atelier d'origine, plus rosé que la brique) | `#FF5C7A` |
-
-Activation : `data-section="perso|ecole"` sur le conteneur de la page, lu par `.releve-site:has(...)`.
-Un projet sans média reçoit un **cartouche** : bloc typographique (techno principale en gros, année, pile d'outils)
-hachuré à l'accent de la section, à la place d'une vignette vide.
+Plafonds : **aucun halo de plus de 0,18 d'alpha**, aucun `text-shadow` lumineux, aucune bordure colorée de plus de
+2 px ; la lueur d'un écran de contrôle (≤ 0,18) est la seule lumière portée du site. Contraste corps ≥ 7:1, métadonnées
+≥ 4,5:1, accents sur fond ≥ 4,5:1 dans les deux thèmes.
 
 ## 4. Typographie
 
 | Rôle | Police | Pourquoi celle-ci pour ce sujet |
 | --- | --- | --- |
-| Titres et corps | **Schibsted Grotesk** (400-800) | grotesque de presse : se lit comme un compte rendu factuel, sérieuse sans être corporate |
-| Heures, durées, noms d'étape, chiffres | **IBM Plex Mono** (400-600) | la police des journaux d'exécution ; chiffres tabulaires pour aligner heures et durées |
+| Titres | **Instrument Sans**, `wdth` 82, graisse 600 | une grotesque d'interface récente, nette, un peu étroite : le ton d'un produit logiciel, pas d'un magazine |
+| Corps et interface | **Instrument Sans**, `wdth` 100, 400/500 | lisible sur téléphone en plein jour ; même famille que les titres, une seule voix |
+| Heures, chiffres, états | **Martian Mono**, `wdth` 87, 400/500 | la chasse fixe des traces et des compteurs ; large et technique sans faire terminal ; réservée aux données, jamais au texte courant |
 
-Chargées via `next/font/google` (fichiers servis par le site). Jamais Inter, Geist ni Space Grotesk sur ce volet.
+Chargement par `next/font/google` (auto-hébergé au build). Chiffres en `tabular-nums`.
 
 ## 5. Composants signature
 
 | Composant | Ce qu'il reproduit | Piste technique |
 | --- | --- | --- |
-| **Fil d'exécution** | le relevé d'une exécution : pastille + heure + verbe + détail, trait vertical continu | `<ol>` sémantique, trait en `::before`, pastille colorée selon l'étape (§3.1) ; une étape s'ouvre sur sa pièce |
-| **Carte feu vert** | la notification Telegram « Vas-y / Annuler » | bouton réel ; « Vas-y » lance la vidéo de démo de la fiche et tamponne « validé 08:02 » |
-| **Reçu de livraison** | la preuve de livraison : ce qui a été livré, pour qui (anonymisé), depuis quand, chiffre | bloc à bord perforé (masque CSS en dents), tampon « en service » |
-| **Pièce justificative** | une capture ou une vidéo agrafée au relevé, légendée avec l'heure et la source | `<figure>` + cadre d'écran, vidéo sans lecture auto (poster + bouton), plein écran au clic |
-| **Relevé du matin** (hero) | le journal des routines qui ont tourné : « 08:00 JobHunter · offres collectées » | lignes réelles, issues des vrais logs (sans donnée perso), qui s'écrivent une à une |
-| **Schéma de flux** | le workflow réel (nœuds n8n / étapes) | SVG généré depuis le JSON du workflow, paquets qui circulent sur les arêtes |
-| **Fiche d'intervention** (en-tête de cas) | « Demande · Intervention · Résultat » | trois colonnes en grille, repliées en pile sur mobile |
-| **Aiguillage** | le passage vers l'atelier jeu vidéo | lien-bascule dans la barre ; la page d'arrivée reprend le noir et rouge d'origine |
+| **Ligne de disponibilité** | la ligne d'état d'un service (« ● opérationnel ») appliquée à Killian : « ● Disponible en novembre 2026 · Île-de-France · CDI ou CDD » + CV | `p.dispo` flex-wrap, point `--en-service` qui pulse une fois au chargement |
+| **Trace de passage** | le waterfall d'une trace d'observabilité : une rangée par étape, un segment par étape sur l'axe, la porte humaine en segment ambré hachuré | `ol.trace` en grille `heure / libellé / piste` ; segments décalés par `--i` ; vertical sur mobile |
+| **Porte de validation** | le « Review required → Approve / Reject » d'un déploiement | `CarteFeuVert` restylée : bandeau ambre « validation requise », boutons Vas-y / Annuler, état validé « ✓ validé · 09:01 » |
+| **Journal de la nuit** | le flux d'événements d'une console (pas un terminal) : heure, système, état | tableau 3 colonnes, pastille d'état, lignes qui arrivent en cascade |
+| **Compteurs de preuve** | les métriques d'en-tête d'un service | 3 compteurs Martian Mono, libellé dessous, filets verticaux entre eux |
+| **Écran de contrôle** | la vidéo ou capture comme un écran allumé dans une pièce sombre | `figure.ecran-controle` : cadre fin, barre de titre sobre (légende · durée), lueur portée ≤ 0,18 sous l'écran |
+| **Rapport de passage** | le résumé chiffré d'un run (« livré : 6 offres notées ») | `RecuLivraison` en plan haut : chiffre Martian Mono, lignes clé/valeur, statut |
+| **Registre d'atelier** | la liste des services d'un tableau d'exploitation | `/projets` : rangées (statut, nom, phrase, outils, actions), écran de contrôle à côté quand il y a une vidéo ; pas de grille de cartes |
+| **Frise de cursus** | une archive datée | `/ecole` : projets groupés par famille, l'année en colonne, accent lilas en retrait |
+| **Inspecteur** | le panneau latéral d'un outil de dev | fenêtre « Tout le détail » en tiroir à droite (plein écran sur mobile) |
 
 ## 6. Effets et mouvement (au maximum, dans la matière du sujet)
 
 | Effet | Lien avec l'objet réel | Recette | Où |
 | --- | --- | --- | --- |
-| Le fil se trace | une exécution qui progresse | `stroke-dashoffset`/`scaleY` du trait lié au défilement, 900 ms `cubic-bezier(.2,.7,.2,1)` par étape | fil d'exécution |
-| L'étape en cours pulse | le nœud actif d'un workflow | halo `box-shadow` → `opacity` d'un pseudo-élément, 1,6 s, boucle `ease-in-out` | étape active, hero |
-| Le relevé s'écrit | les lignes de log qui arrivent | chaque ligne `opacity` + `translateY(0.4em)` en 260 ms, décalage 140 ms, heure qui défile en chiffres | hero |
-| Le feu vert est donné | appuyer sur « Vas-y » | bouton `scale(.96)` 90 ms, puis tampon `scale(1.4→1) rotate(-8deg)` 320 ms, puis la vidéo s'ouvre | carte feu vert |
-| Le reçu tombe | la preuve de livraison imprimée | `translateY(-1.5em)` + `clip-path` de haut en bas, 520 ms, à l'entrée dans l'écran | reçu |
-| Les paquets circulent | les données qui transitent | petits points sur `offset-path` des arêtes, 2,4 s en boucle, décalés | schéma de flux |
-| La pièce s'agrafe | la capture jointe au dossier | `rotate(-1.2deg → 0)` + ombre qui se pose, 300 ms | pièces justificatives |
-| Le compteur de service | depuis combien de temps ça tourne | chiffres qui roulent (`translateY` par chiffre), 700 ms | reçus, hero |
+| Les segments de la trace se remplissent | un span qui s'exécute | `transform: scaleX(0→1)`, 520 ms, `cubic-bezier(.2,.7,.2,1)`, décalage 90 ms par étape, au défilement (`animation-timeline: view()`) | traces |
+| La porte attend | « Review required » | contour ambre qui respire (opacité 0,35→0,8, 2,4 s, `ease-in-out`, infini) tant que rien n'est validé | porte humaine |
+| Approbation | le déploiement part | au clic : la coche se trace (`stroke-dashoffset`, 360 ms), le bandeau passe de l'ambre au vert, l'heure +1 min s'inscrit | porte de validation |
+| Le journal arrive | le flux d'événements | lignes `opacity/translateY`, 260 ms, cascade 110 ms | hero |
+| Lumière d'écran | un écran allumé dans le noir | lueur portée (radial, alpha 0,10 → 0,18 au survol, 300 ms) | écrans de contrôle |
+| Point de service | le voyant « opérationnel » | une seule onde au chargement (1,8 s), puis fixe | ligne de disponibilité |
+| Indicateur de section | l'onglet actif d'une console | `transform` + largeur, 380 ms | nav |
+| Inspecteur | un panneau latéral | `translateX(100%→0)`, 380 ms ; voile 300 ms | fenêtre de détail |
 
-Tout est coupé sous `prefers-reduced-motion` : le relevé apparaît complet, fil tracé, aucune boucle. Page complète au
-repos ; seuls `opacity`, `transform`, `clip-path`, `stroke-dashoffset` sont animés.
+Coupés sous `prefers-reduced-motion` ; la page est complète au repos (segments pleins, journal entier) ;
+seulement `opacity`, `transform`, `stroke-dashoffset`.
 
 ## 7. Illustrations et icônes
 
-Pas de set d'icônes générique. Les seuls pictogrammes sont les **pastilles d'étape** (cercle plein = automatique,
-cercle bleu = déclencheur, losange ambre = attente humaine, coche verte = livré, triangle brique = reprise), dessinés
-en SVG maison. Le reste, ce sont les vraies captures. État vide : une étape « pièce en cours de tournage » plutôt qu'une
-vignette factice — et jamais affichée en production.
+Pas de set d'icônes générique. Trois pictogrammes d'état dessinés en CSS : **rond** (automatique / en service),
+**losange** (attend une personne), **triangle** (reprise). Flèches typographiques (→ ↗). Emblème : voir
+`design/embleme/`.
 
 ## 8. Ce qu'il ne faut pas faire
 
-- Une vignette vide ou un placeholder `</>` : une réalisation sans preuve ne se publie pas.
-- Une vidéo qui démarre seule avec le son, ou sans poster.
-- Le jeu vidéo ou le C++ en premier sur ce volet ; le rouge `#E10600` ou le noir d'origine ici.
-- Un jargon d'outil en titre (« Workflow n8n + Claude API ») au lieu du bénéfice.
-- Un nom, un chiffre ou un document d'un client DataDawn réel ; une donnée personnelle (mail, téléphone d'un proche,
-  offres nominatives) dans une capture.
-- Les moules de Killian : kit shadcn d'origine (blanc pur + slate + Geist + lucide), dashboard dev sombre néon, moule
-  maison noir bleuté + cyan ; et les esthétiques IA : crème + serif + terracotta, dégradé violet, étiquette mono en
-  capitales au-dessus des titres, un seul mot coloré dans le H1, glassmorphism, carte à liseré gauche coloré.
-- Des badges techno en grappe sur chaque carte (le moule « portfolio dev »).
+- Néon, lueur colorée sur du texte, halo > 0,18, dégradé violet → bleu, orbes, particules, réseau de neurones.
+- Faux terminal (vert sur noir, curseur clignotant partout, machine à écrire), scanlines, glitch.
+- Codes de jeu vidéo : HUD, barres de vie, pixel, polices futuristes ; le gamedev en premier sur `/`.
+- Grille de cartes vignette + badges techno, barres de compétences, mur de logos.
+- L'éditeur n8n (nœuds connectés sur fond quadrillé) comme décor.
+- Le papier, le tampon encré, la pièce agrafée de travers, tout objet littéral de bureau (c'était la v1).
+- Une vidéo en lecture automatique, ou sans poster.
+- Un nom ou chiffre réel de client DataDawn ; pour Home Gateway, une URL, un fournisseur ou un détail exploitable ;
+  un numéro de téléphone ; un lien vers un dépôt privé.
+- Les moules de Killian : kit shadcn (blanc + slate + Geist + lucide), dashboard dev sombre (quasi-noir + violet ou
+  vert néon + JetBrains Mono partout), moule maison (noir bleuté `#0B0E14` + cyan ou indigo) ; esthétiques IA (étiquette
+  mono en capitales au-dessus du titre, un mot coloré dans le H1, glassmorphism, carte à liseré gauche coloré).
 
 ## Liens
 
-- Origine : tag `da-origine`, captures `~/projects/perso/wt-da/_captures/portfolio-gamedev/origine/`
-- Design System : https://claude.ai/artifact/6b5kmDyXJvsx4ti6wbiFiN
-- Canevas : https://claude.ai/artifact/4zTi9rWmBasYi7z9M4hU4p (variante retenue par le juge : A « le relevé du matin », 43/50, avec la ligne de poste et les chiffres-preuves de B, la formule « L'IA prépare. Vous validez. Ça part. » de C en titre de la section méthode)
-- Planche d'évolution : https://claude.ai/artifact/DCNU5T5ioLj9oF5ujiE5Nj
+- Origine de cette refonte : `main` @ `36fed22`, tag `da-zero-origine` ; en ligne : https://killian-abboud.vercel.app
+- Branche : `design/da-zero` (worktree `~/projects/perso/wt-da/portfolio-zero`), tags `da-zero-passe-N`
+- Captures : `~/projects/perso/wt-da/_captures/portfolio-zero/`

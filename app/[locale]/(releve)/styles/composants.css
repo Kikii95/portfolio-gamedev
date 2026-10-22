@@ -1,106 +1,111 @@
 /* Composants signature (DA § 5) et leurs effets (DA § 6) */
 
-/* Fil d'exécution : le trait se trace au défilement */
-.releve-site .fil { list-style: none; margin: 0; padding: 0; position: relative; --colonne: 4.6rem; }
-.releve-site .fil::before,
-.releve-site .fil .trace { content: ""; position: absolute; left: calc(var(--colonne) + 1.1rem); top: 0.9rem; bottom: 0.9rem; width: 2px; }
-.releve-site .fil::before { background: var(--marge); }
-.releve-site .fil .trace { background: var(--encre); transform-origin: top; animation: fil-trace 1.6s var(--courbe) both; }
-@supports (animation-timeline: view()) {
-  .releve-site .fil .trace { animation: fil-trace linear both; animation-timeline: view(); animation-range: entry 10% cover 55%; }
-}
-.releve-site .etape { display: grid; grid-template-columns: var(--colonne) 1.2rem 1fr; column-gap: 0.75rem; align-items: start; padding: 0.65rem 0; }
-.releve-site .etape .heure { font-family: var(--mono); font-size: 0.85rem; color: var(--encre-pale); text-align: right; padding-top: 0.15rem; font-variant-numeric: tabular-nums; }
-.releve-site .etape .verbe { font-weight: 600; font-size: 1.02rem; line-height: 1.35; }
-.releve-site .etape .detail { color: var(--encre-douce); font-size: 0.93rem; margin-top: 0.2rem; }
-.releve-site .etape .detail .etiquette { margin-right: 0.4rem; }
+/* Pastilles d'état : rond = en service, losange = attend, triangle = reprise */
+.releve-site .etat { display: inline-flex; align-items: center; gap: 0.45em; font: 500 0.75rem/1.3 var(--donnees); font-variation-settings: "wdth" 87; padding: 0.3em 0.7em; border-radius: var(--rayon-pastille); border: 1px solid var(--filet-fort); color: var(--texte-doux); white-space: nowrap; }
+.releve-site .etat::before { content: ""; inline-size: 0.5em; block-size: 0.5em; border-radius: 50%; background: currentColor; flex: none; }
+.releve-site .etat.service { color: var(--en-service); background: var(--service-voile); border-color: transparent; }
+.releve-site .etat.attend { color: var(--attente); background: var(--attente-voile); border-color: transparent; }
+.releve-site .etat.attend::before { border-radius: 1px; transform: rotate(45deg) scale(0.85); }
+.releve-site .etat.section { color: var(--section); border-color: color-mix(in srgb, var(--section) 45%, transparent); }
 
-.releve-site .pastille { width: 1rem; height: 1rem; margin: 0.2rem auto 0; border-radius: var(--rayon-pastille); background: var(--encre); position: relative; z-index: 1; box-shadow: 0 0 0 0.2rem var(--papier); }
-.releve-site .pastille.declencheur { background: var(--declencheur); }
-.releve-site .pastille.attente { background: var(--attente); border-radius: 2px; transform: rotate(45deg) scale(0.85); }
-.releve-site .pastille.livre { background: var(--feu-vert); }
-.releve-site .pastille.livre::after { content: ""; position: absolute; left: 0.32rem; top: 0.17rem; width: 0.26rem; height: 0.5rem; border: solid var(--sur-accent); border-width: 0 2px 2px 0; transform: rotate(45deg); }
-.releve-site .pastille.reprise { background: transparent; width: 0; height: 0; border-left: 0.55rem solid transparent; border-right: 0.55rem solid transparent; border-bottom: 0.95rem solid var(--reprise); box-shadow: none; }
-.releve-site .etape.en-cours .pastille::before { content: ""; position: absolute; inset: -0.45rem; border-radius: inherit; background: var(--feu-vert); opacity: 0; animation: pulse 1.6s ease-in-out infinite; }
+/* Ligne de disponibilité : la ligne d'état d'un service */
+.releve-site .dispo { display: flex; flex-wrap: wrap; align-items: center; gap: 0.35rem 0.75rem; font-size: 1rem; color: var(--texte-doux); }
+.releve-site .dispo .point { inline-size: 0.6rem; block-size: 0.6rem; border-radius: 50%; background: var(--en-service); animation: onde 1.8s ease-out 400ms 1 both; }
+.releve-site .dispo strong { color: var(--texte); font-weight: 500; }
 
-.releve-site .etiquette { display: inline-block; font-family: var(--mono); font-size: 0.75rem; line-height: 1.5; padding: 0.05rem 0.5rem; border-radius: var(--rayon-pastille); white-space: nowrap; }
-.releve-site .etiquette.declencheur { color: var(--declencheur); background: var(--declencheur-fond); }
-.releve-site .etiquette.attente { color: var(--attente); background: var(--attente-fond); }
-.releve-site .etiquette.livre { color: var(--feu-vert); background: var(--feu-vert-fond); }
-.releve-site .etiquette.reprise { color: var(--reprise); background: var(--reprise-fond); }
-
-/* Relevé du matin : le journal s'écrit ligne à ligne */
-.releve-site .journal { font-family: var(--mono); font-size: 0.85rem; background: var(--carte); border: 1px solid var(--filet); border-radius: var(--rayon-piece); padding: 0.4rem 1.1rem 0.8rem; box-shadow: var(--ombre-agrafe); }
-.releve-site .journal .entete { display: flex; justify-content: space-between; gap: 1rem; color: var(--encre-pale); border-bottom: 1px dashed var(--filet); padding: 0.55rem 0; margin-bottom: 0.3rem; }
-.releve-site .journal .ligne { display: grid; grid-template-columns: 3.2rem 1fr auto; gap: 0.7rem; padding: 0.38rem 0; animation: ligne-arrive 280ms ease-out both; animation-delay: calc(var(--i) * 160ms + 200ms); }
-.releve-site .journal .h { color: var(--encre-pale); }
-.releve-site .journal .ok { color: var(--feu-vert); }
-.releve-site .journal .wait { color: var(--attente); }
-.releve-site .journal .curseur { display: inline-block; width: 0.55em; height: 1em; vertical-align: -0.15em; background: var(--encre); animation: clignote 1s steps(1) infinite; }
-
-/* Carte feu vert */
-.releve-site .feu { background: var(--carte); border: 1px solid var(--attente); border-radius: var(--rayon-piece); padding: 1rem 1.15rem; box-shadow: var(--ombre-agrafe); position: relative; transition: border-color 240ms ease; }
-.releve-site .feu.valide { border-color: var(--filet); }
-.releve-site .feu .de { font-family: var(--mono); font-size: 0.8rem; color: var(--encre-pale); display: flex; justify-content: space-between; }
-.releve-site .feu .message { margin: 0.5rem 0 0.95rem; line-height: 1.45; }
-.releve-site .feu .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 0.55rem; }
-.releve-site .feu button { font: 600 0.95rem var(--police); min-height: 2.875rem; border-radius: var(--rayon-bouton); cursor: pointer; transition: transform 90ms ease, opacity 160ms ease; }
-.releve-site .feu button:active { transform: scale(0.96); }
-.releve-site .feu button:disabled { cursor: default; opacity: 0.55; }
-.releve-site .feu .vas-y { background: var(--feu-vert); color: var(--sur-accent); border: 0; }
-.releve-site .feu .annuler { background: transparent; color: var(--encre-douce); border: 1px solid var(--filet); }
-.releve-site .feu .tampon { position: absolute; right: 1rem; top: 2.4rem; font: 700 0.85rem var(--mono); color: var(--feu-vert); border: 2px solid var(--feu-vert); background: var(--carte); padding: 0.15rem 0.5rem; border-radius: 0.25rem; transform: rotate(-8deg); animation: tampon 320ms var(--courbe) both; }
-
-/* Reçu de livraison : bord perforé, il tombe à l'apparition */
-.releve-site .recu { background: var(--carte); border-radius: var(--rayon-piece); padding: 1.1rem 1.25rem 1.5rem; box-shadow: var(--ombre-agrafe);
-  -webkit-mask: radial-gradient(circle 0.45rem at 50% 100%, transparent 98%, #000) 50% 100% / 1.2rem 100% repeat-x;
-  mask: radial-gradient(circle 0.45rem at 50% 100%, transparent 98%, #000) 50% 100% / 1.2rem 100% repeat-x;
-  animation: recu-tombe 560ms var(--courbe) both; }
-.releve-site .recu .titre { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.04em; color: var(--encre-pale); }
-.releve-site .recu .chiffre { font: 600 clamp(2rem, 2vw + 1.2rem, 2.8rem)/1 var(--mono); margin: 0.55rem 0 0.25rem; font-variant-numeric: tabular-nums; }
-.releve-site .recu .ligne { display: flex; justify-content: space-between; gap: 1rem; border-top: 1px dashed var(--filet); padding: 0.45rem 0; font-size: 0.9rem; }
-.releve-site .recu .ligne span:last-child { text-align: right; }
-
-/* Pièce justificative : agrafée de travers, se redresse au survol */
-.releve-site .piece { margin: 0; background: var(--carte); border: 1px solid var(--filet); border-radius: var(--rayon-piece); padding: 0.5rem; box-shadow: var(--ombre-agrafe); transform: rotate(var(--penche, -1deg)); transition: transform 260ms var(--courbe), box-shadow 260ms ease; }
-.releve-site .piece:hover { transform: rotate(0deg) translateY(-0.15rem); }
-.releve-site .piece .ecran { position: relative; aspect-ratio: 16 / 10; border-radius: 0.2rem; background: var(--papier-pli); overflow: hidden; }
-.releve-site .piece.mobile { width: min(100%, 17rem); justify-self: center; }
-.releve-site .piece.mobile .ecran { aspect-ratio: 390 / 844; }
-.releve-site .piece img,
-.releve-site .piece video { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
-.releve-site .piece figcaption { font-family: var(--mono); font-size: 0.78rem; color: var(--encre-pale); padding: 0.55rem 0.2rem 0.15rem; display: flex; justify-content: space-between; gap: 1rem; }
-.releve-site .piece .lecture { position: absolute; inset: 0; display: grid; place-items: center; border: 0; padding: 0; background: var(--voile); cursor: pointer; }
-.releve-site .piece .lecture span { width: 3.6rem; height: 3.6rem; border-radius: 50%; background: var(--encre); display: grid; place-items: center; transition: transform 160ms var(--courbe); }
-.releve-site .piece .lecture:hover span { transform: scale(1.08); }
-.releve-site .piece .lecture span::after { content: ""; border-left: 1rem solid var(--papier); border-top: 0.6rem solid transparent; border-bottom: 0.6rem solid transparent; margin-left: 0.25rem; }
-@supports (animation-timeline: view()) {
-  .releve-site .piece.agrafe { animation: agrafe linear both; animation-timeline: view(); animation-range: entry 0% entry 60%; }
+/* Trace de passage : le waterfall d'une trace d'observabilité */
+.releve-site .trace { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.15rem; }
+.releve-site .trace .pas { display: grid; grid-template-columns: 3.6rem minmax(0, 1fr); column-gap: 0.9rem; row-gap: 0.4rem; align-items: start; padding: 0.55rem 0; border-top: 1px solid color-mix(in srgb, var(--filet) 70%, transparent); }
+.releve-site .trace .h { font: 400 0.8rem/1.6 var(--donnees); font-variation-settings: "wdth" 87; color: var(--texte-pale); text-align: right; font-variant-numeric: tabular-nums; }
+.releve-site .trace .lib { display: grid; gap: 0.15rem; min-width: 0; }
+.releve-site .trace .verbe { font-weight: 500; line-height: 1.35; }
+.releve-site .trace small { font-size: 0.88rem; color: var(--texte-pale); line-height: 1.4; }
+.releve-site .trace .marque-etape { font: 500 0.72rem var(--donnees); font-variation-settings: "wdth" 87; margin-right: 0.5rem; color: var(--texte-doux); }
+.releve-site .trace .piste { grid-column: 2; position: relative; block-size: 0.55rem; border-radius: var(--rayon-segment); background: repeating-linear-gradient(90deg, var(--filet) 0 1px, transparent 1px calc(100% / var(--n, 5))); }
+.releve-site .trace .seg { position: absolute; inset-block: 0; left: calc(var(--i) * 100% / var(--n, 5)); width: calc(100% / var(--n, 5) - 2px); border-radius: var(--rayon-segment); background: color-mix(in srgb, var(--texte) 70%, transparent); transform-origin: left; animation: segment 520ms var(--courbe) both; animation-delay: calc(var(--i) * 90ms + 150ms); }
+.releve-site .trace .declencheur .seg { background: var(--texte); }
+.releve-site .trace .attend .seg { background: repeating-linear-gradient(135deg, var(--attente) 0 2px, var(--attente-voile) 2px 6px); outline: 1px solid var(--attente); animation: segment 520ms var(--courbe) both, respire 2.4s ease-in-out 1.2s infinite; animation-delay: calc(var(--i) * 90ms + 150ms), 1.2s; }
+.releve-site .trace .attend .verbe { color: var(--attente); }
+.releve-site .trace .livre .seg { background: var(--en-service); }
+.releve-site .trace .livre .verbe { color: var(--en-service); }
+.releve-site .trace .reprise .seg { background: transparent; outline: 1px dashed var(--reprise); }
+.releve-site .trace .reprise .verbe { color: var(--reprise); }
+/* Révélation à sens unique : sans JS, tout est plein ; avec JS, une trace se remplit quand elle entre à l'écran */
+.releve-site[data-reveler] :is(.trace, .trace-mini):not(.vue) :is(.seg, .m) { animation: none; transform: scaleX(0); }
+@media (min-width: 48em) {
+  .releve-site .trace .pas { grid-template-columns: 3.6rem minmax(0, 1.25fr) minmax(0, 1fr); align-items: center; }
+  .releve-site .trace .piste { grid-column: 3; block-size: 0.75rem; }
 }
 
-@keyframes fil-trace { from { transform: scaleY(0); } }
-@keyframes pulse { 0%, 100% { opacity: 0; } 50% { opacity: 0.28; } }
-@keyframes tampon { from { opacity: 0; transform: rotate(-8deg) scale(1.5); } }
-@keyframes recu-tombe { from { opacity: 0; transform: translateY(-1.2em); clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
-@keyframes agrafe { from { transform: rotate(0deg) translateY(1.2rem); } }
-@keyframes ligne-arrive { from { opacity: 0; transform: translateY(0.4em); } }
-@keyframes clignote { 50% { opacity: 0; } }
+/* Trace miniature : une rangée de segments, dans le tableau de service */
+.releve-site .trace-mini { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 2px; block-size: 0.4rem; }
+.releve-site .trace-mini .m { border-radius: 2px; background: color-mix(in srgb, var(--texte) 55%, transparent); transform-origin: left; animation: segment 420ms var(--courbe) both; animation-delay: calc(var(--i) * 70ms + 500ms); }
+.releve-site .trace-mini .declencheur { background: var(--texte); }
+.releve-site .trace-mini .attente { background: repeating-linear-gradient(135deg, var(--attente) 0 2px, var(--attente-voile) 2px 5px); outline: 1px solid var(--attente); }
+.releve-site .trace-mini .livre { background: var(--en-service); }
+.releve-site .trace-mini .reprise { background: transparent; outline: 1px dashed var(--reprise); }
 
-@media (prefers-reduced-motion: reduce) {
-  .releve-site *, .releve-site *::before, .releve-site *::after { animation: none !important; transition: none !important; }
-}
+/* Porte de validation : « validation requise → Vas-y / Annuler » */
+.releve-site .porte { border: 1px solid color-mix(in srgb, var(--attente) 55%, var(--filet)); border-radius: var(--rayon-plan); background: var(--plan); overflow: hidden; box-shadow: var(--ombre-plan); animation: porte-bord 2.4s ease-in-out infinite; }
+.releve-site .porte .bandeau { display: flex; justify-content: space-between; gap: 1rem; padding: 0.6rem 1rem; background: var(--attente-voile); color: var(--attente); font: 500 0.78rem var(--donnees); font-variation-settings: "wdth" 87; transition: background-color 300ms ease, color 300ms ease; }
+.releve-site .porte .bandeau-etat { display: inline-flex; align-items: center; gap: 0.45rem; }
+.releve-site .porte .corps { padding: 1rem; display: grid; gap: 0.9rem; }
+.releve-site .porte .message { line-height: 1.5; }
+.releve-site .porte .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 0.55rem; }
+.releve-site .porte button { font: 500 0.95rem var(--police); min-height: 2.875rem; border-radius: var(--rayon-bouton); cursor: pointer; transition: transform 90ms ease, opacity 160ms ease; }
+.releve-site .porte button:active { transform: scale(0.96); }
+.releve-site .porte button:disabled { cursor: default; opacity: 0.5; }
+.releve-site .porte .vas-y { background: transparent; color: var(--en-service); border: 1px solid color-mix(in srgb, var(--en-service) 60%, transparent); }
+.releve-site .porte .vas-y:hover:not(:disabled) { background: var(--service-voile); }
+.releve-site .porte .annuler { background: transparent; color: var(--texte-doux); border: 1px solid var(--filet-fort); }
+.releve-site .porte.valide { animation: none; border-color: color-mix(in srgb, var(--en-service) 55%, var(--filet)); }
+.releve-site .porte.valide .bandeau { background: var(--service-voile); color: var(--en-service); }
+.releve-site .porte.annule { animation: none; border-color: var(--filet); }
+.releve-site .porte.annule .bandeau { background: transparent; color: var(--texte-pale); }
+.releve-site .porte .coche { inline-size: 1rem; block-size: 1rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.releve-site .porte .coche path { stroke-dasharray: 16; stroke-dashoffset: 16; animation: coche 360ms ease-out forwards; }
 
-.releve-site .feu .tampon.annule { color: var(--encre-pale); border-color: var(--marge); }
+/* Rapport de passage : le résumé chiffré d'un passage */
+.releve-site .rapport { border: 1px solid var(--filet); border-radius: var(--rayon-plan); background: var(--plan-haut); padding: 1.1rem 1.2rem 1.2rem; display: grid; gap: 0.35rem; align-content: start; }
+.releve-site .rapport-tete { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+.releve-site .rapport .titre-r { font: 400 0.75rem var(--donnees); font-variation-settings: "wdth" 87; color: var(--texte-pale); }
+.releve-site .rapport .chiffre { font: 500 clamp(2.2rem, 2vw + 1.4rem, 3rem)/1 var(--donnees); font-variation-settings: "wdth" 87; letter-spacing: -0.02em; margin-top: 0.5rem; }
+.releve-site .rapport .legende { color: var(--texte-doux); font-size: 0.95rem; }
+.releve-site .rapport-lignes { margin: 0.6rem 0 0; display: grid; }
+.releve-site .rapport .ligne { display: flex; justify-content: space-between; gap: 1rem; padding: 0.5rem 0; border-top: 1px solid var(--filet); font-size: 0.92rem; }
+.releve-site .rapport dt { color: var(--texte-pale); }
+.releve-site .rapport dd { margin: 0; text-align: right; color: var(--texte-doux); }
 
-/* Schéma de flux : les paquets circulent d'un nœud à l'autre */
-.releve-site .schema { width: 100%; height: auto; display: block; font-family: var(--police); }
-.releve-site .schema .lien { fill: none; stroke: var(--marge); stroke-width: 2; }
-.releve-site .schema .noeud rect { fill: var(--carte); stroke: var(--filet); }
-.releve-site .schema .noeud.attente rect { stroke: var(--attente); }
-.releve-site .schema .noeud.livre rect { stroke: var(--feu-vert); }
-.releve-site .schema .noeud.declencheur rect { stroke: var(--declencheur); }
-.releve-site .schema .noeud.reprise rect { stroke: var(--reprise); stroke-dasharray: 4 3; }
-.releve-site .schema .noeud text { fill: var(--encre); font-weight: 600; }
-.releve-site .schema .noeud .h { fill: var(--encre-pale); font-family: var(--mono); font-weight: 400; }
-.releve-site .schema .paquet { fill: var(--feu-vert); }
-@media (prefers-reduced-motion: reduce) { .releve-site .schema .paquets { display: none; } }
+/* Écran de contrôle : la vidéo comme un écran allumé dans une pièce sombre */
+.releve-site .ecran-controle { position: relative; isolation: isolate; margin: 0; border: 1px solid var(--filet); border-radius: var(--rayon-plan); background: var(--plan-haut); }
+.releve-site .ecran-controle::after { content: ""; position: absolute; inset: 72% 6% -12% 6%; z-index: -1; background: radial-gradient(closest-side, var(--lueur-ecran), transparent); filter: blur(0.8rem); opacity: 0.8; transition: opacity 300ms ease; pointer-events: none; }
+.releve-site .ecran-controle:hover::after { opacity: 1; }
+.releve-site .ecran-controle .barre { display: flex; justify-content: space-between; gap: 1rem; padding: 0.55rem 0.9rem; border-bottom: 1px solid var(--filet); font: 400 0.75rem/1.4 var(--donnees); font-variation-settings: "wdth" 87; color: var(--texte-pale); }
+.releve-site .ecran-controle .duree { white-space: nowrap; }
+.releve-site .ecran-controle .vue { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: var(--vue-fond); border-radius: 0 0 calc(var(--rayon-plan) - 1px) calc(var(--rayon-plan) - 1px); }
+.releve-site .ecran-controle.mobile { width: min(100%, 18rem); justify-self: center; }
+.releve-site .ecran-controle.mobile .vue { aspect-ratio: 390 / 844; }
+.releve-site .ecran-controle img,
+.releve-site .ecran-controle video { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.releve-site .ecran-controle .lecture { position: absolute; inset: 0; display: grid; place-items: center; border: 0; padding: 0; background: linear-gradient(transparent 55%, rgb(0 0 0 / 0.35)); cursor: pointer; }
+.releve-site .ecran-controle .lecture span { width: 3.6rem; height: 3.6rem; border-radius: 50%; background: rgb(238 237 233 / 0.92); display: grid; place-items: center; transition: transform 160ms var(--courbe); }
+.releve-site .ecran-controle .lecture:hover span { transform: scale(1.08); }
+.releve-site .ecran-controle .lecture span::after { content: ""; border-left: 1rem solid #111214; border-block: 0.6rem solid transparent; margin-left: 0.25rem; }
+
+/* Journal de la nuit : un flux d'événements, pas un terminal */
+.releve-site .journal { border: 1px solid var(--filet); border-radius: var(--rayon-plan); background: var(--plan); box-shadow: var(--ombre-plan); overflow: hidden; align-self: start; }
+.releve-site .journal-tete { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 0.8rem 1.1rem; border-bottom: 1px solid var(--filet); font-size: 0.92rem; color: var(--texte-doux); }
+.releve-site .journal ol { list-style: none; margin: 0; padding: 0.25rem 0; }
+.releve-site .journal li { display: grid; grid-template-columns: 3.4rem minmax(0, 1fr) auto; gap: 0.8rem; align-items: center; padding: 0.6rem 1.1rem; font-size: 0.95rem; animation: arrive 260ms ease-out both; animation-delay: calc(var(--i) * 110ms + 250ms); }
+.releve-site .journal li + li { border-top: 1px solid color-mix(in srgb, var(--filet) 60%, transparent); }
+.releve-site .journal .h { font: 400 0.8rem var(--donnees); font-variation-settings: "wdth" 87; color: var(--texte-pale); }
+.releve-site .journal .sys { display: block; font-size: 0.8rem; color: var(--texte-pale); }
+.releve-site .journal-suite { padding: 0.7rem 1.1rem 0.9rem; border-top: 1px solid var(--filet); font-size: 0.88rem; color: var(--texte-pale); }
+
+@keyframes onde { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--en-service) 45%, transparent); } 100% { box-shadow: 0 0 0 0.75rem transparent; } }
+@keyframes segment { from { transform: scaleX(0); } }
+@keyframes respire { 0%, 100% { outline-color: color-mix(in srgb, var(--attente) 35%, transparent); } 50% { outline-color: var(--attente); } }
+@keyframes porte-bord { 0%, 100% { border-color: color-mix(in srgb, var(--attente) 30%, var(--filet)); } 50% { border-color: color-mix(in srgb, var(--attente) 80%, var(--filet)); } }
+@keyframes coche { to { stroke-dashoffset: 0; } }
+@keyframes arrive { from { opacity: 0; transform: translateY(0.35em); } }
+@media (prefers-reduced-motion: reduce) { .releve-site .porte .coche path { stroke-dashoffset: 0; } }
