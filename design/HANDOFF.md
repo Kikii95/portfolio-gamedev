@@ -21,9 +21,15 @@ h1 `clamp(2.1rem, 4.2vw + .6rem, 4.1rem)` 800 · h2 `clamp(1.6rem, 2.2vw + .7rem
 chapô `clamp(1.05rem, .4vw + .95rem, 1.25rem)` encre-douce · heures, journal, chiffres : mono tabulaire.
 
 ## Écran d'accueil (de haut en bas)
-1. En-tête collant : signature, ancres, atelier jeu vidéo, langue, CV (menu replié sous 60em).
-2. Hero 2 colonnes ≥ 60em : statut vert, titre, ligne de poste (poste · dispo · lieu · contrat), chapô, 2 boutons | journal du matin.
-3. Chiffres-preuves : une rangée, filets pointillés, pas de cartes.
+1. En-tête collant : signature, ancres, projets, école, langue, thème, CV (menu replié sous 60em ; le bouton CV reste
+   visible à côté de « Menu »).
+2. Hero 2 colonnes ≥ 60em : statut vert, titre (750), **bordereau de poste** (poste, quand / où / contrat, « Télécharger
+   le CV » + « Me contacter »), chapô, lien « Voir les réalisations ↓ » | journal du matin.
+3. Chiffres-preuves dans le hero : sous le texte et avant le journal sur mobile ; bandeau pleine largeur ≥ 60em.
+
+## Pages de section (v2)
+`/projets` et `/ecole` : par famille, les pièces filmées en grille, puis le **registre** (lignes : année mono à l'accent,
+titre lié, phrase, outils, statut, « Tout le détail »). Plus de cartouche.
 4. Réalisations : une entrée par cas, alternée gauche/droite ≥ 60em : méta, titre, accroche, fil (5 étapes), lien | pièce + reçu.
 5. Méthode (sur carte) : titre-formule, chapô, carte feu vert interactive | fil générique.
 6. Aussi construit : pièces agrafées + titre + phrase (n'apparaît que si des médias existent).
@@ -38,6 +44,7 @@ chapô `clamp(1.05rem, .4vw + .95rem, 1.25rem)` encre-douce · heures, journal, 
 | Journal ligne à ligne | 280 ms ease-out, +160 ms par ligne | `opacity`, `transform` |
 | Tampon « validé » | 320 ms courbe maison | `opacity`, `transform: scale` |
 | Reçu qui tombe | 560 ms courbe maison | `clip-path`, `transform` |
+| Bordereau qui sort | 560 ms courbe maison, +120 ms | `clip-path`, `transform` |
 | Pièce agrafée | au défilement ; survol 260 ms se redresse | `transform` |
 | Paquets sur le schéma | 4,2 s, 3 paquets décalés | `animateMotion` |
 | Voyant « en service » | 2,4 s ease-out ∞ | `box-shadow` |

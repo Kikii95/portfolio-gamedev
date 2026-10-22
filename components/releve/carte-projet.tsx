@@ -5,7 +5,7 @@ import { DetailsProjet } from './details-projet';
 import { PieceJustificative } from './piece-justificative';
 import { LigneRegistre } from './registre';
 
-const ETIQUETTE: Record<StatutProjet, string> = { service: 'livre', beta: 'attente', dev: 'attente', pause: 'neutre' };
+const ETIQUETTE: Record<StatutProjet, string> = { service: 'livre', beta: 'section', dev: 'section', pause: 'neutre' };
 
 interface CarteProjetProps {
   projet: ProjetPerso;

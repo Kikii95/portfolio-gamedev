@@ -26,7 +26,7 @@
 }
 
 /* Hero : statut, titre, bordereau de poste (ce que cherche un recruteur), preuves, journal */
-.releve-site .hero { display: grid; gap: clamp(1.6rem, 4vw, 4rem); padding-top: clamp(1.6rem, 6vw, 6rem); align-items: center; }
+.releve-site .hero { display: grid; gap: clamp(1.6rem, 4vw, 4rem); padding-top: clamp(1.4rem, 4vw, 4rem); align-items: start; }
 .releve-site .hero-texte { display: flex; flex-direction: column; gap: 1.1rem; }
 .releve-site .statut { color: var(--feu-vert); font-size: 0.85rem; display: flex; align-items: center; gap: 0.5rem; }
 .releve-site .voyant { width: 0.55rem; height: 0.55rem; border-radius: 50%; background: var(--feu-vert); box-shadow: 0 0 0 0 var(--feu-vert); animation: voyant 2.4s ease-out 5; }
@@ -46,12 +46,19 @@
 .releve-site .hero-journal { width: 100%; }
 .releve-site .hero .chiffres { margin-top: 0; width: 100%; }
 @media (max-width: 59.99em) {
+  .releve-site .hero { gap: 1.1rem; }
+  .releve-site .hero-texte { display: contents; }
   .releve-site .hero .chiffres { order: 1; }
-  .releve-site .hero .hero-journal { order: 2; }
+  .releve-site .hero .chapo, .releve-site .hero .lien-suite { order: 2; }
+  .releve-site .hero .hero-journal { order: 3; }
 }
 @media (min-width: 60em) {
   .releve-site .hero { grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); }
-  .releve-site .hero .chiffres { grid-column: 1 / -1; }
+  .releve-site .hero-texte { grid-row: 1 / span 2; }
+  .releve-site .hero .hero-journal { margin-top: clamp(2rem, 4vw, 4.5rem); }
+  .releve-site .hero .chiffres { grid-column: 2; grid-template-columns: minmax(0, 1fr); border-block: 0; }
+  .releve-site .hero .chiffres .chiffre-ligne { border-bottom: 1px dashed var(--filet); border-left: 0; padding-inline: 0.2rem; }
+  .releve-site .hero .chiffre-ligne .valeur { min-width: 3.2ch; }
 }
 @keyframes bordereau-sort { from { clip-path: inset(0 0 100% 0); transform: translateY(-0.6rem); } to { clip-path: inset(0 0 0 0); transform: none; } }
 @media (prefers-reduced-motion: reduce) { .releve-site .bordereau { animation: none; } }

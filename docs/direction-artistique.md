@@ -1,5 +1,8 @@
 # Direction artistique — volet « Automatisation & IA »
 
+> **Version 2** (passe 2, 22/10/2026, branche `design/da-passe-2`) : la DA de la version 1 est gardée et élevée ;
+> ce qui change est résumé au § 9. Version 1 : refonte du 22/10/2026 (tag `da-passe-1`).
+
 > Établie le 22/10/2026 (refonte `/da`), à partir de trois analyses indépendantes (lecteur, recruteur, designer
 > produit) et des captures de l'origine (`~/projects/perso/wt-da/_captures/portfolio-gamedev/origine/`, tag `da-origine`).
 > Le volet « jeu vidéo & moteurs » garde son identité d'origine (noir, rouge) sous `/jeu` : les deux volets ne se
@@ -145,8 +148,11 @@ surtitres, filets tracés, numéros de famille, liens, rubrique active de l'en-t
 | `/ecole` École & gamedev | Bachelor, moteurs, Unity | `#C8143C` carmin (rappel de l'atelier d'origine, plus rosé que la brique) | `#FF5C7A` |
 
 Activation : `data-section="perso|ecole"` sur le conteneur de la page, lu par `.releve-site:has(...)`.
-Un projet sans média reçoit un **cartouche** : bloc typographique (techno principale en gros, année, pile d'outils)
-hachuré à l'accent de la section, à la place d'une vignette vide.
+Les accents sont des tokens (`--perso`, `--perso-fond`, `--ecole`, `--ecole-fond`, clair et sombre) dans `tokens.css`,
+et non plus en dur dans `sections.css` (v2).
+~~Un projet sans média reçoit un cartouche~~ (v1, retiré en v2 : techno en gros + liseré gauche = moule « portfolio
+dev » et esthétique IA). **v2 :** un projet sans démo filmée passe dans le **registre** de sa famille (§ 5), une ligne
+de relevé sous la grille des pièces filmées. Une case sans preuve ne prend plus la forme d'une vignette.
 
 ## 4. Typographie
 
@@ -168,6 +174,8 @@ Chargées via `next/font/google` (fichiers servis par le site). Jamais Inter, Ge
 | **Relevé du matin** (hero) | le journal des routines qui ont tourné : « 08:00 JobHunter · offres collectées » | lignes réelles, issues des vrais logs (sans donnée perso), qui s'écrivent une à une |
 | **Schéma de flux** | le workflow réel (nœuds n8n / étapes) | SVG généré depuis le JSON du workflow, paquets qui circulent sur les arêtes |
 | **Fiche d'intervention** (en-tête de cas) | « Demande · Intervention · Résultat » | trois colonnes en grille, repliées en pile sur mobile |
+| **Bordereau de poste** (v2) | le bordereau d'une demande : ce que je cherche, quand, où, quel contrat, et le CV agrafé | carte papier sous le titre, `dl` à libellés mono, « Télécharger le CV » en bouton plein ; sort de haut en bas (`clip-path`) comme un reçu |
+| **Registre** (v2) | le registre des interventions sans pièce jointe | `ol` de lignes : année mono à l'accent de section, titre, phrase, outils, statut ; survol = surlignage à l'accent |
 | **Aiguillage** | le passage vers l'atelier jeu vidéo | lien-bascule dans la barre ; la page d'arrivée reprend le noir et rouge d'origine |
 
 ## 6. Effets et mouvement (au maximum, dans la matière du sujet)
@@ -205,10 +213,39 @@ vignette factice — et jamais affichée en production.
   maison noir bleuté + cyan ; et les esthétiques IA : crème + serif + terracotta, dégradé violet, étiquette mono en
   capitales au-dessus des titres, un seul mot coloré dans le H1, glassmorphism, carte à liseré gauche coloré.
 - Des badges techno en grappe sur chaque carte (le moule « portfolio dev »).
+- (v2) Un point coloré après un titre (`h1::after`), un liseré coloré à gauche d'un bloc ou d'un intertitre, une
+  vignette typographique qui remplace une capture absente.
+
+## 9. Version 2 : audit et élévation (22/10/2026)
+
+**Verdict de l'audit : élever, pas remplacer** (règle 5 du skill). Les trois analyses indépendantes (recruteur,
+dirigeant de PME, designer produit) et le juge s'accordent sur le registre en place : fond clair, relevé, preuves,
+sémantique forme + couleur des pastilles. Rien n'y retombe dans un moule de Killian. Ce qui manquait n'était pas une
+âme mais de la finition et une hiérarchie de lecture pour le recruteur :
+
+| Constat (≥ 2 analyses) | Réponse v2 |
+|---|---|
+| Sur téléphone, poste, dispo, contrat et CV arrivent sous le pli ; le CV est caché dans le menu | **Bordereau de poste** sous le titre, CV en bouton plein ; bouton « CV » permanent dans l'en-tête mobile ; titre ramené à 750 et `clamp(1.85rem, 3.4vw + 0.6rem, 3.5rem)` |
+| Les chiffres-preuves sont loin du hero | les chiffres entrent dans le hero : sous le texte sur mobile (avant le journal), en bandeau pleine largeur sous le hero sur PC |
+| `/projets` et `/ecole` = grille de cartes ; le cartouche fait template | pièces filmées en grille, le reste en **registre** (lignes de relevé) ; cartouche supprimé |
+| Tics d'esthétique IA : point coloré après le H1, liserés gauches | retirés ; intertitres des fiches : un trait court à l'accent au-dessus (le fil qui se trace) |
+| Accessibilité : focus bleu illisible dans le pied sombre, cibles < 44 px (langue, bascule de thème) | focus clair dans le pied, cibles ≥ 2,75rem |
+| Mouvement en boucle sans fin, reçu qui tombe hors de vue | voyant limité à 5 battements ; le reçu tombe à l'entrée dans la vue (`animation-timeline: view()`) |
+| Bug : l'en-tête du journal héritait de la classe `.entete` (en-tête collant du site) | classe renommée `journal-tete` |
+
+Variantes de l'écran le plus caractéristique (premier écran mobile de `/`), canevas rangée « Passe 2 » : A « le
+bordereau de poste » 40/50, B « la ligne de poste en tête » 39/50, C « les preuves d'abord » 33/50, état en ligne
+33/50. Retenue : **A**, avec greffes de B (CV permanent dans l'en-tête, journal qui montre l'attente ambre) et de C
+(chiffres en lignes pleine largeur sur mobile). Notes des passes de code : planche d'évolution.
+
+**Restent à trancher par Killian** (non touchés : contenus validés) : l'accent vert de `/` est aussi la couleur
+d'état « en service » ; le libellé « 154 employeurs interrogés chaque matin pour mes proches » se lit comme du
+démarchage ; MAO « sans intervention » contredit « l'humain garde la main » ; `/ecole` garde des titres anglais ;
+thème par défaut (suit le système : un recruteur en mode sombre voit le relevé de nuit d'abord).
 
 ## Liens
 
 - Origine : tag `da-origine`, captures `~/projects/perso/wt-da/_captures/portfolio-gamedev/origine/`
 - Design System : https://claude.ai/artifact/6b5kmDyXJvsx4ti6wbiFiN
-- Canevas : https://claude.ai/artifact/4zTi9rWmBasYi7z9M4hU4p (variante retenue par le juge : A « le relevé du matin », 43/50, avec la ligne de poste et les chiffres-preuves de B, la formule « L'IA prépare. Vous validez. Ça part. » de C en titre de la section méthode)
+- Canevas : https://claude.ai/artifact/4zTi9rWmBasYi7z9M4hU4p (variante retenue par le juge : A « le relevé du matin », 43/50, avec la ligne de poste et les chiffres-preuves de B, la formule « L'IA prépare. Vous validez. Ça part. » de C en titre de la section méthode) ; v2 : rangée « Passe 2 », variante A « le bordereau de poste » retenue (40/50)
 - Planche d'évolution : https://claude.ai/artifact/DCNU5T5ioLj9oF5ujiE5Nj

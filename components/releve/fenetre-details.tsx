@@ -24,7 +24,6 @@ export function FenetreDetails({ titre, libelleOuvrir, libelleFermer, children }
       <dialog ref={fenetre} className="fenetre-details" aria-label={titre} onClick={fermerSurFond}>
         <div className="fenetre-feuille">
           <form method="dialog" className="fenetre-barre">
-            <span className="mono">{titre}</span>
             <button type="submit" className="fermer-details">
               {libelleFermer} <kbd>Échap</kbd>
             </button>

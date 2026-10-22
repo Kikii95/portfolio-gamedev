@@ -11,7 +11,7 @@ const STATUT: Record<NonNullable<ProjectMetadata['status']>, StatutEcole> = {
   pause: 'pause',
 };
 
-export const ETIQUETTE_ECOLE: Record<StatutEcole, string> = { encours: 'livre', termine: 'neutre', pause: 'neutre' };
+export const ETIQUETTE_ECOLE: Record<StatutEcole, string> = { encours: 'section', termine: 'neutre', pause: 'neutre' };
 
 export function statutEcole(meta: ProjectMetadata): StatutEcole {
   return meta.status ? STATUT[meta.status] : 'termine';

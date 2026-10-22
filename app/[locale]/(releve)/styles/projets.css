@@ -13,6 +13,7 @@
 .releve-site .projet-liens a { text-decoration-color: var(--marge); text-underline-offset: 0.2em; }
 .releve-site .projet-liens a:hover { text-decoration-color: var(--encre); }
 .releve-site .etiquette.neutre { color: var(--encre-pale); background: var(--papier-pli); }
+.releve-site .etiquette.section { color: var(--section); background: var(--section-fond); }
 .releve-site .labo { display: grid; gap: 0.9rem; border-top: 1px solid var(--filet); padding-top: clamp(1.6rem, 3vw, 2.4rem); }
 .releve-site .labo-liste { list-style: none; margin: 0.6rem 0 0; padding: 0; font-family: var(--mono); font-size: 0.88rem; }
 .releve-site .labo-liste li { display: grid; grid-template-columns: minmax(8rem, 14rem) 1fr; gap: 1rem; padding: 0.6rem 0; border-bottom: 1px dashed var(--filet); color: var(--encre-douce); }
@@ -24,8 +25,9 @@
 .releve-site .registre { display: grid; gap: 0.6rem; }
 .releve-site .registre-legende { font-size: 0.8rem; color: var(--encre-pale); }
 .releve-site .registre-liste { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--filet); }
-.releve-site .registre-ligne { display: grid; grid-template-columns: 4.5ch minmax(0, 1fr) auto; gap: 0.4rem clamp(0.8rem, 2vw, 1.6rem); align-items: baseline; padding-block: 1rem; border-bottom: 1px dashed var(--filet); transition: background-color 200ms var(--courbe); }
+.releve-site .registre-ligne { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.5rem; padding-block: 1rem; padding-inline: 0.4rem; border-bottom: 1px dashed var(--filet); transition: background-color 200ms var(--courbe); }
 .releve-site .registre-ligne:hover { background: linear-gradient(90deg, var(--section-fond), transparent 70%); }
+.releve-site .registre-meta { display: flex; align-items: baseline; justify-content: space-between; gap: 0.6rem; }
 .releve-site .registre-annee { font-size: 0.85rem; color: var(--section); }
 .releve-site .registre-corps { display: grid; gap: 0.35rem; min-width: 0; }
 .releve-site .registre-corps h3 { font-size: clamp(1.1rem, 0.6vw + 0.9rem, 1.35rem); }
@@ -33,10 +35,9 @@
 .releve-site .registre-corps h3 a:hover { color: var(--section); }
 .releve-site .registre-corps p { color: var(--encre-douce); max-width: 60ch; }
 .releve-site .registre-outils { font-size: 0.78rem; color: var(--encre-pale) !important; }
-@media (max-width: 36em) {
-  .releve-site .registre-ligne { grid-template-columns: minmax(0, 1fr) auto; }
-  .releve-site .registre-annee { grid-column: 1; }
-  .releve-site .registre-corps { grid-column: 1 / -1; grid-row: 2; }
-  .releve-site .registre-ligne > .etiquette { grid-column: 2; grid-row: 1; }
+@media (min-width: 48em) {
+  .releve-site .registre-ligne { grid-template-columns: 8.5rem minmax(0, 1.6fr) minmax(0, 1fr); gap: clamp(1rem, 2.5vw, 2.4rem); align-items: baseline; }
+  .releve-site .registre-meta { flex-direction: column; justify-content: start; }
+  .releve-site .registre-outils { line-height: 1.7; }
 }
 @media (prefers-reduced-motion: reduce) { .releve-site .registre-ligne { transition: none; } }

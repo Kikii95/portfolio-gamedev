@@ -3,12 +3,12 @@
 .releve-site .ouvrir-details span { display: inline-block; transition: transform 220ms var(--courbe); }
 .releve-site .ouvrir-details:hover span { transform: rotate(90deg); }
 
-.releve-site .fenetre-details { inline-size: min(100% - 2rem, 54rem); max-block-size: min(100dvh - 2rem, 60rem); padding: 0; border: 0; border-radius: 0.75rem; background: var(--carte); color: var(--encre); box-shadow: 0 2rem 4rem -1.5rem rgb(0 0 0 / 0.45); overflow: hidden; }
-.releve-site .fenetre-details[open] { animation: feuille-monte 420ms var(--courbe) both; }
+.releve-site .fenetre-details { margin: 0 0 0 auto; inline-size: min(100%, 46rem); block-size: 100dvh; max-inline-size: 100%; max-block-size: 100dvh; padding: 0; border: 0; border-radius: 0; background: var(--carte); color: var(--encre); box-shadow: 0 2rem 4rem -1.5rem rgb(0 0 0 / 0.45); overflow: hidden; }
+.releve-site .fenetre-details[open] { animation: feuille-glisse 420ms var(--courbe) both; }
 .releve-site .fenetre-details::backdrop { background: color-mix(in srgb, var(--encre) 45%, transparent); backdrop-filter: blur(0.35rem); animation: voile-entre 300ms ease both; }
-.releve-site .fenetre-feuille { display: grid; grid-template-rows: auto 1fr; max-block-size: inherit; border-block-start: 0.35rem solid var(--section); }
-.releve-site .fenetre-barre { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 0.7rem clamp(1rem, 3vw, 2rem); border-bottom: 1px dashed var(--filet); font-size: 0.8rem; color: var(--encre-pale); background: var(--carte); }
-.releve-site .fermer-details { font: inherit; color: var(--encre); background: var(--papier-pli); border: 1px solid var(--filet); border-radius: 999px; padding: 0.3rem 0.8rem; cursor: pointer; }
+.releve-site .fenetre-feuille { display: grid; grid-template-rows: auto 1fr; block-size: 100%; max-block-size: inherit; border-block-start: 0.35rem solid var(--section); }
+.releve-site .fenetre-barre { display: flex; justify-content: flex-end; align-items: center; gap: 1rem; padding: 0.7rem clamp(1rem, 3vw, 2rem); border-bottom: 1px dashed var(--filet); font-size: 0.8rem; color: var(--encre-pale); background: var(--carte); }
+.releve-site .fermer-details { min-block-size: 2.75rem; font: inherit; color: var(--encre); background: var(--papier-pli); border: 1px solid var(--filet); border-radius: 999px; padding: 0.3rem 0.8rem; cursor: pointer; }
 .releve-site .fermer-details:hover { border-color: var(--section); }
 .releve-site .fermer-details kbd { font-family: var(--mono); font-size: 0.75em; color: var(--encre-pale); margin-inline-start: 0.3rem; }
 .releve-site .fenetre-contenu { overflow-y: auto; overscroll-behavior: contain; padding: clamp(1.2rem, 3vw, 2.2rem) clamp(1rem, 3vw, 2rem) clamp(2rem, 4vw, 3rem); display: grid; gap: 1.6rem; }
@@ -21,6 +21,7 @@
 .releve-site .labo-liste li { grid-template-columns: minmax(8rem, 14rem) 1fr auto; align-items: baseline; }
 .releve-site .labo-liste .ouvrir-details { font-size: 0.85rem; white-space: nowrap; }
 
+@keyframes feuille-glisse { from { opacity: 0; transform: translateX(3rem); } to { opacity: 1; transform: none; } }
 @keyframes feuille-monte { from { opacity: 0; transform: translateY(2rem) scale(0.98); } to { opacity: 1; transform: none; } }
 @keyframes voile-entre { from { opacity: 0; } to { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) {
