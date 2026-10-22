@@ -198,6 +198,20 @@ Pas de set d'icônes générique. Trois pictogrammes d'état dessinés en CSS : 
   vert néon + JetBrains Mono partout), moule maison (noir bleuté `#0B0E14` + cyan ou indigo) ; esthétiques IA (étiquette
   mono en capitales au-dessus du titre, un mot coloré dans le H1, glassmorphism, carte à liseré gauche coloré).
 
+## 9. Passes de code (branche design/da-zero)
+
+Chaque passe est jugée à l'aveugle sur captures réelles (6 vues, de 390 px à la 4K, sur `/`, `/projets` et `/ecole`, plus la fenêtre « Tout le détail »), face au site en ligne. Notes sur 60, sans pénalité pour aucune passe.
+
+| Passe | Tag | Note | Ce qui a changé |
+|---|---|---|---|
+| En ligne (v1) | main | 26-28 | Papier clair, pas de CV au premier écran mobile, grille de cartes sur /projets |
+| 1 | da-zero-passe-1 | 41 | Sombre par défaut, tableau de service, trace, porte, journal, registre, frise, inspecteur |
+| 2 | da-zero-passe-2 | 46,5 | Trace à rail et glyphes (mobile) et waterfall (bureau), compteurs 2×2 sur mobile, déroulés repliés, registre aligné en haut, « Aussi construit » en rangées |
+| 3 | da-zero-passe-3 | 48 | Nom au-dessus du titre, tableau sans barres, rapport réduit à ses lignes, mono ramenée aux données, puces dans l'inspecteur |
+| 4 (retenue) | da-zero-passe-4 | 48 | Jalons horodatés dans le tableau (déclenché, porte humaine, livré), déroulé 01 en pleine largeur, finitions |
+
+Verdict du juge : « En 30 secondes sur mon téléphone, je vois quand il est dispo, où, en quel contrat, que quatre systèmes tournent vraiment avec une validation humaine, et j'ai le CV en un geste ; il me manque juste l'intitulé exact du poste. »
+
 ## Liens
 
 - Origine de cette refonte : `main` @ `36fed22`, tag `da-zero-origine` ; en ligne : https://killian-abboud.vercel.app
