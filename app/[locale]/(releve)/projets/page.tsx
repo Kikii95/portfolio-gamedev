@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 import { CarteProjet } from '@/components/releve/carte-projet';
+import { DetailsProjet } from '@/components/releve/details-projet';
 import { chemin } from '@/lib/releve/chemin';
 import { FAMILLES, LABO, PROJETS } from '@/lib/releve/projets';
 
@@ -45,6 +46,7 @@ export default async function ProjetsPage({ params }: { params: Params }) {
               <li key={l.titre}>
                 <span className="labo-titre">{l.titre}</span>
                 <span>{l.texte}</span>
+                {l.detail && <DetailsProjet slug={l.detail} collection="perso" />}
               </li>
             ))}
           </ul>

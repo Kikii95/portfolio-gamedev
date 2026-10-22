@@ -343,7 +343,10 @@
       "voirSite": "Voir le site",
       "labo": "Laboratoire",
       "laboChapo": "Des essais et des outils mis en pause, gardés pour ce qu'ils m'ont appris.",
-      "tous": "Tous mes projets"
+      "tous": "Tous mes projets",
+      "details": "Tout le détail",
+      "fermer": "Fermer",
+      "ouvrirPage": "Ouvrir la page"
     },
     "ecole": {
       "metaTitre": "École & gamedev — Killian Abboud",

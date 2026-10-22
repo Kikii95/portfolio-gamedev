@@ -10,6 +10,7 @@ export interface ProjetPerso {
   texte: string;
   outils: string[];
   cartouche?: string;
+  detail?: string;
   fiche?: string;
   site?: string;
   piece?: Piece;
@@ -18,6 +19,7 @@ export interface ProjetPerso {
 export interface ProjetLabo {
   titre: string;
   texte: string;
+  detail?: string;
 }
 
 export const FAMILLES: Famille[] = ['automatisation', 'app', 'jeu'];
@@ -77,6 +79,7 @@ export const PROJETS: ProjetPerso[] = [
   },
   {
     titre: 'MAO',
+    detail: 'mao',
     famille: 'automatisation',
     statut: 'pause',
     texte: "Un orchestrateur où deux agents Claude, un chef qui planifie et un ouvrier qui code, construisent un projet de A à Z sans intervention.",
@@ -85,6 +88,7 @@ export const PROJETS: ProjetPerso[] = [
   },
   {
     titre: 'Obsidian Web',
+    detail: 'obsidian-web',
     famille: 'app',
     statut: 'service',
     texte: "Mes notes Obsidian lisibles et modifiables depuis n'importe quel navigateur : arborescence, recherche, liens.",
@@ -118,6 +122,7 @@ export const PROJETS: ProjetPerso[] = [
   },
   {
     titre: 'HUMAN',
+    detail: 'humain',
     famille: 'jeu',
     statut: 'beta',
     texte: "Un jeu de cartes d'introspection en application mobile et web, en bêta auprès de testeurs.",
@@ -146,9 +151,9 @@ export const PROJETS: ProjetPerso[] = [
 ];
 
 export const LABO: ProjetLabo[] = [
-  { titre: 'Timebeat', texte: 'Suivi du temps de travail sur web, bureau et mobile (Next.js, Tauri, Capacitor, Supabase).' },
-  { titre: 'WSL Terminal', texte: 'Terminal pour WSL2 avec onglets, panneaux, Git, Docker et SSH (Tauri, React, xterm.js).' },
-  { titre: 'Process Tracker', texte: 'Lancer et surveiller ses services de développement locaux depuis une app de bureau (Tauri, React).' },
-  { titre: 'System Monitor', texte: 'Moniteur système léger dans le terminal : CPU, RAM, GPU, réseau (Rust).' },
-  { titre: 'DAW custom', texte: 'Une station audio personnelle pour les mashups et le sound design (C++20, JUCE).' },
+  { titre: 'Timebeat', texte: 'Suivi du temps de travail sur web, bureau et mobile (Next.js, Tauri, Capacitor, Supabase).', detail: 'timebeat' },
+  { titre: 'WSL Terminal', texte: 'Terminal pour WSL2 avec onglets, panneaux, Git, Docker et SSH (Tauri, React, xterm.js).', detail: 'wsl-terminal' },
+  { titre: 'Process Tracker', texte: 'Lancer et surveiller ses services de développement locaux depuis une app de bureau (Tauri, React).', detail: 'process-tracker' },
+  { titre: 'System Monitor', texte: 'Moniteur système léger dans le terminal : CPU, RAM, GPU, réseau (Rust).', detail: 'system-monitor' },
+  { titre: 'DAW custom', texte: 'Une station audio personnelle pour les mashups et le sound design (C++20, JUCE).', detail: 'daw-custom' },
 ];

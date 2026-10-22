@@ -2,8 +2,10 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 
-function getProjectsDirectory(locale: string = 'fr') {
-  return path.join(process.cwd(), 'content/projects', locale);
+export type Collection = 'projects' | 'perso';
+
+function getProjectsDirectory(locale: string = 'fr', collection: Collection = 'projects') {
+  return path.join(process.cwd(), 'content', collection, locale);
 }
 
 export interface ProjectMetadata {
@@ -74,12 +76,16 @@ export function getAllProjects(locale: string = 'fr'): Project[] {
   });
 }
 
-export function getProjectBySlug(slug: string, locale: string = 'fr'): Project | undefined {
-  const dir = getProjectsDirectory(locale);
+export function getProjectBySlug(
+  slug: string,
+  locale: string = 'fr',
+  collection: Collection = 'projects',
+): Project | undefined {
+  const dir = getProjectsDirectory(locale, collection);
   const fullPath = path.join(dir, `${slug}.mdx`);
 
   // Fallback to FR if file doesn't exist in requested locale
-  const fallbackPath = path.join(getProjectsDirectory('fr'), `${slug}.mdx`);
+  const fallbackPath = path.join(getProjectsDirectory('fr', collection), `${slug}.mdx`);
   const targetPath = fs.existsSync(fullPath) ? fullPath : fallbackPath;
 
   if (!fs.existsSync(targetPath)) {

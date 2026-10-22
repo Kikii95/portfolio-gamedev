@@ -1,0 +1,92 @@
+---
+title: "Obsidian Web"
+description: "PWA pour accéder à un vault Obsidian depuis n'importe quel appareil via GitHub"
+date: "2025-11-29"
+category: "perso"
+tags: ["TypeScript", "React", "PWA", "Vercel", "GitHub API"]
+featured: true
+status: "maintenance"
+github: "https://github.com/Kikii95/obsidian-web"
+buildUrl: "https://obsidian-web-kikii95s-projects.vercel.app"
+thumbnail: "/medias/obsidian-web/obsidian-web-poster.webp"
+gallery:
+  - "/medias/obsidian-web/obsidian-web.mp4"
+  - "/medias/obsidian-web/02-note-bureau.webp"
+  - "/medias/obsidian-web/04-recherche-bureau.webp"
+techDetails: |
+  ## Architecture
+
+  100% client-side - aucun backend propriétaire. Toutes les opérations passent directement par l'API GitHub.
+
+  ```
+  Browser/PWA ◄──► Next.js API ◄──► GitHub API ◄──► obsidian-vault (repo)
+       │                │
+       └── Service Worker (Cache + Offline)
+  ```
+
+  Flux de données :
+  - Lecture : Octokit → Parse frontmatter → Extract wikilinks → Rendu Markdown
+  - Écriture : CodeMirror → SHA validation → GitHub commit → Sync
+
+  ## Stack Détaillé
+
+  | Tech | Version | Rôle |
+  |------|---------|------|
+  | Next.js | 16 | Framework SSR + API Routes |
+  | TypeScript | 5.9 | Typage strict |
+  | NextAuth.js | 5.x | OAuth GitHub + Sessions |
+  | Octokit | 4.x | Client GitHub API officiel |
+  | CodeMirror | 6 | Éditeur Markdown mobile-friendly |
+  | D3.js | 7 | Graphe force-directed des connexions |
+  | Zustand | 5.x | State management léger |
+  | PostgreSQL | 16 | Index tags/backlinks/graph |
+  | TailwindCSS | 4 | Styling utility-first |
+
+  ## Métriques & Features
+
+  - 36 thèmes couleurs (18 dark + 18 light) via OKLCH
+  - Phases implémentées : P0 (Auth) → P7 (CRUD Notes/Folders)
+  - Support offline via Service Worker + Cache API
+  - Notes privées : path-based (`_private/`) + frontmatter + tag `#private`
+  - Lock System : PIN SHA-256, auto-lock timer configurable
+  - Media : images, PDFs, canvas (React Flow), audio, Excalidraw
+
+  ## Sécurité
+
+  - Données jamais sur serveur tiers : GitHub OAuth → JWT cookie chiffré
+  - Restriction accès par `ALLOWED_USERS` (whitelist)
+  - PIN hashé SHA-256, jamais stocké en clair
+---
+
+# Obsidian Web
+
+Accédez à vos notes Obsidian depuis n'importe quel appareil - mobile, tablet, PC.
+
+## Contexte
+
+Projet perso démarré en novembre 2025.
+
+Besoin initial : accéder à mes notes Obsidian sur mobile sans payer Obsidian Sync (8$/mois). Solution : utiliser GitHub comme couche de sync gratuite et fiable.
+
+## Ce que ça fait
+
+**Édition** :
+- Éditeur Markdown avec raccourcis clavier
+- Quick switcher (Ctrl+P) pour navigation rapide
+- Daily notes automatiques
+- Support complet tags et backlinks
+
+**Visualisation** :
+- Vue graphe des connexions entre notes
+- Heatmap d'activité (historique commits)
+- Support média : images, PDFs, Excalidraw
+
+**Mobile & Offline** :
+- Installable comme app native (PWA)
+- Fonctionne hors-ligne
+- Sync via GitHub, pas de serveur propriétaire
+
+## Liens
+
+- [Accéder à l'app](https://obsidian-web-kikii95s-projects.vercel.app)
+- [GitHub](https://github.com/Kikii95/obsidian-web)

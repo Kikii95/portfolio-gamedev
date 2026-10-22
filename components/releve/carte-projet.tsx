@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import type { ProjetPerso, StatutProjet } from '@/lib/releve/projets';
 import { Cartouche } from './cartouche';
+import { DetailsProjet } from './details-projet';
 import { PieceJustificative } from './piece-justificative';
 
 const ETIQUETTE: Record<StatutProjet, string> = { service: 'livre', beta: 'attente', pause: 'neutre' };
@@ -29,6 +30,7 @@ export function CarteProjet({ projet, ficheHref, rang }: CarteProjetProps) {
       <p className="projet-outils mono">{projet.outils.join(' · ')}</p>
       <div className="projet-liens">
         {ficheHref && <Link href={ficheHref}>{t('projets.voirFiche')} →</Link>}
+        {projet.detail && <DetailsProjet slug={projet.detail} collection="perso" />}
         {projet.site && (
           <a href={projet.site} target="_blank" rel="noopener noreferrer">
             {t('projets.voirSite')} ↗

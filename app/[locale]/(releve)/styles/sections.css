@@ -12,7 +12,9 @@ html[data-releve="sombre"] .releve-site:has([data-section="ecole"]) { --section:
 
 .releve-site:has([data-section]) ::selection { background: var(--section-fond); }
 .releve-site:has([data-section="perso"]) .entete .nav-perso,
-.releve-site:has([data-section="ecole"]) .entete .nav-ecole { color: var(--section); text-decoration: underline 2px; text-underline-offset: 0.35em; }
+.releve-site:has([data-section="ecole"]) .entete .nav-ecole { color: var(--section); }
+.releve-site:has([data-section="perso"]) .menu .nav-perso,
+.releve-site:has([data-section="ecole"]) .menu .nav-ecole { color: var(--section); text-decoration: underline 2px; text-underline-offset: 0.35em; }
 
 /* Signature des pages de section : bandeau d'en-tête, familles numérotées, filet qui se trace */
 .releve-site [data-section] .surtitre { color: var(--section); display: inline-flex; align-items: center; gap: 0.6em; }
@@ -49,3 +51,9 @@ html[data-releve="sombre"] .releve-site:has([data-section="ecole"]) { --section:
   .releve-site [data-section] .projet, .releve-site .cartouche { transition: none; }
 }
 .releve-site:has([data-section="ecole"]) .pied .aiguillage { display: none; }
+
+/* Indicateur de lecture sous la navigation : suit la section lue, ou la page de section */
+.releve-site .entete-ligne { position: relative; }
+.releve-site .indicateur-nav { position: absolute; left: 0; bottom: -1px; block-size: 2px; inline-size: calc(var(--l, 0) * 1px); transform: translateX(calc(var(--x, 0) * 1px)); background: var(--section); border-radius: 2px; box-shadow: 0 0 0.6rem color-mix(in srgb, var(--section) 60%, transparent); transition: transform 380ms var(--courbe), inline-size 380ms var(--courbe), opacity 240ms ease; pointer-events: none; }
+.releve-site .indicateur-nav[data-visible="non"] { opacity: 0; }
+@media (prefers-reduced-motion: reduce) { .releve-site .indicateur-nav { transition: opacity 240ms ease; } }

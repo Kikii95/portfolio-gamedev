@@ -343,7 +343,10 @@
       "voirSite": "Visit the site",
       "labo": "Lab",
       "laboChapo": "Experiments and tools on hold, kept for what they taught me.",
-      "tous": "All my projects"
+      "tous": "All my projects",
+      "details": "Full details",
+      "fermer": "Close",
+      "ouvrirPage": "Open the page"
     },
     "ecole": {
       "metaTitre": "School & game dev — Killian Abboud",
