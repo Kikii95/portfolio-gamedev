@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import type { ProjectMetadata } from '@/lib/mdx/projects';
 import { ETIQUETTE_ECOLE, piecesEcole, statutEcole } from '@/lib/releve/ecole';
+import { Cartouche } from './cartouche';
 import { PieceJustificative } from './piece-justificative';
 
 interface CarteEcoleProps {
@@ -21,11 +22,7 @@ export function CarteEcole({ meta, href, rang }: CarteEcoleProps) {
       {piece ? (
         <PieceJustificative piece={piece} libelleLecture={t('piece.lire')} penche={rang % 2 ? 0.8 : -0.8} />
       ) : (
-        <Link href={href} className="cartouche" aria-hidden="true" tabIndex={-1}>
-          <span className="cartouche-annee mono">{meta.date.slice(0, 4)}</span>
-          <span className="cartouche-techno">{meta.tags[0]}</span>
-          <span className="cartouche-pile mono">{meta.tags.slice(1, OUTILS_MAX).join(' / ')}</span>
-        </Link>
+        <Cartouche href={href} techno={meta.cartouche ?? meta.tags[0]} pile={meta.tags.slice(0, OUTILS_MAX)} annee={meta.date.slice(0, 4)} />
       )}
       <div className="projet-tete">
         <h3>

@@ -45,7 +45,7 @@ export function FicheEcole({ projet }: { projet: Project }) {
         </div>
       )}
       <div className="fiche-corps">
-        <ReactMarkdown remarkPlugins={[remarkGfm]}>{content.replace(/^#\s.*\n/, '')}</ReactMarkdown>
+        <ReactMarkdown remarkPlugins={[remarkGfm]}>{content.replace(/^\s*#\s[^\n]*\n/, '')}</ReactMarkdown>
         {m.techDetails && <ReactMarkdown remarkPlugins={[remarkGfm]}>{m.techDetails}</ReactMarkdown>}
       </div>
     </article>

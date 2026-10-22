@@ -48,3 +48,4 @@ html[data-releve="sombre"] .releve-site:has([data-section="ecole"]) { --section:
   .releve-site [data-section] .projets-famille::before { animation: none; }
   .releve-site [data-section] .projet, .releve-site .cartouche { transition: none; }
 }
+.releve-site:has([data-section="ecole"]) .pied .aiguillage { display: none; }

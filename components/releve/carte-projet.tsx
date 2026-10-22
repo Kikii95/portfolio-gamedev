@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import type { ProjetPerso, StatutProjet } from '@/lib/releve/projets';
+import { Cartouche } from './cartouche';
 import { PieceJustificative } from './piece-justificative';
 
 const ETIQUETTE: Record<StatutProjet, string> = { service: 'livre', beta: 'attente', pause: 'neutre' };
@@ -15,8 +16,10 @@ export function CarteProjet({ projet, ficheHref, rang }: CarteProjetProps) {
   const t = useTranslations('releve');
   return (
     <article className="projet">
-      {projet.piece && (
+      {projet.piece ? (
         <PieceJustificative piece={projet.piece} libelleLecture={t('piece.lire')} penche={rang % 2 ? 0.8 : -0.8} />
+      ) : (
+        <Cartouche href={ficheHref ?? projet.site} techno={projet.cartouche ?? projet.outils[0]} pile={projet.outils} />
       )}
       <div className="projet-tete">
         <h3>{projet.titre}</h3>

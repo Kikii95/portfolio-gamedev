@@ -9,6 +9,7 @@ export interface ProjetPerso {
   statut: StatutProjet;
   texte: string;
   outils: string[];
+  cartouche?: string;
   fiche?: string;
   site?: string;
   piece?: Piece;
@@ -75,12 +76,45 @@ export const PROJETS: ProjetPerso[] = [
     piece: video('memogram', 'memogram', 'Jour, semaine, mois, recherche', 'vidéo · 0:24'),
   },
   {
+    titre: 'MAO',
+    famille: 'automatisation',
+    statut: 'pause',
+    texte: "Un orchestrateur où deux agents Claude, un chef qui planifie et un ouvrier qui code, construisent un projet de A à Z sans intervention.",
+    outils: ['Python', 'FastAPI', 'Claude', 'React', 'Vite'],
+    piece: video('mao', 'mao', 'Deux agents Claude construisent un projet seuls', 'vidéo · 0:28'),
+  },
+  {
     titre: 'Obsidian Web',
     famille: 'app',
     statut: 'service',
     texte: "Mes notes Obsidian lisibles et modifiables depuis n'importe quel navigateur : arborescence, recherche, liens.",
     outils: ['Next.js', 'React', 'GitHub API', 'PWA'],
     piece: video('obsidian-web', 'obsidian-web', 'Navigation et recherche', 'vidéo · 0:26'),
+  },
+  {
+    titre: 'Sleep Tracker',
+    famille: 'app',
+    statut: 'service',
+    texte: "Suivi du sommeil installable sur téléphone : scores, tendances, et des données de santé traitées comme telles.",
+    outils: ['Next.js', 'PostgreSQL', 'Drizzle', 'Passkeys'],
+    cartouche: 'Sommeil',
+  },
+  {
+    titre: 'HSR Lab',
+    famille: 'app',
+    statut: 'service',
+    texte: "Un assistant pour Honkai: Star Rail : base de connaissances, constructeur d'équipes et conseiller de tirage chiffré.",
+    outils: ['Next.js', 'PostgreSQL', 'Drizzle', 'Zod'],
+    piece: video('hsr-lab', 'hsr-lab', 'Tirer ou attendre : le verdict chiffré', 'vidéo · 0:27'),
+  },
+  {
+    titre: 'Expense Tracker',
+    famille: 'app',
+    statut: 'service',
+    texte: 'Suivi des dépenses hors ligne : saisie rapide, budgets, plusieurs devises, import de relevés bancaires.',
+    outils: ['Flutter', 'Riverpod', 'Hive', 'Node.js'],
+    site: 'https://expense-tracker-one-bay-10.vercel.app',
+    piece: video('expense-tracker', 'expense-tracker', 'Une dépense notée en trois gestes', 'vidéo · 0:27'),
   },
   {
     titre: 'HUMAN',
@@ -91,6 +125,30 @@ export const PROJETS: ProjetPerso[] = [
     site: 'https://humain-beta.vercel.app',
     piece: video('human', 'human', 'Choisir une partie, retourner les cartes', 'vidéo · 0:38'),
   },
+  {
+    titre: "Drink'n'Reveal",
+    famille: 'jeu',
+    statut: 'service',
+    texte: "Un jeu de cartes de soirée (18+) : un deck imprimable et une application compagnon qui marche hors ligne.",
+    outils: ['Next.js', 'React', 'Tailwind', 'pdf-lib'],
+    site: 'https://drink-n-reveal.vercel.app',
+    piece: video('drink-n-reveal', 'drink-n-reveal', 'Une partie, du setup au premier verdict', 'vidéo · 0:34'),
+  },
+  {
+    titre: 'MotJuste',
+    famille: 'jeu',
+    statut: 'service',
+    texte: 'Des mots fléchés en français générés à l’infini, jouables hors ligne.',
+    outils: ['Next.js', 'React', 'PostgreSQL', 'Passkeys'],
+    site: 'https://motjuste.vercel.app',
+    cartouche: 'Mots fléchés',
+  },
 ];
 
-export const LABO: ProjetLabo[] = [];
+export const LABO: ProjetLabo[] = [
+  { titre: 'Timebeat', texte: 'Suivi du temps de travail sur web, bureau et mobile (Next.js, Tauri, Capacitor, Supabase).' },
+  { titre: 'WSL Terminal', texte: 'Terminal pour WSL2 avec onglets, panneaux, Git, Docker et SSH (Tauri, React, xterm.js).' },
+  { titre: 'Process Tracker', texte: 'Lancer et surveiller ses services de développement locaux depuis une app de bureau (Tauri, React).' },
+  { titre: 'System Monitor', texte: 'Moniteur système léger dans le terminal : CPU, RAM, GPU, réseau (Rust).' },
+  { titre: 'DAW custom', texte: 'Une station audio personnelle pour les mashups et le sound design (C++20, JUCE).' },
+];
