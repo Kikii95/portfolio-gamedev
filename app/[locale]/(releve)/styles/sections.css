@@ -24,15 +24,15 @@ html[data-releve="sombre"] .releve-site:has([data-section="ecole"]) { --section:
 .releve-site [data-section] { counter-reset: famille; }
 .releve-site [data-section] .projets-famille { position: relative; border-top-color: transparent; }
 .releve-site [data-section] .projets-famille::before { content: ""; position: absolute; inset: -1px 0 auto; block-size: 2px; background: linear-gradient(90deg, var(--section) 0 30%, var(--filet) 30%); transform-origin: left; animation: trace 900ms var(--courbe) both; animation-timeline: view(); animation-range: entry 0% cover 30%; }
-.releve-site [data-section] .projets-famille h2 { counter-increment: famille; display: flex; align-items: baseline; gap: 0.6em; }
-.releve-site [data-section] .projets-famille h2::before { content: counter(famille, decimal-leading-zero); font: 600 0.8em var(--mono); color: var(--section); }
+.releve-site [data-section] .projets-famille > h2 { counter-increment: famille; display: flex; align-items: baseline; gap: 0.6em; }
+.releve-site [data-section] .projets-famille > h2::before { content: counter(famille, decimal-leading-zero); font: 600 0.8em var(--mono); color: var(--section); }
 .releve-site [data-section] .projet { padding-block-start: 0.9rem; border-block-start: 2px solid transparent; transition: border-color 220ms var(--courbe), transform 220ms var(--courbe); }
 .releve-site [data-section] .projet:hover { border-block-start-color: var(--section); transform: translateY(-0.2rem); }
 .releve-site [data-section] .projet h3 a { color: inherit; text-decoration: none; }
 .releve-site [data-section] .projet h3 a:hover { color: var(--section); }
 .releve-site [data-section] .projet-liens a { color: var(--section); text-decoration-color: color-mix(in srgb, var(--section) 40%, transparent); }
 .releve-site [data-section] .retour { color: var(--section); }
-.releve-site [data-section] .fiche-corps h2 { border-inline-start: 3px solid var(--section); padding-inline-start: 0.7rem; }
+.releve-site [data-section] .fiche-corps h2, .releve-site [data-section] .fenetre-contenu .fiche-corps h2 { border-inline-start: 3px solid var(--section); padding-inline-start: 0.7rem; }
 .releve-site [data-section] .fiche-corps a { color: var(--section); }
 .releve-site [data-section] .labo-titre::before { content: "› "; color: var(--section); }
 

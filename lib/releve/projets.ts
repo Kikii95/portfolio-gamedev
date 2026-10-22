@@ -150,16 +150,15 @@ export const PROJETS: ProjetPerso[] = [
     texte: 'La vie politique française en données sourcées : élus, mandats, scrutins, carte des circonscriptions.',
     outils: ['Next.js', 'PostgreSQL', 'MapLibre', 'D3'],
     site: 'https://politica-france.vercel.app',
-    cartouche: 'Élus & scrutins',
+    piece: video('politica-france', 'politica-france', "Du scrutin à l'élu, chaque chiffre sourcé", 'vidéo · 0:28'),
   },
   {
     titre: 'HUMAN',
     detail: 'humain',
     famille: 'jeu',
     statut: 'beta',
-    texte: "Un jeu de cartes d'introspection en application mobile et web, en bêta auprès de testeurs.",
+    texte: "Un jeu de cartes d'introspection en application mobile et web, en bêta fermée auprès de testeurs invités.",
     outils: ['React Native', 'Expo', 'TypeScript'],
-    site: 'https://humain-beta.vercel.app',
     piece: video('human', 'human', 'Choisir une partie, retourner les cartes', 'vidéo · 0:38'),
   },
   {
@@ -180,7 +179,7 @@ export const PROJETS: ProjetPerso[] = [
     texte: 'Des mots fléchés en français générés à l’infini, jouables hors ligne.',
     outils: ['Next.js', 'React', 'PostgreSQL', 'Passkeys'],
     site: 'https://motjuste.vercel.app',
-    cartouche: 'Mots fléchés',
+    piece: video('motjuste', 'motjuste', 'Une grille de mots fléchés remplie, mot à mot', 'vidéo · 0:25'),
   },
 ];
 
