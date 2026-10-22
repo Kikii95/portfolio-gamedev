@@ -236,12 +236,26 @@ sémantique forme + couleur des pastilles. Rien n'y retombe dans un moule de Kil
 Variantes de l'écran le plus caractéristique (premier écran mobile de `/`), canevas rangée « Passe 2 » : A « le
 bordereau de poste » 40/50, B « la ligne de poste en tête » 39/50, C « les preuves d'abord » 33/50, état en ligne
 33/50. Retenue : **A**, avec greffes de B (CV permanent dans l'en-tête, journal qui montre l'attente ambre) et de C
-(chiffres en lignes pleine largeur sur mobile). Notes des passes de code : planche d'évolution.
+(chiffres en lignes pleine largeur sur mobile).
+
+Passes de code (juge aveugle neuf à chaque passe, état en ligne contre passe) :
+
+| Passe | Note | Ce qui change |
+|---|---|---|
+| 2 (`da-passe-2`) | 38/50 | bordereau, CV d'en-tête, registre, tics retirés, accessibilité |
+| 3 (`da-passe-3`) | 7,5/10 | chiffres remontés (sous le bordereau sur mobile, sous le journal en colonne droite sur PC) ; fenêtre « Tout le détail » en tiroir à droite, plein écran sur mobile ; « en cours » à l'accent de la section (le vert reste réservé au livré) ; registre en trois colonnes |
+| 4 (`da-passe-4`, retenue) | **8/10** (40/50) | registre neutre (année en encre pâle, lien sans accent), deux colonnes à partir de 90em ; chiffres alignés ; `--largeur` 84rem ; fenêtre en poids 400 |
+
+Verdict du juge, passe 4 : « Un CV qui se lit comme un tableau de bord d'exploitation : le recruteur trouve le poste,
+la date et le CV en cinq secondes, le dirigeant voit des systèmes qui tournent, sans le moindre effet "IA". »
+Reste faible : pied de colonne gauche du hero plus court que la droite en grand écran ; carte vidéo inclinée de
+`/projets` qui frôle la marge sur mobile ; registre école sans projet phare ; chiffres qui disent un volume, pas un gain.
 
 **Restent à trancher par Killian** (non touchés : contenus validés) : l'accent vert de `/` est aussi la couleur
 d'état « en service » ; le libellé « 154 employeurs interrogés chaque matin pour mes proches » se lit comme du
 démarchage ; MAO « sans intervention » contredit « l'humain garde la main » ; `/ecole` garde des titres anglais ;
-thème par défaut (suit le système : un recruteur en mode sombre voit le relevé de nuit d'abord).
+thème par défaut (suit le système : un recruteur en mode sombre voit le relevé de nuit d'abord) ; journal « ce
+matin » écrit en dur ; CV présent deux fois sur mobile (en-tête et bordereau, voulu).
 
 ## Liens
 
