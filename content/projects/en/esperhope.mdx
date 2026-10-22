@@ -1,0 +1,44 @@
+---
+title: "EsperHope"
+description: "Team Unity 6 game: editor tools, dialogue system, puzzle and repository organisation"
+date: "2026-03-07"
+category: "école"
+cartouche: "Unity 6"
+tags: ["Unity 6", "C#", "Editor Tools", "GraphView", "ScriptableObjects", "Git", "Team Project"]
+featured: true
+status: "actif"
+gallery: []
+techDetails: |
+  ## Project architecture
+
+  A `_Bootstrap` scene initialises the services (`ServiceLocator`): JSON saves, audio, multilingual localisation.
+  Scripts talk through **EventChannels** (ScriptableObjects) without knowing each other.
+
+  ## My contributions
+
+  - **LOD Manager**: editor tool (6 scripts) that generates and tunes model levels of detail.
+  - **Dialogue system**: CSV importer that finds each line by id wherever it is stored, and a GraphView graph editor
+    recovered from an older repository and fixed: links dropping when a choice was edited, text field losing focus
+    on every keystroke, nodes created in the graph without data.
+  - **Firefly puzzle**: the player approaches a firefly, it follows them, enters a broken lantern and repairs it.
+  - **Repository organisation**: restructuring in 7 pull requests (440 files moved without breaking a reference),
+    Git setup script configuring Unity scene merging, continuous integration.
+---
+
+# EsperHope
+
+Unity game built as a team during my game development Bachelor (Gaming Campus, 3rd year).
+
+## Context
+
+Team project on a busy shared repository, with integration branches per area (tools, gameplay) and pull request
+reviews between teammates.
+
+## What I did
+
+Mostly tooling and systems: an LOD tool, the dialogue importer and graph editor, a gameplay puzzle, and putting the
+repository in order (tree, scene merging, continuous integration).
+
+## Links
+
+Private repository (school).

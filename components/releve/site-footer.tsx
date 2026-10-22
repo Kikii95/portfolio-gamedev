@@ -26,7 +26,7 @@ export function SiteFooter() {
             <a href={LIENS.github} target="_blank" rel="noopener noreferrer">{t('contact.github')}</a>
           </p>
         </div>
-        <Link href={chemin(locale, '/jeu')} className="aiguillage">
+        <Link href={chemin(locale, '/ecole')} className="aiguillage">
           <span>{t('aiguillage.texte')}</span>
           <strong>{t('aiguillage.lien')} →</strong>
         </Link>

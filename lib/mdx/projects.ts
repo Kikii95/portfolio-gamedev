@@ -12,6 +12,7 @@ export interface ProjectMetadata {
   date: string;
   category: 'école' | 'perso' | 'travail';
   tags: string[];
+  cartouche?: string;
   featured?: boolean;
   pinned?: boolean;
   beta?: boolean;

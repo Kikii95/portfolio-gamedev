@@ -11,15 +11,15 @@
       "greeting": "Salut, je suis",
       "name": "Killian",
       "title": "Développeur",
-      "description": "Spécialisé en moteurs de jeu, web et outils dev. Bachelor en cours à GTech Gaming Campus, mais mon terrain dépasse largement le jeu vidéo.",
+      "description": "Projets menés pendant mon Bachelor jeu vidéo à Gaming Campus : moteurs maison en C++, rendu Vulkan, outils et jeux Unity.",
       "viewProjects": "Voir mes projets",
       "downloadCV": "Télécharger CV"
     },
     "featuredProjects": "Projets en vedette"
   },
   "projects": {
-    "title": "Mes Projets",
-    "description": "Une sélection de mes projets : moteurs de jeu, outils dev, applications web.",
+    "title": "Projets d'école",
+    "description": "Moteurs, outils de pipeline, optimisation et jeux, réalisés pendant mon Bachelor.",
     "filters": "Filtres",
     "projectsCount": "{count, plural, =0 {Aucun projet} one {# projet} other {# projets}} en {year}",
     "categories": "Catégories",
@@ -153,11 +153,12 @@
       "methode": "Méthode",
       "parcours": "Parcours",
       "contact": "Contact",
-      "atelier": "Atelier jeu vidéo",
+      "atelier": "École & gamedev",
       "cv": "CV",
       "menu": "Menu",
       "themeClair": "Passer en thème clair",
-      "themeSombre": "Passer en thème sombre"
+      "themeSombre": "Passer en thème sombre",
+      "projets": "Projets"
     },
     "hero": {
       "statut": "en service ce matin",
@@ -305,8 +306,8 @@
       "cv": "Télécharger le CV"
     },
     "aiguillage": {
-      "texte": "Je développe aussi des jeux et des moteurs en C++.",
-      "lien": "L'atelier jeu vidéo"
+      "texte": "Pendant mon Bachelor : moteurs en C++, Vulkan, Unity.",
+      "lien": "L'école et le gamedev"
     },
     "fiche": {
       "retour": "Toutes les réalisations",
@@ -322,6 +323,39 @@
     "piece": {
       "lire": "Lire la démo",
       "video": "vidéo"
+    },
+    "projets": {
+      "metaTitre": "Projets perso — Killian Abboud",
+      "surtitre": "{nombre} projets hors école",
+      "titre": "Projets perso",
+      "chapo": "Tout ce que j'ai construit en dehors de l'école : des automatisations en service, des applications que j'utilise chaque jour, et quelques jeux.",
+      "familles": {
+        "automatisation": "Automatisation & IA",
+        "app": "Applications",
+        "jeu": "Jeux & cartes"
+      },
+      "statuts": {
+        "service": "en service",
+        "beta": "en bêta",
+        "pause": "en pause"
+      },
+      "voirFiche": "Lire la fiche",
+      "voirSite": "Voir le site",
+      "labo": "Laboratoire",
+      "laboChapo": "Des essais et des outils mis en pause, gardés pour ce qu'ils m'ont appris.",
+      "tous": "Tous mes projets"
+    },
+    "ecole": {
+      "metaTitre": "École & gamedev — Killian Abboud",
+      "surtitre": "{nombre} projets du Bachelor",
+      "titre": "École & gamedev",
+      "chapo": "Pendant mon Bachelor jeu vidéo : moteurs en C++ et Vulkan, outils de pipeline, optimisation, et des jeux en équipe sous Unity.",
+      "statuts": {
+        "encours": "en cours",
+        "termine": "terminé",
+        "pause": "en pause"
+      },
+      "retour": "Tous les projets d'école"
     }
   }
 }

@@ -11,15 +11,15 @@
       "greeting": "Hi, I'm",
       "name": "Killian",
       "title": "Developer",
-      "description": "Specialized in game engines, web and dev tooling. Bachelor in progress at GTech Gaming Campus, but my work goes well beyond gaming.",
+      "description": "Projects from my game development Bachelor at Gaming Campus: custom C++ engines, Vulkan rendering, tools and Unity games.",
       "viewProjects": "View My Projects",
       "downloadCV": "Download CV"
     },
     "featuredProjects": "Featured Projects"
   },
   "projects": {
-    "title": "My Projects",
-    "description": "A selection of my projects: game engines, dev tools, web apps.",
+    "title": "School projects",
+    "description": "Engines, pipeline tools, optimisation and games built during my Bachelor.",
     "filters": "Filters",
     "projectsCount": "{count, plural, =0 {No projects} one {# project} other {# projects}} in {year}",
     "categories": "Categories",
@@ -153,11 +153,12 @@
       "methode": "Method",
       "parcours": "Background",
       "contact": "Contact",
-      "atelier": "Game dev workshop",
+      "atelier": "School & game dev",
       "cv": "Resume",
       "menu": "Menu",
       "themeClair": "Switch to light theme",
-      "themeSombre": "Switch to dark theme"
+      "themeSombre": "Switch to dark theme",
+      "projets": "Projects"
     },
     "hero": {
       "statut": "running this morning",
@@ -305,8 +306,8 @@
       "cv": "Download resume"
     },
     "aiguillage": {
-      "texte": "I also build games and engines in C++.",
-      "lien": "The game dev workshop"
+      "texte": "During my Bachelor: engines in C++, Vulkan, Unity.",
+      "lien": "School & game dev"
     },
     "fiche": {
       "retour": "All work",
@@ -322,6 +323,39 @@
     "piece": {
       "lire": "Play the demo",
       "video": "video"
+    },
+    "projets": {
+      "metaTitre": "Personal projects — Killian Abboud",
+      "surtitre": "{nombre} projects outside school",
+      "titre": "Personal projects",
+      "chapo": "Everything I have built outside school: automations in production, apps I use every day, and a few games.",
+      "familles": {
+        "automatisation": "Automation & AI",
+        "app": "Apps",
+        "jeu": "Games & cards"
+      },
+      "statuts": {
+        "service": "in production",
+        "beta": "in beta",
+        "pause": "paused"
+      },
+      "voirFiche": "Read the case",
+      "voirSite": "Visit the site",
+      "labo": "Lab",
+      "laboChapo": "Experiments and tools on hold, kept for what they taught me.",
+      "tous": "All my projects"
+    },
+    "ecole": {
+      "metaTitre": "School & game dev — Killian Abboud",
+      "surtitre": "{nombre} Bachelor projects",
+      "titre": "School & game dev",
+      "chapo": "During my game development Bachelor: C++ and Vulkan engines, pipeline tools, optimisation, and team games in Unity.",
+      "statuts": {
+        "encours": "in progress",
+        "termine": "finished",
+        "pause": "paused"
+      },
+      "retour": "All school projects"
     }
   }
 }

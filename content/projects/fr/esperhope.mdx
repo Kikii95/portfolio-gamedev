@@ -1,0 +1,44 @@
+---
+title: "EsperHope"
+description: "Jeu Unity 6 en équipe : outils d'éditeur, système de dialogue, puzzle et organisation du dépôt"
+date: "2026-03-07"
+category: "école"
+cartouche: "Unity 6"
+tags: ["Unity 6", "C#", "Outils Editor", "GraphView", "ScriptableObjects", "Git", "Team Project"]
+featured: true
+status: "actif"
+gallery: []
+techDetails: |
+  ## Architecture du projet
+
+  Démarrage par une scène `_Bootstrap` qui initialise les services (`ServiceLocator`) : sauvegarde JSON, audio,
+  localisation multilingue. Les scripts communiquent par **EventChannels** (ScriptableObjects) sans se connaître.
+
+  ## Mes contributions
+
+  - **LOD Manager** : outil d'éditeur (6 scripts) qui génère et règle les niveaux de détail des modèles.
+  - **Système de dialogue** : importeur CSV qui retrouve chaque ligne par identifiant où qu'elle soit rangée, et
+    éditeur de graphe (GraphView) récupéré d'une ancienne version du dépôt puis corrigé : liaisons qui sautaient à
+    l'édition d'un choix, champ texte qui perdait le focus à chaque lettre, nœuds créés dans le graphe sans données.
+  - **Puzzle de la luciole** : le joueur l'approche, elle le suit, entre dans une lanterne cassée et la répare.
+  - **Organisation du dépôt** : réorganisation en 7 pull requests (440 fichiers déplacés sans casser une référence),
+    script d'installation Git qui configure la fusion des scènes Unity, intégration continue.
+---
+
+# EsperHope
+
+Jeu Unity développé en équipe pendant le Bachelor jeu vidéo (Gaming Campus, 3e année).
+
+## Contexte
+
+Projet d'équipe sur un dépôt partagé très actif, avec des branches d'intégration par domaine (outils, gameplay) et
+des revues de pull request entre coéquipiers.
+
+## Ce que j'y ai fait
+
+Surtout de l'outillage et des systèmes : un outil de LOD, l'importeur et l'éditeur de graphe des dialogues, un
+puzzle de gameplay, et la remise en ordre du dépôt (arborescence, fusion des scènes, intégration continue).
+
+## Liens
+
+Dépôt privé (école).

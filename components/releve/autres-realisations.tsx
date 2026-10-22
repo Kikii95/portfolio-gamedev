@@ -1,4 +1,6 @@
-import { useTranslations } from 'next-intl';
+import Link from 'next/link';
+import { useLocale, useTranslations } from 'next-intl';
+import { chemin } from '@/lib/releve/chemin';
 import type { Piece } from '@/lib/releve/types';
 import { PieceJustificative } from './piece-justificative';
 
@@ -11,6 +13,7 @@ export interface AutreRealisation {
 
 export function AutresRealisations({ autres }: { autres: AutreRealisation[] }) {
   const t = useTranslations('releve');
+  const locale = useLocale();
   if (autres.length === 0) return null;
 
   return (
@@ -26,6 +29,9 @@ export function AutresRealisations({ autres }: { autres: AutreRealisation[] }) {
           </div>
         ))}
       </div>
+      <Link href={chemin(locale, '/projets')} className="bouton trait vers-projets">
+        {t('projets.tous')} →
+      </Link>
     </section>
   );
 }
