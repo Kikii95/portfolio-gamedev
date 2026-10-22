@@ -1,0 +1,82 @@
+---
+title: "HSR Lab"
+description: "Personal Honkai: Star Rail PWA that crosses a game knowledge base with the player's roster to advise on teams, builds and pulls"
+date: "2026-07-22"
+category: "perso"
+tags: ["TypeScript", "Next.js 16", "Drizzle", "PostgreSQL", "cheerio", "Zod", "Vitest", "PWA"]
+status: "stable"
+gallery: []
+techDetails: |
+  ## Architecture
+
+  ```
+  scripts/ingest: crawler → parsers (cheerio) → Zod validation → normalisation
+                        → data/kb/*.json (committed) → database load
+  app/ (RSC) → lib/server/services → lib/server/repositories → Postgres
+                     └── lib/domain/engines: pure engines, no I/O
+  ```
+
+  ## Ingestion pipeline
+
+  - **Polite crawl**: strictly sequential requests at least 1 s apart with jitter, on-disk cache of raw HTML, robots.txt respected, explicit user agent.
+  - **Parsers tested** against committed HTML fixtures, recent and legacy layouts.
+  - **No guessed fields**: a parser that cannot find a value writes `null`, and the coverage report flags it.
+  - **Drift guard**: if a field's coverage drops by more than 5 % versus the previous run, ingestion fails loudly.
+  - **Versioned data**: the canonical JSON is committed, so git history doubles as the meta changelog. `ingest:diff` shows what would change without writing.
+  - **Idempotent load**, skipped when the file hash has not changed.
+
+  ## Decision engines
+
+  Pure functions in `lib/domain/engines`:
+  - **Validator** for per-game-mode constraints (exclusivity, non-stackable variants)
+  - **Team builder** with explained substitutions and duplicate prevention
+  - **Team analysis**: comparison with a corpus of reference compositions, a score out of 10 split into 4 components (meta alignment, tiers, roles, mode fit), one-click replacement suggestions, redirection to the closest achievable compositions
+  - **Character builder**: target build versus owned gear, remaining farming cost
+  - **Pull Advisor** over 5 axes, verdict PULL / WAIT / SKIP
+
+  ## Operations
+
+  Daily read-only Vercel cron that detects stale data without ever writing to the knowledge base. Single-user auth (next-auth v5, bcrypt, passkeys), account created through a first-login link.
+
+  ## Stack
+
+  | Tech | Role |
+  |------|------|
+  | Next.js 16 / React 19 | App Router, PWA |
+  | Drizzle + postgres-js | Postgres (Neon in prod) |
+  | cheerio + tsx | Ingestion parsers |
+  | Zod v4 | Knowledge base contract |
+  | Vitest | Parsers and engines |
+  | Playwright | Visual check screenshots |
+---
+
+# HSR Lab
+
+A personal logbook for Honkai: Star Rail: the game data on one side, my characters on the other, and engines that answer "which team?", "which build?", "should I pull on this banner?".
+
+## Context
+
+Personal project started on 22/07/2026. v0.1.0 and v0.2.0 (team analysis) shipped the same day, followed in October by the "Astral Express conductor's logbook" art direction and passkey sign-in. The data comes from a public guide site, credited as the source in the interface and never republished: the app is single-user.
+
+## Features
+
+**Knowledge base**:
+- Character, light cone and relic set sheets
+- Versioned tier lists with a diff between two snapshots
+- Current, announced and past banners
+
+**My account**:
+- Editable roster, light cones, teams and gacha profile
+- "My build" on every character sheet
+
+**Advice**:
+- Team builder and team analysis with an explained score
+- One-click replacement suggestions
+- Pull Advisor: PULL, WAIT or SKIP based on the actual roster
+
+**Admin**:
+- Data freshness and coverage, staleness cron
+
+## Links
+
+Private repo. Single-user app behind a login: no public demo.

@@ -337,7 +337,8 @@
       "statuts": {
         "service": "in production",
         "beta": "in beta",
-        "pause": "paused"
+        "pause": "paused",
+        "dev": "in development"
       },
       "voirFiche": "Read the case",
       "voirSite": "Visit the site",

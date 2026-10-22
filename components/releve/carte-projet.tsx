@@ -5,7 +5,7 @@ import { Cartouche } from './cartouche';
 import { DetailsProjet } from './details-projet';
 import { PieceJustificative } from './piece-justificative';
 
-const ETIQUETTE: Record<StatutProjet, string> = { service: 'livre', beta: 'attente', pause: 'neutre' };
+const ETIQUETTE: Record<StatutProjet, string> = { service: 'livre', beta: 'attente', dev: 'attente', pause: 'neutre' };
 
 interface CarteProjetProps {
   projet: ProjetPerso;

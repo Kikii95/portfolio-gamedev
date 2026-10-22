@@ -1,0 +1,89 @@
+---
+title: "Sleep Tracker"
+description: "PWA de suivi du sommeil, mobile d'abord et installable, qui traite les nuits comme des données de santé"
+date: "2026-07-01"
+category: "perso"
+tags: ["TypeScript", "Next.js 16", "React 19", "Drizzle", "PostgreSQL", "next-auth", "PWA", "RGPD"]
+status: "actif"
+gallery: []
+techDetails: |
+  ## Architecture
+
+  Structure plate à la racine (`app/`, `components/`, `lib/`, `db/`, `core/`), couches imposées par ESLint :
+
+  ```
+  Route / Server Action (≤ 20 lignes) → Service → Repository → Schéma Drizzle
+  ```
+
+  `app/**` ne peut pas importer la couche base de données (règle `no-restricted-imports`).
+
+  ## Moteur de métriques pur
+
+  Les calculs vivent dans `lib/metrics/*`, sans accès base, testés par vecteurs (une assertion par formule) :
+  durée, efficacité, moyennes glissantes, dette de sommeil sur 14 jours, jetlag social, régularité, chronotype (MSFsc), score composite pondéré, séries, corrélations Pearson et Spearman.
+
+  ## Décisions actées (15 ADR)
+
+  - La date d'une nuit est la date du réveil
+  - Stades stockés en agrégats sur la session
+  - Régularité = indicateur approché documenté, pas un SRI
+  - Score composite = mélange pondéré transparent, détaillé à l'écran
+  - Hors ligne : serveur qui fait autorité, dernier écrit gagne par `updatedAt`
+  - Import par fichier uniquement, pas de synchro de montre en direct
+  - Mot de passe oublié sans email : lien à usage unique dont seul le hachage est stocké
+
+  ## Données de santé
+
+  Les nuits sont traitées comme des données de santé (RGPD art. 9) : consentement granulaire à l'onboarding, export CSV + JSON (art. 20), suppression complète en cascade (art. 17). Le service worker ne met en cache que le statique, jamais l'API ni les données.
+
+  ## Portes machine
+
+  Deux points d'entrée pour d'autres apps perso, chacun derrière un jeton dont seul le hachage est stocké et une trace écrite avant toute lecture ou écriture (refus si la trace échoue) : un résumé de la dernière nuit lu par l'assistant JARVIS (consentement dédié, désactivé par défaut), et l'écriture des nuits racontées dans Memogram, qui n'écrase jamais une saisie manuelle.
+
+  ## Stack
+
+  | Tech | Rôle |
+  |------|------|
+  | Next.js 16 / React 19 | App Router, Server Actions |
+  | Drizzle + postgres-js | Base Postgres (Neon en prod) |
+  | next-auth v5 + SimpleWebAuthn | Mot de passe bcrypt et passkeys |
+  | Tailwind v4 + shadcn/ui | Interface |
+  | recharts + composants maison | Graphiques, heatmap |
+  | Vitest + PGlite | Tests unitaires et d'intégration sur les vraies migrations |
+  | gitleaks | Scan de secrets dans la gate `verify` |
+---
+
+# Sleep Tracker
+
+Une app web pour noter ses nuits et comprendre son sommeil, pensée pour le téléphone et pour la confidentialité.
+
+## Contexte
+
+Projet perso démarré le 01/07/2026, déployé sur Vercel. Usage personnel. Direction artistique « planisphère céleste » : voûte étoilée, stades du sommeil en couches du ciel, score en sextant.
+
+## Fonctionnalités
+
+**Saisie** :
+- Ajout rapide d'une nuit, saisie rétroactive, siestes
+- Facteurs, tags et notes par nuit
+- Import CSV générique (avec mapping), CSV Oura, export Apple Health, sans doublon
+
+**Comprendre** :
+- Tableau de bord, calendrier, fiche de nuit avec hypnogramme
+- Tendances, moyennes par jour de la semaine, insights par corrélation
+- Score composite dont chaque composante est expliquée
+- Coaching circadien non clinique et rituel du soir
+
+**Motivation** :
+- Objectifs personnels avec barre de progression
+- Défis hebdomadaires, records personnels, séries, récompenses
+- Journal du soir (humeur, rêve, réflexion), couvert par le même consentement
+
+**Compte et confidentialité** :
+- Connexion par mot de passe ou passkey (Face ID, Touch ID, Windows Hello)
+- Export et effacement complet des données
+- Installable, lecture hors ligne, rappel du coucher par notification
+
+## Liens
+
+Repo privé. L'app en ligne est derrière une connexion : pas de démo publique.

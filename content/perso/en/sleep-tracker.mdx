@@ -1,0 +1,89 @@
+---
+title: "Sleep Tracker"
+description: "Mobile-first, installable sleep tracking PWA that treats nights as health data"
+date: "2026-07-01"
+category: "perso"
+tags: ["TypeScript", "Next.js 16", "React 19", "Drizzle", "PostgreSQL", "next-auth", "PWA", "GDPR"]
+status: "actif"
+gallery: []
+techDetails: |
+  ## Architecture
+
+  Flat structure at the root (`app/`, `components/`, `lib/`, `db/`, `core/`), layers enforced by ESLint:
+
+  ```
+  Route / Server Action (≤ 20 lines) → Service → Repository → Drizzle schema
+  ```
+
+  `app/**` cannot import the database layer (`no-restricted-imports` rule).
+
+  ## Pure metrics engine
+
+  Calculations live in `lib/metrics/*`, with no database access, tested by vectors (one assertion per formula):
+  duration, efficiency, rolling averages, 14-day sleep debt, social jetlag, regularity, chronotype (MSFsc), weighted composite score, streaks, Pearson and Spearman correlations.
+
+  ## Recorded decisions (15 ADRs)
+
+  - A night's date is the wake-up date
+  - Sleep stages stored as aggregates on the session
+  - Regularity = a documented proxy, not an SRI
+  - Composite score = a transparent weighted blend, broken down on screen
+  - Offline: server is authoritative, last write wins by `updatedAt`
+  - File import only, no live wearable sync
+  - Forgotten password without email: single-use link, only its hash is stored
+
+  ## Health data
+
+  Nights are treated as health data (GDPR art. 9): granular consent at onboarding, CSV + JSON export (art. 20), full cascading deletion (art. 17). The service worker only caches static assets, never the API or the data.
+
+  ## Machine gates
+
+  Two entry points for other personal apps, each behind a token whose hash alone is stored, with a trace written before any read or write (refused if the trace fails): a last-night summary read by the JARVIS assistant (dedicated consent, off by default), and writing nights told to Memogram, which never overwrites a manual entry.
+
+  ## Stack
+
+  | Tech | Role |
+  |------|------|
+  | Next.js 16 / React 19 | App Router, Server Actions |
+  | Drizzle + postgres-js | Postgres database (Neon in prod) |
+  | next-auth v5 + SimpleWebAuthn | bcrypt password and passkeys |
+  | Tailwind v4 + shadcn/ui | Interface |
+  | recharts + custom components | Charts, heatmap |
+  | Vitest + PGlite | Unit and integration tests on the real migrations |
+  | gitleaks | Secret scanning in the `verify` gate |
+---
+
+# Sleep Tracker
+
+A web app to log your nights and understand your sleep, designed for the phone and for privacy.
+
+## Context
+
+Personal project started on 01/07/2026, deployed on Vercel. Personal use. "Celestial planisphere" art direction: starry vault, sleep stages as layers of the sky, score as a sextant.
+
+## Features
+
+**Logging**:
+- Quick night entry, retroactive entry, naps
+- Factors, tags and notes per night
+- Generic CSV import (with mapping), Oura CSV, Apple Health export, without duplicates
+
+**Understanding**:
+- Dashboard, calendar, night detail with hypnogram
+- Trends, weekday averages, correlation insights
+- Composite score with every component explained
+- Non-clinical circadian coaching and evening wind-down
+
+**Motivation**:
+- Personal goals with progress bars
+- Weekly challenges, personal records, streaks, rewards
+- Evening journal (mood, dream, reflection), covered by the same consent
+
+**Account and privacy**:
+- Sign-in by password or passkey (Face ID, Touch ID, Windows Hello)
+- Full data export and erasure
+- Installable, offline reading, bedtime reminder notification
+
+## Links
+
+Private repo. The live app is behind a login: no public demo.

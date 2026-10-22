@@ -1,7 +1,7 @@
 import type { Piece } from './types';
 
 export type Famille = 'automatisation' | 'app' | 'jeu';
-export type StatutProjet = 'service' | 'beta' | 'pause';
+export type StatutProjet = 'service' | 'beta' | 'dev' | 'pause';
 
 export interface ProjetPerso {
   titre: string;
@@ -71,6 +71,7 @@ export const PROJETS: ProjetPerso[] = [
   },
   {
     titre: 'Memogram',
+    detail: 'memogram',
     famille: 'automatisation',
     statut: 'service',
     texte: 'Un journal tenu en écrivant à un bot Telegram : chaque journée est résumée, rangée par semaine et par mois.',
@@ -87,6 +88,15 @@ export const PROJETS: ProjetPerso[] = [
     piece: video('mao', 'mao', 'Deux agents Claude construisent un projet seuls', 'vidéo · 0:28'),
   },
   {
+    titre: 'Home Gateway',
+    detail: 'home-gateway',
+    famille: 'automatisation',
+    statut: 'service',
+    texte: "Le point d'accès unique de mes outils : il détient les accès à mes comptes, les sert à mes autres apps et garde la trace de chaque usage.",
+    outils: ['Next.js', 'PostgreSQL', 'Drizzle', 'NextAuth'],
+    cartouche: 'Passerelle',
+  },
+  {
     titre: 'Obsidian Web',
     detail: 'obsidian-web',
     famille: 'app',
@@ -97,6 +107,7 @@ export const PROJETS: ProjetPerso[] = [
   },
   {
     titre: 'Sleep Tracker',
+    detail: 'sleep-tracker',
     famille: 'app',
     statut: 'service',
     texte: "Suivi du sommeil installable sur téléphone : scores, tendances, et des données de santé traitées comme telles.",
@@ -105,6 +116,7 @@ export const PROJETS: ProjetPerso[] = [
   },
   {
     titre: 'HSR Lab',
+    detail: 'hsr-lab',
     famille: 'app',
     statut: 'service',
     texte: "Un assistant pour Honkai: Star Rail : base de connaissances, constructeur d'équipes et conseiller de tirage chiffré.",
@@ -113,12 +125,32 @@ export const PROJETS: ProjetPerso[] = [
   },
   {
     titre: 'Expense Tracker',
+    detail: 'expense-tracker',
     famille: 'app',
     statut: 'service',
     texte: 'Suivi des dépenses hors ligne : saisie rapide, budgets, plusieurs devises, import de relevés bancaires.',
     outils: ['Flutter', 'Riverpod', 'Hive', 'Node.js'],
     site: 'https://expense-tracker-one-bay-10.vercel.app',
     piece: video('expense-tracker', 'expense-tracker', 'Une dépense notée en trois gestes', 'vidéo · 0:27'),
+  },
+  {
+    titre: 'HaltèrEgo',
+    detail: 'halterego',
+    famille: 'app',
+    statut: 'dev',
+    texte: 'Un coach de musculation et de calories qui montre ses calculs au lieu de les cacher.',
+    outils: ['Next.js', 'PostgreSQL', 'Drizzle', 'Vitest'],
+    cartouche: 'Musculation',
+  },
+  {
+    titre: 'Politica France',
+    detail: 'politica-france',
+    famille: 'app',
+    statut: 'service',
+    texte: 'La vie politique française en données sourcées : élus, mandats, scrutins, carte des circonscriptions.',
+    outils: ['Next.js', 'PostgreSQL', 'MapLibre', 'D3'],
+    site: 'https://politica-france.vercel.app',
+    cartouche: 'Élus & scrutins',
   },
   {
     titre: 'HUMAN',
@@ -132,6 +164,7 @@ export const PROJETS: ProjetPerso[] = [
   },
   {
     titre: "Drink'n'Reveal",
+    detail: 'drink-n-reveal',
     famille: 'jeu',
     statut: 'service',
     texte: "Un jeu de cartes de soirée (18+) : un deck imprimable et une application compagnon qui marche hors ligne.",
@@ -141,6 +174,7 @@ export const PROJETS: ProjetPerso[] = [
   },
   {
     titre: 'MotJuste',
+    detail: 'motjuste',
     famille: 'jeu',
     statut: 'service',
     texte: 'Des mots fléchés en français générés à l’infini, jouables hors ligne.',

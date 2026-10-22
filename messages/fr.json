@@ -337,7 +337,8 @@
       "statuts": {
         "service": "en service",
         "beta": "en bêta",
-        "pause": "en pause"
+        "pause": "en pause",
+        "dev": "en développement"
       },
       "voirFiche": "Lire la fiche",
       "voirSite": "Voir le site",

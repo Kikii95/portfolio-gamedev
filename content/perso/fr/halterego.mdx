@@ -1,0 +1,84 @@
+---
+title: "HaltèrEgo"
+description: "Coach perso de musculation et de calories, en PWA, qui affiche le calcul derrière chaque chiffre"
+date: "2026-10-20"
+category: "perso"
+tags: ["TypeScript", "Next.js 16", "React 19", "PWA", "PostgreSQL", "Drizzle", "Passkeys", "Offline-first"]
+status: "actif"
+gallery: []
+techDetails: |
+  ## Principe
+
+  Moteur 100 % déterministe : aucune IA, chaque cible et chaque recommandation sort d'une formule publiée, affichée dépliée à l'écran. Les moteurs sont des modules purs, sans base de données, testés par vecteurs, avec leurs sources citées dans le code.
+
+  ```
+  Écrans (séance, repas, bilan) ─► Services ─► Repositories ─► PostgreSQL
+                                     │
+                                     ├─► lib/nutrition (cibles, tendance, dépense, bilan)
+                                     └─► lib/training  (programmes, progression, e1RM, plateau)
+  ```
+
+  ## Moteur nutrition
+
+  - Métabolisme de base : Mifflin-St Jeor, Katch-McArdle, Cunningham
+  - Tendance du poids : moyenne mobile exponentielle (α = 0,1), jours manquants interpolés
+  - Dépense mesurée : apports notés moins variation des réserves (7 700 kcal/kg), droite des moindres carrés sur 2 à 8 semaines ; sans assez de données, l'app refuse de mesurer et dit pourquoi
+  - Bilan du dimanche : nouvelle cible, écart plafonné à ±200 kcal par bilan
+  - Simulateur de 8 semaines de vie fictive bruitée : dépense retrouvée à ±50 kcal (médiane 21 kcal sur 200 tirages)
+
+  ## Moteur entraînement
+
+  - 44 exercices en français, 3 programmes (full body 3 j, haut/bas 4 j, PPL 6 j)
+  - Double progression, e1RM d'Epley, records
+  - Plateau détecté après 3 séances sans gain → séance allégée ; semaine allégée sur signal
+
+  ## Hors ligne
+
+  Le carnet de séance fonctionne en mode avion : chaque geste part dans une file locale rejouée dans l'ordre, sans doublon (identifiants générés par le téléphone). Le service worker ne met en cache que le statique, jamais de donnée de santé.
+
+  ## Données et conformité
+
+  - Compte unique créé par lien de première connexion, passkeys (WebAuthn), pas d'inscription publique
+  - Base hébergée dans l'UE ; export et effacement RGPD couvrant chaque table
+  - Aliments : table CIQUAL embarquée + Open Food Facts appelé côté serveur avec cache de 7 jours ; valeurs figées à la saisie
+  - Migrations additives appliquées par le build de prod ; une migration destructive fait échouer tests et build
+
+  ## Stack
+
+  | Tech | Rôle |
+  |------|------|
+  | Next.js 16 / React 19 | App Router, PWA mobile-first |
+  | TypeScript | Mode strict |
+  | Tailwind 4 + shadcn/ui | Interface |
+  | Drizzle + PostgreSQL | Données |
+  | next-auth v5 + SimpleWebAuthn | Connexion + passkeys |
+  | Vitest + PGlite | Tests unitaires et d'intégration |
+---
+
+# HaltèrEgo
+
+Un coach de musculation et de nutrition qui montre ses calculs au lieu de demander qu'on le croie.
+
+## Contexte
+
+Projet perso démarré le 20/10/2026, en développement. Application privée, pensée pour un seul utilisateur. La v0.4.0 couvre les cinq premières phases du plan : fondation, direction artistique « l'instrument », moteur nutrition, séances, journal alimentaire et bilan hebdomadaire. Les trois dernières attendent leur validation en conditions réelles.
+
+## Fonctionnalités
+
+**Nutrition** :
+- Cibles caloriques et macros calculées à l'onboarding, chaque chiffre avec sa formule
+- Journal alimentaire : recherche tolérante aux accents, favoris, aliments perso, « comme hier »
+- Pesée du matin et kcal restantes de la journée
+
+**Séances** :
+- Programmes prêts, carnet au pouce avec minuteur de repos et écran maintenu allumé
+- Progression proposée et calcul déplié, historique et records
+- Fonctionne sans réseau à la salle
+
+**Boucle hebdomadaire** :
+- Bilan du dimanche : courbe de tendance, dépense mesurée, nouvelle cible expliquée en clair
+- Détection de plateau et semaine allégée
+
+## Liens
+
+Repo privé. Application personnelle à accès restreint, pas de démo publique.

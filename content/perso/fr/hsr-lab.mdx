@@ -1,0 +1,82 @@
+---
+title: "HSR Lab"
+description: "PWA personnelle pour Honkai: Star Rail qui croise une base de connaissance du jeu avec le roster du joueur pour conseiller équipes, builds et tirages"
+date: "2026-07-22"
+category: "perso"
+tags: ["TypeScript", "Next.js 16", "Drizzle", "PostgreSQL", "cheerio", "Zod", "Vitest", "PWA"]
+status: "stable"
+gallery: []
+techDetails: |
+  ## Architecture
+
+  ```
+  scripts/ingest : crawler → parsers (cheerio) → validation Zod → normalisation
+                         → data/kb/*.json (committé) → chargement en base
+  app/ (RSC) → lib/server/services → lib/server/repositories → Postgres
+                     └── lib/domain/engines : moteurs purs, sans I/O
+  ```
+
+  ## Pipeline d'ingestion
+
+  - **Crawl poli** : requêtes strictement séquentielles espacées d'au moins 1 s avec jitter, cache disque du HTML brut, robots.txt respecté, user-agent explicite.
+  - **Parsers testés** sur des fixtures HTML committées, layouts récents et anciens.
+  - **Aucun champ deviné** : un parser qui ne trouve pas une valeur écrit `null` et le rapport de couverture le signale.
+  - **Garde de dérive** : si la couverture d'un champ chute de plus de 5 % par rapport au run précédent, l'ingestion échoue bruyamment.
+  - **Données versionnées** : le JSON canonique est committé, donc l'historique git sert de changelog de la meta. `ingest:diff` montre ce qui changerait sans écrire.
+  - **Chargement idempotent**, sauté quand le hash du fichier n'a pas changé.
+
+  ## Moteurs de décision
+
+  Fonctions pures dans `lib/domain/engines` :
+  - **Validateur** de contraintes par mode de jeu (exclusivités, variantes non alignables)
+  - **Team builder** avec substitutions expliquées et anti-doublon
+  - **Analyse d'équipe** : comparaison avec un corpus de compositions de référence, score sur 10 décomposé en 4 composantes (alignement meta, tiers, rôles, adéquation au mode), suggestions de remplacement appliquables en un clic, réorientation vers les compositions réalisables les plus proches
+  - **Character builder** : build visé contre équipement possédé, coût de farm restant
+  - **Pull Advisor** sur 5 axes, verdict TENTE / ATTENDS / PASSE
+
+  ## Exploitation
+
+  Cron Vercel quotidien en lecture seule qui détecte les données périmées sans jamais écrire dans la base de connaissance. Auth mono-utilisateur (next-auth v5, bcrypt, passkeys), compte créé par lien de première connexion.
+
+  ## Stack
+
+  | Tech | Rôle |
+  |------|------|
+  | Next.js 16 / React 19 | App Router, PWA |
+  | Drizzle + postgres-js | Postgres (Neon en prod) |
+  | cheerio + tsx | Parsers d'ingestion |
+  | Zod v4 | Contrat de la base de connaissance |
+  | Vitest | Parsers et moteurs |
+  | Playwright | Captures de vérification visuelle |
+---
+
+# HSR Lab
+
+Un carnet de bord perso pour Honkai: Star Rail : les données du jeu d'un côté, mes personnages de l'autre, et des moteurs qui répondent à « quelle équipe ? », « quel build ? », « je tire sur cette bannière ? ».
+
+## Contexte
+
+Projet perso démarré le 22/07/2026. v0.1.0 et v0.2.0 (analyse d'équipe) livrées le même jour, puis direction artistique « carnet de bord du contrôleur de l'Express astral » et connexion par passkey en octobre. Les données viennent d'un site de guides public, citées comme source dans l'interface et jamais republiées : l'app est mono-utilisateur.
+
+## Fonctionnalités
+
+**Base de connaissance** :
+- Fiches personnages, cônes de lumière, sets de reliques
+- Tier lists versionnées avec diff entre deux instantanés
+- Bannières courantes, annoncées et historiques
+
+**Mon compte** :
+- Roster, cônes de lumière, équipes et profil de tirage éditables
+- « Mon build » sur chaque fiche personnage
+
+**Conseil** :
+- Constructeur et analyse d'équipe avec score expliqué
+- Suggestions de remplacement en un clic
+- Pull Advisor : TENTE, ATTENDS ou PASSE selon le roster réel
+
+**Admin** :
+- Fraîcheur et couverture des données, cron de péremption
+
+## Liens
+
+Repo privé. App mono-utilisateur derrière une connexion : pas de démo publique.

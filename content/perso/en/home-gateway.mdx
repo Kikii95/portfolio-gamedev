@@ -1,0 +1,80 @@
+---
+title: "Home Gateway"
+description: "Personal hub that alone holds the access to my accounts and serves it, under control and with a trace, to my other apps"
+date: "2026-07-02"
+category: "perso"
+tags: ["TypeScript", "Next.js 16", "PostgreSQL", "Drizzle", "OAuth", "Encryption", "Access log"]
+status: "actif"
+gallery: []
+techDetails: |
+  ## Role
+
+  A single entry point between my apps and my online accounts (mail, calendar, storage, code repositories, hosting, banks). Client apps never hold a service token: each one gets its own device token, revocable one at a time, and the hub makes the calls on their behalf.
+
+  ```
+  Browser extension ────┐
+  Assistant routines ───┤                       ┌─► Mail / calendar / storage accounts
+  Personal apps ────────┼─► Hub (gatekeeper) ───┼─► Code repositories / hosting
+  Phone / PC ───────────┘    │                  └─► Banks (read)
+                             └─► Access log (written before any access)
+  ```
+
+  ## Access control
+
+  - **One device token per client**, stored hashed, bound to a list of scopes ("doors") and rate-limited
+  - **One door = one line** in a central registry: adding an access happens in a reviewed commit
+  - **Strict CORS**, never open to everyone; an unconfigured door answers an explicit error
+  - **Multi-tenant**: the tenant is derived from the token presented, never from a variable; doors backed by owner-only credentials refuse a guest token
+
+  ## Secrets
+
+  - Refresh tokens encrypted (AES-256-GCM) with associated data bound to owner, provider and account, plus a key version
+  - Access tokens kept in memory only, never written to the database
+  - Fail-closed owner login (empty user list = nobody gets in), signed OAuth state + PKCE
+  - Logs redact anything that looks like a token
+
+  ## Traceability and approval
+
+  - **Fail-closed access log**: every sensitive read and every action is recorded (what, who, why) *before* it runs; if the row cannot be written, nothing happens
+  - **Closed list of actions**: a routine can only request actions declared in code, never a free parameter
+  - **Human approval**: a sensitive action waits for my go-ahead on mobile, expires if I do not answer, and is refused if it was altered after being sent (digest checked)
+  - **Trust rules**: some repetitive actions can run without a button press, under an explicit rule, capped over 24 h and announced before acting; at the slightest doubt, back to the button
+
+  ## Stack
+
+  | Tech | Role |
+  |------|------|
+  | Next.js 16 (App Router) | Machine doors + owner console |
+  | TypeScript | Strict typing |
+  | PostgreSQL + Drizzle | Tokens, encrypted accounts, log, rules |
+  | NextAuth | Owner login |
+  | Vitest | Tests (encryption, redaction, gatekeeper, actions) |
+
+  Route → service → repository layers, additive-only migrations, replayed idempotently at build time.
+---
+
+# Home Gateway
+
+The single access point of my personal ecosystem: it keeps the keys, the other apps ask.
+
+## Context
+
+Personal project started in July 2026, first to feed my browser's "new tab" page without storing any token in it. It became the hub of my personal assistant: every new service goes through it rather than through one more connector.
+
+## Features
+
+**Centralized reads**:
+- Read feeds for my notes, calendars, mail, tasks, repositories, deployments and bank balances
+- Several accounts per service, connected from a private console
+
+**Controlled actions**:
+- Mail drafts and sending, file organisation, calendar writes, quick capture into my notes
+- Human approval on mobile for sensitive actions, trust rules for the rest
+
+**Governance**:
+- Device tokens revocable one at a time from the console
+- Every access logged and viewable, never purged without my decision
+
+## Links
+
+Private repo. Personal infrastructure, no public demo.
