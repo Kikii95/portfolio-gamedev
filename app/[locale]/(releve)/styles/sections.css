@@ -63,8 +63,8 @@ html[data-releve="sombre"] .releve-site { --porte-perso: #B47CFF; --porte-perso-
 @media (prefers-reduced-motion: reduce) { .releve-site .indicateur-nav { transition: opacity 240ms ease; } }
 
 /* Repères d'attention : bandeau teinté en tête de page, intertitres soulignés, états cerclés */
-.releve-site [data-section] > header { position: relative; padding: clamp(1.4rem, 3vw, 2.4rem); border-radius: var(--rayon-fenetre); background: radial-gradient(120% 140% at 0% 0%, var(--section-fond), transparent 70%), var(--carte); border: 1px solid color-mix(in srgb, var(--section) 25%, var(--filet)); max-width: none; }
-.releve-site [data-section] > header::before { content: ""; position: absolute; inset: 0 auto 0 0; inline-size: 0.3rem; border-radius: var(--rayon-fenetre) 0 0 var(--rayon-fenetre); background: var(--section); }
+.releve-site [data-section] > header { position: relative; padding: clamp(1.4rem, 3vw, 2.4rem); border-radius: var(--rayon-fenetre); background: radial-gradient(120% 140% at 0% 0%, var(--section-fond), transparent 70%), var(--carte); border: 1px solid color-mix(in srgb, var(--section) 25%, var(--filet)); max-width: none; overflow: hidden; isolation: isolate; }
+.releve-site [data-section] > header::before { content: ""; position: absolute; inset: 0 auto 0 0; inline-size: 0.3rem; background: var(--section); }
 .releve-site [data-section] > header > * { max-width: 46em; }
 .releve-site [data-section] .projets-famille > h2 { padding: 0.35em 0.8em 0.35em 0.6em; margin-inline-start: -0.6em; border-radius: var(--rayon-bouton); background: linear-gradient(90deg, var(--section-fond), transparent 80%); justify-self: start; }
 .releve-site .section-tete h2::after { content: ""; display: block; inline-size: 2.6rem; block-size: 0.28rem; margin-block-start: 0.55rem; border-radius: 999px; background: var(--section); }
