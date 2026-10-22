@@ -3,6 +3,7 @@ import { useTranslations } from 'next-intl';
 import type { ProjectMetadata } from '@/lib/mdx/projects';
 import { ETIQUETTE_ECOLE, piecesEcole, statutEcole } from '@/lib/releve/ecole';
 import { Cartouche } from './cartouche';
+import { DetailsProjet } from './details-projet';
 import { PieceJustificative } from './piece-justificative';
 
 interface CarteEcoleProps {
@@ -35,7 +36,7 @@ export function CarteEcole({ meta, href, rang }: CarteEcoleProps) {
         {meta.date.slice(0, 4)} · {meta.tags.slice(0, OUTILS_MAX).join(' · ')}
       </p>
       <div className="projet-liens">
-        <Link href={href}>{t('projets.voirFiche')} →</Link>
+        <DetailsProjet slug={meta.slug} collection="projects" pageHref={href} />
       </div>
     </article>
   );

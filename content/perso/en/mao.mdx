@@ -1,0 +1,112 @@
+---
+title: "MAO - Multi-Agent Orchestrator"
+description: "Framework orchestrating Claude agents (Prompt, Chef, Worker) to build projects end to end through Claude Code CLI"
+date: "2026-02-03"
+category: "perso"
+tags: ["Python 3.11", "FastAPI", "React 19", "Vite", "Claude Code CLI", "WebSockets", "Pydantic", "Multi-Agent"]
+featured: true
+status: "pause"
+gallery: []
+techDetails: |
+  ## Concept
+
+  Three Claude agents collaborate to bootstrap a full project:
+
+  ```
+  ┌──────────────┐
+  │ PromptAgent  │  Dialogue with the user
+  │  (dialogue)  │  → specs, bootstrap, prompts
+  └──────┬───────┘
+         │  mao run
+         ▼
+  ┌──────────────┐       ┌──────────────┐
+  │  ChefAgent   │ ────▶ │ WorkerAgent  │
+  │  (plans)     │ ◀──── │ (executes)   │
+  └──────────────┘       └──────────────┘
+                          Claude Code CLI → real code on disk
+  ```
+
+  Workflow: `mao init` → conversation → `mao run` → bootstrapped project.
+
+  ## Subscription instead of API
+
+  The main provider calls **Claude Code CLI as a subprocess** (`claude --print --output-format=json`) instead of the Anthropic API. MAO uses the Claude Code subscription; the returned JSON is used to track tokens and estimated cost per run. The direct API provider is still a stub.
+
+  ## Memory system
+
+  MAO records what it learns during execution, in five types: PATTERN, LEARNING, DECISION, ERROR, SUCCESS.
+
+  - Retrieval without embeddings: weighted sum of tag match, keyword overlap, confidence and recency (exponential decay, 30-day half-life)
+  - Markdown injection into system prompts, within a character budget
+  - Since v1.2: a global memory pool shared across projects
+
+  ## Hierarchical execution
+
+  For large projects, an **ArchitectAgent** splits the work into subsystems before delegating to Chef/Workers. Coordination goes through an internal message bus. Specialised workers (backend, frontend, test, devops) are routed by capability tags. Effort is set per task (`low` → `max`).
+
+  ## Completeness Gate
+
+  A run is only marked complete after a set of registered checks pass (including a smoke test of the project's scripts). Since July 2026, rejection accounting is progress-aware, and an opt-in setting lets a run close with caveats when the gate is exhausted.
+
+  ## Web UI
+
+  Seven React pages (Vite + shadcn/ui components + Zustand + Tailwind 4):
+
+  - **Prompt** - chat with PromptAgent + project list
+  - **Dashboard** - cross-project view: statuses, 30-day runs, memory by type
+  - **Settings** - Chef/Worker configuration
+  - **Approvals** - security queue + audit log
+  - **Split View** - live Chef ↔ Worker over WebSocket (NarratorAgent, timers, effort)
+  - **Stats** - timeline, files and languages produced
+  - **Memory** - entry CRUD, retrieval preview
+
+  ## Security module
+
+  - **Modes**: `autonomous` (default, checks disabled) or `strict` (checks on, risky commands blocked or sent for approval)
+  - **Auto-whitelist** in `strict`: detected dev scripts (package.json, Makefile, pyproject.toml)
+  - **JSONL audit log**
+
+  ## Overnight mode
+
+  For multi-hour runs: uvicorn backend in a detached `tmux` session, atomic per-run checkpoint (temp + swap), resume of an `interrupted` run from the UI, manual pause/resume.
+
+  ## Stack
+
+  | Tech | Version | Role |
+  |------|---------|------|
+  | Python | 3.11+ | Orchestration core |
+  | Pydantic | 2.x | Typed models and settings |
+  | Typer | 0.12+ | CLI |
+  | Loguru | 0.7+ | Structured logs |
+  | FastAPI | 0.109+ | Web UI backend |
+  | WebSockets | 12+ | Live streaming |
+  | React | 19 | Web UI |
+  | Vite | 7 | Front build |
+  | Zustand | 5 | Front state |
+---
+
+# MAO - Multi-Agent Orchestrator
+
+A framework that gets several Claude agents to work together to build whole projects without micro-management.
+
+## Context
+
+Personal project started on 2026-02-03. First versions (0.1 → 0.4) the same day, memory system in v0.5.0 (April 24), cross-project dashboard and run history in v0.8.0 (April 25), v1.2.0 on May 1 with memory shared across projects. The Completeness Gate was reworked in July 2026.
+
+Claude Code alone does good work, but long tasks need constant re-prompting. MAO automates that loop: one agent clarifies the need, another plans, a third executes.
+
+## Features
+
+**Subscription instead of API** - The worker goes through Claude Code CLI as a subprocess: MAO uses the subscription, not per-token API billing.
+
+**Memory system** - MAO records patterns, errors and successes, then feeds them back into the prompts of later runs, including across projects.
+
+**Completeness Gate** - A run only ends once the checks pass.
+
+**Overnight mode** - Detached `tmux`, atomic checkpoint, resume after interruption.
+
+**Live web UI** - Chef/Worker split view over WebSocket, cross-project dashboard, security approval queue.
+
+## Links
+
+Private repo. Tool used locally on WSL, no hosted demo.

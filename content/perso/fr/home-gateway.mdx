@@ -1,0 +1,80 @@
+---
+title: "Home Gateway"
+description: "Hub personnel qui détient seul les accès à mes comptes et les sert, sous contrôle et avec trace, à mes autres applications"
+date: "2026-07-02"
+category: "perso"
+tags: ["TypeScript", "Next.js 16", "PostgreSQL", "Drizzle", "OAuth", "Chiffrement", "Journal d'accès"]
+status: "actif"
+gallery: []
+techDetails: |
+  ## Rôle
+
+  Un point d'entrée unique entre mes applications et mes comptes en ligne (mail, agenda, stockage, dépôts de code, hébergement, banques). Les applications clientes ne détiennent jamais un jeton de service : elles reçoivent un jeton d'appareil propre à chacune, révocable un par un, et le hub fait les appels à leur place.
+
+  ```
+  Extension navigateur ─┐
+  Routines d'assistant ─┤                     ┌─► Comptes mail / agenda / stockage
+  Apps perso ───────────┼─► Hub (portier) ────┼─► Dépôts de code / hébergement
+  Téléphone / PC ───────┘    │                └─► Banques (lecture)
+                             └─► Journal d'accès (écrit avant tout accès)
+  ```
+
+  ## Contrôle d'accès
+
+  - **Jeton d'appareil par client**, stocké haché, borné à une liste de portées (« portes ») et limité en débit
+  - **Une porte = une ligne** dans un registre central : ajouter un accès se fait dans un commit relu
+  - **CORS strict**, jamais ouvert à tous ; une porte non configurée répond une erreur explicite
+  - **Multi-locataire** : le locataire se déduit du jeton présenté, jamais d'une variable ; les portes adossées à des accès propres au propriétaire refusent un jeton invité
+
+  ## Secrets
+
+  - Jetons de rafraîchissement chiffrés (AES-256-GCM) avec données associées liées au propriétaire, au fournisseur et au compte, et une version de clé
+  - Jetons d'accès gardés en mémoire seulement, jamais écrits en base
+  - Connexion du propriétaire fail-closed (liste d'utilisateurs vide = personne n'entre), état OAuth signé + PKCE
+  - Les logs masquent tout ce qui ressemble à un jeton
+
+  ## Traçabilité et feu vert
+
+  - **Journal d'accès fail-closed** : chaque lecture sensible et chaque action est inscrite (quoi, qui, pourquoi) *avant* d'être exécutée ; si la ligne ne peut pas s'écrire, rien ne se passe
+  - **Liste fermée d'actions** : une routine ne peut demander que des actions déclarées dans le code, jamais un paramètre libre
+  - **Feu vert humain** : une action sensible attend ma validation sur mobile, expire si je ne réponds pas, et est refusée si elle a été modifiée après l'envoi (empreinte vérifiée)
+  - **Règles de confiance** : certaines actions répétitives peuvent passer sans bouton, sous une règle explicite, plafonnée sur 24 h et annoncée avant d'agir ; au moindre doute, retour au bouton
+
+  ## Stack
+
+  | Tech | Rôle |
+  |------|------|
+  | Next.js 16 (App Router) | Portes machine + console propriétaire |
+  | TypeScript | Typage strict |
+  | PostgreSQL + Drizzle | Jetons, comptes chiffrés, journal, règles |
+  | NextAuth | Connexion du propriétaire |
+  | Vitest | Tests (chiffrement, masquage, portier, actions) |
+
+  Couches route → service → repository, migrations additives seulement, rejouées de façon idempotente au build.
+---
+
+# Home Gateway
+
+Le point d'accès unique de mon écosystème perso : il garde les clés, les autres apps demandent.
+
+## Contexte
+
+Projet perso démarré en juillet 2026, d'abord pour alimenter la page « nouvel onglet » de mon navigateur sans y stocker de jeton. Il est devenu le hub de mon assistant personnel : chaque nouveau service passe par lui plutôt que par un connecteur de plus.
+
+## Fonctionnalités
+
+**Lecture centralisée** :
+- Flux en lecture pour mes notes, agendas, mails, tâches, dépôts, déploiements et soldes bancaires
+- Plusieurs comptes par service, connectés depuis une console privée
+
+**Actions sous contrôle** :
+- Brouillons et envois de mail, rangement de fichiers, écriture d'agenda, capture rapide dans mes notes
+- Validation humaine sur mobile pour ce qui est sensible, règles de confiance pour le reste
+
+**Gouvernance** :
+- Jetons d'appareil révocables un par un depuis la console
+- Journal de chaque accès consultable, jamais purgé sans décision de ma part
+
+## Liens
+
+Repo privé. Infrastructure personnelle, pas de démo publique.

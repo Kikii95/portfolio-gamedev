@@ -1,0 +1,77 @@
+---
+title: "Drink'n'Reveal"
+description: "Jeu de cartes à boire pour adultes : un deck physique prêt pour l'imprimeur et une PWA compagnon qui joue la partie"
+date: "2026-07-05"
+category: "perso"
+tags: ["Next.js 16", "React 19", "TypeScript", "PWA", "SVG", "pdf-lib", "sharp", "Vitest", "Playwright"]
+status: "stable"
+buildUrl: "https://drink-n-reveal.vercel.app"
+gallery: []
+techDetails: |
+  ## Architecture
+
+  Séparation stricte, imposée par une règle ESLint `no-restricted-imports` :
+
+  ```
+  core/        domaine pur : données des cartes + moteur de jeu
+               (reducer, pile de résolution, deck, RNG, gorgées)
+               aucun import React, Next ou navigateur
+       │
+  lib/         adaptateurs : tokens design, pipeline PDF, IndexedDB, hooks
+       │
+  components/  UI React, dont CardFace (faces de cartes en SVG)
+  app/         écrans : préparation, table, deck, règles, aperçu impression
+  scripts/     print.ts, verify-print.ts, generate-icons.mjs
+  ```
+
+  ## Une seule face de carte pour l'écran et l'impression
+
+  Chaque face est un composant SVG-React. À l'écran, il est rendu tel quel ; pour l'impression, il est sérialisé (`renderToStaticMarkup`), puis rasterisé par `sharp` à 300 dpi. Aucun navigateur headless dans la chaîne. Les couleurs des faces sont en sRGB hexadécimal pour la rasterisation, et reprises en variables CSS côté écran.
+
+  ## Pipeline d'impression
+
+  - `pnpm print` produit des PDF recto-verso : impositions A4 et A3, et cartes à l'unité
+  - Format poker 63 × 88 mm, fond perdu de 3 mm, repères de coupe
+  - `pnpm print:verify` contrôle dimensions, TrimBox/BleedBox et résolution
+
+  ## Moteur de jeu
+
+  - État immuable et sérialisable en JSON, persisté hors ligne (localStorage + IndexedDB, aucune base de données)
+  - Deck assemblé selon le nombre de joueurs, tirage reproductible par graine (mulberry32)
+  - Les totaux de cartes par palier sont dérivés par le code : la spécification d'origine était incohérente, un test imprime le rapport d'écarts
+  - Journal d'événements structuré avec migration de l'état en v2
+  - Tests unitaires Vitest sur le moteur, parcours de bout en bout Playwright en viewport mobile ; 6 ADR
+---
+
+# Drink'n'Reveal
+
+Un jeu de cartes à boire pour soirées entre amis, en deux formats : le deck imprimé, et une PWA qui fait tourner la partie sur un téléphone.
+
+## Contexte
+
+Projet perso démarré en juillet 2026, pour 1 ou 2 exemplaires, sans publication. Le deck physique est la priorité ; la PWA sert de compagnon. Jeu réservé aux adultes, à consommer avec modération : une option douce remplace les gorgées par un gage ou une boisson sans alcool.
+
+## Fonctionnalités
+
+**Le jeu** :
+- À chaque tour, le joueur actif pioche une carte Question et une carte Spéciale
+- Quatre types de questions : Secrète, Publique, « Qui est le plus… » (superlatif à deviner) et Action
+- En préparation, pas encore publié : un cinquième type, « Le verdict » (accusation tranchée au vote du groupe), et un thème imposé affiché pendant le chrono des superlatifs
+- 20 types de cartes spéciales pour dévier, bloquer ou renvoyer un effet
+- Le nombre de gorgées augmente à chaque manche
+- Deck ajusté au nombre de joueurs grâce à trois symboles de palier
+
+**La PWA compagnon** :
+- Partie complète jouable hors ligne, installable
+- Thème sombre néon
+- Écrans repensés pour une lecture rapide : qui joue, quoi faire, quel effet
+
+**Le deck physique** :
+- PDF prêts pour l'imprimeur, générés depuis les mêmes faces que l'écran
+- Guide d'impression et de découpe dans la documentation du projet
+
+## Liens
+
+- [Accéder à la PWA](https://drink-n-reveal.vercel.app)
+
+Repo privé.

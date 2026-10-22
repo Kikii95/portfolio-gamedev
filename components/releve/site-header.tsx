@@ -3,29 +3,30 @@ import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
 import { chemin, LIENS } from '@/lib/releve/chemin';
 import { BasculeTheme } from './bascule-theme';
+import { IndicateurNav } from './indicateur-nav';
 
 export function SiteHeader() {
   const t = useTranslations('releve.nav');
   const locale = useLocale();
   const accueil = chemin(locale);
   const ancres = [
-    { href: `${accueil}#realisations`, label: t('realisations') },
-    { href: `${accueil}#methode`, label: t('methode') },
-    { href: `${accueil}#parcours`, label: t('parcours') },
-    { href: `${accueil}#contact`, label: t('contact') },
+    { id: 'realisations', label: t('realisations') },
+    { id: 'methode', label: t('methode') },
+    { id: 'parcours', label: t('parcours') },
+    { id: 'contact', label: t('contact') },
   ];
   const autreLangue = locale === 'fr' ? 'en' : 'fr';
   const liens = (
     <>
       {ancres.map((a) => (
-        <a key={a.href} href={a.href}>
+        <a key={a.id} href={`${accueil}#${a.id}`} data-ancre={a.id}>
           {a.label}
         </a>
       ))}
-      <Link href={chemin(locale, '/projets')} className="nav-perso">
+      <Link href={chemin(locale, '/projets')} className="nav-perso" data-page="/projets">
         {t('projets')}
       </Link>
-      <Link href={chemin(locale, '/ecole')} className="vers-atelier nav-ecole">
+      <Link href={chemin(locale, '/ecole')} className="vers-atelier nav-ecole" data-page="/ecole">
         {t('atelier')}
       </Link>
       <Link href={chemin(autreLangue)} hrefLang={autreLangue} className="langue">
@@ -47,6 +48,7 @@ export function SiteHeader() {
         </Link>
         <nav className="nav-large" aria-label={t('menu')}>
           {liens}
+          <IndicateurNav />
         </nav>
         <details className="menu">
           <summary>{t('menu')}</summary>

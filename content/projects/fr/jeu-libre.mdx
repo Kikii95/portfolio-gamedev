@@ -1,0 +1,63 @@
+---
+title: "Jeu Libre : RPG naval au tour par tour"
+description: "Prototype de RPG stratégique en C++ et SFML 3 sur moteur ECS maison : exploration d'îles, navigation, combat sur grille hexagonale"
+date: "2025-03-17"
+category: "école"
+cartouche: "Hex"
+tags: ["C++", "SFML 3", "ECS", "Tour par tour", "Grille hexagonale", "JSON", "Game Design"]
+featured: false
+status: "archive"
+gallery: []
+techDetails: |
+  ## Architecture
+
+  Solution en deux projets générés par un `SolutionGenerator` (`config/settings.json`) :
+
+  ```
+  Engine (bibliothèque statique, SFML 3 en static)
+      ├── Entity / EntityManager / EntityFactory
+      ├── 37 composants (Transform, Render, Combat, CrewMember, Navire, FogOfWar, TurnOrder…)
+      ├── 34 systèmes + SystemManager
+      └── Bases de données JSON : actions, effets, objets, butin, stats, tuiles, spawners
+  Game (exécutable)
+      └── 10 scènes : exploration navale, 5 îles, combat terrestre, options…
+  ```
+
+  ## Points techniques
+
+  - **Grille hexagonale** : directions et voisinage en coordonnées décalées (`HexDirection`, parité de ligne).
+  - **Ordre des tours** : file triée par initiative totale (`SystemTurnOrder`).
+  - **Cartes** : chargement des îles depuis des fichiers JSON (`TileMapLoader`, nlohmann/json), un fichier de carte et un
+    fichier de spawners par île.
+  - **Données pilotées** : actions, effets, objets et tables de butin décrits en JSON et chargés au démarrage.
+
+  ## Stack
+
+  | Tech | Rôle |
+  |------|------|
+  | C++ | Langage |
+  | SFML 3.0.0 | Rendu, fenêtre, audio |
+  | nlohmann/json | Données et cartes |
+  | Visual Studio | Build (projets générés) |
+---
+
+# Jeu Libre : RPG naval au tour par tour
+
+Prototype de RPG stratégique développé pour le projet « Jeu Libre » de Gaming Campus, sur un moteur ECS écrit à la main.
+
+## Contexte
+
+Le Game Design Document (mars 2025) décrit un RPG au tour par tour où le joueur, capitaine d'un navire dans un monde
+semi-futuriste majoritairement maritime, recrute un équipage, explore des îles et combat sur terre (cases hexagonales,
+jets de dés, initiative) et sur mer. Le moteur a d'abord été monté dans un dépôt « ECS 2D » (SFML 2.5, mars 2025),
+puis repris sous SFML 3.
+
+## Ce que j'y ai fait
+
+Tous les commits du dépôt sont les miens : le moteur ECS (entités, composants, systèmes, bases de données JSON), les scènes d'exploration navale et des cinq îles,
+la scène de combat terrestre sur grille hexagonale, et le Game Design Document. Ce moteur a ensuite servi de base au
+Template ECS.
+
+## Liens
+
+Dépôt privé (école).

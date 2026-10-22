@@ -1,0 +1,84 @@
+---
+title: "Motjuste"
+description: "French arrow-word puzzle generator and game, as an offline PWA with grids synced across devices"
+date: "2026-10-17"
+category: "perso"
+tags: ["Next.js 16", "React 19", "TypeScript", "PWA", "Web Worker", "IndexedDB", "Drizzle", "Neon Postgres", "Passkeys"]
+status: "actif"
+buildUrl: "https://motjuste.vercel.app"
+gallery: []
+techDetails: |
+  ## Generation engine
+
+  The engine (`lib/engine/`) is pure and deterministic: no framework or database import, it runs from the command line as well as in the browser. A seed always yields the same grid.
+
+  ```
+  mask.ts      grid shape
+     │
+  slots.ts     word slots
+     │
+  assign.ts    clue placement by matching
+               (max 2 clues per cell, every cell used)
+     │
+  fill.ts      constraint-based filling
+               (MRV + forward checking + node budget)
+     │
+  generate.ts  final grid
+  ```
+
+  In the app, generation runs in a Web Worker. A bench (`pnpm bench`) measures success rate, time and grid quality.
+
+  ## Clue bank
+
+  - Base lexicon: Lexique 3.83 (CC BY-SA 4.0)
+  - 8,877 words, each with three clue levels: direct, classic, cryptic
+  - Written in batches following a guide, checked at merge time: a clue never contains the word or its family, 28 characters max
+  - The generator only sees defined words
+
+  ## Device first, server second
+
+  - Grids stored in IndexedDB, the game is fully playable without a database or account
+  - Signed in, grids in progress and finished sync
+  - Layered server: API routes → services → repositories → Drizzle schema; pages never import the database
+  - Account with a first-login link and passkeys (next-auth v5 + SimpleWebAuthn)
+
+  ## Progress protection
+
+  - Migrations applied at build time, and any destructive migration fails the build
+  - Replaced versions of each grid kept 60 days on the server
+  - Catalogue locked by a fingerprint registry: a published grid can no longer change its words
+  - Size rules (file, component, function) enforced by ESLint; 5 ADRs
+---
+
+# Motjuste
+
+Endless French arrow-word grids, with real words and hand-written clues, on phone as well as computer.
+
+## Context
+
+Personal project started on October 17, 2026, for my own use and a few guests. The target: newspaper puzzle pages, with difficulty levels 1 to 4. It went from 0.1.0 to 0.8.1, in production, between October 17 and 19.
+
+## Features
+
+**The grids**:
+- Generated on demand, difficulty 1 to 4, several sizes
+- Three clue levels per word
+- Daily grid, numbered like an edition, with difficulty following the week; it earns extra points and past days stay available
+- The clue strip tells whether the typed word is right or not yet
+- "Corrected in the margin" screen at the end of a grid
+
+**Progress**:
+- Ten achievements and ten items to unlock (colors, paper, effect, titles)
+- Found-word effects: ink stamp on the whole word, sparks, halo, letter rain
+- A single Customize page: theme, color, letters, effect, paper, icon; the change shows at once
+
+**Account**:
+- Optional, with passkeys
+- Invite a friend with a single-use link, the guest picks their own address
+- Report a clue in two taps
+
+## Links
+
+- [Play](https://motjuste.vercel.app)
+
+Private repo.

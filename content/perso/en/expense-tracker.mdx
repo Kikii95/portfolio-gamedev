@@ -1,0 +1,76 @@
+---
+title: "Expense Tracker"
+description: "Offline-first personal expense tracker in Flutter web, with optional sync across devices"
+date: "2026-07-01"
+category: "perso"
+tags: ["Flutter", "Dart", "Riverpod", "Hive", "TypeScript", "Neon Postgres", "Drizzle", "Vercel", "Offline-first"]
+status: "actif"
+buildUrl: "https://expense-tracker-one-bay-10.vercel.app"
+gallery: []
+techDetails: |
+  ## Architecture
+
+  A single Flutter web app, organized by feature: each `lib/features/<name>/` folder holds three layers.
+
+  ```
+  presentation/  screens, widgets, @riverpod controllers
+       │
+  domain/        immutable freezed entities, interfaces, pure services (no Hive import)
+       │
+  data/          Hive DTOs + hand-written mappers + repositories
+  ```
+
+  Data lives in the browser (Hive). An account stays optional: signed in, the app pushes and pulls a delta to TypeScript Vercel serverless functions backed by Neon Postgres (Drizzle). The local store remains the source of truth; sync runs in the background and never blocks a read or a write.
+
+  ## Technical choices
+
+  - **Exact amounts**: integers in the currency's smallest unit; the number of decimals is derived from ISO-4217 (0 for the yen, 3 for some dinars), never hardcoded to 2.
+  - **Derived balance**: an account's balance is computed from its transactions, never stored.
+  - **Cross-currency transfers**: debited amount, credited amount and the applied rate frozen at creation.
+  - **Conflicts**: last-write-wins per row, server revision cursor, deletions synced as tombstones.
+  - **Frozen registries**: Hive type ids and field numbers reserved for life, versioned schema with idempotent migrations.
+  - **Authentication**: argon2id password hashing, JWT session in an httpOnly cookie.
+  - **State**: 100% Riverpod code generation, no StateNotifier or ChangeNotifier.
+
+  ## Quality
+
+  - Strict `very_good_analysis` and `riverpod_lint` lints.
+  - Flutter tests on the app side, Vitest on the API side with an in-memory Postgres (PGlite): no test needs a real database.
+  - GitHub Actions CI on both halves; 24 architecture decisions recorded as ADRs.
+---
+
+# Expense Tracker
+
+A personal cash book that works with no account and no network, and syncs across devices when you want it to.
+
+## Context
+
+Personal project started in July 2026. The goal: track expenses with fast entry, amounts that are always exact, and data that stays in the browser by default. Art direction v2, "the household cash book, kept clean", has been in production since October 2026.
+
+## Features
+
+**Entry**:
+- Amount-first quick entry (numeric keypad, category grid with a pre-selected suggestion), opened with the `n` key on the web
+- Expenses, income and transfers, with notes, tags and reversible deletion
+- Recurrences materialized on launch, with bounded catch-up
+
+**Organization**:
+- Multiple accounts, each with its own currency and opening balance
+- Default and custom categories, with keywords feeding the suggestion
+- Budgets per category or per account, with an explicit state when an exchange rate is missing
+- Multi-currency with manually entered rates
+
+**Reading**:
+- Dashboard with summaries and charts over a period
+- French and English interface, light or dark theme
+
+**Import**:
+- Bank CSV statement import: encoding, delimiter, decimals and dates detected, offline categorization and de-duplication
+- Optional AI pass on uncertain rows only, sending nothing but the merchant label
+- Being integrated, not yet in service: on the owner side, bank operations imported through his personal hub, simulated by default, and matched with expenses told in his Memogram journal
+
+## Links
+
+- [Open the app](https://expense-tracker-one-bay-10.vercel.app)
+
+Private repo.

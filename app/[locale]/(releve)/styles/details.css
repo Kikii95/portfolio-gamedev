@@ -1,0 +1,29 @@
+/* Fenêtre « Tout le détail » : une feuille du relevé posée par-dessus la page */
+.releve-site .ouvrir-details { font: inherit; font-weight: 600; color: var(--section); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--section) 40%, transparent); text-underline-offset: 0.2em; }
+.releve-site .ouvrir-details span { display: inline-block; transition: transform 220ms var(--courbe); }
+.releve-site .ouvrir-details:hover span { transform: rotate(90deg); }
+
+.releve-site .fenetre-details { inline-size: min(100% - 2rem, 54rem); max-block-size: min(100dvh - 2rem, 60rem); padding: 0; border: 0; border-radius: 0.75rem; background: var(--carte); color: var(--encre); box-shadow: 0 2rem 4rem -1.5rem rgb(0 0 0 / 0.45); overflow: hidden; }
+.releve-site .fenetre-details[open] { animation: feuille-monte 420ms var(--courbe) both; }
+.releve-site .fenetre-details::backdrop { background: color-mix(in srgb, var(--encre) 45%, transparent); backdrop-filter: blur(0.35rem); animation: voile-entre 300ms ease both; }
+.releve-site .fenetre-feuille { display: grid; grid-template-rows: auto 1fr; max-block-size: inherit; border-block-start: 0.35rem solid var(--section); }
+.releve-site .fenetre-barre { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 0.7rem clamp(1rem, 3vw, 2rem); border-bottom: 1px dashed var(--filet); font-size: 0.8rem; color: var(--encre-pale); background: var(--carte); }
+.releve-site .fermer-details { font: inherit; color: var(--encre); background: var(--papier-pli); border: 1px solid var(--filet); border-radius: 999px; padding: 0.3rem 0.8rem; cursor: pointer; }
+.releve-site .fermer-details:hover { border-color: var(--section); }
+.releve-site .fermer-details kbd { font-family: var(--mono); font-size: 0.75em; color: var(--encre-pale); margin-inline-start: 0.3rem; }
+.releve-site .fenetre-contenu { overflow-y: auto; overscroll-behavior: contain; padding: clamp(1.2rem, 3vw, 2.2rem) clamp(1rem, 3vw, 2rem) clamp(2rem, 4vw, 3rem); display: grid; gap: 1.6rem; }
+.releve-site .fenetre-tete { display: grid; gap: 0.7rem; }
+.releve-site .fenetre-tete h2 { font-size: clamp(1.6rem, 2vw + 1rem, 2.4rem); letter-spacing: -0.02em; }
+.releve-site .fenetre-tete h2::after { content: "."; color: var(--section); }
+.releve-site .fenetre-contenu .projet-liens a { color: var(--section); }
+.releve-site .fenetre-contenu .fiche-corps h2 { border-inline-start: 3px solid var(--section); padding-inline-start: 0.7rem; }
+.releve-site .fenetre-contenu pre { overflow-x: auto; font-size: 0.8rem; }
+.releve-site .fenetre-contenu table { display: block; overflow-x: auto; }
+.releve-site .labo-liste li { grid-template-columns: minmax(8rem, 14rem) 1fr auto; align-items: baseline; }
+.releve-site .labo-liste .ouvrir-details { font-size: 0.85rem; white-space: nowrap; }
+
+@keyframes feuille-monte { from { opacity: 0; transform: translateY(2rem) scale(0.98); } to { opacity: 1; transform: none; } }
+@keyframes voile-entre { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .releve-site .fenetre-details[open], .releve-site .fenetre-details::backdrop { animation: none; }
+}

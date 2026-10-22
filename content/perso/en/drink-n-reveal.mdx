@@ -1,0 +1,77 @@
+---
+title: "Drink'n'Reveal"
+description: "Adult drinking card game: a print-ready physical deck and a companion PWA that runs the game"
+date: "2026-07-05"
+category: "perso"
+tags: ["Next.js 16", "React 19", "TypeScript", "PWA", "SVG", "pdf-lib", "sharp", "Vitest", "Playwright"]
+status: "stable"
+buildUrl: "https://drink-n-reveal.vercel.app"
+gallery: []
+techDetails: |
+  ## Architecture
+
+  Strict separation, enforced by an ESLint `no-restricted-imports` rule:
+
+  ```
+  core/        pure domain: card data + game engine
+               (reducer, resolution stack, deck, RNG, drinks)
+               no React, Next or browser import
+       │
+  lib/         adapters: design tokens, PDF pipeline, IndexedDB, hooks
+       │
+  components/  React UI, including CardFace (SVG card faces)
+  app/         screens: setup, table, deck, rules, print preview
+  scripts/     print.ts, verify-print.ts, generate-icons.mjs
+  ```
+
+  ## One card face for screen and print
+
+  Each face is an SVG-React component. On screen it renders as is; for print it is serialized (`renderToStaticMarkup`), then rasterized by `sharp` at 300 dpi. No headless browser in the chain. Face colors are sRGB hex for rasterization, mirrored as CSS variables on screen.
+
+  ## Print pipeline
+
+  - `pnpm print` outputs double-sided PDFs: A4 and A3 impositions, and single cards
+  - Poker size 63 × 88 mm, 3 mm bleed, crop marks
+  - `pnpm print:verify` checks dimensions, TrimBox/BleedBox and resolution
+
+  ## Game engine
+
+  - Immutable, JSON-serializable state, persisted offline (localStorage + IndexedDB, no database)
+  - Deck assembled by player count, reproducible seeded draw (mulberry32)
+  - Card totals per tier are derived by code: the original spec was inconsistent, and a test prints the discrepancy report
+  - Structured event log with a v2 state migration
+  - Vitest unit tests on the engine, Playwright end-to-end runs in a mobile viewport; 6 ADRs
+---
+
+# Drink'n'Reveal
+
+A drinking card game for nights with friends, in two formats: the printed deck, and a PWA that runs the game on a phone.
+
+## Context
+
+Personal project started in July 2026, for 1 or 2 copies, not published. The physical deck comes first; the PWA is a companion. Adults only, drink responsibly: a soft option swaps sips for a dare or a non-alcoholic drink.
+
+## Features
+
+**The game**:
+- Each turn, the active player draws a Question card and a Special card
+- Four question types: Secret, Public, "Who is the most…" (a superlative to guess) and Action
+- In progress, not yet released: a fifth type, "The verdict" (an accusation settled by a group vote), and an assigned theme shown during the superlative timer
+- 20 kinds of special cards to deflect, block or send an effect back
+- The number of sips grows each round
+- Deck adjusted to the player count with three tier symbols
+
+**The companion PWA**:
+- Full game playable offline, installable
+- Dark neon theme
+- Screens reworked for quick reading: who plays, what to do, which effect
+
+**The physical deck**:
+- Printer-ready PDFs, generated from the same faces as the screen
+- Printing and cutting guide in the project docs
+
+## Links
+
+- [Open the PWA](https://drink-n-reveal.vercel.app)
+
+Private repo.

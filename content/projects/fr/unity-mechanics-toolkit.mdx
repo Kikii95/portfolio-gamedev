@@ -1,0 +1,53 @@
+---
+title: "Unity Mechanics Toolkit"
+description: "Package Unity de mécaniques réutilisables pour jeux d'horreur à la première personne, avec générateurs de scènes de démo"
+date: "2025-11-15"
+category: "perso"
+cartouche: "FPS"
+tags: ["Unity", "C#", "Package UPM", "Outils Editor", "IA", "Horreur"]
+featured: false
+status: "pause"
+gallery: []
+techDetails: |
+  ## Modules
+
+  | Module | Scripts |
+  |--------|---------|
+  | Movement | FirstPersonController, Sprint, Crouch, Lean (AZERTY) |
+  | Horror | FlashlightSystem (batterie, scintillement), SanitySystem |
+  | Camera | CameraShake, HeadBobbing, LookBehind (demi-tour) |
+  | AI | AIStateMachine, VisionCone, PatrolBehavior (NavMesh), ChaseBehavior |
+  | Interaction | RaycastInteractor, DoorController, ExamineObject, HidingSpot, HighlightSystem |
+  | Combat | Health, MeleeWeapon, BlockDodge |
+  | Audio | FootstepSystem, HeartbeatAudio |
+  | Core | IDamageable, IInteractable, IKillable, IPoolable, GameEvents, extensions, ObjectPool, Singleton |
+
+  ## Outils d'éditeur
+
+  Cinq générateurs de scènes de démo (`Tools > Unity Mechanics Toolkit > Create Demo Scenes`) : joueur, ennemi IA,
+  interactions, combat, et une vitrine horreur qui assemble le tout.
+
+  ## Distribution
+
+  Package UPM (`package.json`, assembly definitions), documentation d'architecture et quatre tutoriels (joueur, IA,
+  interaction, combat).
+---
+
+# Unity Mechanics Toolkit
+
+Boîte à outils Unity qui regroupe les mécaniques classiques d'un jeu d'horreur à la première personne, prêtes à
+glisser dans une scène.
+
+## Contexte
+
+Projet personnel commencé en novembre 2025, après un petit prototype d'horreur Unity
+(« DownStairs Neighbor », octobre 2025 : lampe torche, portes, interactions).
+
+## Ce que j'y ai fait
+
+Une quarantaine de scripts C# rangés par module (déplacement, horreur, caméra, IA, interaction, combat, audio), des
+générateurs de scènes de démo dans l'éditeur, la documentation et les tutoriels.
+
+## Liens
+
+Dépôt privé.

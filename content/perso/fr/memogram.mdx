@@ -1,0 +1,85 @@
+---
+title: "Memogram"
+description: "Journal de mémoire tenu en racontant sa journée à un bot Telegram, en vocal ou en texte, avec résumés du soir, de la semaine, du mois et de l'année"
+date: "2026-10-13"
+category: "perso"
+tags: ["TypeScript", "Next.js 16", "Telegram Bot API", "Mistral", "faster-whisper", "Python", "Drizzle", "PWA"]
+status: "actif"
+gallery: []
+techDetails: |
+  ## Architecture
+
+  Deux moitiés : un serveur toujours joignable et un PC qui fait le travail lourd quand il est allumé.
+
+  ```
+  Telegram (vocal/texte) ──webhook──▶ Next.js sur Vercel + Postgres (Neon)
+                                       ├─ transcription cloud immédiate (Mistral Voxtral)
+                                       ├─ résumés (Mistral) : cron du soir, lundi, 1er du mois
+                                       └─ file de travail du PC
+                                                    ▲
+  PC allumé ── worker Python (toutes les 15 min) ───┘
+               ├─ re-transcrit les vocaux (faster-whisper large-v3, GPU)
+               ├─ fait les résumés que le cloud n'a pas pu faire (claude -p)
+               ├─ archive les vocaux en local
+               └─ recopie le journal dans le vault Obsidian
+  ```
+
+  ## Rien ne dépend d'un crédit
+
+  Chaque passe cloud renvoie un résultat typé ; un échec (clé absente, crédit épuisé, panne) bascule le travail vers la file du PC au lieu de le perdre. Le bot prévient que la transcription arrivera au prochain allumage du PC.
+
+  ## Choix techniques
+
+  - **Deux transcriptions** : Voxtral, guidé par un vocabulaire de noms propres, fait foi ; Whisper sur le PC ne sert que si le cloud a échoué, et n'écrase jamais une correction manuelle.
+  - **Pas de stockage audio côté serveur** : on garde l'identifiant de fichier Telegram, l'archive vit sur le PC.
+  - **États explicites** : une entrée passe par `pending_cloud` → `pending_local` → `done` ; toute modification rend « périmés » les résumés qui couvrent sa date, regénérés au cron suivant.
+  - **Un seul cron** (compatible Vercel Hobby) qui rattrape les jours manqués, regénère du jour vers l'année et envoie le brouillon du soir.
+  - **Worker sobre en mémoire** : il attend d'avoir assez de RAM libre, se déclare première cible en cas de manque de mémoire, et réessaie au tour suivant sans perte.
+  - **Pas de correction « logique » par LLM** sur le texte : sur un journal, inventer est pire que mal orthographier.
+  - **Couches** : routes courtes → services → repositories (Drizzle). Tests Vitest sur PGlite, zéro réseau ; tests pytest côté worker.
+
+  ## Ponts vers d'autres apps
+
+  Une extraction structurée repère ce qui est exprimé comme une intention (tâche, rappel, idée) et l'annonce avant de le confier à l'assistant JARVIS, avec 10 minutes pour annuler. Les nuits, candidatures et dépenses racontées partent vers les apps dédiées seulement si elles sont prouvées par une citation de la note.
+
+  ## Stack
+
+  | Tech | Rôle |
+  |------|------|
+  | Next.js 16 / React 19 | Webhook, API, PWA de relecture |
+  | Drizzle + Postgres (Neon) | Entrées, résumés, files de travail |
+  | Mistral (Voxtral, large, embed) | Transcription, résumés, recherche par le sens |
+  | Python + faster-whisper | Worker PC (GPU) |
+  | Zod, jose | Validation, sessions |
+  | Vitest + PGlite, pytest | Tests sans réseau |
+---
+
+# Memogram
+
+Un journal qu'on tient sans ouvrir d'app : on raconte sa journée au fil de l'eau à un bot Telegram, il transcrit, range et résume.
+
+## Contexte
+
+Projet perso démarré le 13/10/2026, en version 0.8.0 depuis le 17/10. Volontairement séparé de JARVIS : Memogram reste un journal, il ne fait que lui transmettre ce qui ressemble à une demande.
+
+## Fonctionnalités
+
+**Raconter** :
+- Notes en vocal, en texte ou en photo légendée
+- Corriger en répondant à la note, ou compléter avec `+`
+- La journée se coupe à 7 h ; un récit d'un autre jour (« ma journée de jeudi ») est rangé au bon jour
+
+**Relire** :
+- Résumé chaque soir, puis chaque semaine, chaque mois et chaque année
+- Commandes `/aujourdhui`, `/hier`, `/semaine`, `/mois`, `/cherche`, `/qui`
+- Recherche par le sens, sans le mot exact
+- « Il y a un an » dans le message du soir
+- PWA de relecture ouverte par un lien à usage unique envoyé par le bot : jour, semaine, mois, personnes, recherche toujours visible
+
+**Se souvenir** :
+- Exercice de mémoire quotidien : retrouver de tête une note passée, revues espacées
+- Fiche avant un rendez-vous : ce que le journal sait de la personne
+
+## Liens
+
+Repo privé. Données intimes : pas de démo publique.

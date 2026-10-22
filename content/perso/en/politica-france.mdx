@@ -1,0 +1,88 @@
+---
+title: "Politica France"
+description: "Public platform mapping French political life, where every data point links back to its official source"
+date: "2026-06-23"
+category: "perso"
+tags: ["TypeScript", "Next.js 16", "PostgreSQL", "Drizzle", "MapLibre", "D3.js", "Open Data", "Vitest"]
+status: "pause"
+buildUrl: "https://politica-france.vercel.app"
+gallery: []
+techDetails: |
+  ## Principle
+
+  The priority was set from day one: accuracy > completeness > freshness, and no invented data. Every displayed value comes from a raw snapshot kept with its provenance; the whole database can be re-derived from those snapshots.
+
+  ```
+  Official sources ─► Connectors ─► Raw snapshot + provenance (content_hash)
+                                          │
+                                          ▼
+                      Identities + bitemporal versioned facts ─► Services ─► Pages
+  ```
+
+  ## Data model
+
+  - **Identity + fact satellites** versioned bitemporally (what was true, and when we learned it)
+  - Each value typed `FAIT_SOURCE` (taken from a source) or `ANALYSE_DERIVEE` (calculation documented in the methodology)
+  - Idempotent ingestion: a replayed job creates no duplicates
+
+  ## Connectors
+
+  French National Assembly (MPs, votes, amendments), Senate, government composition (DILA), 2024 legislative elections (Ministry of the Interior), European Parliament, Wikidata (descriptions, left-right placement) and Wikipedia (party summaries), the last two flagged as third-party sources. The amendments connector filters the archive by file name so that only the targeted bill is unpacked.
+
+  ## Public mode
+
+  - Rate limiting, CSP and HSTS headers
+  - Legal notice, GDPR page, data protection impact assessment (DPIA), per-entity correction requests
+  - Robots and sitemap depending on the mode (private or public)
+
+  ## Quality
+
+  - Route (≤ 20 lines) → service → repository layers; the database is imported only in repositories
+  - Network-free tests (a real-network health signal runs separately, non-blocking)
+  - Fixed headcounts checked (577 MPs, 348 senators), secret scan before commit
+  - Decisions recorded as ADRs; light and dark palettes checked for AA contrast
+
+  ## Stack
+
+  | Tech | Role |
+  |------|------|
+  | Next.js 16 / React 19 | App Router, server rendering |
+  | TypeScript + zod | Strict typing, validation |
+  | PostgreSQL + Drizzle | Bitemporal data, linear migrations |
+  | MapLibre | Choropleth map of constituencies |
+  | d3-force | Relationship graph |
+  | Tailwind 4 | Interface |
+  | Vitest + PGlite | Tests |
+---
+
+# Politica France
+
+Who sits where, who voted for what: French political life, sourced line by line.
+
+## Context
+
+Personal project started in June 2026 and published online. Phases 0 to 6 and seven follow-up iterations are delivered. The project is on pause, waiting for feedback from its first testers.
+
+## Features
+
+**People and organisations**:
+- French MPs, senators, government members and MEPs, with search on every keystroke
+- Profiles with mandates and attendance rate
+- Parties and groups: description, neutral summary, link to the official programme, left-right placement
+
+**Votes and bills**:
+- Votes with For / Against / Abstain results, individual votes collapsed
+- Amendments: lifecycle from filing to outcome, text and explanatory statement, search by author, group or bill
+
+**Territory and relationships**:
+- Constituency map and 2024 legislative election results
+- Relationship graph between political actors
+
+**Transparency**:
+- Methodology and sources page, CSV export with provenance, correction requests
+- Light or dark theme, automatic or manual
+
+## Links
+
+- [Visit the site](https://politica-france.vercel.app)
+- Private repo.

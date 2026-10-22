@@ -1,0 +1,76 @@
+---
+title: "Expense Tracker"
+description: "Suivi de dépenses personnel en Flutter web, hors ligne d'abord, avec synchronisation optionnelle entre appareils"
+date: "2026-07-01"
+category: "perso"
+tags: ["Flutter", "Dart", "Riverpod", "Hive", "TypeScript", "Neon Postgres", "Drizzle", "Vercel", "Offline-first"]
+status: "actif"
+buildUrl: "https://expense-tracker-one-bay-10.vercel.app"
+gallery: []
+techDetails: |
+  ## Architecture
+
+  Une seule app Flutter web, organisée par fonctionnalité : chaque dossier `lib/features/<nom>/` contient trois couches.
+
+  ```
+  presentation/  écrans, widgets, contrôleurs @riverpod
+       │
+  domain/        entités freezed immuables, interfaces, services purs (aucun import Hive)
+       │
+  data/          DTO Hive + mappers écrits à la main + dépôts
+  ```
+
+  Les données vivent dans le navigateur (Hive). Un compte reste optionnel : connecté, l'app pousse et tire un delta vers des fonctions serverless Vercel en TypeScript adossées à Neon Postgres (Drizzle). Le stockage local reste la source de vérité, la synchro tourne en arrière-plan et ne bloque jamais une lecture ou une écriture.
+
+  ## Choix techniques
+
+  - **Montants exacts** : entiers dans la plus petite unité de la devise ; le nombre de décimales est dérivé de la norme ISO-4217 (0 pour le yen, 3 pour certains dinars), jamais codé en dur à 2.
+  - **Solde dérivé** : le solde d'un compte se calcule à partir des transactions, il n'est jamais stocké.
+  - **Virements multi-devises** : montant débité, montant crédité et taux appliqué figé à la création.
+  - **Conflits** : dernière écriture gagnante par ligne, curseur de révision côté serveur, suppressions synchronisées comme pierres tombales.
+  - **Registres figés** : identifiants de types Hive et numéros de champs réservés à vie, schéma versionné avec migrations idempotentes.
+  - **Authentification** : mots de passe hachés en argon2id, session JWT dans un cookie httpOnly.
+  - **État** : 100 % génération de code Riverpod, sans StateNotifier ni ChangeNotifier.
+
+  ## Qualité
+
+  - Lints `very_good_analysis` et `riverpod_lint` en mode strict.
+  - Tests Flutter côté app, Vitest côté API avec un Postgres en mémoire (PGlite) : aucun test n'a besoin d'une vraie base.
+  - CI GitHub Actions sur les deux moitiés ; 24 décisions d'architecture consignées en ADR.
+---
+
+# Expense Tracker
+
+Un carnet de comptes personnel qui fonctionne sans compte ni réseau, et se synchronise entre appareils quand on le souhaite.
+
+## Contexte
+
+Projet perso démarré en juillet 2026. L'objectif : suivre ses dépenses avec une saisie rapide, des montants toujours justes et des données qui restent dans le navigateur par défaut. La direction artistique v2, « le livre de caisse du foyer, bien tenu », est en production depuis octobre 2026.
+
+## Fonctionnalités
+
+**Saisie** :
+- Saisie rapide qui commence par le montant (pavé numérique, grille de catégories avec suggestion présélectionnée), ouverte avec la touche `n` sur le web
+- Dépenses, revenus et virements, avec notes, tags et suppression réversible
+- Récurrences matérialisées au lancement, avec rattrapage borné
+
+**Organisation** :
+- Plusieurs comptes, chacun avec sa devise et son solde d'ouverture
+- Catégories par défaut et personnalisées, avec mots-clés qui alimentent la suggestion
+- Budgets par catégorie ou par compte, avec un état explicite quand un taux de change manque
+- Multi-devises avec taux saisis à la main
+
+**Lecture** :
+- Tableau de bord avec synthèses et graphiques sur une période
+- Interface en français et en anglais, thème clair ou sombre
+
+**Import** :
+- Import d'un relevé CSV : encodage, séparateur, décimales et dates détectés, catégorisation hors ligne et dédoublonnage
+- Passe d'IA facultative sur les seules lignes incertaines, qui n'envoie que le libellé du marchand
+- En cours d'intégration, pas encore en service : côté propriétaire, import des opérations bancaires via son hub personnel, en simulation par défaut, et rapprochement avec les dépenses racontées dans son journal Memogram
+
+## Liens
+
+- [Accéder à l'app](https://expense-tracker-one-bay-10.vercel.app)
+
+Repo privé.

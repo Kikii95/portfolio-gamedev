@@ -1,0 +1,48 @@
+---
+title: "Survival Stats: Unity save system"
+description: "First-person Unity survival demo with multi-slot JSON saves, auto-save and a persistent inventory"
+date: "2025-10-07"
+category: "école"
+cartouche: "JSON"
+tags: ["Unity 2022.3", "C#", "Persistence", "JSON", "UI", "GitHub Actions"]
+featured: false
+status: "archive"
+gallery: []
+techDetails: |
+  ## Saving
+
+  - `SaveSystem` (singleton kept across scenes): `JsonUtility` serialisation into `Application.persistentDataPath`.
+  - **6 configurable slots** plus an auto-save slot, each paired with a metadata file so the save list can be shown
+    without loading everything.
+  - **Auto-save** every 120 s (adjustable), with an on-screen indicator.
+  - Saved data: health, hunger, thirst, stamina, experience, level, position, camera and player rotation, inventory.
+
+  ## Demo gameplay
+
+  - First-person controller: sprint, crouch, slide (costs stamina).
+  - Pickups, inventory (TAB), pause menu (ESC) with save and load.
+  - Debug keys to change stats and wipe the save.
+
+  ## Tooling
+
+  - GitHub Actions workflow building Unity (Windows, Android, WebGL).
+  - PowerShell scripts to build and clean the project.
+---
+
+# Survival Stats: Unity save system
+
+Unity demo built around a complete save system, made in October 2025 during the 3rd-year "Data persistence" module.
+
+## Context
+
+The module was about saving and loading a game's state. The demo is a test bed: a first-person player with survival
+stats, an inventory and pickups, everything that needs saving.
+
+## What I did
+
+The save system (multiple slots, metadata, auto-save), the save and load interface, the player controller and the
+inventory.
+
+## Links
+
+Private repository.

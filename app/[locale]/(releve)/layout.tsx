@@ -6,6 +6,7 @@ import './styles/mise-en-page.css';
 import './styles/composants.css';
 import './styles/projets.css';
 import './styles/sections.css';
+import './styles/details.css';
 
 export default function ReleveLayout({ children }: { children: React.ReactNode }) {
   return (

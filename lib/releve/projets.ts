@@ -1,7 +1,7 @@
 import type { Piece } from './types';
 
 export type Famille = 'automatisation' | 'app' | 'jeu';
-export type StatutProjet = 'service' | 'beta' | 'pause';
+export type StatutProjet = 'service' | 'beta' | 'dev' | 'pause';
 
 export interface ProjetPerso {
   titre: string;
@@ -10,6 +10,7 @@ export interface ProjetPerso {
   texte: string;
   outils: string[];
   cartouche?: string;
+  detail?: string;
   fiche?: string;
   site?: string;
   piece?: Piece;
@@ -18,6 +19,7 @@ export interface ProjetPerso {
 export interface ProjetLabo {
   titre: string;
   texte: string;
+  detail?: string;
 }
 
 export const FAMILLES: Famille[] = ['automatisation', 'app', 'jeu'];
@@ -69,6 +71,7 @@ export const PROJETS: ProjetPerso[] = [
   },
   {
     titre: 'Memogram',
+    detail: 'memogram',
     famille: 'automatisation',
     statut: 'service',
     texte: 'Un journal tenu en écrivant à un bot Telegram : chaque journée est résumée, rangée par semaine et par mois.',
@@ -77,6 +80,7 @@ export const PROJETS: ProjetPerso[] = [
   },
   {
     titre: 'MAO',
+    detail: 'mao',
     famille: 'automatisation',
     statut: 'pause',
     texte: "Un orchestrateur où deux agents Claude, un chef qui planifie et un ouvrier qui code, construisent un projet de A à Z sans intervention.",
@@ -84,7 +88,17 @@ export const PROJETS: ProjetPerso[] = [
     piece: video('mao', 'mao', 'Deux agents Claude construisent un projet seuls', 'vidéo · 0:28'),
   },
   {
+    titre: 'Home Gateway',
+    detail: 'home-gateway',
+    famille: 'automatisation',
+    statut: 'service',
+    texte: "Le point d'accès unique de mes outils : il détient les accès à mes comptes, les sert à mes autres apps et garde la trace de chaque usage.",
+    outils: ['Next.js', 'PostgreSQL', 'Drizzle', 'NextAuth'],
+    cartouche: 'Passerelle',
+  },
+  {
     titre: 'Obsidian Web',
+    detail: 'obsidian-web',
     famille: 'app',
     statut: 'service',
     texte: "Mes notes Obsidian lisibles et modifiables depuis n'importe quel navigateur : arborescence, recherche, liens.",
@@ -93,6 +107,7 @@ export const PROJETS: ProjetPerso[] = [
   },
   {
     titre: 'Sleep Tracker',
+    detail: 'sleep-tracker',
     famille: 'app',
     statut: 'service',
     texte: "Suivi du sommeil installable sur téléphone : scores, tendances, et des données de santé traitées comme telles.",
@@ -101,6 +116,7 @@ export const PROJETS: ProjetPerso[] = [
   },
   {
     titre: 'HSR Lab',
+    detail: 'hsr-lab',
     famille: 'app',
     statut: 'service',
     texte: "Un assistant pour Honkai: Star Rail : base de connaissances, constructeur d'équipes et conseiller de tirage chiffré.",
@@ -109,6 +125,7 @@ export const PROJETS: ProjetPerso[] = [
   },
   {
     titre: 'Expense Tracker',
+    detail: 'expense-tracker',
     famille: 'app',
     statut: 'service',
     texte: 'Suivi des dépenses hors ligne : saisie rapide, budgets, plusieurs devises, import de relevés bancaires.',
@@ -117,16 +134,36 @@ export const PROJETS: ProjetPerso[] = [
     piece: video('expense-tracker', 'expense-tracker', 'Une dépense notée en trois gestes', 'vidéo · 0:27'),
   },
   {
+    titre: 'HaltèrEgo',
+    detail: 'halterego',
+    famille: 'app',
+    statut: 'dev',
+    texte: 'Un coach de musculation et de calories qui montre ses calculs au lieu de les cacher.',
+    outils: ['Next.js', 'PostgreSQL', 'Drizzle', 'Vitest'],
+    cartouche: 'Musculation',
+  },
+  {
+    titre: 'Politica France',
+    detail: 'politica-france',
+    famille: 'app',
+    statut: 'service',
+    texte: 'La vie politique française en données sourcées : élus, mandats, scrutins, carte des circonscriptions.',
+    outils: ['Next.js', 'PostgreSQL', 'MapLibre', 'D3'],
+    site: 'https://politica-france.vercel.app',
+    piece: video('politica-france', 'politica-france', "Du scrutin à l'élu, chaque chiffre sourcé", 'vidéo · 0:28'),
+  },
+  {
     titre: 'HUMAN',
+    detail: 'humain',
     famille: 'jeu',
     statut: 'beta',
-    texte: "Un jeu de cartes d'introspection en application mobile et web, en bêta auprès de testeurs.",
+    texte: "Un jeu de cartes d'introspection en application mobile et web, en bêta fermée auprès de testeurs invités.",
     outils: ['React Native', 'Expo', 'TypeScript'],
-    site: 'https://humain-beta.vercel.app',
     piece: video('human', 'human', 'Choisir une partie, retourner les cartes', 'vidéo · 0:38'),
   },
   {
     titre: "Drink'n'Reveal",
+    detail: 'drink-n-reveal',
     famille: 'jeu',
     statut: 'service',
     texte: "Un jeu de cartes de soirée (18+) : un deck imprimable et une application compagnon qui marche hors ligne.",
@@ -136,19 +173,20 @@ export const PROJETS: ProjetPerso[] = [
   },
   {
     titre: 'MotJuste',
+    detail: 'motjuste',
     famille: 'jeu',
     statut: 'service',
     texte: 'Des mots fléchés en français générés à l’infini, jouables hors ligne.',
     outils: ['Next.js', 'React', 'PostgreSQL', 'Passkeys'],
     site: 'https://motjuste.vercel.app',
-    cartouche: 'Mots fléchés',
+    piece: video('motjuste', 'motjuste', 'Une grille de mots fléchés remplie, mot à mot', 'vidéo · 0:25'),
   },
 ];
 
 export const LABO: ProjetLabo[] = [
-  { titre: 'Timebeat', texte: 'Suivi du temps de travail sur web, bureau et mobile (Next.js, Tauri, Capacitor, Supabase).' },
-  { titre: 'WSL Terminal', texte: 'Terminal pour WSL2 avec onglets, panneaux, Git, Docker et SSH (Tauri, React, xterm.js).' },
-  { titre: 'Process Tracker', texte: 'Lancer et surveiller ses services de développement locaux depuis une app de bureau (Tauri, React).' },
-  { titre: 'System Monitor', texte: 'Moniteur système léger dans le terminal : CPU, RAM, GPU, réseau (Rust).' },
-  { titre: 'DAW custom', texte: 'Une station audio personnelle pour les mashups et le sound design (C++20, JUCE).' },
+  { titre: 'Timebeat', texte: 'Suivi du temps de travail sur web, bureau et mobile (Next.js, Tauri, Capacitor, Supabase).', detail: 'timebeat' },
+  { titre: 'WSL Terminal', texte: 'Terminal pour WSL2 avec onglets, panneaux, Git, Docker et SSH (Tauri, React, xterm.js).', detail: 'wsl-terminal' },
+  { titre: 'Process Tracker', texte: 'Lancer et surveiller ses services de développement locaux depuis une app de bureau (Tauri, React).', detail: 'process-tracker' },
+  { titre: 'System Monitor', texte: 'Moniteur système léger dans le terminal : CPU, RAM, GPU, réseau (Rust).', detail: 'system-monitor' },
+  { titre: 'DAW custom', texte: 'Une station audio personnelle pour les mashups et le sound design (C++20, JUCE).', detail: 'daw-custom' },
 ];

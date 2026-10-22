@@ -337,25 +337,33 @@
       "statuts": {
         "service": "in production",
         "beta": "in beta",
-        "pause": "paused"
+        "pause": "paused",
+        "dev": "in development"
       },
       "voirFiche": "Read the case",
       "voirSite": "Visit the site",
       "labo": "Lab",
       "laboChapo": "Experiments and tools on hold, kept for what they taught me.",
-      "tous": "All my projects"
+      "tous": "All my projects",
+      "details": "Full details",
+      "fermer": "Close",
+      "ouvrirPage": "Open the page"
     },
     "ecole": {
       "metaTitre": "School & game dev — Killian Abboud",
-      "surtitre": "{nombre} Bachelor projects",
+      "surtitre": "{nombre} game projects",
       "titre": "School & game dev",
-      "chapo": "During my game development Bachelor: C++ and Vulkan engines, pipeline tools, optimisation, and team games in Unity.",
+      "chapo": "During my game development Bachelor: C++ and Vulkan engines, pipeline tools, optimisation, team games in Unity. And on the side, my own game projects.",
       "statuts": {
         "encours": "in progress",
         "termine": "finished",
         "pause": "paused"
       },
-      "retour": "All school projects"
+      "retour": "All school projects",
+      "familles": {
+        "ecole": "Game development Bachelor",
+        "perso": "Game projects on my own"
+      }
     }
   }
 }

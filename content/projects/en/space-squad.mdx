@@ -1,0 +1,60 @@
+---
+title: "Space Squad"
+description: "C# console space shoot'em up with RPG elements: enemy waves, exploration, quests, elemental types"
+date: "2025-09-30"
+category: "école"
+cartouche: "C#"
+tags: ["C#", ".NET 8", "Console", "OOP", "Unit tests", "Gameplay"]
+featured: false
+status: "archive"
+gallery: []
+techDetails: |
+  ## Architecture
+
+  ```
+  GameManager
+      ├── FightScene    → enemy waves, projectiles, abilities
+      ├── ExploreScene  → exploration, chests, quest givers
+      ├── Canvas        → console rendering (kernel32 calls via P/Invoke)
+      └── QuestManager / Inventory / UIManagerStats
+  ```
+
+  ## Systems
+
+  - **Bitmask elemental types**: four base types (heat, poison, ice, electric) and six combined types (viral, magnetic,
+    radiation, corrosive, gas, blast), with effectiveness multipliers.
+  - **Shooting modes**: single, triple and side shot, described as lists of projectiles.
+  - **Quests**: eight objective types (kill, collect, talk, explore, reach a wave, survive, deal damage, use an
+    ability).
+  - **Stats and power-ups**: stat modifiers and power-ups applied to the ship, choice between four ships.
+
+  ## Tests
+
+  Separate test project (`TestSpaceSquad`): combat, inventory, power-ups, projectiles, quests, stats, type
+  effectiveness.
+
+  ## Stack
+
+  | Tech | Role |
+  |------|------|
+  | C# | Language |
+  | .NET 8 | Runtime, console application |
+---
+
+# Space Squad
+
+C# console game made for the "C# basics" module of 3rd year (Gaming Campus, 2025-2026).
+
+## Context
+
+The module asked for a complete console game in C# (classes, inheritance, interfaces). A week of exercises on an
+inventory and stats system (with its tests) came before the final project.
+
+## What I did
+
+A space shoot'em up that alternates fights against waves and exploration phases, with a custom console renderer, a
+quest system, combinable elemental types, power-ups and a suite of unit tests.
+
+## Links
+
+Private repository (school).

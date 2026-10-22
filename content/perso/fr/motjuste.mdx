@@ -1,0 +1,84 @@
+---
+title: "Motjuste"
+description: "Générateur et jeu de mots fléchés français, en PWA jouable hors ligne, avec grilles synchronisées entre appareils"
+date: "2026-10-17"
+category: "perso"
+tags: ["Next.js 16", "React 19", "TypeScript", "PWA", "Web Worker", "IndexedDB", "Drizzle", "Neon Postgres", "Passkeys"]
+status: "actif"
+buildUrl: "https://motjuste.vercel.app"
+gallery: []
+techDetails: |
+  ## Moteur de génération
+
+  Le moteur (`lib/engine/`) est pur et déterministe : aucun import de framework ni de base, il tourne en ligne de commande comme dans le navigateur. Une graine donne toujours la même grille.
+
+  ```
+  mask.ts      forme de la grille
+     │
+  slots.ts     emplacements des mots
+     │
+  assign.ts    rattachement des définitions par couplage
+               (2 définitions max par case, chaque case utilisée)
+     │
+  fill.ts      remplissage par contraintes
+               (MRV + vérification en avant + budget de nœuds)
+     │
+  generate.ts  grille finale
+  ```
+
+  Dans l'app, la génération tourne dans un Web Worker. Un banc (`pnpm bench`) mesure taux de réussite, temps et qualité des grilles.
+
+  ## Banque de définitions
+
+  - Lexique de base : Lexique 3.83 (CC BY-SA 4.0)
+  - 8 877 mots, chacun avec trois niveaux de définition : direct, classique, détourné
+  - Rédigée par lots selon un guide, contrôlée à la fusion : une définition ne contient jamais le mot ni sa famille, 28 caractères au maximum
+  - Le générateur ne voit que des mots définis
+
+  ## Appareil d'abord, serveur ensuite
+
+  - Grilles stockées en IndexedDB, jeu entièrement jouable sans base ni compte
+  - Connecté, les grilles en cours et terminées se synchronisent
+  - Serveur en couches : routes API → services → dépôts → schéma Drizzle ; les pages n'importent jamais la base
+  - Compte avec lien de première connexion et passkeys (next-auth v5 + SimpleWebAuthn)
+
+  ## Protection de la progression
+
+  - Migrations appliquées au build, et toute migration destructive fait échouer le build
+  - Versions remplacées de chaque grille gardées 60 jours côté serveur
+  - Catalogue verrouillé par un registre d'empreintes : une grille publiée ne peut plus changer de mots
+  - Règles de taille (fichier, composant, fonction) imposées par ESLint ; 5 ADR
+---
+
+# Motjuste
+
+Des grilles de mots fléchés françaises à l'infini, avec de vrais mots et des définitions écrites, sur téléphone comme sur ordinateur.
+
+## Contexte
+
+Projet perso démarré le 17 octobre 2026, pour mon usage et celui de quelques invités. La référence visée : les pages jeux de la presse, avec des forces de 1 à 4. Il est passé de la 0.1.0 à la 0.8.1, en production, entre le 17 et le 19 octobre.
+
+## Fonctionnalités
+
+**Les grilles** :
+- Générées à la demande, forces 1 à 4, plusieurs formats
+- Trois niveaux de définitions par mot
+- Grille du jour, numérotée comme une édition, dont la force suit la semaine ; elle rapporte plus de points et les jours passés restent à rattraper
+- La bande indique si le mot saisi est juste ou pas encore
+- Écran « corrigé en marge » en fin de grille
+
+**La progression** :
+- Dix succès et dix objets à débloquer (couleurs, papier, effet, titres)
+- Effets au mot trouvé : tampon d'encre sur le mot entier, étincelles, halo, pluie de lettres
+- Une seule page Personnaliser : thème, couleur, lettres, effet, papier, icône ; l'effet se voit aussitôt
+
+**Le compte** :
+- Facultatif, avec passkeys
+- Invitation d'un ami par lien à usage unique, l'invité choisit son adresse
+- Signaler une définition en deux touchers
+
+## Liens
+
+- [Jouer](https://motjuste.vercel.app)
+
+Repo privé.

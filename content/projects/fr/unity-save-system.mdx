@@ -1,0 +1,50 @@
+---
+title: "Survival Stats : système de sauvegarde Unity"
+description: "Démo Unity de survie à la première personne avec sauvegarde JSON multi-emplacements, sauvegarde automatique et inventaire persistant"
+date: "2025-10-07"
+category: "école"
+cartouche: "JSON"
+tags: ["Unity 2022.3", "C#", "Persistance", "JSON", "UI", "GitHub Actions"]
+featured: false
+status: "archive"
+gallery: []
+techDetails: |
+  ## Sauvegarde
+
+  - `SaveSystem` (singleton persistant entre scènes) : sérialisation `JsonUtility` dans `Application.persistentDataPath`.
+  - **6 emplacements** configurables + un emplacement automatique, chacun doublé d'un fichier de métadonnées pour
+    afficher la liste des sauvegardes sans tout charger.
+  - **Sauvegarde automatique** toutes les 120 s (réglable), avec indicateur à l'écran.
+  - Données sauvegardées : vie, faim, soif, endurance, expérience, niveau, position, rotation caméra et joueur,
+    inventaire.
+
+  ## Gameplay de démonstration
+
+  - Contrôleur à la première personne : course, accroupi, glissade (coût en endurance).
+  - Objets à ramasser, inventaire (TAB), menu pause (ESC) avec sauvegarde et chargement.
+  - Touches de debug pour modifier les stats et effacer la sauvegarde.
+
+  ## Outillage
+
+  - Workflow GitHub Actions de build Unity (Windows, Android, WebGL).
+  - Scripts PowerShell de build et de nettoyage du projet.
+---
+
+# Survival Stats : système de sauvegarde Unity
+
+Démo Unity construite autour d'un système de sauvegarde complet, réalisée en octobre 2025 pendant le module
+« Persistance des données » de la 3e année.
+
+## Contexte
+
+Le module portait sur la sauvegarde et le chargement de l'état d'un jeu. La démo sert de terrain d'essai : un joueur à
+la première personne avec des stats de survie, un inventaire et des objets à ramasser, tout ce qu'il faut sauvegarder.
+
+## Ce que j'y ai fait
+
+Le système de sauvegarde (emplacements multiples, métadonnées, sauvegarde automatique), l'interface de sauvegarde et
+de chargement, le contrôleur joueur et l'inventaire.
+
+## Liens
+
+Dépôt privé.

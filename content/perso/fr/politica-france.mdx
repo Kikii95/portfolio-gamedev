@@ -1,0 +1,88 @@
+---
+title: "Politica France"
+description: "Plateforme publique de cartographie de la vie politique française où chaque donnée renvoie à sa source officielle"
+date: "2026-06-23"
+category: "perso"
+tags: ["TypeScript", "Next.js 16", "PostgreSQL", "Drizzle", "MapLibre", "D3.js", "Open Data", "Vitest"]
+status: "pause"
+buildUrl: "https://politica-france.vercel.app"
+gallery: []
+techDetails: |
+  ## Principe
+
+  Axe fixé dès le départ : véracité > exhaustivité > fraîcheur, et zéro invention de donnée. Toute valeur affichée vient d'un snapshot brut conservé avec sa provenance ; la base entière est re-dérivable depuis ces snapshots.
+
+  ```
+  Sources officielles ─► Connecteurs ─► Snapshot brut + provenance (content_hash)
+                                              │
+                                              ▼
+                         Identités + faits versionnés bitemporels ─► Services ─► Pages
+  ```
+
+  ## Modèle de données
+
+  - **Identité + satellites de faits** versionnés de façon bitemporelle (ce qui était vrai, et quand on l'a su)
+  - Chaque valeur typée `FAIT_SOURCE` (repris d'une source) ou `ANALYSE_DERIVEE` (calcul documenté dans la méthodologie)
+  - Ingestion idempotente : un job rejoué ne crée pas de doublon
+
+  ## Connecteurs
+
+  Assemblée nationale (députés, scrutins, amendements), Sénat, composition du gouvernement (DILA), législatives 2024 (ministère de l'Intérieur), Parlement européen, Wikidata (descriptions, placement gauche-droite) et Wikipédia (résumés de partis), ces deux derniers marqués comme sources tierces. Le connecteur d'amendements filtre l'archive par nom de fichier pour ne décompresser que le dossier ciblé.
+
+  ## Régime public
+
+  - Limitation de débit, en-têtes CSP et HSTS
+  - Mentions légales, page RGPD, analyse d'impact (DPIA), demande de correction par entité
+  - Robots et sitemap selon le régime (privé ou public)
+
+  ## Qualité
+
+  - Couches route (≤ 20 lignes) → service → repository ; la base n'est importée que dans les repositories
+  - Tests sans réseau (un signal de santé réseau réel tourne à part, non bloquant)
+  - Effectifs figés vérifiés (577 députés, 348 sénateurs), scan de secrets avant commit
+  - Décisions tracées en ADR ; palette claire et sombre vérifiée au contraste AA
+
+  ## Stack
+
+  | Tech | Rôle |
+  |------|------|
+  | Next.js 16 / React 19 | App Router, rendu serveur |
+  | TypeScript + zod | Typage strict, validation |
+  | PostgreSQL + Drizzle | Données bitemporelles, migrations linéaires |
+  | MapLibre | Carte choroplèthe des circonscriptions |
+  | d3-force | Graphe des relations |
+  | Tailwind 4 | Interface |
+  | Vitest + PGlite | Tests |
+---
+
+# Politica France
+
+Qui siège où, qui a voté quoi : la vie politique française, sourcée ligne par ligne.
+
+## Contexte
+
+Projet perso démarré en juin 2026 et mis en ligne publiquement. Les phases 0 à 6 et sept approfondissements sont livrés. Le projet est en pause, en attente des retours des premiers testeurs.
+
+## Fonctionnalités
+
+**Acteurs et organisations** :
+- Députés, sénateurs, gouvernement et eurodéputés français, avec recherche à chaque frappe
+- Fiches avec mandats et taux de présence
+- Partis et groupes : description, résumé neutre, lien vers le programme officiel, placement gauche-droite
+
+**Votes et textes** :
+- Scrutins avec résultat Pour / Contre / Abstention, votes individuels repliés
+- Amendements : cycle de vie du dépôt au sort, dispositif et exposé des motifs, recherche par auteur, groupe ou dossier
+
+**Territoire et relations** :
+- Carte des circonscriptions et résultats des législatives 2024
+- Graphe des relations entre acteurs
+
+**Transparence** :
+- Page méthodologie et sources, export CSV avec provenance, demande de correction
+- Thème clair ou sombre, automatique ou manuel
+
+## Liens
+
+- [Accéder au site](https://politica-france.vercel.app)
+- Repo privé.
