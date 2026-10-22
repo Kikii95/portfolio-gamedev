@@ -112,7 +112,7 @@ export const PROJETS: ProjetPerso[] = [
     statut: 'service',
     texte: "Suivi du sommeil installable sur téléphone : scores, tendances, et des données de santé traitées comme telles.",
     outils: ['Next.js', 'PostgreSQL', 'Drizzle', 'Passkeys'],
-    cartouche: 'Sommeil',
+    piece: video('sleep-tracker', 'sleep-tracker', 'Le score de la nuit, le rituel du soir, les objectifs', 'vidéo · 0:30'),
   },
   {
     titre: 'HSR Lab',
