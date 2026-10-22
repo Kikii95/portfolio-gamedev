@@ -3,7 +3,7 @@
 .releve-site .ouvrir-details span { display: inline-block; transition: transform 220ms var(--courbe); }
 .releve-site .ouvrir-details:hover span { transform: rotate(90deg); }
 
-.releve-site .fenetre-details { margin: 0 0 0 auto; inline-size: min(100%, 46rem); block-size: 100dvh; max-inline-size: 100%; max-block-size: 100dvh; padding: 0; border: 0; border-radius: 0; background: var(--carte); color: var(--encre); box-shadow: 0 2rem 4rem -1.5rem rgb(0 0 0 / 0.45); overflow: hidden; }
+.releve-site .fenetre-details { font-weight: 400; text-align: start; margin: 0 0 0 auto; inline-size: min(100%, 46rem); block-size: 100dvh; max-inline-size: 100%; max-block-size: 100dvh; padding: 0; border: 0; border-radius: 0; background: var(--carte); color: var(--encre); box-shadow: 0 2rem 4rem -1.5rem rgb(0 0 0 / 0.45); overflow: hidden; }
 .releve-site .fenetre-details[open] { animation: feuille-glisse 420ms var(--courbe) both; }
 .releve-site .fenetre-details::backdrop { background: color-mix(in srgb, var(--encre) 45%, transparent); backdrop-filter: blur(0.35rem); animation: voile-entre 300ms ease both; }
 .releve-site .fenetre-feuille { display: grid; grid-template-rows: auto 1fr; block-size: 100%; max-block-size: inherit; border-block-start: 0.35rem solid var(--section); }

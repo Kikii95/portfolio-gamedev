@@ -40,7 +40,7 @@ html:has(.releve-site) {
   --police: var(--font-grotesk), system-ui, sans-serif;
   --mono: var(--font-releve-mono), ui-monospace, monospace;
   --gouttiere: clamp(1rem, 4vw, 3rem);
-  --largeur: min(100% - 2 * var(--gouttiere), 78rem);
+  --largeur: min(100% - 2 * var(--gouttiere), 84rem);
   --courbe: cubic-bezier(0.2, 0.7, 0.2, 1);
 
   min-height: 100vh;

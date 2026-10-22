@@ -28,7 +28,9 @@
 .releve-site .registre-ligne { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.5rem; padding-block: 1rem; padding-inline: 0.4rem; border-bottom: 1px dashed var(--filet); transition: background-color 200ms var(--courbe); }
 .releve-site .registre-ligne:hover { background: linear-gradient(90deg, var(--section-fond), transparent 70%); }
 .releve-site .registre-meta { display: flex; align-items: baseline; justify-content: space-between; gap: 0.6rem; }
-.releve-site .registre-annee { font-size: 0.85rem; color: var(--section); }
+.releve-site .registre-annee { font-size: 0.85rem; color: var(--encre-pale); }
+.releve-site .registre-ligne .ouvrir-details { color: var(--encre-douce); font-size: 0.9rem; }
+.releve-site .registre-ligne .ouvrir-details:hover { color: var(--section); }
 .releve-site .registre-corps { display: grid; gap: 0.35rem; min-width: 0; }
 .releve-site .registre-corps h3 { font-size: clamp(1.1rem, 0.6vw + 0.9rem, 1.35rem); }
 .releve-site .registre-corps h3 a { color: inherit; text-decoration: none; }
@@ -36,8 +38,11 @@
 .releve-site .registre-corps p { color: var(--encre-douce); max-width: 60ch; }
 .releve-site .registre-outils { font-size: 0.78rem; color: var(--encre-pale) !important; }
 @media (min-width: 48em) {
-  .releve-site .registre-ligne { grid-template-columns: 8.5rem minmax(0, 1.6fr) minmax(0, 1fr); gap: clamp(1rem, 2.5vw, 2.4rem); align-items: baseline; }
-  .releve-site .registre-meta { flex-direction: column; justify-content: start; }
-  .releve-site .registre-outils { line-height: 1.7; }
+  .releve-site .registre-ligne { grid-template-columns: 6rem minmax(0, 1fr); grid-template-rows: auto 1fr; column-gap: clamp(1rem, 2.5vw, 2rem); align-items: start; }
+  .releve-site .registre-meta { flex-direction: column; align-items: flex-start; justify-content: start; grid-row: span 2; }
+  .releve-site .registre-outils { grid-column: 2; }
+}
+@media (min-width: 90em) {
+  .releve-site .registre-liste { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(2rem, 4vw, 5rem); }
 }
 @media (prefers-reduced-motion: reduce) { .releve-site .registre-ligne { transition: none; } }
