@@ -132,6 +132,22 @@ restent telles quelles : ce sont des documents agrafés, pas de l'interface.
 Contraste texte ≥ 4,5:1 sur `--papier` pour `--encre`, `--encre-douce`, `--encre-pale` et chaque sémantique.
 Pulsation de l'étape en cours : halo `--feu-vert` alpha 0 → 0,28, rayon ≤ 0,6rem.
 
+### 3.4 Trois portes, trois accents (22/10/2026)
+
+Un seul site, une seule DA ; chaque section a son **accent de structure** (`--section`, `styles/sections.css`). Il teint
+surtitres, filets tracés, numéros de famille, liens, rubrique active de l'en-tête et sélection. **Jamais un état** :
+« en service » reste vert partout, l'erreur reprise reste brique.
+
+| Section | Rôle | Clair | Sombre |
+|---|---|---|---|
+| `/` Automatisation & IA | la page des candidatures | `#12804F` (feu vert) | `#45C487` |
+| `/projets` Projets perso | ce que j'ai construit hors école | `#5B3FB8` violet encre | `#A894F5` |
+| `/ecole` École & gamedev | Bachelor, moteurs, Unity | `#C8143C` carmin (rappel de l'atelier d'origine, plus rosé que la brique) | `#FF5C7A` |
+
+Activation : `data-section="perso|ecole"` sur le conteneur de la page, lu par `.releve-site:has(...)`.
+Un projet sans média reçoit un **cartouche** : bloc typographique (techno principale en gros, année, pile d'outils)
+hachuré à l'accent de la section, à la place d'une vignette vide.
+
 ## 4. Typographie
 
 | Rôle | Police | Pourquoi celle-ci pour ce sujet |

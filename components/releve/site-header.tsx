@@ -22,8 +22,10 @@ export function SiteHeader() {
           {a.label}
         </a>
       ))}
-      <Link href={chemin(locale, '/projets')}>{t('projets')}</Link>
-      <Link href={chemin(locale, '/ecole')} className="vers-atelier">
+      <Link href={chemin(locale, '/projets')} className="nav-perso">
+        {t('projets')}
+      </Link>
+      <Link href={chemin(locale, '/ecole')} className="vers-atelier nav-ecole">
         {t('atelier')}
       </Link>
       <Link href={chemin(autreLangue)} hrefLang={autreLangue} className="langue">

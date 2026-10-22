@@ -16,7 +16,7 @@ export default async function ProjetsPage({ params }: { params: Params }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'releve.projets' });
   return (
-    <div className="page-projets cadre">
+    <div className="page-projets cadre" data-section="perso">
       <header className="projets-entete">
         <p className="mono surtitre">{t('surtitre', { nombre: PROJETS.length + LABO.length })}</p>
         <h1>{t('titre')}</h1>

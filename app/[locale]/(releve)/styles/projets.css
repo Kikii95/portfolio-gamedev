@@ -1,7 +1,7 @@
 /* Page « Projets perso » : même relevé, cartes plus courtes */
 .releve-site .page-projets { padding-block: clamp(2.5rem, 6vw, 5rem); display: grid; gap: clamp(3rem, 6vw, 5rem); }
 .releve-site .projets-entete { display: grid; gap: 0.9rem; max-width: 46em; }
-.releve-site .surtitre { color: var(--feu-vert); font-size: 0.85rem; }
+.releve-site .surtitre { font-size: 0.85rem; }
 .releve-site .projets-famille { display: grid; gap: 1.6rem; border-top: 1px solid var(--filet); padding-top: clamp(1.6rem, 3vw, 2.4rem); }
 .releve-site .projets-grille { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr)); gap: clamp(1.8rem, 3vw, 3rem); align-items: start; }
 .releve-site .projet { display: grid; gap: 0.65rem; }
