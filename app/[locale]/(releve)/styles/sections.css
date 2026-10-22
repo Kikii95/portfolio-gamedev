@@ -22,7 +22,7 @@
 .releve-site .projet p { color: var(--texte-doux); max-width: 44em; }
 .releve-site .projet-outils { font: 400 0.75rem/1.7 var(--donnees); font-variation-settings: "wdth" 87; color: var(--texte-pale) !important; }
 .releve-site .projet-liens { display: flex; flex-wrap: wrap; align-items: center; gap: 0 1.3rem; font-weight: 500; }
-.releve-site .projet-liens > :is(a, button) { display: inline-flex; align-items: center; min-height: 2.75rem; }
+.releve-site .projet-liens > :is(a, button) { display: inline-flex; align-items: center; gap: 0.3em; min-height: 2.75rem; }
 .releve-site .projet-liens a,
 .releve-site .ouvrir-details { color: var(--section); text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--section) 40%, transparent); text-underline-offset: 0.22em; }
 .releve-site .projet-liens a:hover { text-decoration-color: var(--section); }

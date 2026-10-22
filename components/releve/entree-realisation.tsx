@@ -15,7 +15,7 @@ export function EntreeRealisation({ realisation, rang }: { realisation: Realisat
   const fiche = chemin(locale, `/realisations/${realisation.slug}`);
 
   return (
-    <article className="entree" aria-labelledby={`r-${realisation.slug}`}>
+    <article className={rang === 0 ? 'entree premiere' : 'entree'} aria-labelledby={`r-${realisation.slug}`}>
       <header className="entree-tete">
         <p className="entree-meta">
           <span className="numero">{numero}</span>

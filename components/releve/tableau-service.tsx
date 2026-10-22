@@ -1,8 +1,23 @@
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
-import type { Realisation } from '@/lib/releve/types';
+import type { Etape, Realisation } from '@/lib/releve/types';
 import { chemin } from '@/lib/releve/chemin';
 import { PROJETS } from '@/lib/releve/projets';
+
+const JALONS: Etape['type'][] = ['declencheur', 'attente', 'livre'];
+
+function Jalons({ etapes }: { etapes: Etape[] }) {
+  const reperes = JALONS.map((type) => etapes.find((e) => e.type === type)).filter((e): e is Etape => Boolean(e));
+  return (
+    <span className="jalons" aria-hidden="true">
+      {reperes.map((e) => (
+        <span key={e.type} className={`j ${e.type}`}>
+          {e.heure}
+        </span>
+      ))}
+    </span>
+  );
+}
 
 function nomCourt(r: Realisation): string {
   return PROJETS.find((p) => p.fiche === r.slug)?.titre ?? r.titre;
@@ -27,6 +42,7 @@ export function TableauService({ realisations }: { realisations: Realisation[] }
               <span className="chiffre">{r.recu.chiffre}</span>
               <span className="legende">{r.recu.legende}</span>
               <span className="heure">{t('passage', { heure: r.etapes[0]?.heure ?? '' })}</span>
+              <Jalons etapes={r.etapes} />
               {r.etapes.some((e) => e.type === 'attente') && <span className="humain">◆ {t('attente')}</span>}
             </Link>
           </li>
