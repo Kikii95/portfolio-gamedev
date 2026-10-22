@@ -351,15 +351,19 @@
     },
     "ecole": {
       "metaTitre": "School & game dev — Killian Abboud",
-      "surtitre": "{nombre} Bachelor projects",
+      "surtitre": "{nombre} game projects",
       "titre": "School & game dev",
-      "chapo": "During my game development Bachelor: C++ and Vulkan engines, pipeline tools, optimisation, and team games in Unity.",
+      "chapo": "During my game development Bachelor: C++ and Vulkan engines, pipeline tools, optimisation, team games in Unity. And on the side, my own game projects.",
       "statuts": {
         "encours": "in progress",
         "termine": "finished",
         "pause": "paused"
       },
-      "retour": "All school projects"
+      "retour": "All school projects",
+      "familles": {
+        "ecole": "Game development Bachelor",
+        "perso": "Game projects on my own"
+      }
     }
   }
 }

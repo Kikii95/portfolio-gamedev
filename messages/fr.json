@@ -351,15 +351,19 @@
     },
     "ecole": {
       "metaTitre": "École & gamedev — Killian Abboud",
-      "surtitre": "{nombre} projets du Bachelor",
+      "surtitre": "{nombre} projets jeu vidéo",
       "titre": "École & gamedev",
-      "chapo": "Pendant mon Bachelor jeu vidéo : moteurs en C++ et Vulkan, outils de pipeline, optimisation, et des jeux en équipe sous Unity.",
+      "chapo": "Pendant mon Bachelor jeu vidéo : moteurs en C++ et Vulkan, outils de pipeline, optimisation, jeux en équipe sous Unity. Et à côté, mes propres projets de jeu.",
       "statuts": {
         "encours": "en cours",
         "termine": "terminé",
         "pause": "en pause"
       },
-      "retour": "Tous les projets d'école"
+      "retour": "Tous les projets d'école",
+      "familles": {
+        "ecole": "Bachelor jeu vidéo",
+        "perso": "Jeu vidéo, en perso"
+      }
     }
   }
 }

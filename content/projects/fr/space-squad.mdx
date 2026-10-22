@@ -1,0 +1,61 @@
+---
+title: "Space Squad"
+description: "Shoot'em up spatial en console C# avec éléments de RPG : vagues d'ennemis, exploration, quêtes, types élémentaires"
+date: "2025-09-30"
+category: "école"
+cartouche: "C#"
+tags: ["C#", ".NET 8", "Console", "POO", "Tests unitaires", "Gameplay"]
+featured: false
+status: "archive"
+gallery: []
+techDetails: |
+  ## Architecture
+
+  ```
+  GameManager
+      ├── FightScene    → vagues d'ennemis, projectiles, capacités
+      ├── ExploreScene  → exploration, coffres, donneurs de quêtes
+      ├── Canvas        → rendu console (appels kernel32 via P/Invoke)
+      └── QuestManager / Inventory / UIManagerStats
+  ```
+
+  ## Systèmes
+
+  - **Types élémentaires en masque de bits** : quatre types de base (chaleur, poison, glace, électrique) et six types
+    combinés (viral, magnétique, radiation, corrosif, gaz, explosion), avec multiplicateurs d'efficacité.
+  - **Modes de tir** : tir simple, triple, latéral, décrits comme des listes de projectiles.
+  - **Quêtes** : huit types d'objectifs (tuer, collecter, parler, explorer, atteindre une vague, survivre, infliger des
+    dégâts, utiliser une capacité).
+  - **Stats et power-ups** : modificateurs de statistiques et power-ups appliqués au vaisseau, sélection parmi quatre
+    vaisseaux.
+
+  ## Tests
+
+  Projet de tests séparé (`TestSpaceSquad`) : combat, inventaire, power-ups, projectiles, quêtes, stats, efficacité des
+  types.
+
+  ## Stack
+
+  | Tech | Rôle |
+  |------|------|
+  | C# | Langage |
+  | .NET 8 | Runtime, application console |
+---
+
+# Space Squad
+
+Jeu console en C# réalisé pour le module « Bases du C# » de la 3e année (Gaming Campus, 2025-2026).
+
+## Contexte
+
+Le module demandait un jeu console complet en C# (classes, héritage, interfaces). Une semaine d'exercices sur un
+système d'inventaire et de stats (avec ses tests) a précédé le rendu.
+
+## Ce que j'y ai fait
+
+Un shoot'em up spatial qui alterne combat contre des vagues et phases d'exploration, avec un rendu console maison,
+un système de quêtes, des types élémentaires combinables, des power-ups et une batterie de tests unitaires.
+
+## Liens
+
+Dépôt privé (école).

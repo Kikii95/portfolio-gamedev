@@ -6,6 +6,8 @@ import { projetsEcole } from '@/lib/releve/ecole';
 
 type Params = Promise<{ locale: string }>;
 
+const FAMILLES_ECOLE = ['ecole', 'perso'] as const;
+
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'releve.ecole' });
@@ -23,13 +25,20 @@ export default async function EcolePage({ params }: { params: Params }) {
         <h1>{t('titre')}</h1>
         <p className="chapo">{t('chapo')}</p>
       </header>
-      <section className="projets-famille" aria-label={t('titre')}>
-        <div className="projets-grille">
-          {projets.map((p, i) => (
-            <CarteEcole key={p.metadata.slug} meta={p.metadata} rang={i} href={chemin(locale, `/ecole/${p.metadata.slug}`)} />
-          ))}
-        </div>
-      </section>
+      {FAMILLES_ECOLE.map((famille) => {
+        const liste = projets.filter((p) => (p.metadata.category === 'perso') === (famille === 'perso'));
+        if (liste.length === 0) return null;
+        return (
+          <section key={famille} className="projets-famille" aria-labelledby={`famille-${famille}`}>
+            <h2 id={`famille-${famille}`}>{t(`familles.${famille}`)}</h2>
+            <div className="projets-grille">
+              {liste.map((p, i) => (
+                <CarteEcole key={p.metadata.slug} meta={p.metadata} rang={i} href={chemin(locale, `/ecole/${p.metadata.slug}`)} />
+              ))}
+            </div>
+          </section>
+        );
+      })}
     </div>
   );
 }
