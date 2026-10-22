@@ -5,7 +5,7 @@ export function Hero() {
   const t = useTranslations('releve.hero');
 
   return (
-    <section className="hero cadre">
+    <section className="hero">
       <div className="hero-texte">
         <p className="statut mono">
           <span className="voyant" aria-hidden="true" /> {t('statut')}

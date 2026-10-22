@@ -10,7 +10,7 @@ export function Chiffres() {
   const chiffres = t.raw('chiffres') as Chiffre[];
 
   return (
-    <section className="chiffres cadre" aria-label={t('realisations.titre')}>
+    <section className="chiffres" aria-label={t('realisations.titre')}>
       {chiffres.map((c) => (
         <div className="chiffre-ligne" key={c.texte}>
           <span className="valeur mono">{c.chiffre}</span>

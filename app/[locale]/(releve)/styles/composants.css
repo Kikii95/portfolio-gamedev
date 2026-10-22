@@ -30,9 +30,9 @@
 .releve-site .etiquette.reprise { color: var(--reprise); background: var(--reprise-fond); }
 
 /* Relevé du matin : le journal s'écrit ligne à ligne */
-.releve-site .journal { font-family: var(--mono); font-size: 0.85rem; background: var(--carte); border: 1px solid var(--filet); border-radius: var(--rayon-piece); padding: 0.4rem 1.1rem 0.8rem; box-shadow: var(--ombre-agrafe); }
+.releve-site .journal { font-family: var(--mono); font-size: 0.8rem; background: var(--carte); border: 1px solid var(--filet); border-radius: var(--rayon-piece); padding: 0.4rem 1.1rem 0.8rem; box-shadow: var(--ombre-agrafe); }
 .releve-site .journal .entete { display: flex; justify-content: space-between; gap: 1rem; color: var(--encre-pale); border-bottom: 1px dashed var(--filet); padding: 0.55rem 0; margin-bottom: 0.3rem; }
-.releve-site .journal .ligne { display: grid; grid-template-columns: 3.2rem 1fr auto; gap: 0.7rem; padding: 0.38rem 0; animation: ligne-arrive 280ms ease-out both; animation-delay: calc(var(--i) * 160ms + 200ms); }
+.releve-site .journal .ligne { display: grid; grid-template-columns: 3.2rem 1fr auto; gap: 0.7rem; padding: clamp(0.22rem, 0.6vh, 0.38rem) 0; animation: ligne-arrive 280ms ease-out both; animation-delay: calc(var(--i) * 160ms + 200ms); }
 .releve-site .journal .h { color: var(--encre-pale); }
 .releve-site .journal .ok { color: var(--feu-vert); }
 .releve-site .journal .wait { color: var(--attente); }

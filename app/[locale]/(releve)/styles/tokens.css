@@ -1,6 +1,6 @@
 /* Relevé d'exécution — tokens (docs/direction-artistique.md § 3-4) */
 html:has(.releve-site) {
-  font-size: clamp(1rem, 0.35vw + 0.85rem, 1.6rem);
+  font-size: clamp(0.9375rem, 0.22vw + 0.8rem, 1.35rem);
   background: #F5F6F3;
   scroll-behavior: smooth;
 }
@@ -30,8 +30,9 @@ html:has(.releve-site) {
   --voile: rgba(28, 33, 31, 0.08);
   --ombre-agrafe: 0 1px 2px rgba(28, 33, 31, 0.1), 0 0.4rem 1.1rem -0.5rem rgba(28, 33, 31, 0.22);
   --rayon-pastille: 999px;
-  --rayon-piece: 0.375rem;
-  --rayon-bouton: 0.5rem;
+  --rayon-piece: 0.75rem;
+  --rayon-bouton: 0.7rem;
+  --rayon-fenetre: 1.25rem;
   --police: var(--font-grotesk), system-ui, sans-serif;
   --mono: var(--font-releve-mono), ui-monospace, monospace;
   --gouttiere: clamp(1rem, 4vw, 3rem);
@@ -113,24 +114,24 @@ html[data-releve="sombre"] .releve-site {
 .releve-site h1,
 .releve-site h2,
 .releve-site h3 { margin: 0; letter-spacing: -0.02em; text-wrap: balance; }
-.releve-site h1 { font-size: clamp(2.1rem, 4.2vw + 0.6rem, 4.1rem); line-height: 1.02; font-weight: 800; }
-.releve-site h2 { font-size: clamp(1.6rem, 2.2vw + 0.7rem, 2.6rem); line-height: 1.08; font-weight: 750; }
-.releve-site h3 { font-size: clamp(1.2rem, 0.8vw + 0.9rem, 1.55rem); line-height: 1.2; font-weight: 700; }
+.releve-site h1 { font-size: clamp(1.85rem, 2.3vw + 0.7rem, 3.1rem); line-height: 1.05; font-weight: 800; }
+.releve-site h2 { font-size: clamp(1.4rem, 1.2vw + 0.85rem, 2.1rem); line-height: 1.1; font-weight: 750; }
+.releve-site h3 { font-size: clamp(1.1rem, 0.4vw + 0.92rem, 1.35rem); line-height: 1.22; font-weight: 700; }
 .releve-site p { margin: 0; text-wrap: pretty; }
-.releve-site .chapo { font-size: clamp(1.05rem, 0.4vw + 0.95rem, 1.25rem); color: var(--encre-douce); max-width: 38em; }
+.releve-site .chapo { font-size: clamp(1rem, 0.2vw + 0.92rem, 1.12rem); color: var(--encre-douce); max-width: 38em; }
 
 .releve-site .bouton {
   display: inline-grid;
   place-items: center;
-  min-height: 2.875rem;
-  padding: 0 1.25rem;
+  min-height: 2.75rem;
+  padding: 0 1.2rem;
   border-radius: var(--rayon-bouton);
   font-weight: 600;
   text-decoration: none;
   transition: transform 120ms ease, background-color 160ms ease;
 }
 .releve-site .bouton:active { transform: scale(0.97); }
-.releve-site .bouton.plein { background: var(--encre); color: var(--papier); }
-.releve-site .bouton.plein:hover { background: color-mix(in srgb, var(--encre) 86%, var(--papier)); }
+.releve-site .bouton.plein { background: var(--section); color: var(--sur-accent); box-shadow: 0 0.5rem 1.2rem -0.6rem color-mix(in srgb, var(--section) 70%, transparent); }
+.releve-site .bouton.plein:hover { background: color-mix(in srgb, var(--section) 86%, var(--encre)); }
 .releve-site .bouton.trait { border: 1px solid var(--marge); color: var(--encre); background: var(--carte); }
 .releve-site .bouton.trait:hover { border-color: var(--encre-pale); }

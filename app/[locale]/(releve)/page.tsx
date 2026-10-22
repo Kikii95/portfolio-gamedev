@@ -16,8 +16,10 @@ export default async function Accueil({ params }: { params: Promise<{ locale: st
 
   return (
     <>
-      <Hero />
-      <Chiffres />
+      <div className="premier-ecran cadre">
+        <Hero />
+        <Chiffres />
+      </div>
       <section className="realisations cadre" id="realisations" aria-labelledby="titre-realisations">
         <header className="section-tete">
           <h2 id="titre-realisations">{t('titre')}</h2>

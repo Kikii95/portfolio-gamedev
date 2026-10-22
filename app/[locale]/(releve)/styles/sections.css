@@ -1,15 +1,19 @@
 /* Accent de section : encre de structure (surtitres, filets, liens, rubrique active), jamais un état */
-.releve-site { --section: var(--feu-vert); --section-fond: var(--feu-vert-fond); }
-.releve-site:has([data-section="perso"]) { --section: #5B3FB8; --section-fond: #ECE7FA; }
-.releve-site:has([data-section="ecole"]) { --section: #C8143C; --section-fond: #FBE6EA; }
+.releve-site { --porte-auto: var(--feu-vert); --porte-perso: #7C2CF0; --porte-perso-fond: #F1E8FF; --porte-ecole: #C8143C; --porte-ecole-fond: #FBE6EA; --section: var(--porte-auto); --section-fond: var(--feu-vert-fond); }
+.releve-site:has([data-section="perso"]) { --section: var(--porte-perso); --section-fond: var(--porte-perso-fond); }
+.releve-site:has([data-section="ecole"]) { --section: var(--porte-ecole); --section-fond: var(--porte-ecole-fond); }
 
 @media (prefers-color-scheme: dark) {
-  html:not([data-releve="clair"]) .releve-site:has([data-section="perso"]) { --section: #A894F5; --section-fond: #2A2147; }
-  html:not([data-releve="clair"]) .releve-site:has([data-section="ecole"]) { --section: #FF5C7A; --section-fond: #3D1720; }
+  html:not([data-releve="clair"]) .releve-site { --porte-perso: #B47CFF; --porte-perso-fond: #2C1856; --porte-ecole: #FF5C7A; --porte-ecole-fond: #3D1720; }
 }
-html[data-releve="sombre"] .releve-site:has([data-section="perso"]) { --section: #A894F5; --section-fond: #2A2147; }
-html[data-releve="sombre"] .releve-site:has([data-section="ecole"]) { --section: #FF5C7A; --section-fond: #3D1720; }
+html[data-releve="sombre"] .releve-site { --porte-perso: #B47CFF; --porte-perso-fond: #2C1856; --porte-ecole: #FF5C7A; --porte-ecole-fond: #3D1720; }
 
+/* Les portes se reconnaissent dans la navigation, de n'importe quelle page */
+.releve-site .entete .nav-perso, .releve-site .entete .nav-ecole { display: inline-flex; align-items: center; gap: 0.45em; }
+.releve-site .entete .nav-perso::before, .releve-site .entete .nav-ecole::before { content: ""; inline-size: 0.5em; block-size: 0.5em; border-radius: 50%; background: var(--porte-perso); box-shadow: 0 0 0.5em color-mix(in srgb, var(--porte-perso) 60%, transparent); }
+.releve-site .entete .nav-ecole::before { background: var(--porte-ecole); box-shadow: 0 0 0.5em color-mix(in srgb, var(--porte-ecole) 60%, transparent); }
+.releve-site .entete .nav-perso:hover { color: var(--porte-perso); }
+.releve-site .entete .nav-ecole:hover { color: var(--porte-ecole); }
 .releve-site:has([data-section]) ::selection { background: var(--section-fond); }
 .releve-site:has([data-section="perso"]) .entete .nav-perso,
 .releve-site:has([data-section="ecole"]) .entete .nav-ecole { color: var(--section); }
@@ -26,7 +30,7 @@ html[data-releve="sombre"] .releve-site:has([data-section="ecole"]) { --section:
 .releve-site [data-section] .projets-famille::before { content: ""; position: absolute; inset: -1px 0 auto; block-size: 2px; background: linear-gradient(90deg, var(--section) 0 30%, var(--filet) 30%); transform-origin: left; animation: trace 900ms var(--courbe) both; animation-timeline: view(); animation-range: entry 0% cover 30%; }
 .releve-site [data-section] .projets-famille > h2 { counter-increment: famille; display: flex; align-items: baseline; gap: 0.6em; }
 .releve-site [data-section] .projets-famille > h2::before { content: counter(famille, decimal-leading-zero); font: 600 0.8em var(--mono); color: var(--section); }
-.releve-site [data-section] .projet { padding-block-start: 0.9rem; border-block-start: 2px solid transparent; transition: border-color 220ms var(--courbe), transform 220ms var(--courbe); }
+.releve-site [data-section] .projet { padding-block-start: 0.9rem; border-block-start: 3px solid color-mix(in srgb, var(--section) 30%, transparent); transition: border-color 220ms var(--courbe), transform 220ms var(--courbe); }
 .releve-site [data-section] .projet:hover { border-block-start-color: var(--section); transform: translateY(-0.2rem); }
 .releve-site [data-section] .projet h3 a { color: inherit; text-decoration: none; }
 .releve-site [data-section] .projet h3 a:hover { color: var(--section); }
@@ -57,3 +61,14 @@ html[data-releve="sombre"] .releve-site:has([data-section="ecole"]) { --section:
 .releve-site .indicateur-nav { position: absolute; left: 0; bottom: -1px; block-size: 2px; inline-size: calc(var(--l, 0) * 1px); transform: translateX(calc(var(--x, 0) * 1px)); background: var(--section); border-radius: 2px; box-shadow: 0 0 0.6rem color-mix(in srgb, var(--section) 60%, transparent); transition: transform 380ms var(--courbe), inline-size 380ms var(--courbe), opacity 240ms ease; pointer-events: none; }
 .releve-site .indicateur-nav[data-visible="non"] { opacity: 0; }
 @media (prefers-reduced-motion: reduce) { .releve-site .indicateur-nav { transition: opacity 240ms ease; } }
+
+/* Repères d'attention : bandeau teinté en tête de page, intertitres soulignés, états cerclés */
+.releve-site [data-section] > header { position: relative; padding: clamp(1.4rem, 3vw, 2.4rem); border-radius: var(--rayon-fenetre); background: radial-gradient(120% 140% at 0% 0%, var(--section-fond), transparent 70%), var(--carte); border: 1px solid color-mix(in srgb, var(--section) 25%, var(--filet)); max-width: none; }
+.releve-site [data-section] > header::before { content: ""; position: absolute; inset: 0 auto 0 0; inline-size: 0.3rem; border-radius: var(--rayon-fenetre) 0 0 var(--rayon-fenetre); background: var(--section); }
+.releve-site [data-section] > header > * { max-width: 46em; }
+.releve-site [data-section] .projets-famille > h2 { padding: 0.35em 0.8em 0.35em 0.6em; margin-inline-start: -0.6em; border-radius: var(--rayon-bouton); background: linear-gradient(90deg, var(--section-fond), transparent 80%); justify-self: start; }
+.releve-site .section-tete h2::after { content: ""; display: block; inline-size: 2.6rem; block-size: 0.28rem; margin-block-start: 0.55rem; border-radius: 999px; background: var(--section); }
+.releve-site .entree-texte h3 { display: flex; align-items: baseline; gap: 0.55em; }
+.releve-site .realisations { counter-reset: realisation; }
+.releve-site .entree-texte h3::before { counter-increment: realisation; content: counter(realisation, decimal-leading-zero); font: 600 0.75em var(--mono); color: var(--sur-accent); background: var(--section); padding: 0.15em 0.45em; border-radius: 0.4em; }
+.releve-site .chiffres { border: 1px solid var(--filet); border-radius: var(--rayon-piece); background: var(--carte); }
