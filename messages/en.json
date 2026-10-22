@@ -231,7 +231,8 @@
       "pieces": "Evidence",
       "autres": "Also built",
       "autresChapo": "Complete web products, designed and built solo.",
-      "voirDeroule": "Show the run"
+      "voirDeroule": "Show the run",
+      "resume": "{etapes} steps · {portes, plural, =0 {no human gate} one {# human gate} other {# human gates}} · delivered {heure}"
     },
     "methode": {
       "titre": "AI prepares. You approve. It ships.",

@@ -51,16 +51,8 @@
   .releve-site .trace .reprise .seg { background: var(--fond); outline: 1px dashed var(--reprise); }
 }
 
-/* Trace miniature : la même trace en une ligne, dans le tableau de service */
-.releve-site .trace-mini { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 0.2rem; block-size: 0.45rem; }
-.releve-site .trace-mini .m { border-radius: 2px; background: color-mix(in srgb, var(--texte) 45%, transparent); transform-origin: left; }
-.releve-site .trace-mini .declencheur { background: var(--texte); }
-.releve-site .trace-mini .attente { background: repeating-linear-gradient(135deg, var(--attente) 0 2px, var(--attente-voile) 2px 5px); outline: 1px solid var(--attente); }
-.releve-site .trace-mini .livre { background: var(--en-service); }
-.releve-site .trace-mini .reprise { background: transparent; outline: 1px dashed var(--reprise); outline-offset: -1px; }
-
 /* Révélation : la page est complète au repos ; une trace qui entre à l'écran rejoue son passage */
-.releve-site :is(.trace, .trace-mini).vue :is(.seg, .m) { animation: segment 520ms var(--courbe) both; animation-delay: calc(var(--i) * 90ms); }
+.releve-site .trace.vue .seg { animation: segment 520ms var(--courbe) both; animation-delay: calc(var(--i) * 90ms); }
 .releve-site .trace.vue .attend .seg { animation: segment 520ms var(--courbe) both, respire 2.4s ease-in-out 1.4s infinite; animation-delay: calc(var(--i) * 90ms), 1.4s; }
 .releve-site .trace.vue .glyphe::after { animation: arrive 300ms ease-out both; animation-delay: calc(var(--i, 0) * 90ms); }
 
@@ -95,12 +87,21 @@
 .releve-site .rapport dt { color: var(--texte-pale); }
 .releve-site .rapport dd { margin: 0; text-align: right; color: var(--texte-doux); }
 
+.releve-site .rapport-lignes.compact { margin: 0.4rem 0 0; max-width: 34rem; }
+.releve-site .rapport-lignes.compact .ligne { display: flex; justify-content: space-between; gap: 1rem; padding: 0.45rem 0; border-top: 1px solid var(--filet); font-size: 0.92rem; }
+.releve-site .rapport-lignes.compact .ligne:last-child { border-bottom: 1px solid var(--filet); }
+.releve-site .rapport-lignes.compact dt { color: var(--texte-pale); }
+.releve-site .rapport-lignes.compact dd { margin: 0; text-align: right; color: var(--texte-doux); }
+
+/* Martian Mono : ses espaces sont larges, on les resserre dans les données */
+.releve-site :is(.etat, .chiffre, .h, .heure, .entree-meta, .projet-outils, .cursus-annee, .fiche-infos dt, .langue, .titre-r, .fenetre-titre, .suivante-libelle, .marque-etape, .duree, .periode, .resume) { word-spacing: -0.2em; letter-spacing: 0; }
+
 /* Écran de contrôle : la vidéo comme un écran allumé dans une pièce sombre */
 .releve-site .ecran-controle { position: relative; isolation: isolate; margin: 0; border: 1px solid var(--filet); border-radius: var(--rayon-plan); background: var(--plan-haut); }
 .releve-site .ecran-controle::after { content: ""; position: absolute; inset: 72% 6% -12% 6%; z-index: -1; background: radial-gradient(closest-side, var(--lueur-ecran), transparent); filter: blur(1rem); opacity: 1; transition: opacity 300ms ease; pointer-events: none; }
 .releve-site .ecran-controle:hover::after { opacity: 1; }
-.releve-site .ecran-controle .barre { display: flex; justify-content: space-between; gap: 1rem; padding: 0.55rem 0.9rem; border-bottom: 1px solid var(--filet); font: 400 0.75rem/1.4 var(--donnees); font-variation-settings: "wdth" 87; color: var(--texte-pale); }
-.releve-site .ecran-controle .duree { white-space: nowrap; }
+.releve-site .ecran-controle .barre { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 0.6rem 0.9rem; border-bottom: 1px solid var(--filet); font: 500 0.85rem/1.4 var(--police); color: var(--texte-doux); }
+.releve-site .ecran-controle .duree { white-space: nowrap; font: 400 0.75rem var(--donnees); font-variation-settings: "wdth" 87; color: var(--texte-pale); }
 .releve-site .ecran-controle .vue { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: var(--vue-fond); border-radius: 0 0 calc(var(--rayon-plan) - 1px) calc(var(--rayon-plan) - 1px); }
 .releve-site .ecran-controle.mobile { width: min(100%, 18rem); justify-self: center; }
 .releve-site .ecran-controle.mobile .vue { aspect-ratio: 390 / 844; }

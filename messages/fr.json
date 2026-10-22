@@ -231,7 +231,8 @@
       "pieces": "Pièces justificatives",
       "autres": "Aussi construit",
       "autresChapo": "Des produits web complets, conçus et développés seul.",
-      "voirDeroule": "Voir le déroulé"
+      "voirDeroule": "Voir le déroulé",
+      "resume": "{etapes} étapes · {portes, plural, =0 {sans porte humaine} one {# porte humaine} other {# portes humaines}} · livré {heure}"
     },
     "methode": {
       "titre": "L'IA prépare. Vous validez. Ça part.",

@@ -21,7 +21,8 @@
 .releve-site .projet-tete h3 { order: -1; }
 .releve-site .projet p { color: var(--texte-doux); max-width: 44em; }
 .releve-site .projet-outils { font: 400 0.75rem/1.7 var(--donnees); font-variation-settings: "wdth" 87; color: var(--texte-pale) !important; }
-.releve-site .projet-liens { display: flex; flex-wrap: wrap; gap: 0.5rem 1.3rem; font-weight: 500; }
+.releve-site .projet-liens { display: flex; flex-wrap: wrap; align-items: center; gap: 0 1.3rem; font-weight: 500; }
+.releve-site .projet-liens > :is(a, button) { display: inline-flex; align-items: center; min-height: 2.75rem; }
 .releve-site .projet-liens a,
 .releve-site .ouvrir-details { color: var(--section); text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--section) 40%, transparent); text-underline-offset: 0.22em; }
 .releve-site .projet-liens a:hover { text-decoration-color: var(--section); }
@@ -54,6 +55,7 @@
 .releve-site .labo { display: grid; gap: 0.9rem; }
 .releve-site .labo-liste { list-style: none; margin: 0.6rem 0 0; padding: 0; border-top: 1px solid var(--filet); }
 .releve-site .labo-liste li { display: grid; gap: 0.25rem 1.2rem; padding: 0.85rem 0; border-bottom: 1px solid var(--filet); color: var(--texte-doux); }
+.releve-site .labo-liste li > :last-child { justify-self: start; }
 .releve-site .labo-titre { color: var(--texte); font-weight: 600; }
 @media (min-width: 48em) { .releve-site .labo-liste li { grid-template-columns: minmax(8rem, 0.25fr) minmax(0, 1fr) auto; align-items: baseline; } }
 
@@ -77,6 +79,9 @@
 .releve-site .fiche-corps h2 { font-size: clamp(1.25rem, 0.8vw + 1rem, 1.6rem); color: var(--texte); margin-top: 1.2rem; }
 .releve-site .fiche-corps ul, .releve-site .fiche-corps ol { margin: 0; padding-left: 1.3rem; display: grid; gap: 0.4rem; }
 .releve-site .fiche-corps strong { color: var(--texte); }
+.releve-site .fiche-corps ul { list-style: none; padding-left: 1.2rem; }
+.releve-site .fiche-corps ul > li { position: relative; }
+.releve-site .fiche-corps ul > li::before { content: ""; position: absolute; left: -1.05rem; top: 0.62em; inline-size: 0.4rem; block-size: 0.4rem; border-radius: 50%; background: var(--section); }
 .releve-site .fiche-corps a { color: var(--section); }
 .releve-site .suivante { display: grid; gap: 0.4rem; padding: 1.4rem 0; border-top: 1px solid var(--filet); text-decoration: none; }
 .releve-site .suivante-libelle { font: 400 0.8rem var(--donnees); font-variation-settings: "wdth" 87; color: var(--texte-pale); }

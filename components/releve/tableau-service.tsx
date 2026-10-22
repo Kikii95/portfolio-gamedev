@@ -3,7 +3,6 @@ import { useLocale, useTranslations } from 'next-intl';
 import type { Realisation } from '@/lib/releve/types';
 import { chemin } from '@/lib/releve/chemin';
 import { PROJETS } from '@/lib/releve/projets';
-import { TraceMini } from './trace-mini';
 
 function nomCourt(r: Realisation): string {
   return PROJETS.find((p) => p.fiche === r.slug)?.titre ?? r.titre;
@@ -18,7 +17,7 @@ export function TableauService({ realisations }: { realisations: Realisation[] }
     <section className="tableau" aria-labelledby="titre-tableau">
       <div className="tableau-tete">
         <h2 id="titre-tableau">{t('titre')}</h2>
-        <span className="etat service">{`${n} / ${n}`}</span>
+        <span className="etat service">{`${n}/${n}`}</span>
       </div>
       <ul className="tableau-liste">
         {realisations.map((r, i) => (
@@ -28,18 +27,11 @@ export function TableauService({ realisations }: { realisations: Realisation[] }
               <span className="chiffre">{r.recu.chiffre}</span>
               <span className="legende">{r.recu.legende}</span>
               <span className="heure">{t('passage', { heure: r.etapes[0]?.heure ?? '' })}</span>
-              <TraceMini etapes={r.etapes} />
               {r.etapes.some((e) => e.type === 'attente') && <span className="humain">◆ {t('attente')}</span>}
             </Link>
           </li>
         ))}
       </ul>
-      <p className="tableau-legende" aria-hidden="true">
-        <span className="l declencheur">{t('legende.declencheur')}</span>
-        <span className="l attente">{t('legende.attente')}</span>
-        <span className="l reprise">{t('legende.reprise')}</span>
-        <span className="l livre">{t('legende.livre')}</span>
-      </p>
     </section>
   );
 }

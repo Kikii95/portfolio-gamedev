@@ -2,6 +2,7 @@
 
 /* Hero : poste, promesse, disponibilité, CV ; le tableau de service à côté (dessous sur mobile) */
 .releve-site .hero { display: grid; gap: clamp(1.6rem, 3vw, 3rem) clamp(2rem, 4vw, 4.5rem); grid-template-areas: "texte" "tableau"; padding-top: clamp(1.8rem, 5vw, 5rem); background-image: repeating-linear-gradient(90deg, color-mix(in srgb, var(--texte) 4%, transparent) 0 1px, transparent 1px 8rem); background-position: left top; }
+.releve-site .hero-nom { font-size: clamp(1.1rem, 0.4vw + 1rem, 1.3rem); font-weight: 600; font-variation-settings: "wdth" 88; color: var(--texte-doux); margin-bottom: -0.3rem; }
 .releve-site .hero-texte { grid-area: texte; display: flex; flex-direction: column; gap: 1rem; align-items: flex-start; }
 .releve-site .promesse { font-size: clamp(1.35rem, 1.2vw + 1rem, 1.9rem); line-height: 1.2; font-weight: 500; font-variation-settings: "wdth" 88; letter-spacing: -0.015em; color: var(--texte); }
 .releve-site .promesse::after { content: ""; display: block; inline-size: 2.5rem; block-size: 2px; margin-top: 0.9rem; border-radius: 2px; background: var(--section); }
@@ -26,32 +27,23 @@
 .releve-site .tableau-liste li:nth-child(even) { border-left: 1px solid var(--filet); }
 .releve-site .systeme { display: grid; gap: 0.2rem; padding: 0.85rem 1rem 0.95rem; text-decoration: none; transition: background-color 200ms ease; block-size: 100%; align-content: start; }
 .releve-site .systeme:hover { background: var(--plan-haut); }
-.releve-site .systeme .nom { font-weight: 600; font-size: 0.98rem; font-variation-settings: "wdth" 88; }
+.releve-site .systeme .nom { display: inline-flex; align-items: center; gap: 0.5em; font-weight: 600; font-size: 0.98rem; font-variation-settings: "wdth" 88; }
+.releve-site .systeme .nom::before { content: ""; inline-size: 0.5em; block-size: 0.5em; border-radius: 50%; background: var(--en-service); flex: none; }
 .releve-site .systeme:hover .nom { color: var(--section); }
 .releve-site .systeme .chiffre { order: -1; font: 500 clamp(1.6rem, 0.8vw + 1.3rem, 2rem)/1.05 var(--donnees); font-variation-settings: "wdth" 87; letter-spacing: -0.02em; }
 .releve-site .systeme .legende { font-size: 0.85rem; line-height: 1.4; color: var(--texte-doux); }
-.releve-site .systeme .heure,
-.releve-site .systeme .trace-mini,
-.releve-site .tableau-legende { display: none; }
-.releve-site .systeme .humain { font: 400 0.72rem var(--donnees); font-variation-settings: "wdth" 87; color: var(--attente); margin-top: 0.3rem; }
+.releve-site .systeme .heure { display: none; }
+.releve-site .systeme .humain { font-size: 0.82rem; font-weight: 500; color: var(--attente); margin-top: 0.3rem; }
 @media (min-width: 40em) {
   .releve-site .tableau-liste { grid-template-columns: minmax(0, 1fr); }
   .releve-site .tableau-liste li:nth-child(even) { border-left: 0; }
   .releve-site .tableau-liste li:first-child { border-top: 0; }
-  .releve-site .systeme { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "nom chiffre" "legende heure" "trace trace" "humain humain"; gap: 0.25rem 1rem; padding: 0.95rem 1.1rem 1rem; }
+  .releve-site .systeme { grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "nom chiffre" "legende heure" "humain humain"; gap: 0.25rem 1rem; padding: 0.95rem 1.1rem 1rem; }
   .releve-site .systeme .nom { grid-area: nom; font-size: 1.08rem; }
   .releve-site .systeme .chiffre { grid-area: chiffre; justify-self: end; order: 0; }
   .releve-site .systeme .legende { grid-area: legende; font-size: 0.92rem; }
   .releve-site .systeme .heure { grid-area: heure; display: block; justify-self: end; font: 400 0.72rem var(--donnees); font-variation-settings: "wdth" 87; color: var(--texte-pale); }
-  .releve-site .systeme .trace-mini { grid-area: trace; display: grid; margin-top: 0.55rem; }
   .releve-site .systeme .humain { grid-area: humain; margin-top: 0; }
-  .releve-site .tableau-legende { display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem; padding: 0.7rem 1.1rem; border-top: 1px solid var(--filet); font: 400 0.72rem var(--donnees); font-variation-settings: "wdth" 87; color: var(--texte-pale); }
-  .releve-site .tableau-legende .l { display: inline-flex; align-items: center; gap: 0.45em; }
-  .releve-site .tableau-legende .l::before { content: ""; inline-size: 1.1em; block-size: 0.45rem; border-radius: 2px; }
-  .releve-site .tableau-legende .declencheur::before { background: var(--texte); }
-  .releve-site .tableau-legende .attente::before { background: repeating-linear-gradient(135deg, var(--attente) 0 2px, var(--attente-voile) 2px 5px); outline: 1px solid var(--attente); }
-  .releve-site .tableau-legende .reprise::before { outline: 1px dashed var(--reprise); outline-offset: -1px; }
-  .releve-site .tableau-legende .livre::before { background: var(--en-service); }
 }
 
 /* Réalisations : un rapport par système, la trace au centre */
@@ -69,11 +61,9 @@
   .releve-site .entree { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); grid-template-areas: "tete preuves" "trace preuves"; grid-template-rows: auto 1fr; align-items: start; }
   .releve-site .entree-preuves { grid-template-columns: minmax(0, 1fr); }
 }
-.releve-site .entree .rapport-tete { justify-content: flex-end; }
-.releve-site .entree .titre-r { display: none; }
-.releve-site .entree .rapport .chiffre { margin-top: -1.6rem; }
 /* déroulé replié des réalisations suivantes */
 .releve-site .deroule { width: 100%; border-top: 1px solid var(--filet); }
+.releve-site .deroule .resume { font: 400 0.78rem var(--donnees); font-variation-settings: "wdth" 87; color: var(--texte-pale); }
 .releve-site .deroule summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 1rem; min-height: 2.875rem; font-weight: 500; color: var(--texte-doux); }
 .releve-site .deroule summary::-webkit-details-marker { display: none; }
 .releve-site .deroule summary::after { content: "+"; font: 400 1.1rem var(--donnees); color: var(--section); transition: transform 220ms var(--courbe); }
@@ -106,5 +96,5 @@
 .releve-site .parcours-liste .periode { font: 400 0.8rem/1.8 var(--donnees); font-variation-settings: "wdth" 87; color: var(--texte-pale); }
 .releve-site .parcours-liste p { color: var(--texte-doux); margin-top: 0.3rem; }
 .releve-site .outils { color: var(--texte-doux); line-height: 1.8; }
-.releve-site .outils .mono { font: 400 0.8rem var(--donnees); font-variation-settings: "wdth" 87; color: var(--texte-pale); margin-right: 0.6rem; }
+.releve-site .outils .mono { font-weight: 600; color: var(--texte); margin-right: 0.6rem; }
 @media (min-width: 48em) { .releve-site .parcours-liste li { grid-template-columns: minmax(10rem, 0.3fr) minmax(0, 1fr); } }

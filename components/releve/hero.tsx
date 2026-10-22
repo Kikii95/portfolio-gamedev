@@ -5,10 +5,12 @@ import { TableauService } from './tableau-service';
 
 export function Hero({ realisations }: { realisations: Realisation[] }) {
   const t = useTranslations('releve');
+  const tn = useTranslations('footer');
 
   return (
     <section className="hero cadre">
       <div className="hero-texte">
+        <p className="hero-nom">{tn('brand')}</p>
         <h1>{t('hero.poste')}</h1>
         <p className="promesse">{t('methode.titre')}</p>
         <p className="hero-lead">{t('hero.chapo')}</p>

@@ -3,7 +3,6 @@ import { useLocale, useTranslations } from 'next-intl';
 import type { Realisation } from '@/lib/releve/types';
 import { chemin } from '@/lib/releve/chemin';
 import { FilExecution } from './fil-execution';
-import { TraceMini } from './trace-mini';
 import { RecuLivraison } from './recu-livraison';
 import { PieceJustificative } from './piece-justificative';
 
@@ -27,6 +26,7 @@ export function EntreeRealisation({ realisation, rang }: { realisation: Realisat
           <Link href={fiche}>{realisation.titre}</Link>
         </h3>
         <p className="chapo">{realisation.accroche}</p>
+        <RecuLivraison recu={realisation.recu} statut={realisation.statut} compact />
       </header>
       <div className="entree-trace">
         {rang === 0 ? (
@@ -38,7 +38,7 @@ export function EntreeRealisation({ realisation, rang }: { realisation: Realisat
           <details className="deroule">
             <summary>
               <span>{t('realisations.voirDeroule')}</span>
-              <TraceMini etapes={realisation.etapes} />
+              <span className="resume">{t('realisations.resume', { etapes: realisation.etapes.length, portes: realisation.etapes.filter((e) => e.type === 'attente').length, heure: realisation.etapes.findLast((e) => e.type === 'livre')?.heure ?? '' })}</span>
             </summary>
             <FilExecution etapes={realisation.etapes} enCours={enCours} />
           </details>
@@ -49,7 +49,6 @@ export function EntreeRealisation({ realisation, rang }: { realisation: Realisat
       </div>
       <div className="entree-preuves">
         {piece && <PieceJustificative piece={piece} libelleLecture={t('piece.lire')} />}
-        <RecuLivraison recu={realisation.recu} statut={realisation.statut} />
       </div>
     </article>
   );

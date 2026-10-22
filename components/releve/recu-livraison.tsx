@@ -1,6 +1,18 @@
 import type { Recu } from '@/lib/releve/types';
 
-export function RecuLivraison({ recu, statut }: { recu: Recu; statut: string }) {
+export function RecuLivraison({ recu, statut, compact }: { recu: Recu; statut: string; compact?: boolean }) {
+  if (compact) {
+    return (
+      <dl className="rapport-lignes compact">
+        {recu.lignes.map(([cle, valeur]) => (
+          <div className="ligne" key={cle}>
+            <dt>{cle}</dt>
+            <dd>{valeur}</dd>
+          </div>
+        ))}
+      </dl>
+    );
+  }
   return (
     <div className="rapport">
       <div className="rapport-tete">
