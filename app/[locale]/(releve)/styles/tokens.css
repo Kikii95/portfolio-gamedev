@@ -22,6 +22,12 @@ html:has(.releve-site) {
   --declencheur-fond: #E4EDF8;
   --reprise: #B23A26;
   --reprise-fond: #F8E6E2;
+  --sur-accent: #FFFFFF;
+  --pied-fond: #1C211F;
+  --pied-texte: #F5F6F3;
+  --pied-doux: #C9CEC4;
+  --pied-filet: #3A413D;
+  --voile: rgba(28, 33, 31, 0.08);
   --ombre-agrafe: 0 1px 2px rgba(28, 33, 31, 0.1), 0 0.4rem 1.1rem -0.5rem rgba(28, 33, 31, 0.22);
   --rayon-pastille: 999px;
   --rayon-piece: 0.375rem;
@@ -40,6 +46,62 @@ html:has(.releve-site) {
   color: var(--encre);
   font-family: var(--police);
   line-height: 1.5;
+}
+
+/* Relevé de nuit : même sémantique, encres éclaircies (DA § 3.3) */
+@media (prefers-color-scheme: dark) {
+  html:not([data-releve="clair"]):has(.releve-site) { background: #121614; }
+  html:not([data-releve="clair"]) .releve-site {
+  --papier: #121614;
+  --papier-pli: #181D1B;
+  --carte: #1B201E;
+  --filet: #2C3430;
+  --marge: #3A433E;
+  --encre: #E6EAE7;
+  --encre-douce: #B4BCB7;
+  --encre-pale: #8C9690;
+  --feu-vert: #45C487;
+  --feu-vert-fond: #173324;
+  --attente: #E3A443;
+  --attente-fond: #36290F;
+  --declencheur: #74A8F2;
+  --declencheur-fond: #182B47;
+  --reprise: #F0806A;
+  --reprise-fond: #3B1F19;
+  --sur-accent: #0C1410;
+  --pied-fond: #0B0E0D;
+  --pied-texte: #E6EAE7;
+  --pied-filet: #2C3430;
+  --voile: rgba(0, 0, 0, 0.18);
+  --ombre-agrafe: 0 1px 2px rgba(0, 0, 0, 0.4), 0 0.4rem 1.1rem -0.5rem rgba(0, 0, 0, 0.6);
+  color-scheme: dark;
+  }
+}
+html[data-releve="sombre"]:has(.releve-site) { background: #121614; }
+html[data-releve="sombre"] .releve-site {
+  --papier: #121614;
+  --papier-pli: #181D1B;
+  --carte: #1B201E;
+  --filet: #2C3430;
+  --marge: #3A433E;
+  --encre: #E6EAE7;
+  --encre-douce: #B4BCB7;
+  --encre-pale: #8C9690;
+  --feu-vert: #45C487;
+  --feu-vert-fond: #173324;
+  --attente: #E3A443;
+  --attente-fond: #36290F;
+  --declencheur: #74A8F2;
+  --declencheur-fond: #182B47;
+  --reprise: #F0806A;
+  --reprise-fond: #3B1F19;
+  --sur-accent: #0C1410;
+  --pied-fond: #0B0E0D;
+  --pied-texte: #E6EAE7;
+  --pied-filet: #2C3430;
+  --voile: rgba(0, 0, 0, 0.18);
+  --ombre-agrafe: 0 1px 2px rgba(0, 0, 0, 0.4), 0 0.4rem 1.1rem -0.5rem rgba(0, 0, 0, 0.6);
+  color-scheme: dark;
 }
 
 .releve-site a { color: inherit; }
@@ -69,6 +131,6 @@ html:has(.releve-site) {
 }
 .releve-site .bouton:active { transform: scale(0.97); }
 .releve-site .bouton.plein { background: var(--encre); color: var(--papier); }
-.releve-site .bouton.plein:hover { background: #2C3330; }
+.releve-site .bouton.plein:hover { background: color-mix(in srgb, var(--encre) 86%, var(--papier)); }
 .releve-site .bouton.trait { border: 1px solid var(--marge); color: var(--encre); background: var(--carte); }
 .releve-site .bouton.trait:hover { border-color: var(--encre-pale); }

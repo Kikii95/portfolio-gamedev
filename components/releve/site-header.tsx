@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useLocale, useTranslations } from 'next-intl';
 import { chemin, LIENS } from '@/lib/releve/chemin';
+import { BasculeTheme } from './bascule-theme';
 
 export function SiteHeader() {
   const t = useTranslations('releve.nav');
@@ -27,6 +28,7 @@ export function SiteHeader() {
       <Link href={chemin(autreLangue)} hrefLang={autreLangue} className="langue">
         {autreLangue.toUpperCase()}
       </Link>
+      <BasculeTheme />
       <a href={LIENS.cv} className="bouton trait">
         {t('cv')}
       </a>

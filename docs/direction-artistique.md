@@ -108,7 +108,27 @@ l'origine n'existe plus sur ce volet (il appartient à l'atelier jeu vidéo).
   --reprise-fond: #F8E6E2;
 }
 ```
-Clair = référence (pas de thème sombre sur ce volet : le sombre est réservé aux pièces « terminal » et à l'atelier jeu).
+Clair = référence. Un thème sombre existe depuis le 22/10/2026 (demande de Killian) : § 3.3.
+
+### 3.3 Relevé de nuit (thème sombre)
+
+Le même relevé, lu de nuit : papier graphite, encres éclaircies, **même sémantique** (§ 3.1). Ce n'est ni l'éditeur
+sombre de n8n ni le noir et rouge de l'atelier jeu : pas de noir pur, pas de néon, pas de lueur.
+Suit `prefers-color-scheme` ; le bouton de l'en-tête force clair ou sombre (`html[data-releve]`, retenu dans
+`localStorage`, posé avant le premier rendu).
+
+| Token | Sombre |
+| --- | --- |
+| `--papier` / `--papier-pli` / `--carte` | #121614 / #181D1B / #1B201E |
+| `--filet` / `--marge` | #2C3430 / #3A433E |
+| `--encre` / `--encre-douce` / `--encre-pale` | #E6EAE7 / #B4BCB7 / #8C9690 |
+| `--feu-vert` / `--attente` / `--declencheur` / `--reprise` | #45C487 / #E3A443 / #74A8F2 / #F0806A |
+| fonds sémantiques | #173324 / #36290F / #182B47 / #3B1F19 |
+| `--sur-accent` (texte sur bouton vert) | #0C1410 |
+| pied de page | #0B0E0D, filet en tête |
+
+Contraste ≥ 4,5:1 sur `--papier` sombre pour toutes les encres et sémantiques. Les pièces justificatives (captures)
+restent telles quelles : ce sont des documents agrafés, pas de l'interface.
 Contraste texte ≥ 4,5:1 sur `--papier` pour `--encre`, `--encre-douce`, `--encre-pale` et chaque sémantique.
 Pulsation de l'étape en cours : halo `--feu-vert` alpha 0 → 0,28, rayon ≤ 0,6rem.
 

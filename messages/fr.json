@@ -155,7 +155,9 @@
       "contact": "Contact",
       "atelier": "Atelier jeu vidéo",
       "cv": "CV",
-      "menu": "Menu"
+      "menu": "Menu",
+      "themeClair": "Passer en thème clair",
+      "themeSombre": "Passer en thème sombre"
     },
     "hero": {
       "statut": "en service ce matin",

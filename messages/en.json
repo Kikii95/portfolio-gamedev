@@ -155,7 +155,9 @@
       "contact": "Contact",
       "atelier": "Game dev workshop",
       "cv": "Resume",
-      "menu": "Menu"
+      "menu": "Menu",
+      "themeClair": "Switch to light theme",
+      "themeSombre": "Switch to dark theme"
     },
     "hero": {
       "statut": "running this morning",
