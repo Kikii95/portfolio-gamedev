@@ -1,0 +1,75 @@
+---
+title: "Nightjar"
+description: "A PWA that finds tonight's film in under a minute: free-text mood search, taste learned from what you watched, availability on your own subscriptions"
+date: "2026-10-30"
+category: "perso"
+tags: ["TypeScript", "Next.js 16", "React 19", "Drizzle", "PostgreSQL", "TMDB", "GitHub Actions", "PWA", "Passkeys"]
+status: "actif"
+gallery: []
+techDetails: |
+  ## Architecture
+
+  ```
+  TMDB + IMDb ratings ──nightly sync (GitHub Actions)──▶ Postgres (Neon)
+                                                          ├─ ~18,000 films, French availability per platform
+                                                          └─ mood axes (rules, refined at night)
+  Free text ──rule-based parsing──▶ filters + deterministic score ──▶ cards with their "why"
+  Gestures (seen, liked, loved, kept, not for me) ──▶ taste profile as poles
+  ```
+
+  ## Search without paid AI
+
+  A sentence like "tense locked-room, not too gory, under 1 h 45, on my subscriptions" is split by rules: duration, years, platforms, exclusions, context, quoted titles. Ranking is a deterministic score shown on every card, with the sentence that explains it. No request goes through a model: answers in under two seconds, at zero cost.
+
+  ## Mood, measured
+
+  Genres are too coarse ("horror" puts a slow psychological film next to a jump-scare one). Each film gets seven continuous axes (tension, jump scares, gore, humour, pace…): a first rule-based pass at every sync, then a nightly refinement by Claude on the subscription, never during a search.
+
+  ## Technical choices
+
+  - **Taste as poles**: each loved film is a pole of its own, with its own era; an era factor avoids suggesting a 1950s film to someone who only likes recent ones.
+  - **Diversity**: MMR selection so the five suggestions are not five copies of the same film.
+  - **Sync outside Vercel**: the initial import is about 18,000 calls, it runs in GitHub Actions, with a rate limiter on a monotonic clock.
+  - **Watching together**: a shared link, guests without an account who vote, a common ranking.
+  - **Machine bridges** by token: the Memogram journal sends the films you talk about, Magpie the films spotted in saved videos; Nightjar stays the single source of truth for a film's state.
+  - **Layers**: short Server Actions and routes → services → repositories (Drizzle). Vitest tests on PGlite, no network; ten written architecture decisions.
+
+  ## Stack
+
+  | Tech | Role |
+  |------|------|
+  | Next.js 16 / React 19 | App, Server Actions, offline PWA |
+  | Drizzle + Postgres (Neon) | Catalogue, taste, watch parties |
+  | TMDB, JustWatch, IMDb | Film data, French availability, ratings |
+  | GitHub Actions + Claude | Nightly sync and mood scoring |
+  | next-auth + passkeys | Face ID sign-in |
+  | Vitest + PGlite | Network-free tests |
+---
+
+# Nightjar
+
+The right film in under a minute: say what you feel like watching the way you would on the couch, Nightjar answers with a poster, its reason, and where to watch it tonight.
+
+## Context
+
+Personal project started on 30/10/2026, live since 02/11. Born from an evening spent looking for a film longer than watching it.
+
+## Features
+
+**Choosing**:
+- "Tonight": one main film and four others, tuned by mood, length, who you are with, and only on your subscriptions
+- Free-text mood, with the understood words highlighted and editable
+- "Like…": neighbours of one or more starting films
+- Trailer, rating, length and platforms on every card
+
+**Learning taste**:
+- Seen, liked, loved, keep, not for me, more or less like this
+- Quick calibration on posters at first launch
+- A bank of kept films, with those just arrived on your platforms
+
+**Together**:
+- A watch party shared by link, guests without an account, voting and a common ranking
+
+## Links
+
+Private repo, personal app: no public demo.

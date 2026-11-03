@@ -1,0 +1,75 @@
+---
+title: "Nightjar"
+description: "PWA qui trouve le film du soir en moins d'une minute : recherche par ambiance en phrase libre, goût appris sur ce qu'on a vu, dispo sur ses abonnements"
+date: "2026-10-30"
+category: "perso"
+tags: ["TypeScript", "Next.js 16", "React 19", "Drizzle", "PostgreSQL", "TMDB", "GitHub Actions", "PWA", "Passkeys"]
+status: "actif"
+gallery: []
+techDetails: |
+  ## Architecture
+
+  ```
+  TMDB + notes IMDb ──synchro de nuit (GitHub Actions)──▶ Postgres (Neon)
+                                                          ├─ ~18 000 films, dispo FR par plateforme
+                                                          └─ axes d'ambiance (règles, affinés la nuit)
+  Phrase libre ──analyse par règles──▶ filtres + score déterministe ──▶ cartes avec leur « pourquoi »
+  Gestes (vu, aimé, adoré, gardé, pas pour moi) ──▶ profil de goût en pôles
+  ```
+
+  ## Recherche sans IA payante
+
+  Une phrase comme « huis clos tendu, pas trop gore, moins de 1 h 45, sur mes abonnements » est découpée par règles : durée, années, plateformes, exclusions, contexte, titres cités. Le classement est un score déterministe affiché sur chaque carte, avec la phrase qui l'explique. Aucune requête ne passe par un modèle : réponse en moins de deux secondes, coût nul.
+
+  ## L'ambiance, mesurée
+
+  Les genres sont trop grossiers (« horreur » range ensemble un film lent et psychologique et un film à sursauts). Chaque film reçoit sept axes continus (tension, sursauts, gore, humour, rythme…) : une première lecture par règles à chaque synchro, puis un affinage la nuit par Claude sur l'abonnement, jamais pendant une recherche.
+
+  ## Choix techniques
+
+  - **Goût en pôles** : chaque film adoré est un pôle à lui seul, avec sa propre époque ; un facteur d'époque évite de proposer un film des années 50 à qui n'aime que des films récents.
+  - **Diversité** : sélection MMR pour que les cinq propositions ne soient pas cinq fois le même film.
+  - **Synchro hors Vercel** : l'import initial compte environ 18 000 appels, il tourne dans GitHub Actions, limiteur sur horloge monotone.
+  - **Soirée à plusieurs** : un lien partagé, des invités sans compte qui votent, un classement commun.
+  - **Ponts machine** par jeton : le journal Memogram y envoie les films racontés, Magpie les films repérés dans des vidéos ; Nightjar reste seul maître de l'état d'un film.
+  - **Couches** : Server Actions et routes courtes → services → repositories (Drizzle). Tests Vitest sur PGlite, sans réseau ; dix décisions d'architecture écrites.
+
+  ## Stack
+
+  | Tech | Rôle |
+  |------|------|
+  | Next.js 16 / React 19 | App, Server Actions, PWA hors ligne |
+  | Drizzle + Postgres (Neon) | Catalogue, goûts, soirées |
+  | TMDB, JustWatch, IMDb | Fiches, dispo FR, notes |
+  | GitHub Actions + Claude | Synchro et notation d'ambiance de nuit |
+  | next-auth + passkeys | Connexion Face ID |
+  | Vitest + PGlite | Tests sans réseau |
+---
+
+# Nightjar
+
+Le bon film en moins d'une minute : on dit ce qu'on a envie de voir comme on le dirait sur le canapé, Nightjar répond avec une affiche, sa raison et l'endroit où le regarder ce soir.
+
+## Contexte
+
+Projet perso démarré le 30/10/2026, en ligne depuis le 02/11. Né d'une soirée passée à chercher un film plus longtemps qu'à le regarder.
+
+## Fonctionnalités
+
+**Choisir** :
+- « Ce soir » : un film principal et quatre autres, réglés par humeur, durée, avec qui, et seulement sur ses abonnements
+- Ambiance en phrase libre, avec les mots compris surlignés et modifiables
+- « Comme… » : des voisins d'un ou plusieurs films de départ
+- Bande-annonce, note, durée et plateformes sur chaque carte
+
+**Apprendre le goût** :
+- Gestes déjà vu, aimé, adoré, garder, pas pour moi, plus ou moins comme ça
+- Calibrage rapide sur des affiches au premier lancement
+- Banque des films gardés, avec ceux qui viennent d'arriver sur ses plateformes
+
+**À plusieurs** :
+- Soirée partagée par lien, invités sans compte, vote et classement commun
+
+## Liens
+
+Repo privé, application personnelle : pas de démo publique.

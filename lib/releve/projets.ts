@@ -97,6 +97,15 @@ export const PROJETS: ProjetPerso[] = [
     piece: { type: 'image', src: '/medias/home-gateway/schema.webp', legende: 'Schéma : qui passe par la passerelle' },
   },
   {
+    titre: 'Nightjar',
+    detail: 'nightjar',
+    famille: 'app',
+    statut: 'service',
+    texte: "Le film du soir en moins d'une minute : une envie dite en phrase libre, un goût appris sur ce qu'on a vu, seulement sur ses abonnements.",
+    outils: ['Next.js', 'PostgreSQL', 'TMDB', 'GitHub Actions'],
+    piece: video('nightjar', 'nightjar', 'Ce soir, une ambiance en phrase libre, la banque', 'vidéo · 0:17'),
+  },
+  {
     titre: 'Obsidian Web',
     detail: 'obsidian-web',
     famille: 'app',
